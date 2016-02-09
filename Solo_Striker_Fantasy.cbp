@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Solo_Striker_Fantasy" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Solo_Striker_Fantasy" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add library="tools\sdl2\lib\x86\SDL2.lib" />
+					<Add library="tools\sdl2\lib\x86\SDL2main.lib" />
+					<Add library="tools\sdl2\lib\x86\SDL2test.lib" />
+					<Add library="tools\sdl2\lib\libglu32.a" />
+					<Add library="tools\sdl2\lib\libopengl32.a" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Solo_Striker_Fantasy" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="Abstract.cpp" />
+		<Unit filename="Abstract.h" />
+		<Unit filename="Actor.cpp" />
+		<Unit filename="Actor.h" />
+		<Unit filename="Camera.cpp" />
+		<Unit filename="Camera.h" />
+		<Unit filename="DynamicModel.cpp" />
+		<Unit filename="DynamicModel.h" />
+		<Unit filename="Enemy.cpp" />
+		<Unit filename="Enemy.h" />
+		<Unit filename="EventSystem.cpp" />
+		<Unit filename="EventSystem.h" />
+		<Unit filename="GameCore.cpp" />
+		<Unit filename="GameCore.h" />
+		<Unit filename="GameLogic.cpp" />
+		<Unit filename="GameLogic.h" />
+		<Unit filename="GameScene.cpp" />
+		<Unit filename="GameScene.h" />
+		<Unit filename="GraphicsEngine.cpp" />
+		<Unit filename="GraphicsEngine.h" />
+		<Unit filename="Math.cpp" />
+		<Unit filename="Math.h" />
+		<Unit filename="Player.cpp" />
+		<Unit filename="Player.h" />
+		<Unit filename="Shot.cpp" />
+		<Unit filename="Shot.h" />
+		<Unit filename="StaticModel.cpp" />
+		<Unit filename="StaticModel.h" />
+		<Unit filename="Timer.cpp" />
+		<Unit filename="Timer.h" />
+		<Unit filename="Types.h" />
+		<Unit filename="WindowHandler.cpp" />
+		<Unit filename="WindowHandler.h" />
+		<Unit filename="main.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
