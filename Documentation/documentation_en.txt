@@ -37,31 +37,34 @@ this document generally explains the role of each class in this project
 /////////////////////////////////////////////////////////////////////////
 //						1-GameCore								   	   //
 /////////////////////////////////////////////////////////////////////////
-this the Core of our system. the class deals with the creation,initialization and destrucion(by Destruction i mean
-Free Resources) of the main classes in the System. this class hnadles the game Loop too.
+this the Core of our system. the class deals with the creation,initialization and 
+destrucion(by Destruction i mean Free Resources) of the main classes in the System.
+this class hnadles the game Loop too.
 
 
 /////////////////////////////////////////////////////////////////////////
 //						2-WindowHandler								   //
 /////////////////////////////////////////////////////////////////////////
-this class made to handle the system Window operations including Creation,Resize,switch between windowed mode 
-andFullScreen and Destruction.the Real window is created by SDL2which is a cross Platform library that helps
-creating Cross Platform software.
+this class made to handle the system Window operations including Creation,Resize,
+switch between windowed mode and FullScreen and Destruction.the Real window is created 
+by SDL2which is a cross Platform library that helps creating Cross Platform software.
 
  
 /////////////////////////////////////////////////////////////////////////
 //						3-GameScene								   	   //
 /////////////////////////////////////////////////////////////////////////
-GameScene is logic representation to the GameWorld. this class Contains a vector which stock reference of the object
-that could be inserted in the game world.these objects' classes should extends Actor or other child class of Actor.
+GameScene is logic representation to the GameWorld. this class Contains a vector which 
+stock reference of the object that could be inserted in the game world.these objects' classes 
+should extends Actor or other child class of Actor.
 
  
 /////////////////////////////////////////////////////////////////////////
 //						4-Actor								   		   //
 /////////////////////////////////////////////////////////////////////////
-this is the base class that represent any object that could be inserted in the game Scene(world) and define the common
-operation that could be applied on any object in a 3D Space.this class has no use without m_ID attribut.m_ID helps to 
-Knows what type of the Actor in game Scene so we could convert the reference type and use the right methods.
+this is the base class that represent any object that could be inserted in the game Scene(world) 
+and define the common operation that could be applied on any object in a 3D Space.this class has 
+no use without m_ID attribut.m_ID helps to  Knows what type of the Actor in game Scene so we could 
+convert the reference type and use the right methods.
 the current IDs are:
 -Drawable
 -Updatable
