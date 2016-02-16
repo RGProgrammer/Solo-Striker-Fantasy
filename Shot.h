@@ -14,5 +14,7 @@ public:
 private :
     Actor*          m_Source;
     float           m_Speed;
+    int             m_Damage;
 };
+
 #endif // PFE_SHOT_H_

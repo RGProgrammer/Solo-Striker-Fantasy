@@ -2,7 +2,7 @@
 #define PFE_HOPE_H_
 #include "Player.h"
 
-class HOPE {
+class HOPE :public Player{
 public :
     //Constructor
     HOPE();

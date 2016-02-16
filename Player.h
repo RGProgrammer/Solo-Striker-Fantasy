@@ -1,7 +1,8 @@
 #ifndef PFE_PLAYER_H_
 #define PFE_PLAYER_H_
-#include "DynamicModel.h"
 #include "GameScene.h"
+#include "DynamicModel.h"
+#include "Weapon.h"
 #include ".//tools//sdl2//include//SDL.h"
 #define DEAD        0x0000
 #define MOVING      0x0001
@@ -24,10 +25,10 @@ public:
 protected:
     GameScene*          m_Scene;
     Weapon*             m_SelectedWeapon;
-    Weapon**            v_Weapons
+    Weapon**            v_Weapons;
     int                 m_Health;
     int                 m_Charge;
-    int                 m_nbWeapons
+    int                 m_nbWeapons;
     int                 m_State;
     Vertex3d            m_MoveDirection;
 
