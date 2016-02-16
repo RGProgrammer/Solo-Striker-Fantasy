@@ -13,6 +13,14 @@
 #include "Camera.h"
 //#include "Player.h"
 #include ".//tools//sdl2//include//SDL.h"
+
+
+//Game Logic Stats
+#define     MAINMENU        0x0001
+#define     INGAME          0x0002
+#define     PAUSE           0x0004
+#define     SCORESCREEN     0x0008
+
 class GameLogic {
 public:
     GameLogic();
@@ -26,6 +34,7 @@ public:
 private:
     GameScene*          m_Scene ;
     Camera*             m_Camera ;
+    int                 m_Stat ;
     //SDL_Event           event;
     //Player*           m_Player ;
     //EventManager*     m_EventSys ;

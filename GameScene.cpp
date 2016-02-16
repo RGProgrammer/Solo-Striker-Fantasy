@@ -3,7 +3,7 @@ GameScene::GameScene():Size(10),m_NBActors(0),v_Actors(NULL),m_Camera(NULL){};
 GameScene::~GameScene() {
     this->Destroy() ;
 };
-int GameScene::AddActor(Actor** actor){
+int GameScene::AddActor(Actor* actor){
     if(v_Actors==NULL){
         v_Actors=(Actor**)malloc((Size)*sizeof(Actor*));
         if(v_Actors==NULL)
@@ -23,7 +23,7 @@ int GameScene::AddActor(Actor** actor){
             v_Actors[i]=tmp[i];
         free(tmp);
         }
-        v_Actors[m_NBActors]=*actor ;
+        v_Actors[m_NBActors]=actor ;
         m_NBActors++;
         return 1 ;
 };
@@ -37,8 +37,10 @@ void GameScene::FreeVector(){
         Size=10;
     }
 };
-Actor** GameScene::getActors(){
-    return v_Actors ;
+Actor*  GameScene::getActor(unsigned int index){
+    if(index>=m_NBActors)
+        return NULL ;
+    return v_Actors[index];
 };
 int GameScene::getNBActors(){ return m_NBActors ;};
 //void GameScene::AddPlayer(Player * player){m_Player=player;};

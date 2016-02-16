@@ -58,6 +58,8 @@
 		<Unit filename="GameScene.h" />
 		<Unit filename="GraphicsEngine.cpp" />
 		<Unit filename="GraphicsEngine.h" />
+		<Unit filename="HOPE.cpp" />
+		<Unit filename="HOPE.h" />
 		<Unit filename="Math.cpp" />
 		<Unit filename="Math.h" />
 		<Unit filename="Player.cpp" />

@@ -26,18 +26,19 @@ void GraphicsEngine::Destroy() {
 };
 void GraphicsEngine::DrawScene(){
     Camera* m_Camera=m_Scene->getCamera();
+    Actor* actor=NULL ;
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClearColor(0.5f,0.5f,0.5f,0.0f);
     if(m_Scene){
-        Actor** actors = m_Scene->getActors();
-        unsigned int nbActors=m_Scene->getNBActors();
-        for(unsigned int i=0;i<nbActors;i++)
-            if(actors[i]->getID() & DRAWABLE){
+        unsigned int nbactors=m_Scene->getNBActors();
+        for(unsigned int i=0;i<nbactors;i++){
+            actor=m_Scene->getActor(i);
+            if(actor->getID() & DRAWABLE)
                 if(m_Camera)
-                    ((Drawable*)(actors[i]))->Draw(m_Camera->getTransMtx());
+                    ((Drawable*)actor)->Draw(m_Camera->getTransMtx());
                 else
-                    ((Drawable*)(actors[i]))->Draw(NULL);
-            }
+                    ((Drawable*)actor)->Draw(NULL);
+        }
     }
     SDL_GL_SwapWindow(m_Hwnd->getSDLWin());
 };

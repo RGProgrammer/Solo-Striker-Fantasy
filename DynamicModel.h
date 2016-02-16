@@ -11,5 +11,6 @@ public:
     virtual void Destroy();
 protected:
     Vertex3d                m_Velocity;
+    float                   m_Dt;
 };
 #endif // PFE_DYNAMICMODEL_H_

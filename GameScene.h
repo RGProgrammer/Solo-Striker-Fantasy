@@ -12,9 +12,9 @@ class GameScene {
 public:
     GameScene();
     ~GameScene() ;
-    int AddActor(Actor** actor);
+    int AddActor(Actor* actor);
     void FreeVector();
-    Actor** getActors();
+    Actor*  getActor(unsigned int index);
     int getNBActors();
  //   void AddPlayer(Player * player);
     void Destroy() ;

@@ -2,6 +2,9 @@
 #define PFE_ENEMY_H_
 #include "DynamicModel.h"
 #include "GameScene.h"
+//Comment action
+#define ROTATION
+
 typedef struct {
     int ActionCode;
     float Instance;
