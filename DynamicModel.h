@@ -9,6 +9,7 @@ public:
     ~DynamicModel();
     virtual void Update(float dt) = 0 ;
     virtual void Destroy();
+    virtual int Clone(DynamicModel * Model);
 protected:
     Vertex3d                m_Velocity;
     float                   m_Dt;

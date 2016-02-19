@@ -1,13 +1,14 @@
 #include "WeaponTypes.h"
-MachineGun(){
+
+MachineGun::MachineGun():Weapon("machinegun"){
 };
-~MachineGun(){
+MachineGun::~MachineGun(){
 };
 
 
-ChaserLauncher(){
+ChaserLauncher::ChaserLauncher():Weapon("chaserlauncher"){
 };
-~ChaserLauncher(){
+ChaserLauncher::~ChaserLauncher(){
 };
 
 

@@ -935,14 +935,14 @@
 1454676672 source:c:\users\sony\documents\github\solo-striker-fantasy\enemy.cpp
 	"Enemy.h"
 
-1455648615 c:\users\sony\documents\github\solo-striker-fantasy\enemy.h
+1455648616 c:\users\sony\documents\github\solo-striker-fantasy\enemy.h
 	"DynamicModel.h"
 	"GameScene.h"
 
-1455648615 c:\users\sony\documents\github\solo-striker-fantasy\dynamicmodel.h
+1455880099 c:\users\sony\documents\github\solo-striker-fantasy\dynamicmodel.h
 	"StaticModel.h"
 
-1455712473 c:\users\sony\documents\github\solo-striker-fantasy\staticmodel.h
+1455712474 c:\users\sony\documents\github\solo-striker-fantasy\staticmodel.h
 	"Abstract.h"
 	"Types.h"
 	<stdio.h>
@@ -951,7 +951,7 @@
 1453460800 c:\users\sony\documents\github\solo-striker-fantasy\types.h
 	"Math.h"
 
-1455648615 c:\users\sony\documents\github\solo-striker-fantasy\gamescene.h
+1455648616 c:\users\sony\documents\github\solo-striker-fantasy\gamescene.h
 	"Actor.h"
 	"Camera.h"
 
@@ -1292,7 +1292,7 @@
 	".//tools//sdl2//include//SDL.h"
 	<stdio.h>
 
-1455648615 c:\users\sony\documents\github\solo-striker-fantasy\gamelogic.h
+1455648616 c:\users\sony\documents\github\solo-striker-fantasy\gamelogic.h
 	"GameScene.h"
 	"Abstract.h"
 	"Camera.h"
@@ -1332,7 +1332,7 @@
 1454009360 source:c:\users\sony\documents\github\solo-striker-fantasy\math.cpp
 	"Math.h"
 
-1455712597 source:c:\users\sony\documents\github\solo-striker-fantasy\staticmodel.cpp
+1455712598 source:c:\users\sony\documents\github\solo-striker-fantasy\staticmodel.cpp
 	"StaticModel.h"
 
 1454585668 source:c:\users\sony\documents\github\solo-striker-fantasy\timer.cpp
@@ -1341,39 +1341,71 @@
 1451752834 source:c:\users\sony\documents\github\solo-striker-fantasy\windowhandler.cpp
 	"WindowHandler.h"
 
-1455712515 source:c:\users\sony\documents\github\solo-striker-fantasy\dynamicmodel.cpp
+1455880216 source:c:\users\sony\documents\github\solo-striker-fantasy\dynamicmodel.cpp
 	"DynamicModel.h"
 
-1455648615 source:c:\users\sony\documents\github\solo-striker-fantasy\gamelogic.cpp
+1455877221 source:c:\users\sony\documents\github\solo-striker-fantasy\gamelogic.cpp
 	"GameLogic.h"
 
-1455648615 source:c:\users\sony\documents\github\solo-striker-fantasy\gamescene.cpp
+1455648616 source:c:\users\sony\documents\github\solo-striker-fantasy\gamescene.cpp
 	"GameScene.h"
 
-1455648615 source:c:\users\sony\documents\github\solo-striker-fantasy\graphicsengine.cpp
+1455648616 source:c:\users\sony\documents\github\solo-striker-fantasy\graphicsengine.cpp
 	"GraphicsEngine.h"
 
-1455652251 source:c:\users\sony\documents\github\solo-striker-fantasy\hope.cpp
+1455713960 source:c:\users\sony\documents\github\solo-striker-fantasy\hope.cpp
 	"HOPE.h"
 
-1455713865 c:\users\sony\documents\github\solo-striker-fantasy\hope.h
+1455713866 c:\users\sony\documents\github\solo-striker-fantasy\hope.h
 	"Player.h"
 
-1455713948 c:\users\sony\documents\github\solo-striker-fantasy\player.h
+1455713950 c:\users\sony\documents\github\solo-striker-fantasy\player.h
 	"GameScene.h"
 	"DynamicModel.h"
 	"Weapon.h"
 	".//tools//sdl2//include//SDL.h"
 
-1455706460 c:\users\sony\documents\github\solo-striker-fantasy\weapon.h
+1455880529 c:\users\sony\documents\github\solo-striker-fantasy\weapon.h
 	"Shot.h"
+	"GameScene.h"
 
-1455652415 c:\users\sony\documents\github\solo-striker-fantasy\shot.h
+1455652416 c:\users\sony\documents\github\solo-striker-fantasy\shot.h
 	"DynamicModel.h"
 
-1455648615 source:c:\users\sony\documents\github\solo-striker-fantasy\player.cpp
+1455648616 source:c:\users\sony\documents\github\solo-striker-fantasy\player.cpp
 	"Player.h"
 
-1455648615 source:c:\users\sony\documents\github\solo-striker-fantasy\shot.cpp
+1455648616 source:c:\users\sony\documents\github\solo-striker-fantasy\shot.cpp
 	"Shot.h"
+
+1455880816 source:c:\users\sony\documents\github\solo-striker-fantasy\cube.cpp
+	"CUBE.h"
+
+1455880197 c:\users\sony\documents\github\solo-striker-fantasy\cube.h
+	"Boss.h"
+
+1455651726 c:\users\sony\documents\github\solo-striker-fantasy\boss.h
+	"Enemy.h"
+
+1455873479 source:c:\users\sony\documents\github\solo-striker-fantasy\mainmenu.cpp
+	"MainMenu.h"
+
+1455880248 c:\users\sony\documents\github\solo-striker-fantasy\mainmenu.h
+	"Player.h"
+
+1455880510 source:c:\users\sony\documents\github\solo-striker-fantasy\shottypes.cpp
+	"ShotTypes.h"
+
+1455874848 c:\users\sony\documents\github\solo-striker-fantasy\shottypes.h
+	"Shot.h"
+
+1455880551 source:c:\users\sony\documents\github\solo-striker-fantasy\weapon.cpp
+	"Weapon.h"
+
+1455880720 source:c:\users\sony\documents\github\solo-striker-fantasy\weapontypes.cpp
+	"WeaponTypes.h"
+
+1455880671 c:\users\sony\documents\github\solo-striker-fantasy\weapontypes.h
+	"Weapon.h"
+	"ShotTypes.h"
 

@@ -1,27 +1,28 @@
 #include "ShotTypes.h"
 
-EnergyBullet(){
+EnergyBullet::EnergyBullet(){
 
 };
-~EnergyBullet(){
-
-};
-
-
-Chaser(){
-
-};
-~Chaser(){
+EnergyBullet::~EnergyBullet(){
 
 };
 
 
-SmallShot(){
+Chaser::Chaser(){
+
 };
-~SmallShot(){
+Chaser::~Chaser(){
+
 };
 
 
-LongShot(){
+SmallShot::SmallShot(){
 };
-~LongShot(){
+SmallShot::~SmallShot(){
+};
+
+
+LongShot::LongShot(){
+};
+LongShot::~LongShot(){
+};

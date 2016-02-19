@@ -1,5 +1,7 @@
 #ifndef PFE_WEAPONTYPES_H_
 #define PFE_WEAPONTYPES_H_
+#include "Weapon.h"
+#include "ShotTypes.h"
 //player Weapons
 class MachineGun :public Weapon {
 public :

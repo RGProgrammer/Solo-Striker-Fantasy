@@ -17,3 +17,7 @@ DynamicModel::~DynamicModel(){
 void DynamicModel::Destroy(){
     StaticModel::Destroy();
 };
+int DynamicModel::Clone(DynamicModel * Model){
+    m_Velocity=Model->m_Velocity;
+    return StaticModel::Clone(Model);
+};

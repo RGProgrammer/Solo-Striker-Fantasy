@@ -1,7 +1,7 @@
 #ifndef PFE_MAINMENU_H_
 #define PFE_MAINMENU_H_
 #include "Player.h"
-class MainMenu{
+class MainMenu: public Player {
 public:
     MainMenu();
     ~MainMenu();

@@ -14,6 +14,7 @@ int GameLogic::InitLogic(GameScene* Scene){
     this->m_Scene=Scene ;
 };
 int GameLogic::InitLevel(char* filename){
+
     return 1 ;
 };
 void GameLogic::setCamera(Camera * camera){
