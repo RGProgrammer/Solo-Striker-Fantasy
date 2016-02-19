@@ -42,7 +42,9 @@
 		<Unit filename="Abstract.h" />
 		<Unit filename="Actor.cpp" />
 		<Unit filename="Actor.h" />
+		<Unit filename="Boss.cpp" />
 		<Unit filename="Boss.h" />
+		<Unit filename="CUBE.cpp" />
 		<Unit filename="CUBE.h" />
 		<Unit filename="Camera.cpp" />
 		<Unit filename="Camera.h" />
@@ -71,13 +73,16 @@
 		<Unit filename="Player.h" />
 		<Unit filename="Shot.cpp" />
 		<Unit filename="Shot.h" />
+		<Unit filename="ShotTypes.cpp" />
 		<Unit filename="ShotTypes.h" />
 		<Unit filename="StaticModel.cpp" />
 		<Unit filename="StaticModel.h" />
 		<Unit filename="Timer.cpp" />
 		<Unit filename="Timer.h" />
 		<Unit filename="Types.h" />
+		<Unit filename="Weapon.cpp" />
 		<Unit filename="Weapon.h" />
+		<Unit filename="WeaponTypes.cpp" />
 		<Unit filename="WeaponTypes.h" />
 		<Unit filename="WindowHandler.cpp" />
 		<Unit filename="WindowHandler.h" />
