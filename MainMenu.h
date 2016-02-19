@@ -3,8 +3,8 @@
 #include "Player.h"
 class MainMenu{
 public:
-    MainMenu()
-    ~MainMenu()
+    MainMenu();
+    ~MainMenu();
     int LoadFromFile();
     void Update(float dt);
     void Update(SDL_Event event);

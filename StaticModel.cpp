@@ -17,62 +17,7 @@ StaticModel::~StaticModel(){
     this->Destroy();
 };
 int StaticModel::LoadFromFile(char* filename){
-    Vertex3d* v_buffer ;
-    unsigned int *i_buffer ;
-    this->m_nbMeshes=1;
-    this->v_Meshes=(pMesh)malloc(this->m_nbMeshes*sizeof(Mesh));
-    if(this->v_Meshes==NULL){
-        return 0;
-    }
-    this->v_Meshes->IndexBuffer=NULL ;
-    this->v_Meshes->NormalsBuffer=NULL ;
-    this->v_Meshes->material=NULL ;
-    this->v_Meshes->TexCoords=NULL ;
-    this->v_Meshes->VertexBuffer=NULL ;
-    this->v_Meshes->nbVertices=8 ;
-    this->v_Meshes->Faces=12 ;
-    this->v_Meshes->VertexBuffer=(Vertex3d*)malloc(8*sizeof(Vertex3d));
-    if(this->v_Meshes->VertexBuffer==NULL){
-        this->Destroy();
-        return 0 ;
-        }
-    this->v_Meshes->IndexBuffer=(unsigned int*)malloc(36*sizeof(unsigned int ));
-    if(this->v_Meshes->IndexBuffer==NULL){
-        this->Destroy();
-        return 0 ;
-    }
-        v_buffer=this->v_Meshes->VertexBuffer ;
-        v_buffer[0]={10.0f,10.0f,10.0f};
-        v_buffer[1]={-10.0f,10.0f,10.0f};
-        v_buffer[2]={-10.0f,-10.0f,10.0f};
-        v_buffer[3]={10.0f,-10.0f,10.0f};
-        v_buffer[4]={10.0f,10.0f,-10.0f};
-        v_buffer[5]={-10.0f,10.0f,-10.0f};
-        v_buffer[6]={-10.0f,-10.0f,-10.0f};
-        v_buffer[7]={10.0f,-10.0f,-10.0f};
-
-        i_buffer=this->v_Meshes->IndexBuffer ;
-        i_buffer[0]=0 ;i_buffer[1]=1 ;i_buffer[2]=2 ;
-        i_buffer[3]=1 ;i_buffer[4]=2 ;i_buffer[5]=3 ;
-
-        i_buffer[6]=0 ;i_buffer[7]=1 ;i_buffer[8]=5 ;
-        i_buffer[9]=1 ;i_buffer[10]=5 ;i_buffer[11]=4 ;
-
-        i_buffer[12]=4 ;i_buffer[13]=5 ;i_buffer[14]=6 ;
-        i_buffer[15]=5 ;i_buffer[16]=6 ;i_buffer[17]=7 ;
-
-        i_buffer[18]=7 ;i_buffer[19]=6 ;i_buffer[20]=2 ;
-        i_buffer[21]=6 ;i_buffer[22]=2 ;i_buffer[23]=3 ;
-
-        i_buffer[24]=0 ;i_buffer[25]=4 ;i_buffer[26]=7 ;
-        i_buffer[27]=4 ;i_buffer[28]=7 ;i_buffer[29]=3 ;
-
-        i_buffer[30]=1 ;i_buffer[31]=5 ;i_buffer[32]=6 ;
-        i_buffer[33]=5 ;i_buffer[34]=6 ;i_buffer[35]=2 ;
-        this->v_Meshes->MinVertex={-10.0f,-10.0f,-10.0f} ;
-        this->v_Meshes->MaxVertex={10.0f,10.0f,10.0f} ;
-
-return 1 ;
+    return 0 ;
 };
 StaticModel* StaticModel::LoadFile(char* filename){
     StaticModel* obj=new StaticModel();
@@ -314,41 +259,46 @@ int StaticModel::addTexCoord(Vertex2d tex){
     }
     return 0 ;
 };
-void StaticModel::extractFace(char* line,unsigned int * id1,unsigned int *id2,unsigned int *id3){
-    char* part1=(char*)malloc(20*sizeof(char));
-    unsigned int i,j ;
-    for(i=0;line[i]!='\0' && line[i]!=' ' ;i++)
-        part1[i]=line[i];
-    part1[i]='\0';
-    for(j=0;part1[j]!=' ' && part1[j]!='//' &&part1[j]!='\0' ;j++);
-    part1[j]='\0';
-    *id1=atoi(part1);
-    i++;
-    for(j=0;line[i]!='\0' && line[i]!=' ' ;j++,i++)
-        part1[j]=line[i];
-    part1[j]='\0';
-    for(j=0;part1[j]!=' ' && part1[j]!='//' &&part1[j]!='\0' ;j++);
-    part1[j]='\0';
-    *id2=atoi(part1);
-    i++;
-    for(j=0;line[i]!='\0' && line[i]!=' ' ;j++,i++)
-        part1[j]=line[i];
-    part1[j]='\0';
-    for(j=0;part1[j]!=' ' && part1[j]!='//' &&part1[j]!='\0' ;j++);
-    part1[j]='\0';
-    *id3=atoi(part1);
-    free(part1);
 
-};
-void StaticModel::ReadLine(FILE* file ,char* buffer){
-    char c ;
-    unsigned int i=0 ;
-    c=fgetc(file);
-    while (c!='\n' && c!='\0'&& c!=EOF && i<100){
-        buffer[i]=c;
-        i++;
-        c=fgetc(file);
+int StaticModel::Clone (StaticModel* Model){
+    unsigned int j ;
+    m_Color=Model->m_Color ;
+    m_nbMeshes=Model->m_nbMeshes ;
+    if(!m_nbMeshes)
+        return 0 ;
+    v_Meshes=(pMesh)malloc(m_nbMeshes*sizeof(Mesh));
+    if(!v_Meshes)
+        return 0 ;
+    for(unsigned int i=0;i<Model->m_nbMeshes;i++){
+        v_Meshes[i].MinVertex=Model->v_Meshes[i].MinVertex;
+        v_Meshes[i].MaxVertex=Model->v_Meshes[i].MaxVertex;
+        //copying Name
+        v_Meshes[i].Name=(char*)malloc(100*sizeof(char));
+        for(j=0;Model->v_Meshes[i].Name[j];j++)
+            v_Meshes[i].Name[i]=Model->v_Meshes[i].Name[j];
+        v_Meshes[i].Name[j]='\0';
+        //copying vertices
+        v_Meshes[i].nbVertices=Model->v_Meshes[i].nbVertices ;
+        v_Meshes[i].VertexBuffer=(Vertex3d*)malloc(v_Meshes[i].nbVertices*sizeof(Vertex3d));
+        for(j=0;j<v_Meshes[i].nbVertices;j++)
+            v_Meshes[i].VertexBuffer[j]=Model->v_Meshes[i].VertexBuffer[j];
+        //copying Normals
+        v_Meshes[i].nbNormals=Model->v_Meshes[i].nbNormals ;
+        v_Meshes[i].NormalsBuffer=(Vertex3d*)malloc(v_Meshes[i].nbNormals*sizeof(Vertex3d));
+        for(j=0;j<v_Meshes[i].nbNormals;j++)
+            v_Meshes[i].NormalsBuffer[j]=Model->v_Meshes[i].NormalsBuffer[j];
+        //copying Indices
+        v_Meshes[i].Faces=Model->v_Meshes[i].Faces ;
+        v_Meshes[i].IndexBuffer=(unsigned int*)malloc(v_Meshes[i].Faces*3*sizeof(unsigned int));
+        for(j=0;j<v_Meshes[i].Faces*3;j++)
+            v_Meshes[i].IndexBuffer[j]=Model->v_Meshes[i].IndexBuffer[j];
+        //copying Texture coordinates
+        v_Meshes[i].nbTexCoords=Model->v_Meshes[i].nbTexCoords ;
+        v_Meshes[i].TexCoords=(Vertex2d*)malloc(v_Meshes[i].nbTexCoords*sizeof(Vertex2d));
+        for(j=0;j<v_Meshes[i].nbTexCoords;j++)
+            v_Meshes[i].TexCoords[j]=Model->v_Meshes[i].TexCoords[j];
+        v_Meshes[i].material=NULL;
+
     }
-    buffer[i]='\0';
-
+    return 1 ;
 };

@@ -32,6 +32,8 @@ public:
     static StaticModel* CreateCube();
     //loads a 3d model and return its reference
     static StaticModel* LoadFile(char* filename);
+    //clone Meshes from another mocel
+    virtual int Clone (StaticModel* Model);
 
 protected :
     int AddMesh(char*);//add a mesh refernece to vector
@@ -42,9 +44,9 @@ protected :
     void extractFace(char* line,unsigned int *,unsigned int *,unsigned int *);
     static void ReadLine(FILE* file ,char* buffer);
     void UpdateMtx();
+    ColorRGB                m_Color ;//Color used if the meshes has no material
     float                   m_Scale ;//Scale of the 3d model(>0);
     unsigned int            m_nbMeshes;//number of meshes construcring this model
     Mesh*                   v_Meshes ;// vector of meshes
-    ColorRGB                m_Color ;//Color used if the meshes has no material
 };
 #endif // PFE_StaticModel_H_

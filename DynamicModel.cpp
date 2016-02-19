@@ -1,6 +1,6 @@
 #include "DynamicModel.h"
 
-DynamicModel::DynamicModel():Updatable(),StaticModel(),m_Velocity({0.0f,0.0f,0.0f}),m_Dt(0.0f){
+DynamicModel::DynamicModel():StaticModel(),Updatable(),m_Velocity({0.0f,0.0f,0.0f}),m_Dt(0.0f){
     StaticModel::m_ID=DRAWABLE|UPDATABLE;
 };
 DynamicModel::DynamicModel(Vertex3d Pos):StaticModel(Pos),m_Velocity({0.0f,0.0f,0.0f}),m_Dt(0.0f){

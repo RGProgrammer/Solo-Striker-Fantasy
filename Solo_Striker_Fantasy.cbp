@@ -43,9 +43,9 @@
 		<Unit filename="Actor.cpp" />
 		<Unit filename="Actor.h" />
 		<Unit filename="Boss.h" />
+		<Unit filename="CUBE.h" />
 		<Unit filename="Camera.cpp" />
 		<Unit filename="Camera.h" />
-		<Unit filename="Cube.h" />
 		<Unit filename="DynamicModel.cpp" />
 		<Unit filename="DynamicModel.h" />
 		<Unit filename="Enemy.cpp" />
@@ -62,6 +62,7 @@
 		<Unit filename="GraphicsEngine.h" />
 		<Unit filename="HOPE.cpp" />
 		<Unit filename="HOPE.h" />
+		<Unit filename="MainMenu.cpp" />
 		<Unit filename="MainMenu.h" />
 		<Unit filename="Math.cpp" />
 		<Unit filename="Math.h" />
@@ -77,6 +78,7 @@
 		<Unit filename="Timer.h" />
 		<Unit filename="Types.h" />
 		<Unit filename="Weapon.h" />
+		<Unit filename="WeaponTypes.h" />
 		<Unit filename="WindowHandler.cpp" />
 		<Unit filename="WindowHandler.h" />
 		<Unit filename="main.cpp" />

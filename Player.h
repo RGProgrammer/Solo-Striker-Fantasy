@@ -22,15 +22,17 @@ public:
     virtual int LoadFromFile()=0;
     virtual void Update(float dt)=0;
     virtual void Update(SDL_Event event)=0;
+    void NextWeapon();
+    void PreviousWeapon();
 protected:
-    GameScene*          m_Scene;
-    Weapon*             m_SelectedWeapon;
-    Weapon**            v_Weapons;
+    Vertex3d            m_MoveDirection;
     int                 m_Health;
     int                 m_Charge;
     int                 m_nbWeapons;
     int                 m_State;
-    Vertex3d            m_MoveDirection;
+    int                 m_SelectedWeapon;
+    GameScene*          m_Scene;
+    Weapon**            v_Weapons;
 
 };
 #endif // PFE_PLAYER

@@ -15,9 +15,7 @@ void HOPE::Update(float dt){
 };
 void HOPE::Update(SDL_Event event){
 };
-void HOPE::SwitchWeapon(){
 
-};
 void HOPE::Fire(){
 
 };

@@ -6,7 +6,7 @@ public:
     Weapon(char* Name);
     Weapon(char* Name,Shot* Sample);
     void setSample(Shot* Sample);
-    int Fire(GameScene* Scene);
+    int Fire(GameScene* Scene,Vertex3d Pos,Vertex3d Dir,Vertex3d Up);
 private:
     char*           m_Name ;
     Shot*           m_Sample;

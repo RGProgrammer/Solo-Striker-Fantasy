@@ -942,7 +942,7 @@
 1455648615 c:\users\sony\documents\github\solo-striker-fantasy\dynamicmodel.h
 	"StaticModel.h"
 
-1454616990 c:\users\sony\documents\github\solo-striker-fantasy\staticmodel.h
+1455712473 c:\users\sony\documents\github\solo-striker-fantasy\staticmodel.h
 	"Abstract.h"
 	"Types.h"
 	<stdio.h>
@@ -1332,7 +1332,7 @@
 1454009360 source:c:\users\sony\documents\github\solo-striker-fantasy\math.cpp
 	"Math.h"
 
-1454619452 source:c:\users\sony\documents\github\solo-striker-fantasy\staticmodel.cpp
+1455712597 source:c:\users\sony\documents\github\solo-striker-fantasy\staticmodel.cpp
 	"StaticModel.h"
 
 1454585668 source:c:\users\sony\documents\github\solo-striker-fantasy\timer.cpp
@@ -1341,7 +1341,7 @@
 1451752834 source:c:\users\sony\documents\github\solo-striker-fantasy\windowhandler.cpp
 	"WindowHandler.h"
 
-1455651737 source:c:\users\sony\documents\github\solo-striker-fantasy\dynamicmodel.cpp
+1455712515 source:c:\users\sony\documents\github\solo-striker-fantasy\dynamicmodel.cpp
 	"DynamicModel.h"
 
 1455648615 source:c:\users\sony\documents\github\solo-striker-fantasy\gamelogic.cpp
@@ -1352,4 +1352,28 @@
 
 1455648615 source:c:\users\sony\documents\github\solo-striker-fantasy\graphicsengine.cpp
 	"GraphicsEngine.h"
+
+1455652251 source:c:\users\sony\documents\github\solo-striker-fantasy\hope.cpp
+	"HOPE.h"
+
+1455713865 c:\users\sony\documents\github\solo-striker-fantasy\hope.h
+	"Player.h"
+
+1455713948 c:\users\sony\documents\github\solo-striker-fantasy\player.h
+	"GameScene.h"
+	"DynamicModel.h"
+	"Weapon.h"
+	".//tools//sdl2//include//SDL.h"
+
+1455706460 c:\users\sony\documents\github\solo-striker-fantasy\weapon.h
+	"Shot.h"
+
+1455652415 c:\users\sony\documents\github\solo-striker-fantasy\shot.h
+	"DynamicModel.h"
+
+1455648615 source:c:\users\sony\documents\github\solo-striker-fantasy\player.cpp
+	"Player.h"
+
+1455648615 source:c:\users\sony\documents\github\solo-striker-fantasy\shot.cpp
+	"Shot.h"
 

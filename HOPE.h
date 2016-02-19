@@ -8,12 +8,12 @@ public :
     HOPE();
     //Deconstructor
     ~HOPE();
-
     int LoadFromFile() ;//load HOPE model from a Known file
     void Update(float dt);//updates HOPE movement
     void Update(SDL_Event event);//Update HOPE's Stat
 private :
-    void SwitchWeapon();
+    void NextWeapon();
+    void PreviousWeapon();
     void Fire();
     float       m_Speed ;//HOPE movement speed
 
