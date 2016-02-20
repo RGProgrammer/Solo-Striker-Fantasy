@@ -17,3 +17,6 @@ void Enemy::Destroy(){
     }
     m_nbBehaviours=0;
 };
+int Enemy::addBehaviour(Behaviour behav){
+    return 0 ;
+};

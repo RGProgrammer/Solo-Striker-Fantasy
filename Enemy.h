@@ -18,6 +18,7 @@ public :
     void setScene(GameScene* Scene);
     virtual void Update(float dt)=0;
     virtual void Destroy();
+    virtual int addBehaviour(Behaviour behav);
 protected:
     unsigned int                    m_nbBehaviours ;
     Behaviour*                      v_Behaviours ;
