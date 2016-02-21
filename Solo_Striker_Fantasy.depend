@@ -1467,11 +1467,12 @@
 1455880218 source:c:\users\ikram\documents\github\solo-striker-fantasy\dynamicmodel.cpp
 	"DynamicModel.h"
 
-1454619004 source:c:\users\ikram\documents\github\solo-striker-fantasy\eventsystem.cpp
+1456051261 source:c:\users\ikram\documents\github\solo-striker-fantasy\eventsystem.cpp
 	"EventSystem.h"
 
-1454608736 c:\users\ikram\documents\github\solo-striker-fantasy\eventsystem.h
+1456051232 c:\users\ikram\documents\github\solo-striker-fantasy\eventsystem.h
 	".//tools//sdl2//include//SDL.h"
+	<stdlib.h>
 
 1394937296 c:\users\ikram\documents\github\solo-striker-fantasy\\tools\\sdl2\\include\\sdl.h
 	"SDL_main.h"
@@ -1804,10 +1805,11 @@
 	".//tools//sdl2//include//SDL.h"
 	<stdio.h>
 
-1455648616 c:\users\ikram\documents\github\solo-striker-fantasy\gamelogic.h
+1456052378 c:\users\ikram\documents\github\solo-striker-fantasy\gamelogic.h
 	"GameScene.h"
 	"Abstract.h"
 	"Camera.h"
+	"Player.h"
 	".//tools//sdl2//include//SDL.h"
 
 1454619224 c:\users\ikram\documents\github\solo-striker-fantasy\graphicsengine.h
@@ -1838,7 +1840,7 @@
 1454585218 c:\users\ikram\documents\github\solo-striker-fantasy\timer.h
 	<sys/time.h>
 
-1455877222 source:c:\users\ikram\documents\github\solo-striker-fantasy\gamelogic.cpp
+1456052390 source:c:\users\ikram\documents\github\solo-striker-fantasy\gamelogic.cpp
 	"GameLogic.h"
 
 1455648616 source:c:\users\ikram\documents\github\solo-striker-fantasy\gamescene.cpp

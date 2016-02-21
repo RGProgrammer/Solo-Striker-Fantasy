@@ -11,7 +11,7 @@
 #include "GameScene.h"
 #include "Abstract.h"
 #include "Camera.h"
-//#include "Player.h"
+#include "Player.h"
 #include ".//tools//sdl2//include//SDL.h"
 
 
@@ -30,13 +30,13 @@ public:
     int InitLevel(char* filename);
     void setCamera(Camera * camera);
     void Update(float dt);
-//    Player* getPlayer();
+    Player* getPlayer();
 private:
     GameScene*          m_Scene ;
     Camera*             m_Camera ;
     int                 m_Stat ;
     //SDL_Event           event;
-    //Player*           m_Player ;
+    Player*           m_Player ;
     //EventManager*     m_EventSys ;
 };
 #endif // PFE_GAMELOGIC_H_
