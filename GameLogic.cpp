@@ -1,6 +1,7 @@
 #include "GameLogic.h"
 
-GameLogic::GameLogic():m_Scene(NULL),m_Camera(NULL),m_Player(NULL) {
+GameLogic::GameLogic():m_Scene(NULL),m_Camera(NULL),m_Player(NULL),m_EventSys(NULL),
+                        m_Ship(NULL),m_MainMenu (NULL){
 };
 GameLogic::~GameLogic(){
     this->Destroy();
@@ -12,6 +13,13 @@ void GameLogic::Destroy(){
         m_Player->Destroy();
         delete m_Player ;
         m_Player=NULL;
+    }
+    if(m_Ship){
+
+    }
+    if(m_EventSys){
+        delete m_EventSys ;
+        m_EventSys=NULL ;
     }
 };
 int GameLogic::InitLogic(GameScene* Scene){

@@ -35,8 +35,9 @@ private:
     GameScene*          m_Scene ;
     Camera*             m_Camera ;
     int                 m_Stat ;
-    //SDL_Event           event;
-    Player*           m_Player ;
-    //EventManager*     m_EventSys ;
+    HOPE*               m_Ship;
+    MainMenu*           m_MainMenu ;
+    Player*             m_Player ;
+    EventSystem*        m_EventSys ;
 };
 #endif // PFE_GAMELOGIC_H_

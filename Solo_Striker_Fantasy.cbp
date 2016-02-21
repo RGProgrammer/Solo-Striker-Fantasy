@@ -15,11 +15,11 @@
 					<Add option="-g" />
 				</Compiler>
 				<Linker>
-					<Add library="tools\sdl2\lib\x86\SDL2.lib" />
-					<Add library="tools\sdl2\lib\x86\SDL2main.lib" />
-					<Add library="tools\sdl2\lib\x86\SDL2test.lib" />
-					<Add library="tools\sdl2\lib\libglu32.a" />
-					<Add library="tools\sdl2\lib\libopengl32.a" />
+					<Add library="tools/sdl2/lib/x86/SDL2.lib" />
+					<Add library="tools/sdl2/lib/x86/SDL2main.lib" />
+					<Add library="tools/sdl2/lib/x86/SDL2test.lib" />
+					<Add library="tools/sdl2/lib/libglu32.a" />
+					<Add library="tools/sdl2/lib/libopengl32.a" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -45,9 +45,9 @@
 		<Unit filename="Boss.cpp" />
 		<Unit filename="Boss.h" />
 		<Unit filename="CUBE.cpp" />
-		<Unit filename="CUBE.h" />
 		<Unit filename="Camera.cpp" />
 		<Unit filename="Camera.h" />
+		<Unit filename="Cube.h" />
 		<Unit filename="DynamicModel.cpp" />
 		<Unit filename="DynamicModel.h" />
 		<Unit filename="Enemy.cpp" />
