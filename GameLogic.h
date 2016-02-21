@@ -11,7 +11,9 @@
 #include "GameScene.h"
 #include "Abstract.h"
 #include "Camera.h"
-#include "Player.h"
+#include "HOPE.h"
+#include "MainMenu.h"
+#include "EventSystem.h"
 #include ".//tools//sdl2//include//SDL.h"
 
 

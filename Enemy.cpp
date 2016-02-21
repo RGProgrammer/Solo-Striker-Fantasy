@@ -1,7 +1,7 @@
 #include "Enemy.h"
-Enemy::Enemy():DynamicModel(),m_nbBehaviours(0),v_Behaviours(NULL),m_Scene(NULL){};
-Enemy::Enemy(Vertex3d Pos):DynamicModel(Pos),m_nbBehaviours(0),v_Behaviours(NULL),m_Scene(NULL){};
-Enemy::Enemy(Vertex3d Pos,Vertex3d Dir,Vertex3d Up):DynamicModel(Pos,Dir,Up),m_nbBehaviours(0),v_Behaviours(NULL),m_Scene(NULL){};
+Enemy::Enemy():DynamicModel(),m_nbActions(0),v_Actions(NULL),m_Scene(NULL){};
+Enemy::Enemy(Vertex3d Pos):DynamicModel(Pos),m_nbActions(0),v_Actions(NULL),m_Scene(NULL){};
+Enemy::Enemy(Vertex3d Pos,Vertex3d Dir,Vertex3d Up):DynamicModel(Pos,Dir,Up),m_nbActions(0),v_Actions(NULL),m_Scene(NULL){};
 Enemy::~Enemy(){
     this->Destroy();
 };
@@ -11,12 +11,12 @@ void Enemy::setScene(GameScene* Scene){
 void Enemy::Destroy(){
     DynamicModel::Destroy();
     m_Scene=NULL;
-    if(v_Behaviours){
-        free(v_Behaviours);
-        v_Behaviours=NULL ;
+    if(v_Actions){
+        free(v_Actions);
+        v_Actions=NULL ;
     }
-    m_nbBehaviours=0;
+    m_nbActions=0;
 };
-int Enemy::addBehaviour(Behaviour behav){
+int Enemy::addAction(Action anim){
     return 0 ;
 };

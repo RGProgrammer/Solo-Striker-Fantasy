@@ -6,8 +6,6 @@ public :
     CUBE();
     ~CUBE();
     int LoadFormFile();
-    int AddBehaviour(Behaviour Behav);
-    //the new behaviour should be implemented in theis class as a method
 private:
 
 };

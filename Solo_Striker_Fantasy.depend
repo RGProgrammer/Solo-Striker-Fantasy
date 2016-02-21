@@ -1428,10 +1428,10 @@
 1455881074 source:c:\users\ikram\documents\github\solo-striker-fantasy\boss.cpp
 	"Boss.h"
 
-1455882414 c:\users\ikram\documents\github\solo-striker-fantasy\boss.h
+1456083392 c:\users\ikram\documents\github\solo-striker-fantasy\boss.h
 	"Enemy.h"
 
-1455882380 c:\users\ikram\documents\github\solo-striker-fantasy\enemy.h
+1456083292 c:\users\ikram\documents\github\solo-striker-fantasy\enemy.h
 	"DynamicModel.h"
 	"GameScene.h"
 
@@ -1458,10 +1458,10 @@
 	"Camera.h"
 	<stdio.h>
 
-1455880818 source:c:\users\ikram\documents\github\solo-striker-fantasy\cube.cpp
+1456081505 source:c:\users\ikram\documents\github\solo-striker-fantasy\cube.cpp
 	"CUBE.h"
 
-1455880198 c:\users\ikram\documents\github\solo-striker-fantasy\cube.h
+1456081654 c:\users\ikram\documents\github\solo-striker-fantasy\cube.h
 	"Boss.h"
 
 1455880218 source:c:\users\ikram\documents\github\solo-striker-fantasy\dynamicmodel.cpp
@@ -1805,11 +1805,13 @@
 	".//tools//sdl2//include//SDL.h"
 	<stdio.h>
 
-1456052378 c:\users\ikram\documents\github\solo-striker-fantasy\gamelogic.h
+1456081572 c:\users\ikram\documents\github\solo-striker-fantasy\gamelogic.h
 	"GameScene.h"
 	"Abstract.h"
 	"Camera.h"
-	"Player.h"
+	"HOPE.h"
+	"MainMenu.h"
+	"EventSystem.h"
 	".//tools//sdl2//include//SDL.h"
 
 1454619224 c:\users\ikram\documents\github\solo-striker-fantasy\graphicsengine.h
@@ -1840,7 +1842,7 @@
 1454585218 c:\users\ikram\documents\github\solo-striker-fantasy\timer.h
 	<sys/time.h>
 
-1456052390 source:c:\users\ikram\documents\github\solo-striker-fantasy\gamelogic.cpp
+1456052923 source:c:\users\ikram\documents\github\solo-striker-fantasy\gamelogic.cpp
 	"GameLogic.h"
 
 1455648616 source:c:\users\ikram\documents\github\solo-striker-fantasy\gamescene.cpp
@@ -1911,6 +1913,6 @@
 1451752834 source:c:\users\ikram\documents\github\solo-striker-fantasy\windowhandler.cpp
 	"WindowHandler.h"
 
-1455882906 source:c:\users\ikram\documents\github\solo-striker-fantasy\enemy.cpp
+1456083287 source:c:\users\ikram\documents\github\solo-striker-fantasy\enemy.cpp
 	"Enemy.h"
 

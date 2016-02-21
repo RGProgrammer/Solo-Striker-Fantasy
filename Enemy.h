@@ -2,13 +2,18 @@
 #define PFE_ENEMY_H_
 #include "DynamicModel.h"
 #include "GameScene.h"
-//Comment action
-#define ROTATION
-
 typedef struct {
-    int ActionCode;
-    float Instance;
-} Behaviour;
+    Vertex3d    Translate; //add this vertex to the Position
+    Vertex3d    Rotate ;  //each attribut represent the angle of rotation on each axe(Direction,Up,right)
+    float       Speed; // when to start / delay
+}  Movement ;
+typedef struct {
+    int  ActionType; // shooting or moving
+    void * Data;//a pointer on the actiontype data
+    float Instance ;// when to start the action /Delay
+} Action;
+
+//Base class represents any enemy in the game Scene
 class Enemy: public DynamicModel{
 public :
     Enemy();
@@ -18,10 +23,10 @@ public :
     void setScene(GameScene* Scene);
     virtual void Update(float dt)=0;
     virtual void Destroy();
-    virtual int addBehaviour(Behaviour behav);
+    virtual int addAction(Action action);
 protected:
-    unsigned int                    m_nbBehaviours ;
-    Behaviour*                      v_Behaviours ;
+    unsigned int                    m_nbActions ;
+    Action*                         v_Actions ;
     GameScene*                      m_Scene;
 };
 #endif // PFE_ENEMY_H_

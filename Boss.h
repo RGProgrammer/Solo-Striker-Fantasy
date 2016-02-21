@@ -2,9 +2,11 @@
 #define PFE_BOSS_H_
 #include "Enemy.h"
 class Boss : public Enemy {
-public:
+protected:
     Boss();
+    Boss(Vertex3d Pos);
+    Boss(Vertex3d Pos,Vertex3d Dir,Vertex3d Up);
+public:
     ~Boss();
-    virtual int addbehaviour(Behaviour behav)=0;
 };
 #endif // PFE_BOSS_H_
