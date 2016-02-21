@@ -1,19 +1,18 @@
+#ifndef PFE_EVENTSYSTEM_H_
+#define PFE_EVENTSYSTEM_H_
 #include ".//tools//sdl2//include//SDL.h"
-#define NOSOURCE       0x0000
-#define JOYSTICK       0x0001
-#define KEYBOARD       0x0002
-#define MOUSE          0x0004
-typedef struct {
-
-} Event ;
+#include <stdlib.h>
 class EventSystem{
 public:
     EventSystem();
     ~EventSystem();
-    Event getNextEvent();
-    SDL_Event getSDLEvent();
+    SDL_Event* getCurrentFrameEvents();
+    int getNbEvent();
 private:
-    int                 SourceType ;
     SDL_Joystick*       m_Joystick ;
-    SDL_Event           m_Event;
+    SDL_Event*          v_Event;
+    int                 m_nbEvents;
+
+
 };
+#endif // PFE_EVENTSYSTEM_H_
