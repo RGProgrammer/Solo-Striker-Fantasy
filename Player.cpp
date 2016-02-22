@@ -10,3 +10,6 @@ Player::Player(Vertex3d Pos,Vertex3d Dir,Vertex3d Up):DynamicModel(Pos,Dir,Up),
 Player::~Player(){
     DynamicModel::Destroy();
 };
+void Player::setScene(GameScene* Scene){
+    m_Scene=Scene ;
+};

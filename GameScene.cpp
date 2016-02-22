@@ -43,7 +43,12 @@ Actor*  GameScene::getActor(unsigned int index){
     return v_Actors[index];
 };
 int GameScene::getNBActors(){ return m_NBActors ;};
-//void GameScene::AddPlayer(Player * player){m_Player=player;};
+void GameScene::setPlayer(Player * player){
+    m_Player=player;
+};
+Player* GameScene::getPlayer(){
+    return m_Player ;
+};
 void GameScene::Destroy() {
     this->FreeVector();
     //m_Player=NULL ;

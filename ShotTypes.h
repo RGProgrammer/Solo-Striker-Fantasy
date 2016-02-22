@@ -5,7 +5,11 @@
 class EnergyBullet: public Shot{
 public:
     EnergyBullet();
+    EnergyBullet(Vertex3d Pos,Vertex3d Dir,Vertex3d Up);
+    EnergyBullet(Actor* Source);
     ~EnergyBullet();
+    void Update(float dt);
+    int LoadFromFile();
 };
 class Chaser: public Shot {
 public:

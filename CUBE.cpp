@@ -8,4 +8,5 @@ CUBE::~CUBE(){
 };
 int CUBE::LoadFormFile(){
 
+    return 0 ;
 };

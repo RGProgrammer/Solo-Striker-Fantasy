@@ -27,6 +27,7 @@ void GraphicsEngine::Destroy() {
 void GraphicsEngine::DrawScene(){
     Camera* m_Camera=m_Scene->getCamera();
     Actor* actor=NULL ;
+    Player* player =NULL ;
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClearColor(0.5f,0.5f,0.5f,0.0f);
     if(m_Scene){
@@ -39,6 +40,11 @@ void GraphicsEngine::DrawScene(){
                 else
                     ((Drawable*)actor)->Draw(NULL);
         }
+        if(player=m_Scene->getPlayer())
+            if(m_Camera)
+                player->Draw(m_Camera->getTransMtx());
+            else
+                player->Draw(NULL);
     }
     SDL_GL_SwapWindow(m_Hwnd->getSDLWin());
 };

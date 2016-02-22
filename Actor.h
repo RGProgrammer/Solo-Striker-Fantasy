@@ -15,7 +15,7 @@
 #define DRAWABLE    0x0001
 #define UPDATABLE   0x0002
 #define LIGHT       0x0004
-//#define PHYSICAL=8
+#define PHYSICAL    0x0008
 
 
 class Actor{

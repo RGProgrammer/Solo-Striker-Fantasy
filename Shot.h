@@ -11,7 +11,8 @@ public:
     void Update(float dt)=0;
     void setSource(Actor* Source);
     void setSpeed(float Speed);
-private :
+    virtual int Clone(Shot* clone);
+protected :
     Actor*          m_Source;
     float           m_Speed;
     int             m_Damage;

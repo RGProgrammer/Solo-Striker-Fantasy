@@ -2,6 +2,8 @@
 #define PFE_ENEMY_H_
 #include "DynamicModel.h"
 #include "GameScene.h"
+#define ENEMY       0x0010
+
 typedef struct {
     Vertex3d    Translate; //add this vertex to the Position
     Vertex3d    Rotate ;  //each attribut represent the angle of rotation on each axe(Direction,Up,right)

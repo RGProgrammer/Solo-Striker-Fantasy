@@ -24,8 +24,14 @@ void GameLogic::Destroy(){
 };
 int GameLogic::InitLogic(GameScene* Scene){
     this->m_Scene=Scene ;
-    //m_Player=new HOPE();
-    //m_Player->LoadFromFile();
+    m_Ship=new HOPE();
+    m_Ship->LoadFromFile();
+    m_Camera=new Camera();
+    m_Camera->setOrientaion({0.0f,-1.0f,0.0f},{1.0f,0.0f,0.0f});
+    m_Player=m_Ship;
+    m_Ship->setScene(m_Scene);
+    m_Scene->setPlayer(m_Player);
+    m
     return 1 ;
 };
 int GameLogic::InitLevel(char* filename){
@@ -38,8 +44,10 @@ void GameLogic::setCamera(Camera * camera){
 void GameLogic::Update(float dt){
     Actor* actor=NULL ;
     unsigned int nbactors=m_Scene->getNBActors();
-    if(m_Player)
+    if(m_Player){
+        m_Player->Update(EventSystem->getCurrentFrameEvents(),EventSystem->getNbEvent());
         m_Player->Update(dt);
+    }
     for(unsigned int i=0;i<nbactors;i++){
         actor=m_Scene->getActor(i);
         if(actor->getID() & UPDATABLE)
