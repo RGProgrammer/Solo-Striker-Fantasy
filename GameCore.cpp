@@ -31,28 +31,16 @@ int GameCore::Init(char * Name,int Width, int Height,bool FullScreen, char* icon
         return 0 ;
     if(!m_Logic->InitLogic(m_Scene))
         return 0 ;
-        m_Camera=new Camera();
+    m_Logic->setExitVariable(&m_Running);
     return 1 ;
 };
 void GameCore::StartGame(){
     m_Running=true ;
-    SDL_Event event ;
     m_Timer.Reset();
     if(!m_Logic->InitLevel(NULL))
         return ;
-//    Player* player=m_Logic->getPlayer();
-    m_Camera->setPosition({0.0f,300.0f,0.0f});
-    m_Camera->setOrientaion({0.0f,-1.0f,0.0f},{0.0f,0.0f,-1.0f});
-    m_Scene->setCamera(m_Camera);
     while(m_Running){
-        SDL_PollEvent(&event);
-        if(event.type==SDL_QUIT || event.key.keysym.sym==SDLK_ESCAPE){
-            m_Running=false ;
-            continue ;
-        }
-        //if(player)
-        //    player->Update(event);
-        m_Logic->Update(0.0f);
+        m_Logic->Update(m_Timer.getDeltaTime());
         m_Graphics->DrawScene();
     }
 };
@@ -78,5 +66,5 @@ void GameCore::Destroy(){
         m_Window=NULL ;
     }
     SDL_Quit();
-    //m_Timer.Stop();
+    m_Timer.Stop();
 };

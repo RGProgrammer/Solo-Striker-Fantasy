@@ -23,7 +23,7 @@ void EnergyBullet::Update(float dt){
     StaticModel::m_Pos=AddVertex3d(StaticModel::m_Pos,ScaleVertex3d(m_Velocity,dt));
 };
 int EnergyBullet::LoadFromFile(){
-    return StaticModel::LoadFromFile("Cube.obj");
+    return StaticModel::LoadFromFile("Data//Model.obj");
 };
 
 

@@ -35,6 +35,7 @@ public:
     void setCamera(Camera * camera);
     void Update(float dt);
     Player* getPlayer();
+    void setExitVariable(bool* variable);
 private:
     GameScene*          m_Scene ;
     Camera*             m_Camera ;
@@ -43,5 +44,9 @@ private:
     MainMenu*           m_MainMenu ;
     Player*             m_Player ;
     EventSystem*        m_EventSys ;
+    char*               m_CurrentLvlFilename ;
+    char*               m_NextLvlFilename ;
+    bool*               m_ExitVariable ;
+
 };
 #endif // PFE_GAMELOGIC_H_

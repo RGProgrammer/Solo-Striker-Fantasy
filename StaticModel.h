@@ -7,8 +7,9 @@
 #define PFE_StaticModel_H_
 #include "Abstract.h"
 #include "Types.h"
-#include <stdio.h>
+#include "ObjLoader.h"
 #include <GL//gl.h>
+class ObjLoader ;
 class StaticModel : public Drawable {
 public:
     //Constructor
@@ -36,13 +37,12 @@ public:
     virtual int Clone (StaticModel* Model);
 
 protected :
+    friend class ObjLoader;
     int AddMesh(char*);//add a mesh refernece to vector
     int addVertex(Vertex3d);//add a vertex to Vertxtexbuffer of the selected mesh(used by loadfromfile method)
     int addNormal(Vertex3d);//add a vertex to Normalbuffer of the selected mesh(used by loadfromfile method)
     int addIndices(unsigned int id1,unsigned int id2,unsigned int id3);// add Face to indicesbuffer
     int addTexCoord(Vertex2d);//add to texture coordinate to texture coordinates buffer
-    void extractFace(char* line,unsigned int *,unsigned int *,unsigned int *);
-    static void ReadLine(FILE* file ,char* buffer);
     void UpdateMtx();
     ColorRGB                m_Color ;//Color used if the meshes has no material
     float                   m_Scale ;//Scale of the 3d model(>0);

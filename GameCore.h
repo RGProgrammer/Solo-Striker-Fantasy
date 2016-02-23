@@ -32,7 +32,6 @@ private :
     GraphicsEngine*         m_Graphics;//handles all graphical stuff
     GameScene*              m_Scene ;// this object is like a buffer.it contains all elements inside the Scene
     WindowHandler*          m_Window ;//Window
-    Camera*                 m_Camera;//temporary camera: this attribut will be removed
     Timer                   m_Timer ;// Timer
     bool                    m_Running ;// game Status: Running(true) or not(false)
 };

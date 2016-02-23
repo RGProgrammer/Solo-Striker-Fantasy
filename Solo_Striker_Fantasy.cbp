@@ -68,6 +68,8 @@
 		<Unit filename="MainMenu.h" />
 		<Unit filename="Math.cpp" />
 		<Unit filename="Math.h" />
+		<Unit filename="ObjLoader.cpp" />
+		<Unit filename="ObjLoader.h" />
 		<Unit filename="PhysicsEngine.h" />
 		<Unit filename="Player.cpp" />
 		<Unit filename="Player.h" />

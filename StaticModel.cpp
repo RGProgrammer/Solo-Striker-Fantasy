@@ -17,7 +17,8 @@ StaticModel::~StaticModel(){
     this->Destroy();
 };
 int StaticModel::LoadFromFile(char* filename){
-    return 0 ;
+    ObjLoader::LoadFile(this,filename);
+    return 1 ;
 };
 StaticModel* StaticModel::LoadFile(char* filename){
     StaticModel* obj=new StaticModel();
@@ -81,7 +82,7 @@ void StaticModel::Destroy(){
                 free(v_Meshes[i].Name);
                v_Meshes[i].Name=NULL ;
             }
-            if(v_Meshes[i].material){
+           /* if(v_Meshes[i].material){
                 if(v_Meshes[i].material->TextureMap)
                     free(v_Meshes[i].material->TextureMap);
                 if(v_Meshes[i].material->BumpMap)
@@ -92,9 +93,10 @@ void StaticModel::Destroy(){
                     free(v_Meshes[i].material->MaterialMap);
                 free(v_Meshes[i].material);
                v_Meshes[i].material=NULL ;
-            }
+            }*/
         }
         free(v_Meshes);
+        v_Meshes=NULL ;
     };
 };
 void StaticModel::setColor(ColorRGB Color){
