@@ -6,13 +6,9 @@ class EventSystem{
 public:
     EventSystem();
     ~EventSystem();
-    SDL_Event* getCurrentFrameEvents();
-    int getNbEvent();
+    SDL_Event getSDLEvent();
 private:
     SDL_Joystick*       m_Joystick ;
-    SDL_Event*          v_Event;
-    int                 m_nbEvents;
-
-
+    SDL_Event           m_Event;
 };
 #endif // PFE_EVENTSYSTEM_H_

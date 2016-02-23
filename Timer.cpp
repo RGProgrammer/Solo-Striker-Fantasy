@@ -16,8 +16,8 @@ void Timer::Reset(){
     last_time=current_time ;
     m_Started=true ;
 };
-float Timer::getDeltaTime(){
-    dt=0.0f;
+double Timer::getDeltaTime(){
+    dt=0.0;
     if(m_Started){
         dt=(current_time.tv_sec-last_time.tv_sec)+(current_time.tv_sec-last_time.tv_sec)/(float)1000 ;
     }

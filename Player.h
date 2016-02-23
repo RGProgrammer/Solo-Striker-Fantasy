@@ -22,7 +22,7 @@ public:
     void setScene(GameScene* Scene);
     virtual int LoadFromFile()=0;
     virtual void Update(float dt)=0;
-    virtual void Update(SDL_Event* Events,int nbEvents)=0;
+    virtual void Update(SDL_Event event)=0;
     void NextWeapon();
     void PreviousWeapon();
 protected:

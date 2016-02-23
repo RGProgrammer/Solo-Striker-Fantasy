@@ -11,24 +11,31 @@ void ObjLoader::Release(){
     if(v_Meshes){
         for(unsigned int i = 0 ; i<m_nbMeshes ; i++){
             free(v_Meshes[i].Name);
-           /* if(v_Meshes[i].material){
+            if(v_Meshes[i].VertexBuffer){
+                free(v_Meshes[i].VertexBuffer);
+                v_Meshes[i].VertexBuffer=NULL;}
+            if(v_Meshes[i].IndexBuffer){
+                free(v_Meshes[i].IndexBuffer);
+                v_Meshes[i].IndexBuffer=NULL;}
+            if(v_Meshes[i].NormalsBuffer){
+                free(v_Meshes[i].NormalsBuffer);
+                v_Meshes[i].NormalsBuffer=NULL ;}
+            if(v_Meshes[i].material){
                 if(v_Meshes[i].material->TextureMap){
-                    free(v_Meshes[i].material->TextureMap);}
+                    free(v_Meshes[i].material->TextureMap);
+                    v_Meshes[i].material->TextureMap=NULL;}
                 if(v_Meshes[i].material->MaterialMap){
-                    free(v_Meshes[i].material->MaterialMap);}
+                    free(v_Meshes[i].material->MaterialMap);
+                    v_Meshes[i].material->MaterialMap=NULL;}
                 if(v_Meshes[i].material->ReflexionMap){
-                    free(v_Meshes[i].material->ReflexionMap);}
+                    free(v_Meshes[i].material->ReflexionMap);
+                    v_Meshes[i].material->ReflexionMap=NULL ;}
                 if(v_Meshes[i].material->BumpMap){
-                    free(v_Meshes[i].material->BumpMap);}
+                    free(v_Meshes[i].material->BumpMap);
+                    v_Meshes[i].material->BumpMap=NULL;}
                 free(v_Meshes[i].material);
                 v_Meshes[i].material=NULL ;
-            }*/
-            if(v_Meshes[i].VertexBuffer)
-                free(v_Meshes[i].VertexBuffer);
-            if(v_Meshes[i].IndexBuffer)
-                free(v_Meshes[i].IndexBuffer);
-            if(v_Meshes[i].NormalsBuffer)
-                free(v_Meshes[i].NormalsBuffer);
+            }
         }
         free(v_Meshes);
     }
@@ -55,11 +62,10 @@ while(!feof(objfile)){
                 addIndices(id1,id2,id3);
                 //sscanf(line+2,"%d////%d %d////%d %d////%d\n",&id1,NULL,&id2,NULL,&id3,NULL);
                 break ;
-    case 'o':   printf("%s \n",line);
+    case 'o':
                 AddMesh(line+2); break;
     }
 }
-printf("m_nbMeshes= %d  \n",m_nbMeshes);
 free(line);
 fclose(objfile);
 return 1 ;
@@ -90,6 +96,7 @@ int ObjLoader::AddMesh(char* name){
     v_Meshes[m_nbMeshes].NormalsBuffer=NULL;
     v_Meshes[m_nbMeshes].TexCoords=NULL;
     v_Meshes[m_nbMeshes].VertexBuffer=NULL;
+    v_Meshes[m_nbMeshes].material=NULL ;
     m_nbMeshes++ ;
     return 1 ;
 };

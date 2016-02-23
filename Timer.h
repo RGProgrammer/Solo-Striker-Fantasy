@@ -17,14 +17,14 @@ public :
     ////Deconstructor
     ~Timer() ;
     //get the duration between 2 call of this method in seconds
-    float getDeltaTime();
+    double getDeltaTime();
     //start timer or reset attributs
     void Reset();
     //stop the timer: getDeltaTime will always return 0
     void Stop();
 private :
     bool            m_Started;//if the timer is started
-    float           dt;        //delta time :time between 2 getDeltaTime() calls
+    double           dt;        //delta time :time between 2 getDeltaTime() calls
     struct timeval last_time;   //Current time date
     struct timeval current_time;//time date of the last call
 
