@@ -5,7 +5,7 @@ ObjLoader::ObjLoader():v_Meshes(NULL),
                         m_Color({0.0f,1.0f,0.0f}) {
 };
 ObjLoader::~ObjLoader(){
-    this->Release() ;
+//    this->Release() ;
 };
 void ObjLoader::Release(){
     if(v_Meshes){

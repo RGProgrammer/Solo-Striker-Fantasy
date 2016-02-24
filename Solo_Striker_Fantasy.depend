@@ -1415,14 +1415,14 @@
 1454609628 c:\users\ikram\documents\github\solo-striker-fantasy\abstract.h
 	"Actor.h"
 
-1456139995 c:\users\ikram\documents\github\solo-striker-fantasy\actor.h
+1456324650 c:\users\ikram\documents\github\solo-striker-fantasy\actor.h
 	"Math.h"
 	<stdlib.h>
 
 1453479648 c:\users\ikram\documents\github\solo-striker-fantasy\math.h
 	<math.h>
 
-1454618766 source:c:\users\ikram\documents\github\solo-striker-fantasy\actor.cpp
+1456341481 source:c:\users\ikram\documents\github\solo-striker-fantasy\actor.cpp
 	"Actor.h"
 
 1456083577 source:c:\users\ikram\documents\github\solo-striker-fantasy\boss.cpp
@@ -1452,10 +1452,10 @@
 	"Camera.h"
 	"Player.h"
 
-1452718682 c:\users\ikram\documents\github\solo-striker-fantasy\camera.h
+1456322951 c:\users\ikram\documents\github\solo-striker-fantasy\camera.h
 	"Actor.h"
 
-1452718664 source:c:\users\ikram\documents\github\solo-striker-fantasy\camera.cpp
+1456325928 source:c:\users\ikram\documents\github\solo-striker-fantasy\camera.cpp
 	"Camera.h"
 	<stdio.h>
 
@@ -1468,10 +1468,10 @@
 1455880218 source:c:\users\ikram\documents\github\solo-striker-fantasy\dynamicmodel.cpp
 	"DynamicModel.h"
 
-1456230469 source:c:\users\ikram\documents\github\solo-striker-fantasy\eventsystem.cpp
+1456322888 source:c:\users\ikram\documents\github\solo-striker-fantasy\eventsystem.cpp
 	"EventSystem.h"
 
-1456230440 c:\users\ikram\documents\github\solo-striker-fantasy\eventsystem.h
+1456311109 c:\users\ikram\documents\github\solo-striker-fantasy\eventsystem.h
 	".//tools//sdl2//include//SDL.h"
 	<stdlib.h>
 
@@ -1843,7 +1843,7 @@
 1456259639 c:\users\ikram\documents\github\solo-striker-fantasy\timer.h
 	<sys/time.h>
 
-1456260328 source:c:\users\ikram\documents\github\solo-striker-fantasy\gamelogic.cpp
+1456341500 source:c:\users\ikram\documents\github\solo-striker-fantasy\gamelogic.cpp
 	"GameLogic.h"
 
 1456257438 source:c:\users\ikram\documents\github\solo-striker-fantasy\gamescene.cpp
@@ -1852,24 +1852,24 @@
 1456260020 source:c:\users\ikram\documents\github\solo-striker-fantasy\graphicsengine.cpp
 	"GraphicsEngine.h"
 
-1456260531 source:c:\users\ikram\documents\github\solo-striker-fantasy\hope.cpp
+1456342368 source:c:\users\ikram\documents\github\solo-striker-fantasy\hope.cpp
 	"HOPE.h"
 
-1456230608 c:\users\ikram\documents\github\solo-striker-fantasy\hope.h
+1456311801 c:\users\ikram\documents\github\solo-striker-fantasy\hope.h
 	"Player.h"
 	"WeaponTypes.h"
 
-1456230598 c:\users\ikram\documents\github\solo-striker-fantasy\player.h
+1456311733 c:\users\ikram\documents\github\solo-striker-fantasy\player.h
 	"GameScene.h"
 	"DynamicModel.h"
 	"Weapon.h"
 	".//tools//sdl2//include//SDL.h"
 
-1456173071 c:\users\ikram\documents\github\solo-striker-fantasy\weapon.h
+1456342434 c:\users\ikram\documents\github\solo-striker-fantasy\weapon.h
 	"Shot.h"
 	"GameScene.h"
 
-1456144107 c:\users\ikram\documents\github\solo-striker-fantasy\shot.h
+1456342639 c:\users\ikram\documents\github\solo-striker-fantasy\shot.h
 	"DynamicModel.h"
 
 1454619260 source:c:\users\ikram\documents\github\solo-striker-fantasy\main.cpp
@@ -1887,16 +1887,16 @@
 1456174109 source:c:\users\ikram\documents\github\solo-striker-fantasy\player.cpp
 	"Player.h"
 
-1456144071 source:c:\users\ikram\documents\github\solo-striker-fantasy\shot.cpp
+1456343147 source:c:\users\ikram\documents\github\solo-striker-fantasy\shot.cpp
 	"Shot.h"
 
-1456227074 source:c:\users\ikram\documents\github\solo-striker-fantasy\shottypes.cpp
+1456343147 source:c:\users\ikram\documents\github\solo-striker-fantasy\shottypes.cpp
 	"ShotTypes.h"
 
 1456140801 c:\users\ikram\documents\github\solo-striker-fantasy\shottypes.h
 	"Shot.h"
 
-1456257183 source:c:\users\ikram\documents\github\solo-striker-fantasy\staticmodel.cpp
+1456342881 source:c:\users\ikram\documents\github\solo-striker-fantasy\staticmodel.cpp
 	"StaticModel.h"
 
 1456259760 source:c:\users\ikram\documents\github\solo-striker-fantasy\timer.cpp
@@ -1905,10 +1905,10 @@
 1456172057 source:c:\users\ikram\documents\github\solo-striker-fantasy\weapon.cpp
 	"Weapon.h"
 
-1456172379 source:c:\users\ikram\documents\github\solo-striker-fantasy\weapontypes.cpp
+1456342478 source:c:\users\ikram\documents\github\solo-striker-fantasy\weapontypes.cpp
 	"WeaponTypes.h"
 
-1456171879 c:\users\ikram\documents\github\solo-striker-fantasy\weapontypes.h
+1456342390 c:\users\ikram\documents\github\solo-striker-fantasy\weapontypes.h
 	"Weapon.h"
 	"ShotTypes.h"
 
@@ -1918,7 +1918,7 @@
 1456144036 source:c:\users\ikram\documents\github\solo-striker-fantasy\enemy.cpp
 	"Enemy.h"
 
-1456260095 source:c:\users\ikram\documents\github\solo-striker-fantasy\objloader.cpp
+1456312990 source:c:\users\ikram\documents\github\solo-striker-fantasy\objloader.cpp
 	"ObjLoader.h"
 
 1456225243 c:\users\ikram\documents\github\solo-striker-fantasy\objloader.h

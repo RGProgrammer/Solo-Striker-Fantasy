@@ -1,8 +1,8 @@
 #include "Actor.h"
 
 Actor::Actor(): m_ID(UNKNOWN),m_Pos({0.0f,0.0f,0.0f}),
-                m_Dir({0.0f,0.0f,1.0f}),m_Up({0.0f,1.0f,0.0f}),
-                m_Right({-1.0f,0.0f,0.0f}),m_TransMtx(NULL){
+                m_Dir({0.0f,0.0f,-1.0f}),m_Up({0.0f,1.0f,0.0f}),
+                m_Right({1.0f,0.0f,0.0f}),m_TransMtx(NULL){
     m_TransMtx=(float*)malloc(16*sizeof(float));
     this->UpdateMtx();
 };
@@ -32,7 +32,7 @@ float* Actor::getTransMtx(){
     this->UpdateMtx();
     return m_TransMtx;
 };
-int Actor::setOrientaion(Vertex3d Dir,Vertex3d Up){
+int Actor::setOrientation(Vertex3d Dir,Vertex3d Up){
     if(DotProduct3d(Dir,Up)!=0.0f)//not perpendicular
         return 0 ;
     //else if Perpendicular
@@ -61,7 +61,7 @@ void Actor::RotateViaUp(float ang){
     m_Dir=Rotate3d(m_Dir,m_Up,ang);
     m_Right=CrossProduct3d(m_Dir,m_Up);
     //Correction
-    m_Up=CrossProduct3d(m_Right,m_Dir);
+    m_Up=CrossProduct3d(m_Dir,m_Right);
 };
 void Actor::RotateViaDirection(float ang){
     m_Up=Rotate3d(m_Up,m_Dir,ang);
@@ -71,7 +71,7 @@ void Actor::RotateViaDirection(float ang){
 };
 void Actor::RotateViaRight(float ang ){
     m_Dir=Rotate3d(m_Dir,m_Right,ang);
-    m_Up=CrossProduct3d(m_Right,m_Dir);
+    m_Up=CrossProduct3d(m_Dir,m_Right);
     //Correction
     m_Right=CrossProduct3d(m_Dir,m_Up);
 };

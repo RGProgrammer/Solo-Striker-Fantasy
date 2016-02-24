@@ -7,8 +7,11 @@ public:
     EventSystem();
     ~EventSystem();
     SDL_Event getSDLEvent();
+    SDL_Event* getCurrentFrameEvents();
+    int getNbEvents();
 private:
     SDL_Joystick*       m_Joystick ;
-    SDL_Event           m_Event;
+    SDL_Event*          v_Event;
+    int                 m_nbEvents ;
 };
 #endif // PFE_EVENTSYSTEM_H_

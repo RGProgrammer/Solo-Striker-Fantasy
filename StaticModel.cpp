@@ -43,15 +43,15 @@ void StaticModel::Draw(float * ViewMtx){
     glColor3f(m_Color.r,m_Color.g,m_Color.b);
         for(unsigned int i=0;i<m_nbMeshes ; i++){
             for(unsigned int j=0;j<v_Meshes[i].Faces;j++){
-                glVertex3f(v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j*3]].x,
-                          v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j*3]].y,
-                          v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j*3]].z);
-                glVertex3f(v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j*3+1]].x,
-                          v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j*3+1]].y,
-                          v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j*3+1]].z);
-                glVertex3f(v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j*3+2]].x,
-                          v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j*3+2]].y,
-                          v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j*3+2]].z);
+                glVertex3f(v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j*3]-1].x,
+                          v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j*3]-1].y,
+                          v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j*3]-1].z);
+                glVertex3f(v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j*3+1]-1].x,
+                          v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j*3+1]-1].y,
+                          v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j*3+1]-1].z);
+                glVertex3f(v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j*3+2]-1].x,
+                          v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j*3+2]-1].y,
+                          v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j*3+2]-1].z);
             }
         }
     glEnd();
@@ -264,7 +264,7 @@ int StaticModel::addTexCoord(Vertex2d tex){
 
 int StaticModel::Clone (StaticModel* Model){
     unsigned int j ;
-    m_Color=Model->m_Color ;
+    //m_Color=Model->m_Color ;
     m_nbMeshes=Model->m_nbMeshes ;
     if(!m_nbMeshes)
         return 0 ;

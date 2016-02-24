@@ -8,7 +8,7 @@ public:
     Shot(Actor* Source);
     Shot(Shot* clone);
     virtual ~Shot();
-    void Update(float dt)=0;
+    virtual int LoadFromFile()=0;
     void setSource(Actor* Source);
     void setSpeed(float Speed);
     virtual int Clone(Shot* clone);

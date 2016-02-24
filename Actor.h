@@ -34,7 +34,7 @@ public :
     //return transformaion matrix
     virtual float* getTransMtx();
     //set Orientation orientation of the Modl:Direction , Up vertices
-    int setOrientaion(Vertex3d,Vertex3d);
+    int setOrientation(Vertex3d,Vertex3d);
     //Set model Position in 3d space
     void setPosition(Vertex3d);
     //getters
