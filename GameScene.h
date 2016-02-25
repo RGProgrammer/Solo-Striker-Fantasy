@@ -23,6 +23,7 @@ public:
     void Destroy() ;
     void setCamera(Camera*);
     Camera* getCamera();
+    void RemoveAt(unsigned int index);
 private:
     unsigned int        Size ;
     unsigned int        m_NBActors ;

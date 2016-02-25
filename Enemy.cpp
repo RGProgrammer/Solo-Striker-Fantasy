@@ -1,11 +1,11 @@
 #include "Enemy.h"
 Enemy::Enemy():DynamicModel(),m_nbActions(0),v_Actions(NULL),m_Scene(NULL){
-    StaticModel::m_ID|=ENEMY ;
+    m_ID|=ENEMY ;
 };
 Enemy::Enemy(Vertex3d Pos):DynamicModel(Pos),m_nbActions(0),v_Actions(NULL),m_Scene(NULL){
-    StaticModel::m_ID|=ENEMY ;};
+   m_ID|=ENEMY ;};
 Enemy::Enemy(Vertex3d Pos,Vertex3d Dir,Vertex3d Up):DynamicModel(Pos,Dir,Up),m_nbActions(0),v_Actions(NULL),m_Scene(NULL){
-    StaticModel::m_ID|=ENEMY ;};
+    m_ID|=ENEMY ;};
 Enemy::~Enemy(){
     this->Destroy();
 };

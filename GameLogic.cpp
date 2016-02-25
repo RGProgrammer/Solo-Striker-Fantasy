@@ -36,7 +36,6 @@ int GameLogic::InitLogic(GameScene* Scene){
     m_Player=m_Ship;
     m_Ship->setScene(m_Scene);
     m_Scene->setPlayer(m_Player);
-    m_Camera->printInfo();
     return 1 ;
 };
 int GameLogic::InitLevel(char* filename){
@@ -57,14 +56,13 @@ void GameLogic::Update(float dt){
             *m_ExitVariable=false ;
 
     if(m_Player){
-        //m_Player->Update(event);
         m_Player->Update(Events,nbEvents);
         m_Player->Update(dt);
     }
     for(unsigned int i=0;i<nbactors;i++){
         actor=m_Scene->getActor(i);
-        if(actor->getID() & UPDATABLE)
-            ((Updatable*)actor)->Update(dt);
+        if(actor->getID() & UPDATABLE){
+            dynamic_cast<Updatable*>(actor)->Update(dt);}
     }
 };
 Player* GameLogic::getPlayer(){

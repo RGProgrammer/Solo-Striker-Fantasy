@@ -32,6 +32,11 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+					<Add library="tools/sdl2/lib/libglu32.a" />
+					<Add library="tools/sdl2/lib/libopengl32.a" />
+					<Add library="tools/sdl2/lib/x86/SDL2.lib" />
+					<Add library="tools/sdl2/lib/x86/SDL2main.lib" />
+					<Add library="tools/sdl2/lib/x86/SDL2test.lib" />
 				</Linker>
 			</Target>
 		</Build>

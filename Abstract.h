@@ -13,35 +13,37 @@
 //any method that is virtual and pure(=0) must be defined in the sub classes
 
 
-class Drawable : public Actor {
+class Drawable : public virtual Actor {
 protected:
     //Constructor
     Drawable();
     Drawable(Vertex3d Pos);
     Drawable(Vertex3d Pos,Vertex3d Dir,Vertex3d Up);
+
+public:
     //Deconstructor
     virtual ~Drawable();
-public:
     //How the model will be draw(must be defined)
     virtual void Draw(float * ViewMtx) = 0;
     //release resources(must be redifined)
     virtual void Destroy() = 0;
 };
-class Updatable : public Actor {
+class Updatable : public virtual  Actor {
 protected:
     //constructor
     Updatable();
     Updatable(Vertex3d Pos);
     Updatable(Vertex3d Pos,Vertex3d Dir,Vertex3d Up);
-    //Deconstructor
-    virtual ~Updatable();
+
 public:
+     //Deconstructor
+    virtual ~Updatable();
     //Update the models bihaviour in function of time(must be defined)
     virtual void Update(float dt) = 0;
     //free resources(must be redefined)
     virtual void Destroy() = 0 ;
 };
-class DnU : public Drawable,public Updatable{
+class DnU : public virtual Drawable,public virtual Updatable{
 protected :
     //Constructor
     DnU();

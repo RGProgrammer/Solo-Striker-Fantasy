@@ -59,3 +59,16 @@ void GameScene::setCamera(Camera* Cam){
 Camera* GameScene::getCamera(){
     return m_Camera ;
 };
+void GameScene::RemoveAt(unsigned int index){
+    if(index==m_NBActors-1){
+        v_Actors[index]->Destroy();
+        delete (v_Actors[index]) ;
+        }
+    else if(index>=0 && index< m_NBActors-1){
+         v_Actors[index]->Destroy();
+        delete (v_Actors[index]) ;
+        for(unsigned int i=index;i<m_NBActors-1;i++)
+            v_Actors[i]=v_Actors[i+1];
+    }
+    m_NBActors-- ;
+};
