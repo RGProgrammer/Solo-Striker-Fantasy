@@ -14,10 +14,11 @@ public :
     //void Update(SDL_Event event);//Update HOPE's Stat
     void Update(SDL_Event* Events, int nbEvents) ;
 private :
-    void NextWeapon();
-    void PreviousWeapon();
     void Fire();
     float       m_Speed ;//HOPE movement speed
+    int                 m_nbWeapons;
+    int                 m_SelectedWeapon;
+    Weapon**            v_Weapons;
 
 };
 #endif // PFE_HOPE_H_

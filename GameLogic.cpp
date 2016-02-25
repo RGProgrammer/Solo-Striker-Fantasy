@@ -42,10 +42,6 @@ int GameLogic::InitLevel(char* filename){
 
     return 1 ;
 };
-void GameLogic::setCamera(Camera * camera){
-    this->m_Camera=camera;
-};
-
 void GameLogic::Update(float dt){
     Actor* actor=NULL ;
     unsigned int nbactors=m_Scene->getNBActors();
@@ -64,9 +60,6 @@ void GameLogic::Update(float dt){
         if(actor->getID() & UPDATABLE){
             dynamic_cast<Updatable*>(actor)->Update(dt);}
     }
-};
-Player* GameLogic::getPlayer(){
-    return m_Player;
 };
  void GameLogic::setExitVariable(bool* variable){
     m_ExitVariable=variable ;

@@ -32,9 +32,7 @@ public:
     void Destroy();
     int InitLogic(GameScene* Scene);
     int InitLevel(char* filename);
-    void setCamera(Camera * camera);
     void Update(float dt);
-    Player* getPlayer();
     void setExitVariable(bool* variable);
 private:
     GameScene*          m_Scene ;

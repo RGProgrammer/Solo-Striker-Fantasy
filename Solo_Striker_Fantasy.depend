@@ -1435,7 +1435,7 @@
 	"DynamicModel.h"
 	"GameScene.h"
 
-1456391075 c:\users\ikram\documents\github\solo-striker-fantasy\dynamicmodel.h
+1456434927 c:\users\ikram\documents\github\solo-striker-fantasy\dynamicmodel.h
 	"StaticModel.h"
 	"Abstract.h"
 
@@ -1466,7 +1466,7 @@
 1456081654 c:\users\ikram\documents\github\solo-striker-fantasy\cube.h
 	"Boss.h"
 
-1456394356 source:c:\users\ikram\documents\github\solo-striker-fantasy\dynamicmodel.cpp
+1456434928 source:c:\users\ikram\documents\github\solo-striker-fantasy\dynamicmodel.cpp
 	"DynamicModel.h"
 
 1456322888 source:c:\users\ikram\documents\github\solo-striker-fantasy\eventsystem.cpp
@@ -1807,7 +1807,7 @@
 	".//tools//sdl2//include//SDL.h"
 	<stdio.h>
 
-1456227774 c:\users\ikram\documents\github\solo-striker-fantasy\gamelogic.h
+1456435338 c:\users\ikram\documents\github\solo-striker-fantasy\gamelogic.h
 	"GameScene.h"
 	"Abstract.h"
 	"Camera.h"
@@ -1844,7 +1844,7 @@
 1456259639 c:\users\ikram\documents\github\solo-striker-fantasy\timer.h
 	<sys/time.h>
 
-1456391221 source:c:\users\ikram\documents\github\solo-striker-fantasy\gamelogic.cpp
+1456435371 source:c:\users\ikram\documents\github\solo-striker-fantasy\gamelogic.cpp
 	"GameLogic.h"
 
 1456394547 source:c:\users\ikram\documents\github\solo-striker-fantasy\gamescene.cpp
@@ -1856,11 +1856,11 @@
 1456394394 source:c:\users\ikram\documents\github\solo-striker-fantasy\hope.cpp
 	"HOPE.h"
 
-1456311801 c:\users\ikram\documents\github\solo-striker-fantasy\hope.h
+1456436578 c:\users\ikram\documents\github\solo-striker-fantasy\hope.h
 	"Player.h"
 	"WeaponTypes.h"
 
-1456311733 c:\users\ikram\documents\github\solo-striker-fantasy\player.h
+1456436587 c:\users\ikram\documents\github\solo-striker-fantasy\player.h
 	"GameScene.h"
 	"DynamicModel.h"
 	"Weapon.h"
@@ -1916,7 +1916,7 @@
 1451752834 source:c:\users\ikram\documents\github\solo-striker-fantasy\windowhandler.cpp
 	"WindowHandler.h"
 
-1456394487 source:c:\users\ikram\documents\github\solo-striker-fantasy\enemy.cpp
+1456433449 source:c:\users\ikram\documents\github\solo-striker-fantasy\enemy.cpp
 	"Enemy.h"
 
 1456312990 source:c:\users\ikram\documents\github\solo-striker-fantasy\objloader.cpp

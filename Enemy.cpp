@@ -22,5 +22,20 @@ void Enemy::Destroy(){
     m_nbActions=0;
 };
 int Enemy::addAction(Action action){
-    return 0 ;
+    if(v_Actions==NULL){
+        v_Actions=(Action*)malloc((m_nbActions+1)*sizeof(Action));
+        if(v_Actions==NULL)
+            return 0 ;
+    }else{
+        Action* tmp=(Action*)malloc((m_nbActions+1)*sizeof(Action));
+        if(tmp==NULL)
+            return 0 ;
+        for(int i=0; i<m_nbActions;i++)
+            tmp[i]=v_Actions[i] ;
+        free(v_Actions);
+        v_Actions=tmp;
+    }
+    v_Actions[m_nbActions]=action ;
+    m_nbActions++;
+    return 1 ;
 };

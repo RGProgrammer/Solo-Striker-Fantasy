@@ -53,3 +53,5 @@ void HOPE::Update(SDL_Event* Events, int nbEvents){
 void HOPE::Fire(){
     v_Weapons[m_SelectedWeapon]->Fire(m_Scene,m_Pos,m_Dir,m_Up);
 };
+
+
