@@ -1,244 +1,154 @@
-this document generally explains the role of each class in this project
+--------------------------------------------------------
 
-/////////////////////////////////////////////////////////////////////////
-//						Classes list								   //
-/////////////////////////////////////////////////////////////////////////
-	1-GameCore
-	2-WindowHandler
-	3-GameScene
-	4-Actor
-	5-Drawable 
-	6-Updatable
-	7-DnU
-	8-Light 
-	9-Camera
-	10-StaticModel
-	11-DynamicModel
-	12-Terrain
-	13-Effect
-	14-Player
-	15-Enemy
-	16-Shot
-	17-HOPE
-	18-EnergyBullet
-	19-Laser(beam)
-	20-Chaser
-	21-Boss
-	22-UFO
-	23-Cannon
-	24-Suicidal
-	25-CUBE
-	26-GraphicsEngine
-	27-GameLogic
-	28-EventSystem
-	29-PhysicsEngine
-	30-SoundEngine
-	
-/////////////////////////////////////////////////////////////////////////
-//						1-GameCore								   	   //
-/////////////////////////////////////////////////////////////////////////
-this the Core of our system. the class deals with the creation,initialization and 
-destrucion(by Destruction i mean Free Resources) of the main classes in the System.
-this class hnadles the game Loop too.
+Solo Striker Fantasy
+
+--------------------------------------------------------
+Plan:
+1. About us
+2.Game info
+3. Story
+4. Technolgie(used/will be used)
+5. Classes List
 
 
-/////////////////////////////////////////////////////////////////////////
-//						2-WindowHandler								   //
-/////////////////////////////////////////////////////////////////////////
-this class made to handle the system Window operations including Creation,Resize,
-switch between windowed mode and FullScreen and Destruction.the Real window is created 
-by SDL2which is a cross Platform library that helps creating Cross Platform software.
-
- 
-/////////////////////////////////////////////////////////////////////////
-//						3-GameScene								   	   //
-/////////////////////////////////////////////////////////////////////////
-GameScene is logic representation to the GameWorld. this class Contains a vector which 
-stock reference of the object that could be inserted in the game world.these objects' classes 
-should extends Actor or other child class of Actor.
-
- 
-/////////////////////////////////////////////////////////////////////////
-//						4-Actor								   		   //
-/////////////////////////////////////////////////////////////////////////
-this is the base class that represent any object that could be inserted in the game Scene(world) 
-and define the common operation that could be applied on any object in a 3D Space.this class has 
-no use without m_ID attribut.m_ID helps to  Knows what type of the Actor in game Scene so we could 
-convert the reference type and use the right methods.
-the current IDs are:
--Drawable
--Updatable
--Light
--Camera
--PhysicalObject
+---------------------------------------------------------
+1. About us:
+Rami ben Amor, 21 years old , A Game programmer(or want to be).
+Ahmed Chemchik, 21 years old, Artist.
+we are College Students in Tunisia.This game is our Graduation Projecta and first Game Project.
 
 
-/////////////////////////////////////////////////////////////////////////
-//						5-Drawable 								       //
-/////////////////////////////////////////////////////////////////////////
-this abstract class represent a particlar Actor type which is Drawable(which mean has Draw Method)
-any class inherit from this class should define the draw method(define how the Actor should be drawn).
-the Draw Method is used by the GraphicsEngine.
+---------------------------------------------------------
+2. Game Info:
+categorie: shoot them up
+type : 2.5d(3d)
+platformes: Windows,Linux
+Age: all Ages
+language: English
 
 
-/////////////////////////////////////////////////////////////////////////
-//						6-Updatable 								   //
-/////////////////////////////////////////////////////////////////////////
-this abstract class represent a particular Actor type which is updatable or Dynamic (which mean has update method)
-and any class inherit from from this class should define the update method(define how the actor should update it self)
-the Update Method is used by the GameLogic.
+---------------------------------------------------------
+3.Story:
+"Since long time, the eath have been conquered by Aliens,Martiaaan to be precise(Mars people).they looks like Humains but they are not.
+the reason of their invasion is that they feel envy of humans because they have a huge quantity of Water which is rare on Mars.
+the Humanity doesn't have advanced technology to Stop the invasion but Now it's a different Story.Countries accross the globe has
+united together and finaly built secretly a weapon that can free humanity.this the weapon is a solo Pilote space ship.beleive it 
+or not this ship can destroy a complete Martiaaan squad.You(Player) and this Ship is Humanity last hope.Our end will be FREEDOM or DOOM"
+Objectif: destroy as many enemies ships as possible and defeat Bosses in each scene.
+the Game devided into 5 Scenes(could be more/less depend on development progress):
+Scene 1:Desert
+Scene 2:Land
+Scene 3:Land2
+Scene 4:Ocean
+Scene 5:horizon
 
+-----------------------------------------------------------
+4.Technologies
+OpenGL : Open Graphics Library.It's a cross platfrom low level graphics library.
+SDL2: Simple DirectMedia Library.A 3rd party library that have multiple.we are using it to handles the 
+		Game window and Keys Input.
+OpenAL: Open Audio Library . Handles audio and similar to OpenGL in the way of using it.
+Blender/3ds Max : 3d Modeling Softwares.
+FL Studio : Audio/Music Producing Software.
 
-/////////////////////////////////////////////////////////////////////////
-//						7-DnU 								       	   //
-/////////////////////////////////////////////////////////////////////////
-this class is a combination of the two previous classes(Drawable and Updatable).
-this class is abstract too,any class inherit from this class should define both Draw and Update mehods.
+-----------------------------------------------------------
+5.Classes List:
 
+-GameCore:
+this class represents the GameObject which handle our Game SubSystems and the GameLoop.
 
+-Timer:
+Since the Time is an important in Games Update, the Object Timer will handles the Calculation of Time(Delta time)
+between each 2 Frames.
 
-/////////////////////////////////////////////////////////////////////////
-//						8-Light 								       //
-/////////////////////////////////////////////////////////////////////////
-all i can say about this class that it represents any light type inserted in the GameScene
+-WindowHandle:
+Handles our window object since Destinated platform are different.
 
+-GameScene :
+it's the logique representation of the game World.this class contains a vector of reference on Actor Objects.
+there is only one GameScene object created in the game engine and shared between other objects.
 
-/////////////////////////////////////////////////////////////////////////
-//						10-StaticModel							       //
-/////////////////////////////////////////////////////////////////////////
-StaticModel is the logic representation of a static 3d Model and by static i mean that the model can be animated
-the 3d model is based on Meshes(Parts) which is a constructed of points,each point has 3d coordinates in a local
-3d Space which will be transformaed to the Game World by a transformation matrix,these points are linked together
-triangles and each triangle has a Normal vertex needed for light operation and material.
+-Actor:
+the Base Class of any object could be Placed in the scene: It could Drawable ,Updatable,Light,Physical or Combination of these
+the most important part in this Class is the "m_ID" Attribut which allow us to know the type object.
 
-  
-/////////////////////////////////////////////////////////////////////////
-//						11-DynamicModel 						       //
-/////////////////////////////////////////////////////////////////////////
-this class is abstract it inherit from StaticModel and Updatable to be able to animate the 3d Model.
-any class that inherit from this class should define the update method.
+-GraphicsEngine:
+its mecanics is simple it search in Scene for Drawable Actors if found it cast it to Drawable object and calls the Draw()
+method.
 
+-GameLogic:
+GameLogic object handles the Creation of Levels and Updates the Updatable object in the scene.
+the Updating principal is similar to the graphics engine.the GameLogic search in the gameScene for Upadatable Objects and
+when found it Cast it to Updatable object and calls the Update methods of that object.
 
-/////////////////////////////////////////////////////////////////////////
-//						12-Terrain								       //
-/////////////////////////////////////////////////////////////////////////
-in this project the terrain supposes to be infinite and to make it look infinite we're 
-going to load one part of the terrain and copy in different positions in the wolrd , move them down,
-to make it looks like that the player is flying in the air .(this is the current solution)
+-EnventSystem:
+handles the key input(based on SDL2)
 
-/////////////////////////////////////////////////////////////////////////
-//						13-Effect								       //
-/////////////////////////////////////////////////////////////////////////
-effects are animated object(inherits from DynamicModel) that starts animation the instance the effect created
-have life Duration.when the animation is completed the object will be destroyed.
- 
+-Drawable:
+base class of any object that can be drown (which men it has "Draw" method)
 
-/////////////////////////////////////////////////////////////////////////
-//						14-Player 								       //
-/////////////////////////////////////////////////////////////////////////
-since the design is not completed yet.we didn't decide if the player will have a single ship to pilote or 
-we give him the ability to choose a ship.we created this class to be the base class of any ship that will be
-created in this project.this class inherit from DynamicModel.and override the Update Method to accept
-the player input as a parameter.
+-Updatable:
+base clss of any updatable object which mean any object have "Update" method
 
+-DnU:
+a combination of Drawable and Updatable 
 
-/////////////////////////////////////////////////////////////////////////
-//						15-Enemy 								       //
-/////////////////////////////////////////////////////////////////////////
-it represent the base class of any enemy type .what is special about this class that it contains a vector of
-actions that we be done by the enemy. each action it own start instance.
+-Light:
+	a class which handles OpenGL light.
 
+-StaticModel:
+StaticModel or you can call it 3d model that does not have animation
 
-/////////////////////////////////////////////////////////////////////////
-//						16-Shot 								       //
-/////////////////////////////////////////////////////////////////////////
-base class of any type of shot.
+-DynamicObject:
+is a 3d model with animation or accepts animations
 
+-Effect:
+base class of any type of effect
 
-/////////////////////////////////////////////////////////////////////////
-//						17-HOPE								       	   //
-/////////////////////////////////////////////////////////////////////////
-this class represent the ship that could be pilated by the player and still thinking of its abilities
-P.S: HOPE is the name of the ship.
+-Explosion:
+currently the only effect in th game.
 
+-Player:
+the class is the base class of any object that can be controlled by he player
 
-/////////////////////////////////////////////////////////////////////////
-//						18-EnergyBullet			  				       //
-/////////////////////////////////////////////////////////////////////////
-a type of shot: a bullet made od energy
+-HOPE:
+represent the player ship.extends from Player class
 
-/////////////////////////////////////////////////////////////////////////
-//						19-Laser(beam) 								   //
-/////////////////////////////////////////////////////////////////////////
-Beam better describe this type of shot
-/////////////////////////////////////////////////////////////////////////
-//						20-Chaser 								       //
-/////////////////////////////////////////////////////////////////////////
-Chaser follow the enemy locked on until it hits it or it(Chaser) vanishes.
+-MainMenu:
+represent the MainMenu(it's obvious).extends from Player class
 
-/////////////////////////////////////////////////////////////////////////
-//						21-Boss 								       //
-/////////////////////////////////////////////////////////////////////////
-base class of any type of Boss.
+-Weapon:
+base Class of any weapon in the game.
 
+-Shot: a weapon's shot
 
-/////////////////////////////////////////////////////////////////////////
-//						22-UFO 								       	   //
-/////////////////////////////////////////////////////////////////////////
-a type of enemy.
+-MachineGun:type of weapon that shoot EnergyBullets and used by the player
 
+-EnergyBullet: a type shots behaves like a gun Bullet
 
-/////////////////////////////////////////////////////////////////////////
-//						23-Cannon								       //
-/////////////////////////////////////////////////////////////////////////
-a type of enemy that fire beam.
+-ChaserLauncher: a type of weapon that shoots Chasers and used by the player
 
+-Chaser: a type of shot that follow the enemy until it hits or Vanish.
 
-/////////////////////////////////////////////////////////////////////////
-//						24-Suicidal 								   //
-/////////////////////////////////////////////////////////////////////////
-a type of enemy that that are fast and tries to hit the player's ship
+-Laser(i mean Beam):used by the player or Enemies
 
+-Enemy:Base class of any enemy
 
-/////////////////////////////////////////////////////////////////////////
-//						25-CUBE							       		   //
-/////////////////////////////////////////////////////////////////////////
-the Boss of the first level. ican't describe it's behaviour here.but i will  when i have 
-a clear idea about it.
+-UFO:a type of enemy that like a UFO. this is the Weakest type.
 
+-SmallShot: a type of shot created by the enemy
 
-/////////////////////////////////////////////////////////////////////////
-//						26-GraphicsEngine							   //
-/////////////////////////////////////////////////////////////////////////
-the graphicsEngine is an objet that handles the graphics part of the system. it search for 
-any drawable object in the scene and Call its Draw method.
-/////////////////////////////////////////////////////////////////////////
-//						27-GameLogic 								   //
-/////////////////////////////////////////////////////////////////////////
-gameLogic handle the level initialization, updating and destruction and provide for each created its
-necessary paramater.
+-Cannon:a type enemy that shoot beam
 
- 
-/////////////////////////////////////////////////////////////////////////
-//						28-EventSystem 								   //
-/////////////////////////////////////////////////////////////////////////
-the main Job of EventSystem is to Capture SDL_Event and translate them to a more useful event structure.
+-Suicidal:  Type of enemy that come very fast to hit the player
 
+-Boss:the base class of all Bosses
 
-/////////////////////////////////////////////////////////////////////////
-//						29-PhysicsEngine							   //
-/////////////////////////////////////////////////////////////////////////
-the role is simple detects collision between physical objects using AABBs.(Encapsulate each  physical Object 
-in a cube,check the collision between each 2 cubes).
+-CUBE:the Boss of the First Level/Scene
 
+-PhysicsEngine:
+PhysicsEngine object handles the Collision detction and reaction between the Physical Elements in the Scene
 
-
-/////////////////////////////////////////////////////////////////////////
-//						30-SoundEngine 								   //
-/////////////////////////////////////////////////////////////////////////
-handle the sound part in the system which i'm still learning about it.
-
-	
-	
-
+-Soundengine:
+Handles all Sounds and Music in the game.
 
