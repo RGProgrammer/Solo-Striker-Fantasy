@@ -20,7 +20,11 @@ public:
 class SmallShot : public Shot {
 public :
     SmallShot();
+    SmallShot(Vertex3d Pos,Vertex3d Dir,Vertex3d Up);
+    SmallShot(Actor* Source);
     ~SmallShot();
+    void Update(float dt);
+    int LoadFromFile();
 };
 class LongShot: public Shot {
 public :

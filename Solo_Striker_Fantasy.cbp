@@ -87,6 +87,8 @@
 		<Unit filename="Timer.cpp" />
 		<Unit filename="Timer.h" />
 		<Unit filename="Types.h" />
+		<Unit filename="UFO.cpp" />
+		<Unit filename="UFO.h" />
 		<Unit filename="Weapon.cpp" />
 		<Unit filename="Weapon.h" />
 		<Unit filename="WeaponTypes.cpp" />
