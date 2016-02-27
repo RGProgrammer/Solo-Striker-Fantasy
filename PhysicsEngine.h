@@ -1,6 +1,11 @@
 #ifndef PFE_PHYSICSENGINE_H_
 #define PFE_PHYSICSENGINE_H_
-#include "StaticModel.h"
+#include "GameScene.h"
+#include "Player.h"
+#include "Enemy.h"
+#include "Shot.h"
+#include "Math.h"
+
 typedef struct {
     StaticModel*  Object1;
     StaticModel*  Object2;

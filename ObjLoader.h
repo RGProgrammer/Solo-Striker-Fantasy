@@ -7,7 +7,6 @@ class StaticModel;
 class ObjLoader {
 public :
     ObjLoader();
-
     ~ObjLoader();
      void Release();
      int loadObjfile(char* objfilename);
@@ -15,6 +14,7 @@ public :
     int loadMaterial(char* mtlfilename);
     static int LoadFile(StaticModel* dest,char* filename);
 private:
+    int CalculNormals();
     void extractFace(char* line,unsigned int *,unsigned int *,unsigned int *);
     int AddMesh(char*);
     int addVertex(Vertex3d);

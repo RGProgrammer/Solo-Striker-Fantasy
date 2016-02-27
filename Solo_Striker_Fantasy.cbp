@@ -75,6 +75,9 @@
 		<Unit filename="Math.h" />
 		<Unit filename="ObjLoader.cpp" />
 		<Unit filename="ObjLoader.h" />
+		<Unit filename="PhysicsEngine.cpp">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="PhysicsEngine.h" />
 		<Unit filename="Player.cpp" />
 		<Unit filename="Player.h" />

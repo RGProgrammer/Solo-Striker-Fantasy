@@ -42,33 +42,30 @@ void ObjLoader::Release(){
 };
 
 int ObjLoader::loadObjfile(char* objfilename){
-//open file file
 Vertex3d tmp ;
 unsigned int id1,id2,id3 ;
+int rslt=1 ;
 FILE* objfile=fopen(objfilename,"r");
-//allocation of templates
 char* line =(char*)malloc(100*sizeof(char));
 //start reading lines
 while(!feof(objfile)){
-    //fscanf(objfile,"%s\n",line);
     ReadLine(objfile,line);
     switch(line[0]){
     case 'v':switch(line[1]){
-                case ' ':sscanf(line,"v %f %f %f\n",&tmp.x,&tmp.y,&tmp.z);addVertex(tmp);  break ;
-                case 'n':  break;
+                case ' ':rslt=sscanf(line,"v %f %f %f\n",&tmp.x,&tmp.y,&tmp.z);addVertex(tmp);  break ;
                 case 't':  break ;
                 }break ;
-    case 'f':   extractFace(line,&id1,&id2,&id3);
-                addIndices(id1,id2,id3);
-                //sscanf(line+2,"%d////%d %d////%d %d////%d\n",&id1,NULL,&id2,NULL,&id3,NULL);
+    case 'f':   extractFace(line+2,&id1,&id2,&id3);
+                rslt=addIndices(id1,id2,id3);
                 break ;
     case 'o':
-                AddMesh(line+2); break;
+                rslt=AddMesh(line+2); break;
     }
 }
+    CalculNormals();
 free(line);
 fclose(objfile);
-return 1 ;
+return rslt ;
 };
 int ObjLoader::loadMaterial(char* mtlfilename){
 
@@ -82,14 +79,12 @@ int ObjLoader::AddMesh(char* name){
         tmp[i]=v_Meshes[i];
     free(v_Meshes);
     v_Meshes=tmp ;
-    // copy name and init others attributs
     v_Meshes[m_nbMeshes].Name=(char*)malloc(100*sizeof(char));
     for(i=0;name[i]!='\0';i++)
         v_Meshes[m_nbMeshes].Name[i]=name[i];
     v_Meshes[m_nbMeshes].Name[i]=name[i];
     v_Meshes[m_nbMeshes].Faces=0;
     v_Meshes[m_nbMeshes].IndexBuffer=NULL ;
-    v_Meshes[m_nbMeshes].material=NULL;
     v_Meshes[m_nbMeshes].nbNormals=0;
     v_Meshes[m_nbMeshes].nbTexCoords=0;
     v_Meshes[m_nbMeshes].nbVertices=0;
@@ -147,6 +142,22 @@ int ObjLoader::addIndices(unsigned int id1,unsigned int id2,unsigned int id3){
         return 1;
     }
     return 0 ;
+};
+int ObjLoader::CalculNormals(){
+    Vertex3d v1,v2;
+    for(unsigned int i=0 ; i<m_nbMeshes; i++){
+        v_Meshes[i].nbNormals=v_Meshes[i].Faces ;
+        v_Meshes[i].NormalsBuffer=(Normal3d*)malloc(v_Meshes[i].nbNormals*sizeof(Normal3d));
+        for(unsigned int j=0 ;j<v_Meshes[i].Faces*3;j+=3){
+            v1={v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j+1]].x-v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j]].x,
+                v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j+1]].y-v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j]].y,
+                v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j+1]].z-v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j]].z};
+            v2={v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j+2]].x-v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j]].x,
+                v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j+2]].y-v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j]].y,
+                v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j+2]].z-v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j]].z};
+            v_Meshes[i].NormalsBuffer[j/3]=CrossProduct3d(v1,v2);
+        }
+    }
 };
 void ObjLoader::extractFace(char* line,unsigned int * id1,unsigned int *id2,unsigned int *id3){
     char* part1=(char*)malloc(20*sizeof(char));

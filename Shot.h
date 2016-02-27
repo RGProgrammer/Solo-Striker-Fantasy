@@ -1,6 +1,10 @@
 #ifndef PFE_SHOT_H_
 #define PFE_SHOT_H_
 #include "DynamicModel.h"
+//Actor ID
+#define SHOT    0x0020
+
+
 class Shot: public DynamicModel{
 public:
     Shot();

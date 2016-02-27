@@ -1,10 +1,12 @@
 #include "Enemy.h"
-Enemy::Enemy():DynamicModel(),m_nbActions(0),v_Actions(NULL),m_Scene(NULL){
-    m_ID|=ENEMY ;
+Enemy::Enemy():DynamicModel(),m_nbActions(0),v_Actions(NULL),m_Scene(NULL),m_CurrentActions(-1),m_Health(1),m_Stat(ALIVE){
+    m_ID|=ENEMY | PHYSICAL ;
 };
-Enemy::Enemy(Vertex3d Pos):DynamicModel(Pos),m_nbActions(0),v_Actions(NULL),m_Scene(NULL){
+Enemy::Enemy(Vertex3d Pos):DynamicModel(Pos),m_nbActions(0),v_Actions(NULL),m_Scene(NULL),m_CurrentActions(-1),m_Health(1),
+                                m_Stat(ALIVE){
    m_ID|=ENEMY ;};
-Enemy::Enemy(Vertex3d Pos,Vertex3d Dir,Vertex3d Up):DynamicModel(Pos,Dir,Up),m_nbActions(0),v_Actions(NULL),m_Scene(NULL){
+Enemy::Enemy(Vertex3d Pos,Vertex3d Dir,Vertex3d Up):DynamicModel(Pos,Dir,Up),m_nbActions(0),v_Actions(NULL),
+                                                    m_Scene(NULL),m_CurrentActions(-1),m_Health(1),m_Stat(ALIVE){
     m_ID|=ENEMY ;};
 Enemy::~Enemy(){
     this->Destroy();
@@ -16,6 +18,9 @@ void Enemy::Destroy(){
     DynamicModel::Destroy();
     m_Scene=NULL;
     if(v_Actions){
+        for(int i=0;i<m_nbActions;i++)
+            if(v_Actions[i].Data)
+                free(v_Actions[i].Data);
         free(v_Actions);
         v_Actions=NULL ;
     }
@@ -38,4 +43,11 @@ int Enemy::addAction(Action action){
     v_Actions[m_nbActions]=action ;
     m_nbActions++;
     return 1 ;
+};
+void Enemy::getDamage(int damage){
+    if(m_Stat==ALIVE){
+        m_Health-=damage;
+        if(m_Health<=0)
+            m_Stat=DEAD;
+    }
 };

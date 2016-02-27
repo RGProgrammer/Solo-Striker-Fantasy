@@ -4,6 +4,10 @@
 #include "DynamicModel.h"
 #include "Weapon.h"
 #include ".//tools//sdl2//include//SDL.h"
+//Actor ID
+#define PLAYER      0x0040
+
+//Player Stats
 #define DEAD        0x0000
 #define MOVING      0x0001
 #define HIT         0x0002
@@ -23,11 +27,12 @@ public:
     virtual int LoadFromFile()=0;
     virtual void Update(float dt)=0;
     virtual void Update(SDL_Event* Events, int nbEvents)=0 ;
+    void getDamage();
 protected:
 
     int                 m_Health;
     int                 m_Charge;
-    int                 m_State;
+    int                 m_Stat;
     GameScene*          m_Scene;
 
 

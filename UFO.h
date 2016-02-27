@@ -1,5 +1,7 @@
 #ifndef PFE_UFO_H_
 #define PFE_UFO_H_
+#include "Enemy.h"
+
 class UFO :public Enemy {
 public :
     UFO();

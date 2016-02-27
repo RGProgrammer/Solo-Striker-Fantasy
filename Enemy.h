@@ -2,7 +2,15 @@
 #define PFE_ENEMY_H_
 #include "DynamicModel.h"
 #include "GameScene.h"
+//Actions
 #define ENEMY       0x0010
+#define FIREACTION  0x0000
+#define MOVEACTION  0x0001
+
+//Stats
+#define DEAD        0x0000
+#define EXPLODING   0x0001
+#define ALIVE       0x0002
 
 typedef struct {
     Vertex3d    Translate; //add this vertex to the Position
@@ -22,13 +30,18 @@ public :
     Enemy(Vertex3d Pos);
     Enemy(Vertex3d Pos,Vertex3d Dir,Vertex3d Up);
     virtual ~Enemy();
+    virtual int LoadFromFile()=0 ;
+    virtual void Update(float dt)=0 ;
     void setScene(GameScene* Scene);
-    virtual void Update(float dt)=0;
     virtual void Destroy();
     virtual int addAction(Action action);
+    void getDamage(int Damage);
 protected:
+    int                             m_Stat ;
     unsigned int                    m_nbActions ;
     Action*                         v_Actions ;
     GameScene*                      m_Scene;
+    int                             m_CurrentActions;
+    int                             m_Health ;
 };
 #endif // PFE_ENEMY_H_

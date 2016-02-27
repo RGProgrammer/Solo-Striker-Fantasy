@@ -39,7 +39,20 @@ int GameLogic::InitLogic(GameScene* Scene){
     return 1 ;
 };
 int GameLogic::InitLevel(char* filename){
-
+    UFO* e=NULL;
+    e=new UFO();
+    e->setPosition({0.0f,0.f,-50.f});
+    e->LoadFromFile();
+    m_Scene->AddActor(e);
+    e=new UFO();
+    e->setPosition({20.0f,0.f,-50.f});
+    e->LoadFromFile();
+    m_Scene->AddActor(e);
+    e=new UFO();
+    e->setPosition({-20.0f,0.f,-50.f});
+    e->LoadFromFile();
+    m_Scene->AddActor(e);
+    m_Player->setPosition({0.0f,0.0f,50.0f});
     return 1 ;
 };
 void GameLogic::Update(float dt){

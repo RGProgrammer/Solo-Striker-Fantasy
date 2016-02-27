@@ -15,7 +15,7 @@
 #include "MainMenu.h"
 #include "EventSystem.h"
 //#include "Cube.h"
-//#include "UFO.h"
+#include "UFO.h"
 #include ".//tools//sdl2//include//SDL.h"
 
 
@@ -35,16 +35,17 @@ public:
     void Update(float dt);
     void setExitVariable(bool* variable);
 private:
+    int                 m_Stat ;
+    char*               m_CurrentLvlFilename ;
+    char*               m_NextLvlFilename ;
+    bool*               m_ExitVariable ;
     GameScene*          m_Scene ;
     Camera*             m_Camera ;
-    int                 m_Stat ;
     HOPE*               m_Ship;
     MainMenu*           m_MainMenu ;
     Player*             m_Player ;
     EventSystem*        m_EventSys ;
-    char*               m_CurrentLvlFilename ;
-    char*               m_NextLvlFilename ;
-    bool*               m_ExitVariable ;
+
 
 };
 #endif // PFE_GAMELOGIC_H_

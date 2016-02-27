@@ -17,8 +17,7 @@ StaticModel::~StaticModel(){
     this->Destroy();
 };
 int StaticModel::LoadFromFile(char* filename){
-    ObjLoader::LoadFile(this,filename);
-    return 1 ;
+    return ObjLoader::LoadFile(this,filename);
 };
 StaticModel* StaticModel::LoadFile(char* filename){
     StaticModel* obj=new StaticModel();
@@ -43,6 +42,7 @@ void StaticModel::Draw(float * ViewMtx){
     glColor3f(m_Color.r,m_Color.g,m_Color.b);
         for(unsigned int i=0;i<m_nbMeshes ; i++){
             for(unsigned int j=0;j<v_Meshes[i].Faces;j++){
+                glNormal3f(v_Meshes[i].NormalsBuffer[j].x,v_Meshes[i].NormalsBuffer[j].y,v_Meshes[i].NormalsBuffer[j].z);
                 glVertex3f(v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j*3]-1].x,
                           v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j*3]-1].y,
                           v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j*3]-1].z);
@@ -61,43 +61,44 @@ void StaticModel::Scale(float value ){
 };
 void StaticModel::Destroy(){
     if(v_Meshes){
-        for(unsigned int i=0;i<m_nbMeshes;i++){
+        for(unsigned int i = 0 ; i<m_nbMeshes ; i++){
+            free(v_Meshes[i].Name);
             if(v_Meshes[i].VertexBuffer){
                 free(v_Meshes[i].VertexBuffer);
-               v_Meshes[i].VertexBuffer=NULL ;
-            }
-             if(v_Meshes[i].NormalsBuffer){
-                free(v_Meshes[i].NormalsBuffer);
-               v_Meshes[i].NormalsBuffer=NULL ;
-            }
-            if(v_Meshes[i].TexCoords){
-                free(v_Meshes[i].TexCoords);
-               v_Meshes[i].TexCoords=NULL ;
-            }
+                v_Meshes[i].VertexBuffer=NULL;}
             if(v_Meshes[i].IndexBuffer){
                 free(v_Meshes[i].IndexBuffer);
-               v_Meshes[i].IndexBuffer=NULL ;
-            }
-            if(v_Meshes[i].Name){
-                free(v_Meshes[i].Name);
-               v_Meshes[i].Name=NULL ;
-            }
-           if(v_Meshes[i].material){
-                if(v_Meshes[i].material->TextureMap)
-                    free(v_Meshes[i].material->TextureMap);
-                if(v_Meshes[i].material->BumpMap)
-                    free(v_Meshes[i].material->BumpMap);
-                if(v_Meshes[i].material->ReflexionMap)
-                    free(v_Meshes[i].material->ReflexionMap);
-                if(v_Meshes[i].material->MaterialMap)
+                v_Meshes[i].IndexBuffer=NULL;}
+            if(v_Meshes[i].NormalsBuffer){
+                free(v_Meshes[i].NormalsBuffer);
+                v_Meshes[i].NormalsBuffer=NULL ;}
+            if(v_Meshes[i].material){
+                /*if(v_Meshes[i].material->MaterialMap){
+                    if(v_Meshes[i].material->MaterialMap->Pixels)
+                        free(v_Meshes[i].material->MaterialMap->Pixels);
                     free(v_Meshes[i].material->MaterialMap);
+                    v_Meshes[i].material->MaterialMap=NULL;}
+                if(v_Meshes[i].material->ReflexionMap){
+                    if(v_Meshes[i].material->ReflexionMap->Pixels)
+                        free(v_Meshes[i].material->ReflexionMap->Pixels);
+                    free(v_Meshes[i].material->ReflexionMap);
+                    v_Meshes[i].material->ReflexionMap=NULL ;}
+                if(v_Meshes[i].material->BumpMap){
+                    if(v_Meshes[i].material->BumpMap->Pixels)
+                        free(v_Meshes[i].material->BumpMap->Pixels);
+                    free(v_Meshes[i].material->BumpMap);
+                    v_Meshes[i].material->BumpMap=NULL;}
+                if(v_Meshes[i].material->TextureMap){
+                    if(v_Meshes[i].material->TextureMap->Pixels)
+                        free(v_Meshes[i].material->TextureMap->Pixels);
+                    free(v_Meshes[i].material->TextureMap);
+                    v_Meshes[i].material->TextureMap=NULL;}*/
                 free(v_Meshes[i].material);
-               v_Meshes[i].material=NULL ;
+                v_Meshes[i].material=NULL ;
             }
         }
         free(v_Meshes);
-        v_Meshes=NULL ;
-    };
+    }
 };
 void StaticModel::setColor(ColorRGB Color){
     m_Color=Color ;
