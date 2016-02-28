@@ -1,18 +1,21 @@
 #include "ShotTypes.h"
 
 EnergyBullet::EnergyBullet():Shot(){
+    m_Damage=5 ;
     m_Source=NULL;
     m_Speed=2.0f;
     m_LifeTime=2.0f;
     m_Velocity=ScaleVertex3d(Normalize3d(StaticModel::m_Dir),m_Speed);
 };
 EnergyBullet::EnergyBullet(Vertex3d Pos,Vertex3d Dir,Vertex3d Up):Shot(Pos,Dir,Up){
+    m_Damage=5 ;
     m_Source=NULL;
     m_Speed=2.0f;
     m_Velocity=ScaleVertex3d(Normalize3d(m_Dir),m_Speed);
     m_LifeTime=2.0f;
 };
 EnergyBullet::EnergyBullet(Actor* Source):Shot(){
+    m_Damage=5 ;
     m_Source=NULL;
     m_Speed=2.0f;
     m_Velocity=ScaleVertex3d(Normalize3d(m_Dir),m_Speed);

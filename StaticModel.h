@@ -8,6 +8,7 @@
 #include "Abstract.h"
 #include "Types.h"
 #include "ObjLoader.h"
+#include "Math.h"
 #include <GL//gl.h>
 class ObjLoader ;
 class StaticModel : public Drawable {
@@ -35,6 +36,11 @@ public:
     static StaticModel* LoadFile(char* filename);
     //clone Meshes from another mocel
     virtual int Clone (StaticModel* Model);
+
+    //the Cube that encapsulate the model is defined by 2 vertices
+    void getAABB(Vertex3d* ,Vertex3d*);
+    //get Radius of the sphere encapsulting the model
+    float getRadius();
 
 protected :
     friend class ObjLoader;

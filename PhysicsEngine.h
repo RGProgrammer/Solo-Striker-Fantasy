@@ -21,7 +21,9 @@ public :
     void CollisioDetection();
     void CollisionReaction();
 private:
+    bool CollisionCheck(StaticModel* obj1,StaticModel* obj2,Vertex3d* CollisionCenter);
     int AddData(CollisionData data);
+    void FreeData();
     CollisionData*              v_Data;
     unsigned int                m_nbElements ;
     GameScene*                  m_Scene ;

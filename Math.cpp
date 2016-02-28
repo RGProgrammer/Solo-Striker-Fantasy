@@ -10,7 +10,7 @@ Vertex3d AddVertex3d(Vertex3d Ver1 ,Vertex3d Ver2){
     return {Ver1.x+Ver2.x,Ver1.y+Ver2.y,Ver1.z+Ver2.z};
 };
 Vertex3d SubsVertex3d(Vertex3d Ver1,Vertex3d Ver2){
-    return {Ver1.x+Ver2.x,Ver1.y+Ver2.y,Ver1.z+Ver2.z};
+    return {Ver1.x-Ver2.x,Ver1.y-Ver2.y,Ver1.z-Ver2.z};
 };
 Vertex3d ScaleVertex3d(Vertex3d Ver,float s){
     return {Ver.x*s,Ver.y*s,Ver.z*s};
@@ -56,5 +56,10 @@ void Multi4x4Mtx(float* leftMtx, float* rightMtx,float* resultMtx){
         resultMtx[14]=leftMtx[2]*rightMtx[12]+leftMtx[6]*rightMtx[13]+leftMtx[10]*rightMtx[14]+leftMtx[14]*rightMtx[15];
         resultMtx[15]=leftMtx[3]*rightMtx[12]+leftMtx[7]*rightMtx[13]+leftMtx[11]*rightMtx[14]+leftMtx[15]*rightMtx[15];
 };
-//void Multi4x4Mtx(float* leftMtx, float* rightMtx,float* resultMtx){
-//}
+Vertex3d Mtx_x_Vertex(float* M4x4,Vertex3d ver){
+    Vertex3d rslt;
+    rslt.x=M4x4[0]*ver.x+M4x4[4]*ver.y+M4x4[8]*ver.z+M4x4[12];
+    rslt.y=M4x4[1]*ver.x+M4x4[5]*ver.y+M4x4[9]*ver.z+M4x4[13];
+    rslt.z=M4x4[2]*ver.x+M4x4[6]*ver.y+M4x4[10]*ver.z+M4x4[14];
+    return rslt ;
+};

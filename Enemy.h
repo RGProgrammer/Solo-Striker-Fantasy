@@ -32,6 +32,7 @@ public :
     virtual ~Enemy();
     virtual int LoadFromFile()=0 ;
     virtual void Update(float dt)=0 ;
+    void Draw(float* ViewMtx);
     void setScene(GameScene* Scene);
     virtual void Destroy();
     virtual int addAction(Action action);
@@ -39,9 +40,9 @@ public :
 protected:
     int                             m_Stat ;
     unsigned int                    m_nbActions ;
-    Action*                         v_Actions ;
-    GameScene*                      m_Scene;
     int                             m_CurrentActions;
     int                             m_Health ;
+    Action*                         v_Actions ;
+    GameScene*                      m_Scene;
 };
 #endif // PFE_ENEMY_H_

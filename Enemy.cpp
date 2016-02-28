@@ -11,6 +11,10 @@ Enemy::Enemy(Vertex3d Pos,Vertex3d Dir,Vertex3d Up):DynamicModel(Pos,Dir,Up),m_n
 Enemy::~Enemy(){
     this->Destroy();
 };
+void Enemy::Draw(float* ViewMtx){
+    if(m_Stat !=DEAD)
+        StaticModel::Draw(ViewMtx);
+};
 void Enemy::setScene(GameScene* Scene){
     m_Scene=Scene;
 };

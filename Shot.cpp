@@ -25,3 +25,18 @@ int Shot::Clone(Shot* clone){
     m_Speed=clone->m_Speed;
     m_Damage=clone->m_Damage;
 };
+void Shot::setSource(Actor* Source){
+    m_Source=Source ;
+};
+void Shot::setSpeed(float Speed){
+    m_Speed=Speed ;
+};
+void Shot::setDamage(int Damage){
+    m_Damage=Damage;
+};
+Actor* Shot::getSource(){
+    return m_Source ;
+};
+int    Shot::getDamage(){
+    return m_Damage ;
+};

@@ -196,6 +196,8 @@ int StaticModel::AddMesh(char* name){
    v_Meshes[m_nbMeshes].NormalsBuffer=NULL;
    v_Meshes[m_nbMeshes].TexCoords=NULL;
    v_Meshes[m_nbMeshes].VertexBuffer=NULL;
+   v_Meshes[m_nbMeshes].MaxVertex={0.0f,0.0f,0.0f};
+   v_Meshes[m_nbMeshes].MinVertex={0.0f,0.0f,0.0f};
     m_nbMeshes++ ;
     return 1 ;
 };
@@ -210,6 +212,18 @@ int StaticModel::addVertex(Vertex3d ver){
         free(v_Meshes[m_nbMeshes-1].VertexBuffer);
         v_Meshes[m_nbMeshes-1].VertexBuffer=tmp ;
         v_Meshes[m_nbMeshes-1].VertexBuffer[v_Meshes[m_nbMeshes-1].nbVertices]=ver ;
+        if(ver.x < v_Meshes[m_nbMeshes].MinVertex.x)
+            v_Meshes[m_nbMeshes].MinVertex.x=ver.x ;
+        if(ver.y < v_Meshes[m_nbMeshes].MinVertex.y)
+            v_Meshes[m_nbMeshes].MinVertex.y =ver.y;
+        if(ver.z < v_Meshes[m_nbMeshes].MinVertex.z)
+            v_Meshes[m_nbMeshes].MinVertex.x=ver.z ;
+        if(ver.x > v_Meshes[m_nbMeshes].MaxVertex.x)
+            v_Meshes[m_nbMeshes].MaxVertex.x=ver.x ;
+        if(ver.y > v_Meshes[m_nbMeshes].MaxVertex.y)
+            v_Meshes[m_nbMeshes].MaxVertex.y =ver.y;
+        if(ver.z > v_Meshes[m_nbMeshes].MaxVertex.z)
+            v_Meshes[m_nbMeshes].MaxVertex.x=ver.z ;
         v_Meshes[m_nbMeshes-1].nbVertices++;
         return 1 ;
     }
@@ -265,7 +279,6 @@ int StaticModel::addTexCoord(Vertex2d tex){
 
 int StaticModel::Clone (StaticModel* Model){
     unsigned int j ;
-    //m_Color=Model->m_Color ;
     m_nbMeshes=Model->m_nbMeshes ;
     if(!m_nbMeshes)
         return 0 ;
@@ -304,4 +317,37 @@ int StaticModel::Clone (StaticModel* Model){
 
     }
     return 1 ;
+};
+void StaticModel::getAABB(Vertex3d* MinVertex ,Vertex3d* MaxVertex){
+    if(MinVertex && MaxVertex){
+        MinVertex->x=v_Meshes[0].MinVertex.x ;MinVertex->y=v_Meshes[0].MinVertex.y ;MinVertex->z=v_Meshes[0].MinVertex.z ;
+        MaxVertex->x=v_Meshes[0].MaxVertex.x ;MaxVertex->y=v_Meshes[0].MaxVertex.y ;MaxVertex->z=v_Meshes[0].MaxVertex.z ;
+        for (unsigned int i=1;i<m_nbMeshes;i++){
+            if(v_Meshes[i].MinVertex.x < MinVertex->x)
+                MinVertex->x=v_Meshes[i].MinVertex.x ;
+            if(v_Meshes[i].MaxVertex.x > MaxVertex->x)
+                MaxVertex->x=v_Meshes[i].MaxVertex.x ;
+            if(v_Meshes[i].MinVertex.y < MinVertex->y)
+                MinVertex->y=v_Meshes[i].MinVertex.y ;
+            if(v_Meshes[i].MaxVertex.y > MaxVertex->y)
+                MaxVertex->y=v_Meshes[i].MaxVertex.y ;
+            if(v_Meshes[i].MinVertex.z < MinVertex->z)
+                MinVertex->z=v_Meshes[i].MinVertex.z ;
+            if(v_Meshes[i].MaxVertex.z > MaxVertex->z)
+                MaxVertex->z=v_Meshes[i].MaxVertex.z ;
+        }
+        MinVertex->x+=m_Pos.x ;MinVertex->y+=m_Pos.y ;MinVertex->z+=m_Pos.z ;
+        MaxVertex->x+=m_Pos.x ;MaxVertex->y+=m_Pos.y ;MaxVertex->z+=m_Pos.z ;
+    }
+};
+float StaticModel::getRadius(){
+    float rslt=0.0f, d ;
+    for(unsigned int i=0;i< m_nbMeshes;i++){
+        d=Magnitude3d(v_Meshes[i].MaxVertex);
+        if(d>rslt)
+            rslt=d ;
+    }
+    if(rslt==0.0f)
+        rslt=5.0f;
+    return rslt ;
 };

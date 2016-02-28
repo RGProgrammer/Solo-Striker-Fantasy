@@ -9,7 +9,8 @@ int HOPE::LoadFromFile() {
     m_Health=1000.0f;
     m_Charge=0 ;
     v_Weapons=(Weapon**)malloc(sizeof(Weapon*));
-    v_Weapons[0]=new MachineGun((StaticModel*)this);
+    v_Weapons[0]=new MachineGun(NULL);
+    v_Weapons[0]->setOwner(this);
     m_nbWeapons=1 ;
     m_SelectedWeapon=0;
     m_Speed=1.0f;

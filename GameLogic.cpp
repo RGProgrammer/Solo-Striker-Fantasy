@@ -2,7 +2,7 @@
 
 GameLogic::GameLogic():m_Scene(NULL),m_Camera(NULL),m_Player(NULL),m_EventSys(NULL),
                         m_Ship(NULL),m_MainMenu (NULL),m_ExitVariable(NULL),
-                        m_CurrentLvlFilename(NULL),m_NextLvlFilename(NULL){
+                        m_CurrentLvlFilename(NULL),m_NextLvlFilename(NULL),m_Physics(NULL){
 };
 GameLogic::~GameLogic(){
     this->Destroy();
@@ -20,10 +20,17 @@ void GameLogic::Destroy(){
         delete m_EventSys ;
         m_EventSys=NULL ;
     }
+    if(m_Physics){
+        delete m_Physics;
+        m_Physics=NULL ;
+    }
 };
 int GameLogic::InitLogic(GameScene* Scene){
     this->m_Scene=Scene ;
     m_EventSys=new EventSystem();
+    m_Physics=new PhysicsEngine(m_Scene);
+    if(!m_Physics)
+        return 0 ;
     m_Ship=new HOPE();
     if(!m_Ship)
         return 0 ;
@@ -73,6 +80,8 @@ void GameLogic::Update(float dt){
         if(actor->getID() & UPDATABLE){
             dynamic_cast<Updatable*>(actor)->Update(dt);}
     }
+    m_Physics->CollisioDetection();
+    m_Physics->CollisionReaction();
 };
  void GameLogic::setExitVariable(bool* variable){
     m_ExitVariable=variable ;

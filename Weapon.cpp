@@ -17,3 +17,6 @@ void Weapon::setSample(Shot* Sample){
 char* Weapon::getName(){
     return m_Name ;
 };
+void Weapon::setOwner(Actor* Owner){
+    m_Owner=Owner ;
+};

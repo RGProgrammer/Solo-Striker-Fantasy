@@ -9,6 +9,7 @@ public:
     Weapon(char* Name,Actor* Owner);
     Weapon(char* Name,Actor* Owner,Shot* Sample);
     void setSample(Shot* Sample);
+    void setOwner(Actor* Owner);
     virtual int Fire(GameScene* Scene,Vertex3d Pos,Vertex3d Dir,Vertex3d Up)=0;
     char* getName();
 protected:
