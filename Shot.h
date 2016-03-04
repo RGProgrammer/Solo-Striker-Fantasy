@@ -24,7 +24,6 @@ protected :
     float           m_Speed;
     int             m_Damage;
     float           m_LifeTime ;
-    float           m_Time ;
 };
 
 #endif // PFE_SHOT_H_

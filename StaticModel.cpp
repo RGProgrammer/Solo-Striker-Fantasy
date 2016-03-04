@@ -212,18 +212,6 @@ int StaticModel::addVertex(Vertex3d ver){
         free(v_Meshes[m_nbMeshes-1].VertexBuffer);
         v_Meshes[m_nbMeshes-1].VertexBuffer=tmp ;
         v_Meshes[m_nbMeshes-1].VertexBuffer[v_Meshes[m_nbMeshes-1].nbVertices]=ver ;
-        if(ver.x < v_Meshes[m_nbMeshes].MinVertex.x)
-            v_Meshes[m_nbMeshes].MinVertex.x=ver.x ;
-        if(ver.y < v_Meshes[m_nbMeshes].MinVertex.y)
-            v_Meshes[m_nbMeshes].MinVertex.y =ver.y;
-        if(ver.z < v_Meshes[m_nbMeshes].MinVertex.z)
-            v_Meshes[m_nbMeshes].MinVertex.x=ver.z ;
-        if(ver.x > v_Meshes[m_nbMeshes].MaxVertex.x)
-            v_Meshes[m_nbMeshes].MaxVertex.x=ver.x ;
-        if(ver.y > v_Meshes[m_nbMeshes].MaxVertex.y)
-            v_Meshes[m_nbMeshes].MaxVertex.y =ver.y;
-        if(ver.z > v_Meshes[m_nbMeshes].MaxVertex.z)
-            v_Meshes[m_nbMeshes].MaxVertex.x=ver.z ;
         v_Meshes[m_nbMeshes-1].nbVertices++;
         return 1 ;
     }
@@ -347,7 +335,5 @@ float StaticModel::getRadius(){
         if(d>rslt)
             rslt=d ;
     }
-    if(rslt==0.0f)
-        rslt=5.0f;
     return rslt ;
 };

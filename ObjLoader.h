@@ -21,6 +21,7 @@ private:
     int addNormal(Vertex3d);
     int addIndices(unsigned int id1,unsigned int id2,unsigned int id3);
     static void ReadLine(FILE* file ,char* buffer);
+    void InitMinMaxVertices ();
     ColorRGB                m_Color ;//Color used if the meshes has no material
     float                   m_Scale ;//Scale of the 3d model(>0);
     unsigned int            m_nbMeshes;//number of meshes construcring this model

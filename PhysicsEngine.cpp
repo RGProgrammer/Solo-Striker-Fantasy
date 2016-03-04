@@ -41,7 +41,7 @@ void PhysicsEngine::CollisionReaction(){
                 ((Enemy*)(v_Data[i].Object1))->getDamage(((Shot*)(v_Data[i].Object2))->getDamage());
         }
         if((v_Data[i].Object1->getID() & SHOT) && (v_Data[i].Object2->getID() & ENEMY)){
-            if(((Shot*)(v_Data[i].Object1))->getSource()== m_Scene->getPlayer())
+            if(((Shot*)(v_Data[i].Object1))->getSource()==NULL || ((Shot*)(v_Data[i].Object1))->getSource()->getID() & PLAYER )
                 ((Enemy*)(v_Data[i].Object2))->getDamage(((Shot*)(v_Data[i].Object1))->getDamage());
         }
     }
@@ -49,7 +49,7 @@ void PhysicsEngine::CollisionReaction(){
 };
 bool PhysicsEngine::CollisionCheck(StaticModel* obj1,StaticModel* obj2,Vertex3d* CollisionCenter){
     //using AABBs
-   /* Vertex3d MinVertex1,MaxVertex1 ;
+    /*Vertex3d MinVertex1,MaxVertex1 ;
     Vertex3d MinVertex2,MaxVertex2 ;
     obj1->getAABB(&MinVertex1,&MaxVertex1); obj2->getAABB(&MinVertex2,&MaxVertex2);
     if(MinVertex1.x<MaxVertex2.x && MaxVertex1.x> MinVertex2.x &&

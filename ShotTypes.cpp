@@ -27,8 +27,8 @@ EnergyBullet::~EnergyBullet(){
 void EnergyBullet::Update(float dt){
     if(dt==0)
         dt=0.1f;
-    m_Time=+dt;
-    if(m_Time>=m_LifeTime)
+    m_Dt=+dt;
+    if(m_Dt>=m_LifeTime)
         m_ID=0x0000 ;
   m_Pos=AddVertex3d(m_Pos,ScaleVertex3d(m_Velocity,dt));
 };
@@ -69,8 +69,8 @@ SmallShot::~SmallShot(){
 void SmallShot::Update(float dt){
     if(dt==0)
         dt=0.1f;
-    m_Time=+dt;
-    if(m_Time>=m_LifeTime)
+    m_Dt=+dt;
+    if(m_Dt>=m_LifeTime)
         m_ID=0x0000 ;
   m_Pos=AddVertex3d(m_Pos,ScaleVertex3d(m_Velocity,dt));
 };

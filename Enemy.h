@@ -39,9 +39,9 @@ public :
     void getDamage(int Damage);
 protected:
     int                             m_Stat ;
-    unsigned int                    m_nbActions ;
     int                             m_CurrentActions;
     int                             m_Health ;
+    unsigned int                    m_nbActions ;
     Action*                         v_Actions ;
     GameScene*                      m_Scene;
 };

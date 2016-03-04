@@ -63,6 +63,7 @@ while(!feof(objfile)){
     }
 }
     CalculNormals();
+    InitMinMaxVertices();
 free(line);
 fclose(objfile);
 return rslt ;
@@ -246,4 +247,24 @@ unsigned int j ;
 
     }
     return 1 ;
+};
+void ObjLoader::InitMinMaxVertices (){
+    for(unsigned int i=0 ;i<m_nbMeshes ;i++){
+        v_Meshes[i].MinVertex={0.0f,0.0f,0.0f};
+        v_Meshes[i].MaxVertex={0.0f,0.0f,0.0f};
+        for(unsigned int j=0 ;j< v_Meshes[i].nbVertices;j++){
+            if(v_Meshes[i].VertexBuffer[j].x > v_Meshes[i].MaxVertex.x )
+                v_Meshes[i].MaxVertex.x=v_Meshes[i].VertexBuffer[j].x ;
+            if(v_Meshes[i].VertexBuffer[j].y > v_Meshes[i].MaxVertex.y )
+                v_Meshes[i].MaxVertex.y=v_Meshes[i].VertexBuffer[j].y ;
+            if(v_Meshes[i].VertexBuffer[j].z > v_Meshes[i].MaxVertex.z )
+                v_Meshes[i].MaxVertex.z=v_Meshes[i].VertexBuffer[j].z ;
+            if(v_Meshes[i].VertexBuffer[j].x < v_Meshes[i].MinVertex.x )
+                v_Meshes[i].MinVertex.x=v_Meshes[i].VertexBuffer[j].x ;
+            if(v_Meshes[i].VertexBuffer[j].y < v_Meshes[i].MinVertex.y )
+                v_Meshes[i].MinVertex.y=v_Meshes[i].VertexBuffer[j].y ;
+            if(v_Meshes[i].VertexBuffer[j].z < v_Meshes[i].MinVertex.z )
+                v_Meshes[i].MinVertex.z=v_Meshes[i].VertexBuffer[j].z ;
+        }
+    }
 };
