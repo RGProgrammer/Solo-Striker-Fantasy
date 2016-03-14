@@ -26,27 +26,21 @@ void HOPE::Update(SDL_Event* Events, int nbEvents){
         if(Events[i].type==SDL_KEYDOWN){
         if(Events[i].key.keysym.sym==SDLK_UP){
                 m_Velocity=AddVertex3d(m_Velocity,ScaleVertex3d(Normalize3d(m_Dir),m_Speed));
-                continue ;
         }
         if(Events[i].key.keysym.sym==SDLK_DOWN){
                 m_Velocity=AddVertex3d(m_Velocity,ScaleVertex3d(Normalize3d(m_Dir),-m_Speed));
-                continue ;
         }
         if(Events[i].key.keysym.sym==SDLK_RIGHT){
                 m_Velocity=AddVertex3d(m_Velocity,ScaleVertex3d(Normalize3d(m_Right),m_Speed));
-                continue ;
         }
         if(Events[i].key.keysym.sym==SDLK_LEFT){
                 m_Velocity=AddVertex3d(m_Velocity,ScaleVertex3d(Normalize3d(m_Right),-m_Speed));
-                continue ;
         }
         if(Events[i].key.keysym.sym==SDLK_x){
                 Fire();
-                continue ;
         }
         if(Events[i].key.keysym.sym==SDLK_r){
             setPosition({0.0f,0.0f,0.0f});
-            continue ;
         }
 
     }

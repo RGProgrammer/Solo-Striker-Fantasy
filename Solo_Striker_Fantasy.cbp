@@ -85,6 +85,8 @@
 		<Unit filename="Shot.h" />
 		<Unit filename="ShotTypes.cpp" />
 		<Unit filename="ShotTypes.h" />
+		<Unit filename="SoundEngine.cpp" />
+		<Unit filename="SoundEngine.h" />
 		<Unit filename="StaticModel.cpp" />
 		<Unit filename="StaticModel.h" />
 		<Unit filename="Timer.cpp" />

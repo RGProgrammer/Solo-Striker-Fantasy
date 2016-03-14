@@ -1,6 +1,6 @@
 #include "MainMenu.h"
 
-MainMenu::MainMenu():Player(),v_SubItems(NULL) ,m_nbItems(0),m_Selected(-1){
+MainMenu::MainMenu():Player(),v_SubItems(NULL) ,m_nbItems(0),m_Selected(0){
 };
 MainMenu::~MainMenu(){
     Player::Destroy();
@@ -18,6 +18,13 @@ int MainMenu::LoadFromFile(){
 void MainMenu::Update(float dt){
 
 };
-void MainMenu::Update(SDL_Event event){
+void MainMenu::Update(SDL_Event* Events, int nbEvents){
 
+};
+int MainMenu::getSelectedItem(){
+    return m_Selected ;
+};
+ void MainMenu::Draw(float* viewMtx){
+    StaticModel::Draw(viewMtx);
+    //Draw the menu item
 };

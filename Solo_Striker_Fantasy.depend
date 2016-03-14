@@ -1793,7 +1793,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1456259978 source:c:\users\ikram\documents\github\solo-striker-fantasy\gamecore.cpp
+1457950176 source:c:\users\ikram\documents\github\solo-striker-fantasy\gamecore.cpp
 	"GameCore.h"
 
 1456223952 c:\users\ikram\documents\github\solo-striker-fantasy\gamecore.h
@@ -1807,7 +1807,7 @@
 	".//tools//sdl2//include//SDL.h"
 	<stdio.h>
 
-1456671454 c:\users\ikram\documents\github\solo-striker-fantasy\gamelogic.h
+1457881076 c:\users\ikram\documents\github\solo-striker-fantasy\gamelogic.h
 	"GameScene.h"
 	"Abstract.h"
 	"Camera.h"
@@ -1815,6 +1815,7 @@
 	"MainMenu.h"
 	"EventSystem.h"
 	"PhysicsEngine.h"
+	"SoundEngine.h"
 	"UFO.h"
 	".//tools//sdl2//include//SDL.h"
 
@@ -1846,16 +1847,16 @@
 1456259639 c:\users\ikram\documents\github\solo-striker-fantasy\timer.h
 	<sys/time.h>
 
-1456682689 source:c:\users\ikram\documents\github\solo-striker-fantasy\gamelogic.cpp
+1457972747 source:c:\users\ikram\documents\github\solo-striker-fantasy\gamelogic.cpp
 	"GameLogic.h"
 
-1456394547 source:c:\users\ikram\documents\github\solo-striker-fantasy\gamescene.cpp
+1457950399 source:c:\users\ikram\documents\github\solo-striker-fantasy\gamescene.cpp
 	"GameScene.h"
 
 1456393733 source:c:\users\ikram\documents\github\solo-striker-fantasy\graphicsengine.cpp
 	"GraphicsEngine.h"
 
-1456683734 source:c:\users\ikram\documents\github\solo-striker-fantasy\hope.cpp
+1457718685 source:c:\users\ikram\documents\github\solo-striker-fantasy\hope.cpp
 	"HOPE.h"
 
 1456436578 c:\users\ikram\documents\github\solo-striker-fantasy\hope.h
@@ -1875,13 +1876,13 @@
 1456686567 c:\users\ikram\documents\github\solo-striker-fantasy\shot.h
 	"DynamicModel.h"
 
-1454619260 source:c:\users\ikram\documents\github\solo-striker-fantasy\main.cpp
+1457515283 source:c:\users\ikram\documents\github\solo-striker-fantasy\main.cpp
 	"GameCore.h"
 
-1455873480 source:c:\users\ikram\documents\github\solo-striker-fantasy\mainmenu.cpp
+1457949894 source:c:\users\ikram\documents\github\solo-striker-fantasy\mainmenu.cpp
 	"MainMenu.h"
 
-1455880250 c:\users\ikram\documents\github\solo-striker-fantasy\mainmenu.h
+1457949809 c:\users\ikram\documents\github\solo-striker-fantasy\mainmenu.h
 	"Player.h"
 
 1456681026 source:c:\users\ikram\documents\github\solo-striker-fantasy\math.cpp
@@ -1935,7 +1936,7 @@
 1456593941 c:\users\ikram\documents\github\solo-striker-fantasy\ufo.h
 	"Enemy.h"
 
-1457092158 source:c:\users\ikram\documents\github\solo-striker-fantasy\physicsengine.cpp
+1457092206 source:c:\users\ikram\documents\github\solo-striker-fantasy\physicsengine.cpp
 	"PhysicsEngine.h"
 	<stdio.h>
 
@@ -1945,4 +1946,11 @@
 	"Enemy.h"
 	"Shot.h"
 	"Math.h"
+
+1457881115 c:\users\ikram\documents\github\solo-striker-fantasy\soundengine.h
+	<stdio.h>
+	"Actor.h"
+
+1457881134 source:c:\users\ikram\documents\github\solo-striker-fantasy\soundengine.cpp
+	"SoundEngine.h"
 

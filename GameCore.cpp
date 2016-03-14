@@ -13,8 +13,9 @@ int GameCore::Init(char * Name,int Width, int Height,bool FullScreen, char* icon
     m_Window=new WindowHandler();
     if(!m_Window)
         return 0 ;
-    if(!m_Window->InitWindow(Name,Width,Height,FullScreen,icon))
-        return 0 ;
+    if(!m_Window->InitWindow(Name,Width,Height,FullScreen,icon)){
+        return 0 ;}
+
     //Create and Init the GameScene
     m_Scene=new GameScene();
     if(!m_Scene)
@@ -23,22 +24,22 @@ int GameCore::Init(char * Name,int Width, int Height,bool FullScreen, char* icon
     m_Graphics=new GraphicsEngine();
     if(!m_Graphics)
         return 0 ;
-    if(!m_Graphics->InitEngine(m_Window,m_Scene))
+    if(!m_Graphics->InitEngine(m_Window,m_Scene)){
         return 0 ;
+    }
     //Create and Init the Game Logic
     m_Logic=new GameLogic();
     if(!m_Logic)
         return 0 ;
-    if(!m_Logic->InitLogic(m_Scene))
+    if(!m_Logic->InitLogic(m_Scene)){
         return 0 ;
+    }
     m_Logic->setExitVariable(&m_Running);
     return 1 ;
 };
 void GameCore::StartGame(){
     m_Running=true ;
     m_Timer.Reset();
-    if(!m_Logic->InitLevel(NULL))
-        return ;
     while(m_Running){
         m_Logic->Update(m_Timer.getDeltaTime());
         m_Graphics->DrawScene();

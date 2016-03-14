@@ -32,10 +32,10 @@ void GameScene::FreeVector(){
         for(unsigned int i=0;i<m_NBActors ;i++)
             v_Actors[i]->Destroy();
         free(v_Actors);
-        v_Actors=NULL ;
-        m_NBActors=0 ;
-        Size=10;
     }
+    v_Actors=NULL ;
+    m_NBActors=0 ;
+    Size=10;
 };
 Actor*  GameScene::getActor(unsigned int index){
     if(index>=m_NBActors)
