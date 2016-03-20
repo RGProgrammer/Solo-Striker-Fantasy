@@ -90,6 +90,7 @@ void GameLogic::Update(float dt){
                 m_Player=m_MainMenu ;
                 m_Scene->setPlayer(m_Player);
                 m_Stat=MAINMENU;
+                Events[0].type=SDL_KEYUP ;
                 return ;
             }
         }
@@ -117,6 +118,7 @@ void GameLogic::Update(float dt){
                     m_Stat=INGAME ;
                     return ;
                 }
+                Events[0].type=SDL_KEYUP ;
             }
         }
         if(m_Player){
@@ -124,8 +126,10 @@ void GameLogic::Update(float dt){
             m_Player->Update(dt);
         }
     }else if(m_Stat==PAUSE){
-        if(Events[0].key.keysym.sym==SDLK_s)
+        if(Events[0].key.keysym.sym==SDLK_s){
             m_Stat==INGAME ;
+            Events[0].type=SDL_KEYUP ;
+        }
     }
 };
  void GameLogic::setExitVariable(bool* variable){

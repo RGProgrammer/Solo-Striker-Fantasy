@@ -14,6 +14,13 @@ EventSystem::~EventSystem(){
     return m_Event ;
 };*/
 SDL_Event* EventSystem::getCurrentFrameEvents(){
+   /* SDL_Event tmp;
+    for(m_nbEvents=0 ;m_nbEvents <5 ;){
+        if(SDL_PollEvent(&tmp)){
+            v_Event[m_nbEvents]=tmp ;
+            m_nbEvents++ ;
+        }
+    }*/
     for(m_nbEvents=0 ;m_nbEvents <5 && SDL_PollEvent(&v_Event[m_nbEvents]);m_nbEvents++);
     return v_Event;
 };

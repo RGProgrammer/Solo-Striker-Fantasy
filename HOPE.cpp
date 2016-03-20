@@ -22,27 +22,27 @@ void HOPE::Update(float dt){
 };
 
 void HOPE::Update(SDL_Event* Events, int nbEvents){
-    for(int i=0; i<nbEvents;i++)
+    for(int i=0; i<nbEvents;i++){
         if(Events[i].type==SDL_KEYDOWN){
-        if(Events[i].key.keysym.sym==SDLK_UP){
-                m_Velocity=AddVertex3d(m_Velocity,ScaleVertex3d(Normalize3d(m_Dir),m_Speed));
-        }
-        if(Events[i].key.keysym.sym==SDLK_DOWN){
-                m_Velocity=AddVertex3d(m_Velocity,ScaleVertex3d(Normalize3d(m_Dir),-m_Speed));
-        }
-        if(Events[i].key.keysym.sym==SDLK_RIGHT){
+            if(Events[i].key.keysym.sym==SDLK_UP){
+                    m_Velocity=AddVertex3d(m_Velocity,ScaleVertex3d(Normalize3d(m_Dir),m_Speed));
+            }
+            if(Events[i].key.keysym.sym==SDLK_DOWN){
+                    m_Velocity=AddVertex3d(m_Velocity,ScaleVertex3d(Normalize3d(m_Dir),-m_Speed));
+            }
+            if(Events[i].key.keysym.sym==SDLK_RIGHT){
                 m_Velocity=AddVertex3d(m_Velocity,ScaleVertex3d(Normalize3d(m_Right),m_Speed));
-        }
-        if(Events[i].key.keysym.sym==SDLK_LEFT){
+            }
+            if(Events[i].key.keysym.sym==SDLK_LEFT){
                 m_Velocity=AddVertex3d(m_Velocity,ScaleVertex3d(Normalize3d(m_Right),-m_Speed));
-        }
-        if(Events[i].key.keysym.sym==SDLK_x){
+            }
+            if(Events[i].key.keysym.sym==SDLK_x){
                 Fire();
+            }
+            if(Events[i].key.keysym.sym==SDLK_r){
+                setPosition({0.0f,0.0f,0.0f});
+            }
         }
-        if(Events[i].key.keysym.sym==SDLK_r){
-            setPosition({0.0f,0.0f,0.0f});
-        }
-
     }
 };
 void HOPE::Fire(){

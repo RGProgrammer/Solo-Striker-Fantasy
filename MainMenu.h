@@ -17,8 +17,10 @@ public:
     void Update(SDL_Event* Events, int nbEvents) ;
     int getSelectedItem();
     void Draw(float* viewMtx);
+    void Destroy();
 private :
     StaticModel**       v_SubItems ;
+    StaticModel*        m_Selector ;
     int                 m_nbItems;
     int                 m_Selected;
 
