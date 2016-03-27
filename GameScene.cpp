@@ -66,12 +66,9 @@ Camera* GameScene::getCamera(){
 void GameScene::RemoveAt(unsigned int index){
     Actor* tmp =NULL ;
     if(index>=0 && index< m_NBActors){
-       try{ tmp=v_Actors[index] ;
+        tmp=v_Actors[index] ;
         tmp->Destroy();
         delete tmp ;
-        }catch(Exception e){
-            std::cout<<e<<std::endl;
-        }
         for(unsigned int i=index;i<m_NBActors-1;i++)
             v_Actors[i]=v_Actors[i+1];
         m_NBActors-- ;

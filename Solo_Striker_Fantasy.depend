@@ -1449,12 +1449,10 @@
 1456589794 c:\users\ikram\documents\github\solo-striker-fantasy\types.h
 	"Math.h"
 
-1459074277 c:\users\ikram\documents\github\solo-striker-fantasy\gamescene.h
+1459075162 c:\users\ikram\documents\github\solo-striker-fantasy\gamescene.h
 	"Actor.h"
 	"Camera.h"
 	"Player.h"
-	<exception>
-	<iostream>
 
 1456655895 c:\users\ikram\documents\github\solo-striker-fantasy\camera.h
 	"Actor.h"
@@ -1852,7 +1850,7 @@
 1458935471 source:c:\users\ikram\documents\github\solo-striker-fantasy\gamelogic.cpp
 	"GameLogic.h"
 
-1458931857 source:c:\users\ikram\documents\github\solo-striker-fantasy\gamescene.cpp
+1459075054 source:c:\users\ikram\documents\github\solo-striker-fantasy\gamescene.cpp
 	"GameScene.h"
 
 1458924223 source:c:\users\ikram\documents\github\solo-striker-fantasy\graphicsengine.cpp

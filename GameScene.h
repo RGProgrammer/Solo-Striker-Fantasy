@@ -9,8 +9,6 @@
 #include "Actor.h"
 #include "Camera.h"
 #include "Player.h"
-#include <exception>
-#include <iostream>
 class Player ;
 class GameScene {
 public:

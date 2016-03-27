@@ -20,10 +20,10 @@ Actor::~Actor(){
     this->Destroy();
 } ;
 void Actor::Destroy(){
-   // if(m_TransMtx!=NULL){
-   //     free(m_TransMtx);
+   if(m_TransMtx!=NULL){
+        free(m_TransMtx);
         m_TransMtx=NULL ;
-    //}
+    }
 } ;
 int Actor::getID(){
     return m_ID ;
