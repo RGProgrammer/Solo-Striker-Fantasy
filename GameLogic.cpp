@@ -2,7 +2,7 @@
 
 GameLogic::GameLogic():m_Scene(NULL),m_Camera(NULL),m_Player(NULL),m_EventSys(NULL),
                         m_Ship(NULL),m_MainMenu (NULL),m_ExitVariable(NULL),
-                        m_CurrentLvlFilename(NULL),m_NextLvlFilename(NULL),m_Physics(NULL),
+                        m_CurrentLevel(-1),v_Filenames(NULL),m_Physics(NULL),
                         m_SoundHandler(NULL){
 };
 GameLogic::~GameLogic(){
@@ -29,6 +29,12 @@ void GameLogic::Destroy(){
         m_SoundHandler->Destroy();
         delete m_SoundHandler ;
         m_SoundHandler=NULL ;
+    }
+    if(v_Filenames){
+        for(int i=0;i<NBLEVELS;i++)
+            free(v_Filenames[i]);
+        free(v_Filenames);
+        v_Filenames=NULL ;
     }
 };
 int GameLogic::InitLogic(GameScene* Scene){
@@ -57,7 +63,7 @@ int GameLogic::InitLogic(GameScene* Scene){
     m_Stat=MAINMENU ;
     return 1 ;
 };
-int GameLogic::InitLevel(char* filename){
+int GameLogic::InitLevel(int index){
     UFO* e=NULL;
     e=new UFO();
     e->setPosition({0.0f,0.f,-50.f});
@@ -77,6 +83,10 @@ int GameLogic::InitLevel(char* filename){
 void GameLogic::Update(float dt){
     SDL_Event* Events=m_EventSys->getCurrentFrameEvents() ;
     int nbEvents =m_EventSys->getNbEvents();
+    if(nbEvents>0 && Events[0].type==SDL_QUIT){
+        *m_ExitVariable=false ;
+        return ;
+    }
     Actor* actor=NULL ;
     unsigned int nbactors=m_Scene->getNBActors();
     if(m_Stat==INGAME){
@@ -101,7 +111,10 @@ void GameLogic::Update(float dt){
         for(unsigned int i=0;i<nbactors;i++){
             actor=m_Scene->getActor(i);
             if(actor->getID() & UPDATABLE){
-                dynamic_cast<Updatable*>(actor)->Update(dt);}
+                dynamic_cast<Updatable*>(actor)->Update(dt);
+            }else if(actor->getID() == UNKNOWN){
+                m_Scene->RemoveAt(i);
+            }
         }
         m_Physics->CollisioDetection();
         m_Physics->CollisionReaction();
@@ -114,7 +127,7 @@ void GameLogic::Update(float dt){
                 if(m_MainMenu->getSelectedItem()==STARTGAME){
                     m_Player=m_Ship ;
                     m_Scene->setPlayer(m_Player);
-                    this->InitLevel("Stages//Stage1.scp");
+                    this->InitLevel(1);
                     m_Stat=INGAME ;
                     return ;
                 }

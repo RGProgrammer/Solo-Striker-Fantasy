@@ -14,6 +14,7 @@ StaticModel::StaticModel(Vertex3d Pos,Vertex3d Dir,Vertex3d Up):StaticModel(Pos)
     }
 };
 StaticModel::~StaticModel(){
+    Actor::Destroy();
     this->Destroy();
 };
 int StaticModel::LoadFromFile(char* filename){
@@ -62,12 +63,12 @@ void StaticModel::Scale(float value ){
 void StaticModel::Destroy(){
     if(v_Meshes){
         for(unsigned int i = 0 ; i<m_nbMeshes ; i++){
-            free(v_Meshes[i].Name);
+            free((v_Meshes[i].Name));
             if(v_Meshes[i].VertexBuffer){
-                free(v_Meshes[i].VertexBuffer);
+                free((v_Meshes[i].VertexBuffer));
                 v_Meshes[i].VertexBuffer=NULL;}
             if(v_Meshes[i].IndexBuffer){
-                free(v_Meshes[i].IndexBuffer);
+                free((v_Meshes[i].IndexBuffer));
                 v_Meshes[i].IndexBuffer=NULL;}
             if(v_Meshes[i].NormalsBuffer){
                 free(v_Meshes[i].NormalsBuffer);
@@ -93,7 +94,7 @@ void StaticModel::Destroy(){
                         free(v_Meshes[i].material->TextureMap->Pixels);
                     free(v_Meshes[i].material->TextureMap);
                     v_Meshes[i].material->TextureMap=NULL;}*/
-                free(v_Meshes[i].material);
+                free((v_Meshes[i].material));
                 v_Meshes[i].material=NULL ;
             }
         }

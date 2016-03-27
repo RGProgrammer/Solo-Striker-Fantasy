@@ -39,8 +39,6 @@ void GraphicsEngine::DrawScene(){
                     dynamic_cast<Drawable*>(actor)->Draw(m_Camera->getTransMtx());
                 else
                     dynamic_cast<Drawable*>(actor)->Draw(NULL);
-            }else if(actor->getID() == 0){
-                m_Scene->RemoveAt(i);
             }
         }
         if(player){

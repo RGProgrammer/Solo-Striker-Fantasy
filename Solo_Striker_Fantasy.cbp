@@ -101,6 +101,8 @@
 		<Unit filename="WindowHandler.cpp" />
 		<Unit filename="WindowHandler.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="tools/lodepng/lodepng.cpp" />
+		<Unit filename="tools/lodepng/lodepng.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

@@ -22,7 +22,6 @@ EnergyBullet::EnergyBullet(Actor* Source):Shot(){
     m_LifeTime=2.0f;
 };
 EnergyBullet::~EnergyBullet(){
-
 };
 void EnergyBullet::Update(float dt){
     if(dt==0)
@@ -31,6 +30,8 @@ void EnergyBullet::Update(float dt){
     if(m_Dt>=m_LifeTime)
         m_ID=0x0000 ;
   m_Pos=AddVertex3d(m_Pos,ScaleVertex3d(m_Velocity,dt));
+  if(Magnitude3d(SubsVertex3d({0.0f,0.0f,0.0f},m_Pos))>250.0f || m_LifeTime<=0)
+    m_ID=UNKNOWN ;
 };
 int EnergyBullet::LoadFromFile(){
     return StaticModel::LoadFromFile("Data//shot.obj");
