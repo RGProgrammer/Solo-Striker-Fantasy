@@ -39,7 +39,7 @@ public:
     //Update the models bihaviour in function of time(must be defined)
     virtual void Update(float dt) = 0;
 };
-class DnU : public virtual Drawable,public virtual Updatable{
+class DnU : public Drawable,public Updatable{
 protected :
     //Constructor
     DnU();

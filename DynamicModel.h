@@ -8,6 +8,10 @@ public:
     DynamicModel(Vertex3d Pos);
     DynamicModel(Vertex3d Pos,Vertex3d Dir,Vertex3d Up);
     virtual ~DynamicModel();
+<<<<<<< HEAD
+=======
+    virtual void Update(float dt)=0;
+>>>>>>> origin/current
     virtual void Destroy();
     virtual void Update(float dt)=0;
     virtual int Clone(DynamicModel * Model);
