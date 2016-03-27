@@ -7,9 +7,9 @@ public:
     DynamicModel();
     DynamicModel(Vertex3d Pos);
     DynamicModel(Vertex3d Pos,Vertex3d Dir,Vertex3d Up);
-    ~DynamicModel();
-    virtual void Update(float dt)=0;
+    virtual ~DynamicModel();
     virtual void Destroy();
+    virtual void Update(float dt)=0;
     virtual int Clone(DynamicModel * Model);
 protected:
     Vertex3d                m_Velocity;

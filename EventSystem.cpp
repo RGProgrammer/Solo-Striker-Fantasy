@@ -21,7 +21,10 @@ SDL_Event* EventSystem::getCurrentFrameEvents(){
             m_nbEvents++ ;
         }
     }*/
-    for(m_nbEvents=0 ;m_nbEvents <5 && SDL_PollEvent(&v_Event[m_nbEvents]);m_nbEvents++);
+    //for(m_nbEvents=0 ;m_nbEvents <5 && SDL_PollEvent(&v_Event[m_nbEvents]);m_nbEvents++);
+    m_nbEvents=0 ;
+    if(SDL_PollEvent(v_Event))
+        m_nbEvents++ ;
     return v_Event;
 };
 int EventSystem::getNbEvents(){

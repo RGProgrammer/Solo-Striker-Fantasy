@@ -19,7 +19,7 @@ void Timer::Reset(){
 double Timer::getDeltaTime(){
     dt=0.0;
     if(m_Started){
-        dt=(current_time.tv_sec-last_time.tv_sec)+(current_time.tv_sec-last_time.tv_sec)/(float)1000 ;
+        dt=(current_time.tv_sec-last_time.tv_sec)+(current_time.tv_usec-last_time.tv_usec)/(float)1000 ;
     }
     return dt ;
 };

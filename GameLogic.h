@@ -20,7 +20,8 @@
 #include "UFO.h"
 #include ".//tools//sdl2//include//SDL.h"
 
-
+//nomber of level
+#define NBLEVELS            5
 //Game Logic Stats
 #define     MAINMENU        0x0001
 #define     INGAME          0x0002
@@ -33,13 +34,13 @@ public:
     ~GameLogic() ;
     void Destroy();
     int InitLogic(GameScene* Scene);
-    int InitLevel(char* filename);
+    int InitLevel(int index);
     void Update(float dt);
     void setExitVariable(bool* variable);
 private:
     int                 m_Stat ;
-    char*               m_CurrentLvlFilename ;
-    char*               m_NextLvlFilename ;
+    char**              v_Filenames;
+    int                 m_CurrentLevel ;
     bool*               m_ExitVariable ;
     GameScene*          m_Scene ;
     Camera*             m_Camera ;

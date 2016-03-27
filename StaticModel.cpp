@@ -62,7 +62,6 @@ void StaticModel::Scale(float value ){
 void StaticModel::Destroy(){
     if(v_Meshes){
         for(unsigned int i = 0 ; i<m_nbMeshes ; i++){
-            free(v_Meshes[i].Name);
             if(v_Meshes[i].VertexBuffer){
                 free(v_Meshes[i].VertexBuffer);
                 v_Meshes[i].VertexBuffer=NULL;}
@@ -72,8 +71,12 @@ void StaticModel::Destroy(){
             if(v_Meshes[i].NormalsBuffer){
                 free(v_Meshes[i].NormalsBuffer);
                 v_Meshes[i].NormalsBuffer=NULL ;}
+            if(v_Meshes[i].Name){
+                free(v_Meshes[i].Name);
+                v_Meshes[i].Name=NULL;
+            }
             if(v_Meshes[i].material){
-                /*if(v_Meshes[i].material->MaterialMap){
+                if(v_Meshes[i].material->MaterialMap){
                     if(v_Meshes[i].material->MaterialMap->Pixels)
                         free(v_Meshes[i].material->MaterialMap->Pixels);
                     free(v_Meshes[i].material->MaterialMap);
@@ -92,12 +95,14 @@ void StaticModel::Destroy(){
                     if(v_Meshes[i].material->TextureMap->Pixels)
                         free(v_Meshes[i].material->TextureMap->Pixels);
                     free(v_Meshes[i].material->TextureMap);
-                    v_Meshes[i].material->TextureMap=NULL;}*/
-                free(v_Meshes[i].material);
+                    v_Meshes[i].material->TextureMap=NULL;}
+                free((v_Meshes[i].material));
                 v_Meshes[i].material=NULL ;
             }
+
         }
         free(v_Meshes);
+        v_Meshes=NULL ;
     }
 };
 void StaticModel::setColor(ColorRGB Color){
@@ -268,11 +273,15 @@ int StaticModel::addTexCoord(Vertex2d tex){
 int StaticModel::Clone (StaticModel* Model){
     unsigned int j ;
     m_nbMeshes=Model->m_nbMeshes ;
-    if(!m_nbMeshes)
+    if(!m_nbMeshes){
+        this->Destroy();
         return 0 ;
+    }
     v_Meshes=(pMesh)malloc(m_nbMeshes*sizeof(Mesh));
-    if(!v_Meshes)
+    if(!v_Meshes){
+        this->Destroy();
         return 0 ;
+    }
     for(unsigned int i=0;i<Model->m_nbMeshes;i++){
         v_Meshes[i].MinVertex=Model->v_Meshes[i].MinVertex;
         v_Meshes[i].MaxVertex=Model->v_Meshes[i].MaxVertex;

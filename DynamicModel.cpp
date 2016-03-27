@@ -14,10 +14,10 @@ DynamicModel::DynamicModel(Vertex3d Pos,Vertex3d Dir,Vertex3d Up):StaticModel(Po
 DynamicModel::~DynamicModel(){
     this->Destroy();
 };
-void DynamicModel::Destroy(){
-    StaticModel::Destroy();
-};
 int DynamicModel::Clone(DynamicModel * Model){
     m_Velocity=Model->m_Velocity;
     return Clone(Model);
+};
+void DynamicModel::Destroy(){
+    StaticModel::Destroy();
 };

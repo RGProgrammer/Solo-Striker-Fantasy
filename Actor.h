@@ -26,7 +26,7 @@ protected:
     Actor(Vertex3d Pos,Vertex3d Dir,Vertex3d Up);
 public :
     //Deconstructor
-    ~Actor() ;
+    virtual ~Actor() ;
     //Free Resources
     virtual void Destroy() ;
     //get Actor type

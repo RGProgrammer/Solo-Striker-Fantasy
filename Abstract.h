@@ -25,8 +25,6 @@ public:
     virtual ~Drawable();
     //How the model will be draw(must be defined)
     virtual void Draw(float * ViewMtx) = 0;
-    //release resources(must be redifined)
-    virtual void Destroy() = 0;
 };
 class Updatable : public virtual  Actor {
 protected:
@@ -40,8 +38,6 @@ public:
     virtual ~Updatable();
     //Update the models bihaviour in function of time(must be defined)
     virtual void Update(float dt) = 0;
-    //free resources(must be redefined)
-    virtual void Destroy() = 0 ;
 };
 class DnU : public virtual Drawable,public virtual Updatable{
 protected :
@@ -54,7 +50,6 @@ protected :
 public:
     virtual void Draw(float * ViewMtx) = 0;
     virtual void Update(float dt) = 0;
-    virtual void Destroy() = 0;
 
 };
 #endif // PFE_ACTOR_H_

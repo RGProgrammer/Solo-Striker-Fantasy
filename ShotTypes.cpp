@@ -3,26 +3,25 @@
 EnergyBullet::EnergyBullet():Shot(){
     m_Damage=5 ;
     m_Source=NULL;
-    m_Speed=2.0f;
-    m_LifeTime=2.0f;
+    m_Speed=10.0f;
+    m_LifeTime=10.0f;
     m_Velocity=ScaleVertex3d(Normalize3d(StaticModel::m_Dir),m_Speed);
 };
 EnergyBullet::EnergyBullet(Vertex3d Pos,Vertex3d Dir,Vertex3d Up):Shot(Pos,Dir,Up){
     m_Damage=5 ;
     m_Source=NULL;
-    m_Speed=2.0f;
+    m_Speed=10.0f;
     m_Velocity=ScaleVertex3d(Normalize3d(m_Dir),m_Speed);
-    m_LifeTime=2.0f;
+    m_LifeTime=10.0f;
 };
 EnergyBullet::EnergyBullet(Actor* Source):Shot(){
     m_Damage=5 ;
     m_Source=NULL;
-    m_Speed=2.0f;
+    m_Speed=10.0f;
     m_Velocity=ScaleVertex3d(Normalize3d(m_Dir),m_Speed);
-    m_LifeTime=2.0f;
+    m_LifeTime=10.0f;
 };
 EnergyBullet::~EnergyBullet(){
-
 };
 void EnergyBullet::Update(float dt){
     if(dt==0)
@@ -31,6 +30,8 @@ void EnergyBullet::Update(float dt){
     if(m_Dt>=m_LifeTime)
         m_ID=0x0000 ;
   m_Pos=AddVertex3d(m_Pos,ScaleVertex3d(m_Velocity,dt));
+  if(Magnitude3d(SubsVertex3d({0.0f,0.0f,0.0f},m_Pos))>250.0f || m_LifeTime<=0)
+    m_ID=UNKNOWN ;
 };
 int EnergyBullet::LoadFromFile(){
     return StaticModel::LoadFromFile("Data//shot.obj");

@@ -5,12 +5,11 @@ ObjLoader::ObjLoader():v_Meshes(NULL),
                         m_Color({0.0f,1.0f,0.0f}) {
 };
 ObjLoader::~ObjLoader(){
-//    this->Release() ;
+    this->Release() ;
 };
 void ObjLoader::Release(){
     if(v_Meshes){
         for(unsigned int i = 0 ; i<m_nbMeshes ; i++){
-            free(v_Meshes[i].Name);
             if(v_Meshes[i].VertexBuffer){
                 free(v_Meshes[i].VertexBuffer);
                 v_Meshes[i].VertexBuffer=NULL;}
@@ -36,8 +35,13 @@ void ObjLoader::Release(){
                 free(v_Meshes[i].material);
                 v_Meshes[i].material=NULL ;
             }
+            if(v_Meshes[i].Name){
+                free(v_Meshes[i].Name);
+                v_Meshes[i].Name;
+            }
         }
         free(v_Meshes);
+        v_Meshes=NULL ;
     }
 };
 
@@ -83,16 +87,16 @@ int ObjLoader::AddMesh(char* name){
     v_Meshes[m_nbMeshes].Name=(char*)malloc(100*sizeof(char));
     for(i=0;name[i]!='\0';i++)
         v_Meshes[m_nbMeshes].Name[i]=name[i];
-    v_Meshes[m_nbMeshes].Name[i]=name[i];
-    v_Meshes[m_nbMeshes].Faces=0;
+    v_Meshes[m_nbMeshes].material=NULL ;
+    v_Meshes[m_nbMeshes].VertexBuffer=NULL;
     v_Meshes[m_nbMeshes].IndexBuffer=NULL ;
-    v_Meshes[m_nbMeshes].nbNormals=0;
-    v_Meshes[m_nbMeshes].nbTexCoords=0;
-    v_Meshes[m_nbMeshes].nbVertices=0;
     v_Meshes[m_nbMeshes].NormalsBuffer=NULL;
     v_Meshes[m_nbMeshes].TexCoords=NULL;
-    v_Meshes[m_nbMeshes].VertexBuffer=NULL;
-    v_Meshes[m_nbMeshes].material=NULL ;
+    v_Meshes[m_nbMeshes].Faces=0;
+    v_Meshes[m_nbMeshes].nbVertices=0;
+    v_Meshes[m_nbMeshes].nbNormals=0;
+    v_Meshes[m_nbMeshes].nbTexCoords=0;
+
     m_nbMeshes++ ;
     return 1 ;
 };
@@ -198,10 +202,35 @@ void ObjLoader::ReadLine(FILE* file ,char* buffer){
     buffer[i]='\0';
 
 };
+void ObjLoader::InitMinMaxVertices (){
+    for(unsigned int i=0 ;i<m_nbMeshes ;i++){
+        v_Meshes[i].MinVertex={0.0f,0.0f,0.0f};
+        v_Meshes[i].MaxVertex={0.0f,0.0f,0.0f};
+        for(unsigned int j=0 ;j< v_Meshes[i].nbVertices;j++){
+            if(v_Meshes[i].VertexBuffer[j].x > v_Meshes[i].MaxVertex.x )
+                v_Meshes[i].MaxVertex.x=v_Meshes[i].VertexBuffer[j].x ;
+            if(v_Meshes[i].VertexBuffer[j].y > v_Meshes[i].MaxVertex.y )
+                v_Meshes[i].MaxVertex.y=v_Meshes[i].VertexBuffer[j].y ;
+            if(v_Meshes[i].VertexBuffer[j].z > v_Meshes[i].MaxVertex.z )
+                v_Meshes[i].MaxVertex.z=v_Meshes[i].VertexBuffer[j].z ;
+            if(v_Meshes[i].VertexBuffer[j].x < v_Meshes[i].MinVertex.x )
+                v_Meshes[i].MinVertex.x=v_Meshes[i].VertexBuffer[j].x ;
+            if(v_Meshes[i].VertexBuffer[j].y < v_Meshes[i].MinVertex.y )
+                v_Meshes[i].MinVertex.y=v_Meshes[i].VertexBuffer[j].y ;
+            if(v_Meshes[i].VertexBuffer[j].z < v_Meshes[i].MinVertex.z )
+                v_Meshes[i].MinVertex.z=v_Meshes[i].VertexBuffer[j].z ;
+        }
+    }
+};
 int ObjLoader::LoadFile(StaticModel* dest,char* filename){
+    int result ;
     ObjLoader* Loader=new ObjLoader() ;
-    Loader->loadObjfile(filename);
-    Loader->CopyBuffer(dest);
+    result =Loader->loadObjfile(filename);
+    if(!result)
+        return 0;
+    result=Loader->CopyBuffer(dest);
+    if(!result)
+        return 0;
     Loader->Release();
     delete Loader ;
     return 1 ;
@@ -212,7 +241,7 @@ unsigned int j ;
     Dest->m_nbMeshes=m_nbMeshes ;
     if(!Dest->m_nbMeshes)
         return 0 ;
-    Dest->v_Meshes=(pMesh)malloc(Dest->m_nbMeshes*sizeof(Mesh));
+    Dest->v_Meshes=(pMesh)malloc((Dest->m_nbMeshes)*sizeof(Mesh));
     if(!Dest->v_Meshes)
         return 0 ;
     for(unsigned int i=0;i<m_nbMeshes;i++){
@@ -243,28 +272,10 @@ unsigned int j ;
         Dest->v_Meshes[i].TexCoords=(Vertex2d*)malloc(Dest->v_Meshes[i].nbTexCoords*sizeof(Vertex2d));
         for(j=0;j<Dest->v_Meshes[i].nbTexCoords;j++)
             Dest->v_Meshes[i].TexCoords[j]=v_Meshes[i].TexCoords[j];
-        v_Meshes[i].material=NULL;
+        //copying material
+        Dest->v_Meshes[i].material=NULL;
 
     }
     return 1 ;
 };
-void ObjLoader::InitMinMaxVertices (){
-    for(unsigned int i=0 ;i<m_nbMeshes ;i++){
-        v_Meshes[i].MinVertex={0.0f,0.0f,0.0f};
-        v_Meshes[i].MaxVertex={0.0f,0.0f,0.0f};
-        for(unsigned int j=0 ;j< v_Meshes[i].nbVertices;j++){
-            if(v_Meshes[i].VertexBuffer[j].x > v_Meshes[i].MaxVertex.x )
-                v_Meshes[i].MaxVertex.x=v_Meshes[i].VertexBuffer[j].x ;
-            if(v_Meshes[i].VertexBuffer[j].y > v_Meshes[i].MaxVertex.y )
-                v_Meshes[i].MaxVertex.y=v_Meshes[i].VertexBuffer[j].y ;
-            if(v_Meshes[i].VertexBuffer[j].z > v_Meshes[i].MaxVertex.z )
-                v_Meshes[i].MaxVertex.z=v_Meshes[i].VertexBuffer[j].z ;
-            if(v_Meshes[i].VertexBuffer[j].x < v_Meshes[i].MinVertex.x )
-                v_Meshes[i].MinVertex.x=v_Meshes[i].VertexBuffer[j].x ;
-            if(v_Meshes[i].VertexBuffer[j].y < v_Meshes[i].MinVertex.y )
-                v_Meshes[i].MinVertex.y=v_Meshes[i].VertexBuffer[j].y ;
-            if(v_Meshes[i].VertexBuffer[j].z < v_Meshes[i].MinVertex.z )
-                v_Meshes[i].MinVertex.z=v_Meshes[i].VertexBuffer[j].z ;
-        }
-    }
-};
+

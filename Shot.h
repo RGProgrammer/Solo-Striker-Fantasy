@@ -19,6 +19,7 @@ public:
     void setDamage(int Damage);
     Actor* getSource();
     int    getDamage();
+    void Hit();
 protected :
     Actor*          m_Source;
     float           m_Speed;

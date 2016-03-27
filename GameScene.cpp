@@ -28,9 +28,13 @@ int GameScene::AddActor(Actor* actor){
         return 1 ;
 };
 void GameScene::FreeVector(){
+    Actor* tmp=NULL ;
     if(v_Actors){
-        for(unsigned int i=0;i<m_NBActors ;i++)
-            v_Actors[i]->Destroy();
+        for(unsigned int i=0;i<m_NBActors ;i++){
+            tmp=v_Actors[i];
+            tmp->Destroy();
+            delete tmp;
+        }
         free(v_Actors);
     }
     v_Actors=NULL ;
@@ -60,15 +64,13 @@ Camera* GameScene::getCamera(){
     return m_Camera ;
 };
 void GameScene::RemoveAt(unsigned int index){
-    if(index==m_NBActors-1){
-        v_Actors[index]->Destroy();
-        delete (v_Actors[index]) ;
-        }
-    else if(index>=0 && index< m_NBActors-1){
-         v_Actors[index]->Destroy();
-        delete (v_Actors[index]) ;
+    Actor* tmp =NULL ;
+    if(index>=0 && index< m_NBActors){
+        tmp=v_Actors[index] ;
+        tmp->Destroy();
+        delete tmp ;
         for(unsigned int i=index;i<m_NBActors-1;i++)
             v_Actors[i]=v_Actors[i+1];
+        m_NBActors-- ;
     }
-    m_NBActors-- ;
 };

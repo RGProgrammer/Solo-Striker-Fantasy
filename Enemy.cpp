@@ -51,7 +51,8 @@ int Enemy::addAction(Action action){
 void Enemy::getDamage(int damage){
     if(m_Stat==ALIVE){
         m_Health-=damage;
-        if(m_Health<=0)
+        if(m_Health<=0){
             m_Stat=DEAD;
+            m_ID=UNKNOWN;}
     }
 };

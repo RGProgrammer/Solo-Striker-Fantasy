@@ -17,7 +17,6 @@ Shot::Shot(Shot* clone):DynamicModel(),m_Speed(0.0f),m_Source(NULL),m_LifeTime(0
     setColor({1.0f,0.0f,0.0f});
 };
 Shot::~Shot(){
-    DynamicModel::Destroy();
 };
 int Shot::Clone(Shot* clone){
     StaticModel::Clone(clone);
@@ -39,4 +38,9 @@ Actor* Shot::getSource(){
 };
 int    Shot::getDamage(){
     return m_Damage ;
+};
+void Shot::Hit(){
+    m_Speed=0.0f;
+    m_Velocity={0.0f,0.0f,0.0f};
+    m_ID=UNKNOWN;
 };
