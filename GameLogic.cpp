@@ -112,11 +112,9 @@ void GameLogic::Update(float dt){
             actor=m_Scene->getActor(i);
             if(actor->getID() & UPDATABLE){
                 dynamic_cast<Updatable*>(actor)->Update(dt);
-<<<<<<< HEAD
+
             }else if(actor->getID() & UNKNOWN){
-=======
-            }else if(actor->getID() == UNKNOWN){
->>>>>>> origin/current
+
                 m_Scene->RemoveAt(i);
             }
         }

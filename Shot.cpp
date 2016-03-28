@@ -18,11 +18,9 @@ Shot::Shot(Shot* clone):DynamicModel(),m_Speed(0.0f),m_Source(NULL),m_LifeTime(c
     setColor({1.0f,0.0f,0.0f});
 };
 Shot::~Shot(){
-<<<<<<< HEAD
-=======
     m_Source=NULL ;
     DynamicModel::Destroy();
->>>>>>> origin/current
+
 };
 int Shot::Clone(Shot* clone){
     StaticModel::Clone(clone);

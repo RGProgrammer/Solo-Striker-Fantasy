@@ -63,10 +63,6 @@ void StaticModel::Scale(float value ){
 void StaticModel::Destroy(){
     if(v_Meshes){
         for(unsigned int i = 0 ; i<m_nbMeshes ; i++){
-<<<<<<< HEAD
-=======
-            free((v_Meshes[i].Name));
->>>>>>> origin/current
             if(v_Meshes[i].VertexBuffer){
                 free((v_Meshes[i].VertexBuffer));
                 v_Meshes[i].VertexBuffer=NULL;}
@@ -100,15 +96,10 @@ void StaticModel::Destroy(){
                     if(v_Meshes[i].material->TextureMap->Pixels)
                         free(v_Meshes[i].material->TextureMap->Pixels);
                     free(v_Meshes[i].material->TextureMap);
-<<<<<<< HEAD
                     v_Meshes[i].material->TextureMap=NULL;}
-=======
-                    v_Meshes[i].material->TextureMap=NULL;}*/
->>>>>>> origin/current
                 free((v_Meshes[i].material));
                 v_Meshes[i].material=NULL ;
             }
-
         }
         free(v_Meshes);
         v_Meshes=NULL ;

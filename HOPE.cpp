@@ -14,7 +14,7 @@ int HOPE::LoadFromFile() {
     m_nbWeapons=1 ;
     m_SelectedWeapon=0;
     m_Speed=1.0f;
-    return StaticModel::LoadFromFile("Data//model.obj");
+    return StaticModel::LoadFromFile("Data//ship.obj");
 };
 void HOPE::Update(float dt){
     m_Pos=AddVertex3d(m_Pos,ScaleVertex3d(m_Velocity,1.0f));
