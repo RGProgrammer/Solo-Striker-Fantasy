@@ -1451,14 +1451,14 @@
 	"StaticModel.h"
 	"Abstract.h"
 
-1457092069 c:\users\ikram\documents\github\solo-striker-fantasy\staticmodel.h
+1459197466 c:\users\ikram\documents\github\solo-striker-fantasy\staticmodel.h
 	"Abstract.h"
 	"Types.h"
 	"ObjLoader.h"
 	"Math.h"
 	<GL//gl.h>
 
-1456589794 c:\users\ikram\documents\github\solo-striker-fantasy\types.h
+1459196254 c:\users\ikram\documents\github\solo-striker-fantasy\types.h
 	"Math.h"
 
 1456393818 c:\users\ikram\documents\github\solo-striker-fantasy\gamescene.h
@@ -1805,7 +1805,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1457950176 source:c:\users\ikram\documents\github\solo-striker-fantasy\gamecore.cpp
+1459186296 source:c:\users\ikram\documents\github\solo-striker-fantasy\gamecore.cpp
 	"GameCore.h"
 
 1456223952 c:\users\ikram\documents\github\solo-striker-fantasy\gamecore.h
@@ -1865,10 +1865,10 @@
 1459089022 source:c:\users\ikram\documents\github\solo-striker-fantasy\gamescene.cpp
 	"GameScene.h"
 
-1459174750 source:c:\users\ikram\documents\github\solo-striker-fantasy\graphicsengine.cpp
+1459174873 source:c:\users\ikram\documents\github\solo-striker-fantasy\graphicsengine.cpp
 	"GraphicsEngine.h"
 
-1459169552 source:c:\users\ikram\documents\github\solo-striker-fantasy\hope.cpp
+1459270383 source:c:\users\ikram\documents\github\solo-striker-fantasy\hope.cpp
 	"HOPE.h"
 
 1456436578 c:\users\ikram\documents\github\solo-striker-fantasy\hope.h
@@ -1912,7 +1912,7 @@
 1456479535 c:\users\ikram\documents\github\solo-striker-fantasy\shottypes.h
 	"Shot.h"
 
-1459170028 source:c:\users\ikram\documents\github\solo-striker-fantasy\staticmodel.cpp
+1459270813 source:c:\users\ikram\documents\github\solo-striker-fantasy\staticmodel.cpp
 	"StaticModel.h"
 
 1458584689 source:c:\users\ikram\documents\github\solo-striker-fantasy\timer.cpp
@@ -1934,13 +1934,14 @@
 1459097190 source:c:\users\ikram\documents\github\solo-striker-fantasy\enemy.cpp
 	"Enemy.h"
 
-1459170313 source:c:\users\ikram\documents\github\solo-striker-fantasy\objloader.cpp
+1459269764 source:c:\users\ikram\documents\github\solo-striker-fantasy\objloader.cpp
 	"ObjLoader.h"
 
-1457091911 c:\users\ikram\documents\github\solo-striker-fantasy\objloader.h
+1459254259 c:\users\ikram\documents\github\solo-striker-fantasy\objloader.h
+	"Types.h"
 	"StaticModel.h"
 	<stdio.h>
-	<stdlib.h>
+	<string.h>
 
 1456592273 source:c:\users\ikram\documents\github\solo-striker-fantasy\ufo.cpp
 	"UFO.h"
@@ -1948,7 +1949,7 @@
 1456593941 c:\users\ikram\documents\github\solo-striker-fantasy\ufo.h
 	"Enemy.h"
 
-1459097190 source:c:\users\ikram\documents\github\solo-striker-fantasy\physicsengine.cpp
+1459270103 source:c:\users\ikram\documents\github\solo-striker-fantasy\physicsengine.cpp
 	"PhysicsEngine.h"
 	<stdio.h>
 

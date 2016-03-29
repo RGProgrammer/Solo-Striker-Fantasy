@@ -18,7 +18,7 @@ StaticModel::~StaticModel(){
     this->Destroy();
 };
 int StaticModel::LoadFromFile(char* filename){
-    return ObjLoader::LoadFile(this,filename);
+    return ObjLoader::LoadModel(filename,this);
 };
 StaticModel* StaticModel::LoadFile(char* filename){
     StaticModel* obj=new StaticModel();
@@ -42,17 +42,19 @@ void StaticModel::Draw(float * ViewMtx){
     glBegin(GL_TRIANGLES);
     glColor3f(m_Color.r,m_Color.g,m_Color.b);
         for(unsigned int i=0;i<m_nbMeshes ; i++){
-            for(unsigned int j=0;j<v_Meshes[i].Faces;j++){
-                glNormal3f(v_Meshes[i].NormalsBuffer[j].x,v_Meshes[i].NormalsBuffer[j].y,v_Meshes[i].NormalsBuffer[j].z);
-                glVertex3f(v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j*3]-1].x,
-                          v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j*3]-1].y,
-                          v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j*3]-1].z);
-                glVertex3f(v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j*3+1]-1].x,
-                          v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j*3+1]-1].y,
-                          v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j*3+1]-1].z);
-                glVertex3f(v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j*3+2]-1].x,
-                          v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j*3+2]-1].y,
-                          v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j*3+2]-1].z);
+        if(v_Meshes[i].IndexBuffer)
+            for(unsigned int j=0;j <v_Meshes[i].Faces*3;j++){
+                ////////////////////////////////////////////////////////////
+                if(v_Meshes[i].IndexBuffer[j].NormalIndex==0)
+                    glNormal3f(0.0f,0.0f,0.0f);
+                else
+                    glNormal3f(v_Meshes[i].NormalsBuffer[v_Meshes[i].IndexBuffer[j].NormalIndex-1].x,
+                               v_Meshes[i].NormalsBuffer[v_Meshes[i].IndexBuffer[j].NormalIndex-1].y,
+                               v_Meshes[i].NormalsBuffer[v_Meshes[i].IndexBuffer[j].NormalIndex-1].z);
+                glVertex3f(v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j].VertexIndex-1].x,
+                           v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j].VertexIndex-1].y,
+                           v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j].VertexIndex-1].z);
+
             }
         }
     glEnd();
@@ -72,10 +74,10 @@ void StaticModel::Destroy(){
             if(v_Meshes[i].NormalsBuffer){
                 free(v_Meshes[i].NormalsBuffer);
                 v_Meshes[i].NormalsBuffer=NULL ;}
-            if(v_Meshes[i].Name){
+            /*if(v_Meshes[i].Name){
                 free(v_Meshes[i].Name);
                 v_Meshes[i].Name=NULL;
-            }
+            }*/
             if(v_Meshes[i].material){
                 if(v_Meshes[i].material->MaterialMap){
                     if(v_Meshes[i].material->MaterialMap->Pixels)
@@ -118,66 +120,7 @@ void StaticModel::UpdateMtx(){
         m_TransMtx[2]=m_Right.z; m_TransMtx[6]=m_Up.z; m_TransMtx[10]=m_Dir.z*m_Scale; m_TransMtx[14]=m_Pos.z;
         m_TransMtx[3]=0.0f    ; m_TransMtx[7]=0.0f  ; m_TransMtx[11]=0.0f   ; m_TransMtx[15]=1.0f   ;
 };
-StaticModel* StaticModel::CreateCube(){
-     StaticModel *Obj=new StaticModel();
-    Vertex3d* v_buffer ;
-    unsigned int *i_buffer ;
-    Obj->m_nbMeshes=1;
-    Obj->v_Meshes=(pMesh)malloc(Obj->m_nbMeshes*sizeof(Mesh));
-    if(Obj->v_Meshes==NULL){
-        delete Obj;
-        return NULL;
-    }
-    Obj->v_Meshes->IndexBuffer=NULL ;
-    Obj->v_Meshes->NormalsBuffer=NULL ;
-    Obj->v_Meshes->TexCoords=NULL ;
-    Obj->v_Meshes->VertexBuffer=NULL ;
-    Obj->v_Meshes->nbVertices=8 ;
-    Obj->v_Meshes->Faces=12 ;
-    Obj->v_Meshes->VertexBuffer=(Vertex3d*)malloc(8*sizeof(Vertex3d));
-    if(Obj->v_Meshes->VertexBuffer==NULL){
-        Obj->Destroy();
-        delete Obj ;
-        return NULL ;
-        }
-    Obj->v_Meshes->IndexBuffer=(unsigned int*)malloc(36*sizeof(unsigned int ));
-    if(Obj->v_Meshes->IndexBuffer==NULL){
-        Obj->Destroy();
-        delete Obj ;
-        return NULL ;
-    }
-        v_buffer=Obj->v_Meshes->VertexBuffer ;
-        v_buffer[0]={10.0f,10.0f,10.0f};
-        v_buffer[1]={-10.0f,10.0f,10.0f};
-        v_buffer[2]={-10.0f,-10.0f,10.0f};
-        v_buffer[3]={10.0f,-10.0f,10.0f};
-        v_buffer[4]={10.0f,10.0f,-10.0f};
-        v_buffer[5]={-10.0f,10.0f,-10.0f};
-        v_buffer[6]={-10.0f,-10.0f,-10.0f};
-        v_buffer[7]={10.0f,-10.0f,-10.0f};
 
-        i_buffer=Obj->v_Meshes->IndexBuffer ;
-        i_buffer[0]=0 ;i_buffer[1]=1 ;i_buffer[2]=2 ;
-        i_buffer[3]=1 ;i_buffer[4]=2 ;i_buffer[5]=3 ;
-
-        i_buffer[6]=0 ;i_buffer[7]=1 ;i_buffer[8]=5 ;
-        i_buffer[9]=1 ;i_buffer[10]=5 ;i_buffer[11]=4 ;
-
-        i_buffer[12]=4 ;i_buffer[13]=5 ;i_buffer[14]=6 ;
-        i_buffer[15]=5 ;i_buffer[16]=6 ;i_buffer[17]=7 ;
-
-        i_buffer[18]=7 ;i_buffer[19]=6 ;i_buffer[20]=2 ;
-        i_buffer[21]=6 ;i_buffer[22]=2 ;i_buffer[23]=3 ;
-
-        i_buffer[24]=0 ;i_buffer[25]=4 ;i_buffer[26]=7 ;
-        i_buffer[27]=4 ;i_buffer[28]=7 ;i_buffer[29]=3 ;
-
-        i_buffer[30]=1 ;i_buffer[31]=5 ;i_buffer[32]=6 ;
-        i_buffer[33]=5 ;i_buffer[34]=6 ;i_buffer[35]=2 ;
-        Obj->v_Meshes->MinVertex={-10.0f,-10.0f,-10.0f} ;
-        Obj->v_Meshes->MaxVertex={10.0f,10.0f,10.0f} ;
-        return Obj ;
-};
 int StaticModel::AddMesh(char* name){
     unsigned int i;
     Mesh* tmp = (Mesh*)malloc((m_nbMeshes+1)*sizeof(Mesh));
@@ -237,8 +180,8 @@ int StaticModel::addNormal(Vertex3d ver){
     }
     return 0 ;
 };
-int StaticModel::addIndices(unsigned int id1,unsigned int id2,unsigned int id3){
-    if (m_nbMeshes>0){
+int StaticModel::addIndices(Index id1,Index id2,Index id3){
+    /*if (m_nbMeshes>0){
         unsigned int * tmp=(unsigned int *)malloc(((v_Meshes[m_nbMeshes-1].Faces+1)*3)*sizeof(unsigned int ));
         if(!tmp)
             return 0;
@@ -251,7 +194,7 @@ int StaticModel::addIndices(unsigned int id1,unsigned int id2,unsigned int id3){
         v_Meshes[m_nbMeshes-1].IndexBuffer[v_Meshes[m_nbMeshes-1].Faces*3+2]=id3 ;
         v_Meshes[m_nbMeshes-1].Faces++;
         return 1;
-    }
+    }*/
     return 0 ;
 };
 int StaticModel::addTexCoord(Vertex2d tex){
@@ -286,10 +229,13 @@ int StaticModel::Clone (StaticModel* Model){
         v_Meshes[i].MinVertex=Model->v_Meshes[i].MinVertex;
         v_Meshes[i].MaxVertex=Model->v_Meshes[i].MaxVertex;
         //copying Name
-        v_Meshes[i].Name=(char*)malloc(100*sizeof(char));
-        for(j=0;Model->v_Meshes[i].Name[j];j++)
-            v_Meshes[i].Name[i]=Model->v_Meshes[i].Name[j];
-        v_Meshes[i].Name[j]='\0';
+        /*if(Model->v_Meshes[i].Name!=NULL){
+            v_Meshes[i].Name=(char*)malloc(100*sizeof(char));
+            for(j=0;Model->v_Meshes[i].Name[j];j++)
+                v_Meshes[i].Name[i]=Model->v_Meshes[i].Name[j];
+            v_Meshes[i].Name[j]='\0';
+        }else*/
+            Model->v_Meshes[i].Name=NULL;
         //copying vertices
         v_Meshes[i].nbVertices=Model->v_Meshes[i].nbVertices ;
         v_Meshes[i].VertexBuffer=(Vertex3d*)malloc(v_Meshes[i].nbVertices*sizeof(Vertex3d));
@@ -302,16 +248,17 @@ int StaticModel::Clone (StaticModel* Model){
             v_Meshes[i].NormalsBuffer[j]=Model->v_Meshes[i].NormalsBuffer[j];
         //copying Indices
         v_Meshes[i].Faces=Model->v_Meshes[i].Faces ;
-        v_Meshes[i].IndexBuffer=(unsigned int*)malloc(v_Meshes[i].Faces*3*sizeof(unsigned int));
+        v_Meshes[i].IndexBuffer=(Index*)malloc(v_Meshes[i].Faces*3*sizeof(Index));
         for(j=0;j<v_Meshes[i].Faces*3;j++)
             v_Meshes[i].IndexBuffer[j]=Model->v_Meshes[i].IndexBuffer[j];
         //copying Texture coordinates
-        v_Meshes[i].nbTexCoords=Model->v_Meshes[i].nbTexCoords ;
-        v_Meshes[i].TexCoords=(Vertex2d*)malloc(v_Meshes[i].nbTexCoords*sizeof(Vertex2d));
-        for(j=0;j<v_Meshes[i].nbTexCoords;j++)
-            v_Meshes[i].TexCoords[j]=Model->v_Meshes[i].TexCoords[j];
+        if(Model->v_Meshes[i].TexCoords){
+            v_Meshes[i].nbTexCoords=Model->v_Meshes[i].nbTexCoords ;
+            v_Meshes[i].TexCoords=(Vertex2d*)malloc(v_Meshes[i].nbTexCoords*sizeof(Vertex2d));
+            for(j=0;j<v_Meshes[i].nbTexCoords;j++)
+                v_Meshes[i].TexCoords[j]=Model->v_Meshes[i].TexCoords[j];
+        }
         v_Meshes[i].material=NULL;
-
     }
     return 1 ;
 };

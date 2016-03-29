@@ -18,7 +18,6 @@ int HOPE::LoadFromFile() {
 };
 void HOPE::Update(float dt){
     m_Pos=AddVertex3d(m_Pos,ScaleVertex3d(m_Velocity,1.0f));
-    m_Velocity={0.0f,0.0f,0.0f};
 };
 
 void HOPE::Update(SDL_Event* Events, int nbEvents){
@@ -42,6 +41,8 @@ void HOPE::Update(SDL_Event* Events, int nbEvents){
             if(Events[i].key.keysym.sym==SDLK_r){
                 setPosition({0.0f,0.0f,0.0f});
             }
+        }else{
+            m_Velocity={0.0f,0.0f,0.0f};
         }
     }
 };

@@ -53,21 +53,21 @@ void PhysicsEngine::CollisionReaction(){
 };
 bool PhysicsEngine::CollisionCheck(StaticModel* obj1,StaticModel* obj2,Vertex3d* CollisionCenter){
     //using AABBs
-    Vertex3d MinVertex1,MaxVertex1 ;
+    /*Vertex3d MinVertex1,MaxVertex1 ;
     Vertex3d MinVertex2,MaxVertex2 ;
     obj1->getAABB(&MinVertex1,&MaxVertex1); obj2->getAABB(&MinVertex2,&MaxVertex2);
     if(MinVertex1.x<MaxVertex2.x && MaxVertex1.x> MinVertex2.x &&
        MinVertex1.y<MaxVertex2.y && MaxVertex1.y> MinVertex2.y &&
        MinVertex1.z<MaxVertex2.z && MaxVertex1.z> MinVertex2.z ){
         return true ;
-    }
+    }*/
 
     //using sphere
-    /*float radius1=obj1->getRadius(),radius2=obj2->getRadius() ;
+    float radius1=obj1->getRadius(),radius2=obj2->getRadius() ;
     Vertex3d Pos1=obj1->getPosition(),Pos2=obj2->getPosition() ;
     if(Magnitude3d(SubsVertex3d(Pos2,Pos1))<radius1+radius2){
         return true ;
-    }*/
+    }
     return false ;
 };
 int PhysicsEngine::AddData(CollisionData data){

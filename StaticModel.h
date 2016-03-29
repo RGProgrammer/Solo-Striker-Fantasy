@@ -30,8 +30,6 @@ public:
     //setters and getters
     void setColor(ColorRGB Color);
     ColorRGB getColor();
-    //helps create a 3d cube
-    static StaticModel* CreateCube();
     //loads a 3d model and return its reference
     static StaticModel* LoadFile(char* filename);
     //clone Meshes from another mocel
@@ -47,7 +45,7 @@ protected :
     int AddMesh(char*);//add a mesh refernece to vector
     int addVertex(Vertex3d);//add a vertex to Vertxtexbuffer of the selected mesh(used by loadfromfile method)
     int addNormal(Vertex3d);//add a vertex to Normalbuffer of the selected mesh(used by loadfromfile method)
-    int addIndices(unsigned int id1,unsigned int id2,unsigned int id3);// add Face to indicesbuffer
+    int addIndices(Index id1,Index id2,Index id3);// add Face to indicesbuffer
     int addTexCoord(Vertex2d);//add to texture coordinate to texture coordinates buffer
     void UpdateMtx();
     ColorRGB                m_Color ;//Color used if the meshes has no material

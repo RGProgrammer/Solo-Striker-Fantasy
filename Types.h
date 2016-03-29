@@ -13,6 +13,7 @@ typedef struct {
     char* Pixels; // Buffer of RGBA Values(R:red ,G:green,B:blue,A:alpha/transperancy)
 } Image ;
 typedef struct {
+    char* mtlName;
     Image* TextureMap ;
     Image* BumpMap ;
     Image* ReflexionMap ;
@@ -25,10 +26,16 @@ typedef struct{
     float r,g,b,a;
 } ColorRGBA ;
 typedef struct {
+    unsigned int VertexIndex;
+    unsigned int NormalIndex;
+    unsigned int TexIndex ;
+    //a valid value of these attributs start from 1
+} Index;
+typedef struct {
     char* Name ;                //name of the mesh
     Vertex3d* VertexBuffer ;   //points coordinates buffer that construct the Mesh
     unsigned int nbVertices ;   //number of point of the mesh
-    unsigned int* IndexBuffer ; //buffer contains indicies of points(used to link mesh points to construct surfaces)
+    Index* IndexBuffer ; //buffer contains indicies of points(used to link mesh points to construct surfaces)
     unsigned int Faces ;      //number of surface used on this mesh(each surface cosntructed by 3 points)
     Vertex3d* NormalsBuffer ; //buffer for Normmals
     unsigned int nbNormals;   //number of normals
