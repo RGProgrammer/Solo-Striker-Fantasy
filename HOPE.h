@@ -15,7 +15,7 @@ public :
     void Update(SDL_Event* Events, int nbEvents) ;
 private :
     void Fire();
-    float       m_Speed ;//HOPE movement speed
+    float               m_Speed ;//HOPE movement speed
     int                 m_nbWeapons;
     int                 m_SelectedWeapon;
     Weapon**            v_Weapons;

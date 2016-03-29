@@ -83,10 +83,11 @@ int ObjLoader::LoadObjFile(char* filename){
                                     addNormal(tmpv);
                                     break ;
                         case 't':   fflush(stdin);
+                                    printf("WTF\n");
                                     sscanf(line,"vt %f %f");
                                     addTexCoord(tmpt);
                                     break ;
-        };break ;
+                };break ;
         case 'f':   fflush(stdin);
                     if(contains(line,"//")){
                         sscanf(line,"f %d//%d %d//%d %d//%d",&tmpi1.VertexIndex,&tmpi1.NormalIndex,
@@ -209,7 +210,7 @@ int ObjLoader::addTexCoord(Vertex2d tex){
 int ObjLoader::CopyBuffer(StaticModel* Dest){
     if(v_Meshes){
         Dest->m_nbMeshes=m_nbMeshes;
-        Dest->v_Meshes=(pMesh)malloc(m_nbMeshes*sizeof(Mesh));
+        Dest->v_Meshes=(Mesh*)malloc(m_nbMeshes*sizeof(Mesh));
         for(unsigned int i=0;i<m_nbMeshes;i++){
             Dest->v_Meshes[i].MinVertex=v_Meshes[i].MinVertex ;
             Dest->v_Meshes[i].MaxVertex=v_Meshes[i].MaxVertex ;

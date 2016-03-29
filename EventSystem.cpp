@@ -1,6 +1,6 @@
 #include "EventSystem.h"
 EventSystem::EventSystem():m_Joystick(NULL),v_Event(NULL),m_nbEvents(0) {
-    v_Event=(SDL_Event*)malloc(5*sizeof(SDL_Event));
+    v_Event=(SDL_Event*)malloc(sizeof(SDL_Event));
 };
 EventSystem::~EventSystem(){
     if(m_Joystick)

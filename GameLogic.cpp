@@ -91,10 +91,6 @@ void GameLogic::Update(float dt){
     unsigned int nbactors=m_Scene->getNBActors();
     if(m_Stat==INGAME){
         if(Events[0].type==SDL_KEYDOWN){
-            /*if(Events[0].type==SDL_QUIT ){
-                    *m_ExitVariable=false ;
-                    return ;
-            }*/
             if(Events[0].key.keysym.sym==SDLK_ESCAPE){
                 m_Scene->FreeVector();
                 m_Player=m_MainMenu ;
@@ -112,9 +108,7 @@ void GameLogic::Update(float dt){
             actor=m_Scene->getActor(i);
             if(actor->getID() & UPDATABLE){
                 dynamic_cast<Updatable*>(actor)->Update(dt);
-
             }else if(actor->getID() & UNKNOWN){
-
                 m_Scene->RemoveAt(i);
             }
         }

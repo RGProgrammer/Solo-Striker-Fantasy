@@ -23,7 +23,7 @@ Shot::~Shot(){
 
 };
 int Shot::Clone(Shot* clone){
-    StaticModel::Clone(clone);
+    DynamicModel::Clone(clone);
     m_Source=clone->m_Source;
     m_Speed=clone->m_Speed;
     m_Damage=clone->m_Damage;

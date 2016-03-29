@@ -181,8 +181,8 @@ int StaticModel::addNormal(Vertex3d ver){
     return 0 ;
 };
 int StaticModel::addIndices(Index id1,Index id2,Index id3){
-    /*if (m_nbMeshes>0){
-        unsigned int * tmp=(unsigned int *)malloc(((v_Meshes[m_nbMeshes-1].Faces+1)*3)*sizeof(unsigned int ));
+    if (m_nbMeshes>0){
+        Index * tmp=(Index *)malloc(((v_Meshes[m_nbMeshes-1].Faces+1)*3)*sizeof(Index));
         if(!tmp)
             return 0;
         for(unsigned int i =0 ;i<v_Meshes[m_nbMeshes-1].Faces*3;i++)
@@ -194,7 +194,7 @@ int StaticModel::addIndices(Index id1,Index id2,Index id3){
         v_Meshes[m_nbMeshes-1].IndexBuffer[v_Meshes[m_nbMeshes-1].Faces*3+2]=id3 ;
         v_Meshes[m_nbMeshes-1].Faces++;
         return 1;
-    }*/
+    }
     return 0 ;
 };
 int StaticModel::addTexCoord(Vertex2d tex){
@@ -220,7 +220,7 @@ int StaticModel::Clone (StaticModel* Model){
         this->Destroy();
         return 0 ;
     }
-    v_Meshes=(pMesh)malloc(m_nbMeshes*sizeof(Mesh));
+    v_Meshes=(Mesh*)malloc(m_nbMeshes*sizeof(Mesh));
     if(!v_Meshes){
         this->Destroy();
         return 0 ;
@@ -228,14 +228,26 @@ int StaticModel::Clone (StaticModel* Model){
     for(unsigned int i=0;i<Model->m_nbMeshes;i++){
         v_Meshes[i].MinVertex=Model->v_Meshes[i].MinVertex;
         v_Meshes[i].MaxVertex=Model->v_Meshes[i].MaxVertex;
+        //init ttribut to avoid troubles
+        v_Meshes[i].Name=NULL;
+        v_Meshes[i].Faces=0;
+        v_Meshes[i].nbNormals=0;
+        v_Meshes[i].nbTexCoords=0;
+        v_Meshes[i].nbVertices=0;
+        v_Meshes[i].NormalsBuffer=NULL;
+        v_Meshes[i].TexCoords=NULL;
+        v_Meshes[i].VertexBuffer=NULL;
+        v_Meshes[i].IndexBuffer=NULL ;
+        v_Meshes[i].material=NULL;
+
         //copying Name
         /*if(Model->v_Meshes[i].Name!=NULL){
             v_Meshes[i].Name=(char*)malloc(100*sizeof(char));
             for(j=0;Model->v_Meshes[i].Name[j];j++)
                 v_Meshes[i].Name[i]=Model->v_Meshes[i].Name[j];
             v_Meshes[i].Name[j]='\0';
-        }else*/
-            Model->v_Meshes[i].Name=NULL;
+        }*/
+
         //copying vertices
         v_Meshes[i].nbVertices=Model->v_Meshes[i].nbVertices ;
         v_Meshes[i].VertexBuffer=(Vertex3d*)malloc(v_Meshes[i].nbVertices*sizeof(Vertex3d));
@@ -252,13 +264,12 @@ int StaticModel::Clone (StaticModel* Model){
         for(j=0;j<v_Meshes[i].Faces*3;j++)
             v_Meshes[i].IndexBuffer[j]=Model->v_Meshes[i].IndexBuffer[j];
         //copying Texture coordinates
-        if(Model->v_Meshes[i].TexCoords){
+        /*if(Model->v_Meshes[i].TexCoords){
             v_Meshes[i].nbTexCoords=Model->v_Meshes[i].nbTexCoords ;
             v_Meshes[i].TexCoords=(Vertex2d*)malloc(v_Meshes[i].nbTexCoords*sizeof(Vertex2d));
-            for(j=0;j<v_Meshes[i].nbTexCoords;j++)
-                v_Meshes[i].TexCoords[j]=Model->v_Meshes[i].TexCoords[j];
-        }
-        v_Meshes[i].material=NULL;
+            for(j=0;j<v_Meshes[i].nbTexCoords;j++){
+                v_Meshes[i].TexCoords[j]=Model->v_Meshes[i].TexCoords[j];}
+        }*/
     }
     return 1 ;
 };

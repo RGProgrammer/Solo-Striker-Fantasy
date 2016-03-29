@@ -19,13 +19,8 @@ int MachineGun::Fire(GameScene* Scene,Vertex3d Pos,Vertex3d Dir,Vertex3d Up){
         //m_Dt=0;
         return Scene->AddActor(bullet);
     //}
-    return 1 ;
 };
 
-ChaserLauncher::ChaserLauncher():Weapon("chaserlauncher",NULL,NULL){
-};
-ChaserLauncher::~ChaserLauncher(){
-};
 
 
 
