@@ -61,7 +61,6 @@ bool PhysicsEngine::CollisionCheck(StaticModel* obj1,StaticModel* obj2,Vertex3d*
        MinVertex1.z<MaxVertex2.z && MaxVertex1.z> MinVertex2.z ){
         return true ;
     }*/
-
     //using sphere
     float radius1=obj1->getRadius(),radius2=obj2->getRadius() ;
     Vertex3d Pos1=obj1->getPosition(),Pos2=obj2->getPosition() ;

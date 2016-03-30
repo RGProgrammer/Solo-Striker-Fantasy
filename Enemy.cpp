@@ -4,10 +4,10 @@ Enemy::Enemy():DynamicModel(),m_nbActions(0),v_Actions(NULL),m_Scene(NULL),m_Cur
 };
 Enemy::Enemy(Vertex3d Pos):DynamicModel(Pos),m_nbActions(0),v_Actions(NULL),m_Scene(NULL),m_CurrentActions(-1),m_Health(1),
                                 m_Stat(ALIVE){
-   m_ID|=ENEMY ;};
+   m_ID|=ENEMY | PHYSICAL ;};
 Enemy::Enemy(Vertex3d Pos,Vertex3d Dir,Vertex3d Up):DynamicModel(Pos,Dir,Up),m_nbActions(0),v_Actions(NULL),
                                                     m_Scene(NULL),m_CurrentActions(-1),m_Health(1),m_Stat(ALIVE){
-    m_ID|=ENEMY ;};
+    m_ID|=ENEMY | PHYSICAL ;};
 Enemy::~Enemy(){
     this->Destroy();
 };

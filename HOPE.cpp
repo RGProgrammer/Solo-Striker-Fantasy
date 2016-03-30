@@ -13,7 +13,7 @@ int HOPE::LoadFromFile() {
     v_Weapons[0]->setOwner(this);
     m_nbWeapons=1 ;
     m_SelectedWeapon=0;
-    m_Speed=1.0f;
+    m_Speed=0.5f;
     return StaticModel::LoadFromFile("Data//ship.obj");
 };
 void HOPE::Update(float dt){

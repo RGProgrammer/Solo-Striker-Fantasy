@@ -33,21 +33,6 @@ void ObjLoader::Release(){
                 v_Meshes[i].Name=NULL;
             }*/
             if(v_Meshes[i].material){
-                if(v_Meshes[i].material->MaterialMap){
-                    if(v_Meshes[i].material->MaterialMap->Pixels)
-                        free(v_Meshes[i].material->MaterialMap->Pixels);
-                    free(v_Meshes[i].material->MaterialMap);
-                    v_Meshes[i].material->MaterialMap=NULL;}
-                if(v_Meshes[i].material->ReflexionMap){
-                    if(v_Meshes[i].material->ReflexionMap->Pixels)
-                        free(v_Meshes[i].material->ReflexionMap->Pixels);
-                    free(v_Meshes[i].material->ReflexionMap);
-                    v_Meshes[i].material->ReflexionMap=NULL ;}
-                if(v_Meshes[i].material->BumpMap){
-                    if(v_Meshes[i].material->BumpMap->Pixels)
-                        free(v_Meshes[i].material->BumpMap->Pixels);
-                    free(v_Meshes[i].material->BumpMap);
-                    v_Meshes[i].material->BumpMap=NULL;}
                 if(v_Meshes[i].material->TextureMap){
                     if(v_Meshes[i].material->TextureMap->Pixels)
                         free(v_Meshes[i].material->TextureMap->Pixels);
@@ -108,11 +93,57 @@ int ObjLoader::LoadObjFile(char* filename){
         case 'm': LoadMtlFile(line+6); break ;
         }
     }
+    InitMinMaxVertices();
     fclose(objfile);
     return 1;
 };
 int ObjLoader::LoadMtlFile(char* filename){
+    filename=strcat(filename,"Data//");
+    FILE* mtlfile=fopen(filename,"r");
+    char line[100];
+    if(!mtlfile)
+        return 0 ;
+    while (!feof(mtlfile)){
+        ReadLine(mtlfile,line);
+        if(contains(line,"newmtl")){
+            addMaterial(line+7);
+        }else if(contains(line,"map_Kd")){
+            if(v_Materials){
+                v_Materials[m_nbMaterial-1].TextureMap=(Image*)malloc(sizeof(Image));
+                if(v_Materials[m_nbMaterial-1].TextureMap){
+                    lodepng_decode32_file(&(v_Materials[m_nbMaterial-1].TextureMap->Pixels),
+                                          &(v_Materials[m_nbMaterial-1].TextureMap->Width),
+                                          &(v_Materials[m_nbMaterial-1].TextureMap->Height),
+                                          strcat(line+7,"Data//"));
+                }
+            }
+        }else if(contains(line,"Kd")){
+              sscanf(line,"Kd %f %f %f",&(v_Materials[m_nbMaterial-1].DiffuseColor.r),
+                                        &(v_Materials[m_nbMaterial-1].DiffuseColor.g),
+                                        &(v_Materials[m_nbMaterial-1].DiffuseColor.b));
+        }
+    }
 
+    fclose(mtlfile);
+    return 1 ;
+
+};
+int ObjLoader::addMaterial(char* Name){
+        Material* tmp=(Material*)malloc((m_nbMaterial+1)*sizeof(Material));
+        if(!tmp)
+            return 0 ;
+        for(int j=0 ;j<m_nbMaterial;j++)
+            tmp[j]=v_Materials[j];
+        if(v_Materials)
+            free(v_Materials);
+        v_Materials=tmp;
+        v_Materials[m_nbMaterial].mtlName=(char*)malloc(strlen(Name)*sizeof(char));
+        int i;
+        for(i=0;Name[i];i++)
+            v_Materials[m_nbMaterial].mtlName[i]=Name[i];
+        v_Materials[m_nbMaterial].mtlName[i]='\0';
+        m_nbMaterial++ ;
+        return 1 ;
 };
 int ObjLoader::AddMesh(char* name){
     unsigned int i;

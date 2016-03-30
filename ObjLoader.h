@@ -2,6 +2,7 @@
 #define PFE_OBJLOADER_H_
 #include "Types.h"
 #include "StaticModel.h"
+#include ".//tools//lodepng//lodepng.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -26,6 +27,7 @@ private :
     int addIndices(Index id1,Index id2,Index id3);// add Face to indicesbuffer
     int addTexCoord(Vertex2d);//add to texture coordinate to texture coordinates buffer
     void InitMinMaxVertices ();
+    int addMaterial(char* Name);
     pMesh               v_Meshes ;
     unsigned int        m_nbMeshes;
     Material*           v_Materials ;

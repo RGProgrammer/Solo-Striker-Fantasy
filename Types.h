@@ -7,24 +7,24 @@
 #ifndef PFE_TYPES_H_
 #define PFE_TYPES_H_
 #include "Math.h"
-typedef struct {
-    int Width;  //width of the image
-    int Height; //height of the image
-    char* Pixels; // Buffer of RGBA Values(R:red ,G:green,B:blue,A:alpha/transperancy)
-} Image ;
-typedef struct {
-    char* mtlName;
-    Image* TextureMap ;
-    Image* BumpMap ;
-    Image* ReflexionMap ;
-    Image* MaterialMap ;
-} Material ; // all needed types of images that can be applied on 3d model
+
 typedef struct{
     float r,g,b;
 } ColorRGB ;
 typedef struct{
     float r,g,b,a;
 } ColorRGBA ;
+typedef struct {
+    unsigned int Width;  //width of the image
+    unsigned int Height; //height of the image
+    unsigned char* Pixels; // Buffer of RGBA Values(R:red ,G:green,B:blue,A:alpha/transperancy)
+} Image ;
+typedef struct {
+    char* mtlName;
+    ColorRGB DiffuseColor ;
+    Image* TextureMap ;
+} Material ; // all needed types of images that can be applied on 3d model
+
 typedef struct {
     unsigned int VertexIndex;
     unsigned int NormalIndex;

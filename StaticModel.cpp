@@ -79,21 +79,6 @@ void StaticModel::Destroy(){
                 v_Meshes[i].Name=NULL;
             }*/
             if(v_Meshes[i].material){
-                if(v_Meshes[i].material->MaterialMap){
-                    if(v_Meshes[i].material->MaterialMap->Pixels)
-                        free(v_Meshes[i].material->MaterialMap->Pixels);
-                    free(v_Meshes[i].material->MaterialMap);
-                    v_Meshes[i].material->MaterialMap=NULL;}
-                if(v_Meshes[i].material->ReflexionMap){
-                    if(v_Meshes[i].material->ReflexionMap->Pixels)
-                        free(v_Meshes[i].material->ReflexionMap->Pixels);
-                    free(v_Meshes[i].material->ReflexionMap);
-                    v_Meshes[i].material->ReflexionMap=NULL ;}
-                if(v_Meshes[i].material->BumpMap){
-                    if(v_Meshes[i].material->BumpMap->Pixels)
-                        free(v_Meshes[i].material->BumpMap->Pixels);
-                    free(v_Meshes[i].material->BumpMap);
-                    v_Meshes[i].material->BumpMap=NULL;}
                 if(v_Meshes[i].material->TextureMap){
                     if(v_Meshes[i].material->TextureMap->Pixels)
                         free(v_Meshes[i].material->TextureMap->Pixels);
