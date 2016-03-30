@@ -33,17 +33,26 @@ void ObjLoader::Release(){
                 v_Meshes[i].Name=NULL;
             }*/
             if(v_Meshes[i].material){
-                if(v_Meshes[i].material->TextureMap){
-                    if(v_Meshes[i].material->TextureMap->Pixels)
-                        free(v_Meshes[i].material->TextureMap->Pixels);
-                    free(v_Meshes[i].material->TextureMap);
-                    v_Meshes[i].material->TextureMap=NULL;}
                 free((v_Meshes[i].material));
                 v_Meshes[i].material=NULL ;
             }
         }
         free(v_Meshes);
         v_Meshes=NULL ;
+    }
+    if(v_Materials){
+        for(int i=0;i<m_nbMaterial;i++){
+            if(v_Materials[i].mtlName)
+                free(v_Materials[i].mtlName);
+            if(v_Materials[i].TextureMap){
+                if(v_Materials[i].TextureMap->Pixels)
+                    free(v_Materials[i].TextureMap->Pixels);
+                free(v_Materials[i].TextureMap);
+            }
+        }
+        free(v_Materials);
+        v_Materials=NULL ;
+        m_nbMaterial=0 ;
     }
 };
 int ObjLoader::LoadObjFile(char* filename){
