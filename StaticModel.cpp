@@ -31,6 +31,9 @@ StaticModel* StaticModel::LoadFile(char* filename){
     return obj;
 };
 void StaticModel::Draw(float * ViewMtx){
+    GLuint textureId=0;
+    glEnable(GL_TEXTURE_2D);
+    //initializing transformation matrix
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     if(ViewMtx){
@@ -39,10 +42,29 @@ void StaticModel::Draw(float * ViewMtx){
         glLoadMatrixf(tmp);
     }else
         glLoadMatrixf(this->getTransMtx());
-    glBegin(GL_TRIANGLES);
-    glColor3f(m_Color.r,m_Color.g,m_Color.b);
+    //start drawing;
+        glColor3f(1.0f,1.0f,1.0f);
         for(unsigned int i=0;i<m_nbMeshes ; i++){
-        if(v_Meshes[i].IndexBuffer)
+        if(v_Meshes[i].material && v_Meshes[i].material->TextureMap){
+            glGenTextures(1, &textureId); //Make room for our texture
+            glBindTexture(GL_TEXTURE_2D, textureId); //Tell OpenGL which texture to edit
+            //Map the image to the texture
+            glTexImage2D(GL_TEXTURE_2D,                //Always GL_TEXTURE_2D
+				 0,                            //0 for now
+				 GL_RGBA,                       //Format OpenGL uses for image
+				 v_Meshes[i].material->TextureMap->Width,
+				 v_Meshes[i].material->TextureMap->Height,  //Width and height
+				 0,                            //The border of the image
+				 GL_RGBA, //GL_RGB, because pixels are stored in RGB format
+				 GL_UNSIGNED_BYTE, //GL_UNSIGNED_BYTE, because pixels are stored
+				                   //as unsigned numbers
+				 v_Meshes[i].material->TextureMap->Pixels);
+				 glBindTexture(GL_TEXTURE_2D,textureId);
+				 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        }
+        if(v_Meshes[i].IndexBuffer){
+            glBegin(GL_TRIANGLES);
             for(unsigned int j=0;j <v_Meshes[i].Faces*3;j++){
                 ////////////////////////////////////////////////////////////
                 if(v_Meshes[i].IndexBuffer[j].NormalIndex==0)
@@ -51,13 +73,26 @@ void StaticModel::Draw(float * ViewMtx){
                     glNormal3f(v_Meshes[i].NormalsBuffer[v_Meshes[i].IndexBuffer[j].NormalIndex-1].x,
                                v_Meshes[i].NormalsBuffer[v_Meshes[i].IndexBuffer[j].NormalIndex-1].y,
                                v_Meshes[i].NormalsBuffer[v_Meshes[i].IndexBuffer[j].NormalIndex-1].z);
+                //////////
+                if(v_Meshes[i].IndexBuffer[j].TexIndex!=0){
+                    glTexCoord2f(v_Meshes[i].TexCoords[v_Meshes[i].IndexBuffer[j].TexIndex-1].u,
+                                 v_Meshes[i].TexCoords[v_Meshes[i].IndexBuffer[j].TexIndex-1].v);
+                }else
+                    glColor3f(m_Color.r,m_Color.g,m_Color.b);
+                //////////
                 glVertex3f(v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j].VertexIndex-1].x,
                            v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j].VertexIndex-1].y,
                            v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j].VertexIndex-1].z);
 
             }
+            glEnd();
         }
-    glEnd();
+            if(textureId!=0){
+                glDeleteTextures(1,&textureId);
+            }
+        }
+
+    glDisable(GL_TEXTURE_2D);
 };
 void StaticModel::Scale(float value ){
     this->m_Scale=value;
@@ -74,10 +109,10 @@ void StaticModel::Destroy(){
             if(v_Meshes[i].NormalsBuffer){
                 free(v_Meshes[i].NormalsBuffer);
                 v_Meshes[i].NormalsBuffer=NULL ;}
-            /*if(v_Meshes[i].Name){
+            if(v_Meshes[i].Name){
                 free(v_Meshes[i].Name);
                 v_Meshes[i].Name=NULL;
-            }*/
+            }
             if(v_Meshes[i].material){
                 if(v_Meshes[i].material->TextureMap){
                     if(v_Meshes[i].material->TextureMap->Pixels)
@@ -107,19 +142,18 @@ void StaticModel::UpdateMtx(){
 };
 
 int StaticModel::AddMesh(char* name){
-    unsigned int i;
     Mesh* tmp = (Mesh*)malloc((m_nbMeshes+1)*sizeof(Mesh));
     if (tmp==NULL)
         return 0 ;
-    for(i =0 ; i<m_nbMeshes; i++)
+    for(unsigned int i =0 ; i<m_nbMeshes; i++)
         tmp[i]=v_Meshes[i];
     free(v_Meshes);
    v_Meshes=tmp ;
     // copy name and init others attributs
-   v_Meshes[m_nbMeshes].Name=(char*)malloc(100*sizeof(char));
-    for(i=0;name[i]!='\0';i++)
+   v_Meshes[m_nbMeshes].Name=(char*)malloc((strlen(name)+1)*sizeof(char));
+    for(unsigned int i=0;name[i];i++)
        v_Meshes[m_nbMeshes].Name[i]=name[i];
-   v_Meshes[m_nbMeshes].Name[i]=name[i];
+   v_Meshes[m_nbMeshes].Name[strlen(name)]='\0';
    v_Meshes[m_nbMeshes].Faces=0;
    v_Meshes[m_nbMeshes].IndexBuffer=NULL ;
    v_Meshes[m_nbMeshes].material=NULL;
@@ -199,7 +233,6 @@ int StaticModel::addTexCoord(Vertex2d tex){
 };
 
 int StaticModel::Clone (StaticModel* Model){
-    unsigned int j ;
     m_nbMeshes=Model->m_nbMeshes ;
     if(!m_nbMeshes){
         this->Destroy();
@@ -213,7 +246,6 @@ int StaticModel::Clone (StaticModel* Model){
     for(unsigned int i=0;i<Model->m_nbMeshes;i++){
         v_Meshes[i].MinVertex=Model->v_Meshes[i].MinVertex;
         v_Meshes[i].MaxVertex=Model->v_Meshes[i].MaxVertex;
-        //init ttribut to avoid troubles
         v_Meshes[i].Name=NULL;
         v_Meshes[i].Faces=0;
         v_Meshes[i].nbNormals=0;
@@ -224,37 +256,39 @@ int StaticModel::Clone (StaticModel* Model){
         v_Meshes[i].VertexBuffer=NULL;
         v_Meshes[i].IndexBuffer=NULL ;
         v_Meshes[i].material=NULL;
-
+    }
+    for(unsigned int i=0;i<m_nbMeshes;i++){
+        //copying Texture coordinates
+        if(Model->v_Meshes[i].TexCoords ){
+            v_Meshes[i].nbTexCoords=Model->v_Meshes[i].nbTexCoords ;
+            v_Meshes[i].TexCoords=(Vertex2d*)malloc(v_Meshes[i].nbTexCoords*sizeof(Vertex2d));
+            for(unsigned int j=0;j<v_Meshes[i].nbTexCoords;j++){
+                v_Meshes[i].TexCoords[j]=Model->v_Meshes[i].TexCoords[j];}
+        }
         //copying Name
-        /*if(Model->v_Meshes[i].Name!=NULL){
-            v_Meshes[i].Name=(char*)malloc(100*sizeof(char));
-            for(j=0;Model->v_Meshes[i].Name[j];j++)
-                v_Meshes[i].Name[i]=Model->v_Meshes[i].Name[j];
-            v_Meshes[i].Name[j]='\0';
+        /*if(Model->v_Meshes[i].Name){
+            v_Meshes[i].Name=(char*)malloc((strlen(Model->v_Meshes[i].Name)+1)*sizeof(char));
+            for(unsigned int j=0;(Model->v_Meshes[i].Name[j]);j++)
+                v_Meshes[i].Name[j]=Model->v_Meshes[i].Name[j];
+            v_Meshes[i].Name[strlen((Model->v_Meshes[i].Name))]='\0';
         }*/
 
         //copying vertices
         v_Meshes[i].nbVertices=Model->v_Meshes[i].nbVertices ;
         v_Meshes[i].VertexBuffer=(Vertex3d*)malloc(v_Meshes[i].nbVertices*sizeof(Vertex3d));
-        for(j=0;j<v_Meshes[i].nbVertices;j++)
+        for(unsigned int j=0;j<v_Meshes[i].nbVertices;j++)
             v_Meshes[i].VertexBuffer[j]=Model->v_Meshes[i].VertexBuffer[j];
         //copying Normals
         v_Meshes[i].nbNormals=Model->v_Meshes[i].nbNormals ;
         v_Meshes[i].NormalsBuffer=(Vertex3d*)malloc(v_Meshes[i].nbNormals*sizeof(Vertex3d));
-        for(j=0;j<v_Meshes[i].nbNormals;j++)
+        for(unsigned int j=0;j<v_Meshes[i].nbNormals;j++)
             v_Meshes[i].NormalsBuffer[j]=Model->v_Meshes[i].NormalsBuffer[j];
         //copying Indices
         v_Meshes[i].Faces=Model->v_Meshes[i].Faces ;
         v_Meshes[i].IndexBuffer=(Index*)malloc(v_Meshes[i].Faces*3*sizeof(Index));
-        for(j=0;j<v_Meshes[i].Faces*3;j++)
+        for(unsigned int j=0;j<v_Meshes[i].Faces*3;j++)
             v_Meshes[i].IndexBuffer[j]=Model->v_Meshes[i].IndexBuffer[j];
-        //copying Texture coordinates
-        /*if(Model->v_Meshes[i].TexCoords){
-            v_Meshes[i].nbTexCoords=Model->v_Meshes[i].nbTexCoords ;
-            v_Meshes[i].TexCoords=(Vertex2d*)malloc(v_Meshes[i].nbTexCoords*sizeof(Vertex2d));
-            for(j=0;j<v_Meshes[i].nbTexCoords;j++){
-                v_Meshes[i].TexCoords[j]=Model->v_Meshes[i].TexCoords[j];}
-        }*/
+
     }
     return 1 ;
 };

@@ -9,6 +9,7 @@
 
 void ReadLine(FILE* file,char* buffer);
 bool contains(char* str1,char* str2);
+int CatStrings(char* str1,char* str2,char** Dest);
 
 class StaticModel ;
 class ObjLoader {
@@ -28,6 +29,9 @@ private :
     int addTexCoord(Vertex2d);//add to texture coordinate to texture coordinates buffer
     void InitMinMaxVertices ();
     int addMaterial(char* Name);
+    void applyMaterial(char* mtlName);
+
+
     pMesh               v_Meshes ;
     unsigned int        m_nbMeshes;
     Material*           v_Materials ;

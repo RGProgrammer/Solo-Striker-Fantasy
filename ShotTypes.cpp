@@ -28,7 +28,7 @@ void EnergyBullet::Update(float dt){
         dt=0.1f;
     m_Dt=+dt;
     if(m_Dt>=m_LifeTime)
-        m_ID=0x0000 ;
+        m_ID=UNKNOWN ;
   m_Pos=AddVertex3d(m_Pos,ScaleVertex3d(m_Velocity,dt));
   if(Magnitude3d(SubsVertex3d({0.0f,0.0f,0.0f},m_Pos))>250.0f || m_LifeTime<=0)
     m_ID=UNKNOWN ;

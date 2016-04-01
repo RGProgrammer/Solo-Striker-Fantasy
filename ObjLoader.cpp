@@ -21,20 +21,23 @@ void ObjLoader::Release(){
         for(unsigned int i = 0 ; i<m_nbMeshes ; i++){
             if(v_Meshes[i].VertexBuffer){
                 free((v_Meshes[i].VertexBuffer));
-                v_Meshes[i].VertexBuffer=NULL;}
+                v_Meshes[i].VertexBuffer=NULL;
+            }
             if(v_Meshes[i].IndexBuffer){
                 free((v_Meshes[i].IndexBuffer));
-                v_Meshes[i].IndexBuffer=NULL;}
-            if(v_Meshes[i].NormalsBuffer){
-                free(v_Meshes[i].NormalsBuffer);
-                v_Meshes[i].NormalsBuffer=NULL ;}
-            /*if(v_Meshes[i].Name){
+                v_Meshes[i].IndexBuffer=NULL;
+            }
+
+            if(v_Meshes[i].Name){
                 free(v_Meshes[i].Name);
                 v_Meshes[i].Name=NULL;
-            }*/
+            }
             if(v_Meshes[i].material){
-                free((v_Meshes[i].material));
                 v_Meshes[i].material=NULL ;
+            }
+            if(v_Meshes[i].NormalsBuffer){
+                free(v_Meshes[i].NormalsBuffer);
+                v_Meshes[i].NormalsBuffer=NULL ;
             }
         }
         free(v_Meshes);
@@ -43,7 +46,7 @@ void ObjLoader::Release(){
     if(v_Materials){
         for(int i=0;i<m_nbMaterial;i++){
             if(v_Materials[i].mtlName)
-                free(v_Materials[i].mtlName);
+                free((v_Materials[i].mtlName));
             if(v_Materials[i].TextureMap){
                 if(v_Materials[i].TextureMap->Pixels)
                     free(v_Materials[i].TextureMap->Pixels);
@@ -72,15 +75,16 @@ int ObjLoader::LoadObjFile(char* filename){
                                     sscanf(line,"v %f %f %f",&tmpv.x,&tmpv.y,&tmpv.z);
                                     addVertex(tmpv);
                                     break ;
+                         case 't':  fflush(stdin);
+                                    sscanf(line,"vt %f %f",&tmpt.u,&tmpt.v);
+                                    addTexCoord(tmpt);
+                                    break ;
+
                         case 'n':   fflush(stdin);
                                     sscanf(line,"vn %f %f %f",&tmpv.x,&tmpv.y,&tmpv.z);
                                     addNormal(tmpv);
                                     break ;
-                        case 't':   fflush(stdin);
-                                    printf("WTF\n");
-                                    sscanf(line,"vt %f %f");
-                                    addTexCoord(tmpt);
-                                    break ;
+
                 };break ;
         case 'f':   fflush(stdin);
                     if(contains(line,"//")){
@@ -99,7 +103,9 @@ int ObjLoader::LoadObjFile(char* filename){
                         }
                     addIndices(tmpi1,tmpi2,tmpi3);
                     break ;
-        case 'm': LoadMtlFile(line+6); break ;
+        case 'u': applyMaterial(line+7);break ;
+        case 'm':
+                    LoadMtlFile(line+7); break ;
         }
     }
     InitMinMaxVertices();
@@ -107,11 +113,13 @@ int ObjLoader::LoadObjFile(char* filename){
     return 1;
 };
 int ObjLoader::LoadMtlFile(char* filename){
-    filename=strcat(filename,"Data//");
-    FILE* mtlfile=fopen(filename,"r");
-    char line[100];
-    if(!mtlfile)
-        return 0 ;
+    char *completename=NULL;
+    CatStrings("Data//",filename,&completename);
+    FILE* mtlfile=fopen(completename,"r");
+    //free(completename);
+    char line[150];
+    if(!mtlfile){
+        return 0 ;}
     while (!feof(mtlfile)){
         ReadLine(mtlfile,line);
         if(contains(line,"newmtl")){
@@ -120,10 +128,13 @@ int ObjLoader::LoadMtlFile(char* filename){
             if(v_Materials){
                 v_Materials[m_nbMaterial-1].TextureMap=(Image*)malloc(sizeof(Image));
                 if(v_Materials[m_nbMaterial-1].TextureMap){
-                    lodepng_decode32_file(&(v_Materials[m_nbMaterial-1].TextureMap->Pixels),
+                    v_Materials[m_nbMaterial-1].TextureMap->Pixels=NULL;
+                    CatStrings("Data//",line+7,&completename);
+                   lodepng_decode32_file(&(v_Materials[m_nbMaterial-1].TextureMap->Pixels),
                                           &(v_Materials[m_nbMaterial-1].TextureMap->Width),
                                           &(v_Materials[m_nbMaterial-1].TextureMap->Height),
-                                          strcat(line+7,"Data//"));
+                                          completename)!=0;
+
                 }
             }
         }else if(contains(line,"Kd")){
@@ -132,7 +143,6 @@ int ObjLoader::LoadMtlFile(char* filename){
                                         &(v_Materials[m_nbMaterial-1].DiffuseColor.b));
         }
     }
-
     fclose(mtlfile);
     return 1 ;
 
@@ -146,36 +156,45 @@ int ObjLoader::addMaterial(char* Name){
         if(v_Materials)
             free(v_Materials);
         v_Materials=tmp;
-        v_Materials[m_nbMaterial].mtlName=(char*)malloc(strlen(Name)*sizeof(char));
-        int i;
-        for(i=0;Name[i];i++)
+        v_Materials[m_nbMaterial].mtlName=(char*)malloc((strlen(Name)+1)*sizeof(char));
+
+        for(unsigned int i=0;Name[i];i++){
             v_Materials[m_nbMaterial].mtlName[i]=Name[i];
-        v_Materials[m_nbMaterial].mtlName[i]='\0';
+        }
+        v_Materials[m_nbMaterial].mtlName[strlen(Name)]='\0';
+        v_Materials[m_nbMaterial].TextureMap=NULL;
         m_nbMaterial++ ;
         return 1 ;
 };
+void ObjLoader::applyMaterial(char* mtlName){
+    for(int i=0 ; i<m_nbMaterial;i++){
+        if(strcmp(v_Materials[i].mtlName,mtlName)==0){
+            v_Meshes[m_nbMeshes-1].material=&(v_Materials[i]);
+        }
+    }
+};
 int ObjLoader::AddMesh(char* name){
-    unsigned int i;
     Mesh* tmp = (Mesh*)malloc((m_nbMeshes+1)*sizeof(Mesh));
     if (tmp==NULL)
         return 0 ;
-    for(i =0 ; i<m_nbMeshes; i++)
+    for(unsigned int i =0 ; i<m_nbMeshes; i++)
         tmp[i]=v_Meshes[i];
     free(v_Meshes);
    v_Meshes=tmp ;
     // copy name and init others attributs
     v_Meshes[m_nbMeshes].Name=NULL ;
     if(name!=NULL){
-        v_Meshes[m_nbMeshes].Name=(char*)malloc(100*sizeof(char));
-        for(i=0;name[i]!='\0';i++)
+        v_Meshes[m_nbMeshes].Name=(char*)malloc((strlen(name)+1)*sizeof(char));
+        for(unsigned int i=0;name[i];i++)
             v_Meshes[m_nbMeshes].Name[i]=name[i];
+        v_Meshes[m_nbMeshes].Name[strlen(name)]='\0';
     }
    v_Meshes[m_nbMeshes].Faces=0;
+   v_Meshes[m_nbMeshes].nbTexCoords=0;
+   v_Meshes[m_nbMeshes].nbNormals=0;
+   v_Meshes[m_nbMeshes].nbVertices=0;
    v_Meshes[m_nbMeshes].IndexBuffer=NULL ;
    v_Meshes[m_nbMeshes].material=NULL;
-   v_Meshes[m_nbMeshes].nbNormals=0;
-   v_Meshes[m_nbMeshes].nbTexCoords=0;
-   v_Meshes[m_nbMeshes].nbVertices=0;
    v_Meshes[m_nbMeshes].NormalsBuffer=NULL;
    v_Meshes[m_nbMeshes].TexCoords=NULL;
    v_Meshes[m_nbMeshes].VertexBuffer=NULL;
@@ -251,37 +270,80 @@ int ObjLoader::CopyBuffer(StaticModel* Dest){
     if(v_Meshes){
         Dest->m_nbMeshes=m_nbMeshes;
         Dest->v_Meshes=(Mesh*)malloc(m_nbMeshes*sizeof(Mesh));
+        if(!(Dest->v_Meshes))
+            return 0 ;
         for(unsigned int i=0;i<m_nbMeshes;i++){
             Dest->v_Meshes[i].MinVertex=v_Meshes[i].MinVertex ;
             Dest->v_Meshes[i].MaxVertex=v_Meshes[i].MaxVertex ;
+            Dest->v_Meshes[i].Name=NULL ;
+            Dest->v_Meshes[i].Faces=0;
+            Dest->v_Meshes[i].nbTexCoords=0;
+            Dest->v_Meshes[i].nbNormals=0;
+            Dest->v_Meshes[i].nbVertices=0;
+            Dest->v_Meshes[i].IndexBuffer=NULL ;
+            Dest->v_Meshes[i].material=NULL;
+            Dest->v_Meshes[i].NormalsBuffer=NULL;
+            Dest->v_Meshes[i].TexCoords=NULL;
+            Dest->v_Meshes[i].VertexBuffer=NULL;
+            //copying vertex buffer
             if(v_Meshes[i].VertexBuffer){
                 Dest->v_Meshes[i].nbVertices=v_Meshes[i].nbVertices ;
                 Dest->v_Meshes[i].VertexBuffer=(Vertex3d*)malloc(v_Meshes[i].nbVertices*sizeof(Vertex3d));
                 for(unsigned int j=0 ; j<v_Meshes[i].nbVertices;j++)
                     Dest->v_Meshes[i].VertexBuffer[j]=v_Meshes[i].VertexBuffer[j];
             }
+            //copying normals buffer
             if(v_Meshes[i].NormalsBuffer){
                 Dest->v_Meshes[i].nbNormals=v_Meshes[i].nbNormals ;
                 Dest->v_Meshes[i].NormalsBuffer=(Vertex3d*)malloc(v_Meshes[i].nbNormals*sizeof(Vertex3d));
                 for(unsigned int j=0 ; j<v_Meshes[i].nbNormals;j++)
                     Dest->v_Meshes[i].NormalsBuffer[j]=v_Meshes[i].NormalsBuffer[j];
             }
+            //copying tecture coords buffer
             if(v_Meshes[i].TexCoords){
                 Dest->v_Meshes[i].nbTexCoords=v_Meshes[i].nbTexCoords ;
                 Dest->v_Meshes[i].TexCoords=(Vertex2d*)malloc(v_Meshes[i].nbTexCoords*sizeof(Vertex2d));
                 for(unsigned int j=0 ; j<v_Meshes[i].nbTexCoords;j++)
                     Dest->v_Meshes[i].TexCoords[j]=v_Meshes[i].TexCoords[j];
             }
+            //copying face values
             if(v_Meshes[i].IndexBuffer){
                 Dest->v_Meshes[i].Faces=v_Meshes[i].Faces ;
                 Dest->v_Meshes[i].IndexBuffer=(Index*)malloc(v_Meshes[i].Faces*3*sizeof(Index));
                 for(unsigned int j=0 ; j<v_Meshes[i].Faces*3;j++)
                     Dest->v_Meshes[i].IndexBuffer[j]=v_Meshes[i].IndexBuffer[j];
             }
+            //copying material
             Dest->v_Meshes[i].material=NULL;
-            /*if(v_Meshes[i].material){
+            if(v_Meshes[i].material){
+                Dest->v_Meshes[i].material=(Material*)malloc(sizeof(Material));
+                Dest->v_Meshes[i].material->DiffuseColor=v_Meshes[i].material->DiffuseColor;
+                Dest->v_Meshes[i].material->mtlName=NULL;
+                Dest->v_Meshes[i].material->TextureMap=NULL;
+                if(v_Meshes[i].material->TextureMap){
+                    Dest->v_Meshes[i].material->TextureMap=(Image*)malloc(sizeof(Image));
+                    if(Dest->v_Meshes[i].material->TextureMap) {
+                        Dest->v_Meshes[i].material->TextureMap->Height=v_Meshes[i].material->TextureMap->Height ;
+                        Dest->v_Meshes[i].material->TextureMap->Width=v_Meshes[i].material->TextureMap->Width ;
+                        Dest->v_Meshes[i].material->TextureMap->Pixels=(unsigned char*)malloc(v_Meshes[i].material->TextureMap->Height*
+                                                                                          v_Meshes[i].material->TextureMap->Width*
+                                                                                          4*sizeof(unsigned char));
 
-            }*/
+                    for(unsigned int j=0 ;j<v_Meshes[i].material->TextureMap->Height;j++)
+                    for(unsigned int k=0;k<v_Meshes[i].material->TextureMap->Width;k++){
+                        Dest->v_Meshes[i].material->TextureMap->Pixels[(j*v_Meshes[i].material->TextureMap->Width+k)*4]=
+                        v_Meshes[i].material->TextureMap->Pixels[(j*v_Meshes[i].material->TextureMap->Width+k)*4];
+                        Dest->v_Meshes[i].material->TextureMap->Pixels[(j*v_Meshes[i].material->TextureMap->Width+k)*4+1]=
+                        v_Meshes[i].material->TextureMap->Pixels[(j*v_Meshes[i].material->TextureMap->Width+k)*4+1];
+                        Dest->v_Meshes[i].material->TextureMap->Pixels[(j*v_Meshes[i].material->TextureMap->Width+k)*4+2]=
+                        v_Meshes[i].material->TextureMap->Pixels[(j*v_Meshes[i].material->TextureMap->Width+k)*4+2];
+                        Dest->v_Meshes[i].material->TextureMap->Pixels[(j*v_Meshes[i].material->TextureMap->Width+k)*4+3]=
+                        v_Meshes[i].material->TextureMap->Pixels[(j*v_Meshes[i].material->TextureMap->Width+k)*4+3];
+                    }
+
+                    }
+                }
+            }
         }
     }
     return 1 ;
@@ -333,4 +395,18 @@ bool contains(char* str1,char* str2){
                 result=false ;
     }
     return result;
+};
+int CatStrings(char* str1,char* str2,char** Dest){
+    if(!str1 || !str2 || !Dest)
+        return 0 ;
+    *Dest=(char*)malloc((strlen(str1)+strlen(str2)+1)*sizeof(char));
+    if(!*Dest)
+        return 0 ;
+    int i,len=strlen(str1);
+    for( i= 0;str1[i];i++)
+        (*Dest)[i]=str1[i];
+    for(;str2[i-len];i++)
+        (*Dest)[i]= str2[i-len];
+    (*Dest)[i]='\0';
+return 1 ;
 };

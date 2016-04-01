@@ -19,6 +19,7 @@ void PhysicsEngine::CollisioDetection(){
     unsigned int nbActors=m_Scene->getNBActors();
     Vertex3d CollisionCenter ;
     StaticModel* tmp1,*tmp2;
+    if(nbActors>0)
     for(unsigned int i=0; i<nbActors-1;i++){
         if(m_Scene->getActor(i)->getID() & PHYSICAL){
             tmp1=dynamic_cast<StaticModel*>(m_Scene->getActor(i));
