@@ -22,7 +22,7 @@ public:
     //load the 3d model from a file: 1=Success ,0=Failed
     virtual int LoadFromFile(char* filename);
     //this method define how the 3d moidel is drawn
-    void Draw(float * ViewMtx);
+    virtual void Draw(float * ViewMtx);
     //Scale the 3d model
     void Scale(float );
     //free Resources

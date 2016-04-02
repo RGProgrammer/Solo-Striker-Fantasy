@@ -30,10 +30,10 @@ void HOPE::Update(SDL_Event* Events, int nbEvents){
                     m_Velocity=AddVertex3d(m_Velocity,ScaleVertex3d(Normalize3d(m_Dir),-m_Speed));
             }
             if(Events[i].key.keysym.sym==SDLK_RIGHT){
-                m_Velocity=AddVertex3d(m_Velocity,ScaleVertex3d(Normalize3d(m_Right),m_Speed));
+                m_Velocity=AddVertex3d(m_Velocity,ScaleVertex3d(Normalize3d(m_Left),m_Speed));
             }
             if(Events[i].key.keysym.sym==SDLK_LEFT){
-                m_Velocity=AddVertex3d(m_Velocity,ScaleVertex3d(Normalize3d(m_Right),-m_Speed));
+                m_Velocity=AddVertex3d(m_Velocity,ScaleVertex3d(Normalize3d(m_Left),-m_Speed));
             }
             if(Events[i].key.keysym.sym==SDLK_x){
                 Fire();

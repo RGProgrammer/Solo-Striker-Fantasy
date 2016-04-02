@@ -39,13 +39,12 @@ int GameCore::Init(char * Name,int Width, int Height,bool FullScreen, char* icon
 };
 void GameCore::StartGame(){
     m_Running=true ;
-    m_Timer.Reset();
     float Dt ;
+    m_Timer.Reset();
     while(m_Running){
         Dt=m_Timer.getDeltaTime();
         m_Logic->Update(Dt);
         m_Graphics->DrawScene();
-
     }
 };
 void GameCore::Destroy(){

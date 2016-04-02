@@ -54,11 +54,12 @@ int GameLogic::InitLogic(GameScene* Scene){
     if(!m_MainMenu->LoadFromFile())
         return 0 ;
     m_Camera=new Camera();
-    m_Camera->setOrientation({0.0f,-1.0f,0.0f},{0.0f,0.0f,-1.0f});
-    m_Camera->setPosition({0.0f,170.0f,0.0f});
     m_Scene->setCamera(m_Camera);
     m_Player=m_MainMenu;
     m_Ship->setScene(m_Scene);
+    m_MainMenu->setCamera(m_Camera);
+    m_MainMenu->Init();
+    m_Ship->setCamera(m_Camera);
     m_Scene->setPlayer(m_Player);
     m_Stat=MAINMENU ;
     return 1 ;
@@ -66,18 +67,17 @@ int GameLogic::InitLogic(GameScene* Scene){
 int GameLogic::InitLevel(int index){
     UFO* e=NULL;
     e=new UFO();
-    e->setPosition({0.0f,0.f,-50.f});
+    e->setPosition({0.0f,0.f,50.f});
     e->LoadFromFile();
     m_Scene->AddActor(e);
     e=new UFO();
-    e->setPosition({20.0f,0.f,-50.f});
+    e->setPosition({20.0f,0.f,50.f});
     e->LoadFromFile();
     m_Scene->AddActor(e);
     e=new UFO();
-    e->setPosition({-20.0f,0.f,-50.f});
+    e->setPosition({-20.0f,0.f,50.f});
     e->LoadFromFile();
     m_Scene->AddActor(e);
-    m_Player->setPosition({0.0f,0.0f,50.0f});
     return 1 ;
 };
 void GameLogic::Update(float dt){
@@ -94,9 +94,9 @@ void GameLogic::Update(float dt){
             if(Events[0].key.keysym.sym==SDLK_ESCAPE){
                 m_Scene->FreeVector();
                 m_Player=m_MainMenu ;
+                m_MainMenu->Init();
                 m_Scene->setPlayer(m_Player);
                 m_Stat=MAINMENU;
-                Events[0].type=SDL_KEYUP ;
                 return ;
             }
         }
@@ -104,12 +104,14 @@ void GameLogic::Update(float dt){
             m_Player->Update(Events,nbEvents);
             m_Player->Update(dt);
         }
-        for(unsigned int i=0;i<nbactors;i++){
-            actor=m_Scene->getActor(i);
-            if(actor->getID() & UPDATABLE){
-                dynamic_cast<Updatable*>(actor)->Update(dt);
-            }else if(actor->getID() & UNKNOWN){
-                m_Scene->RemoveAt(i);
+        if(nbactors>0){
+            for(unsigned int i=0;i<nbactors;i++){
+                actor=m_Scene->getActor(i);
+                if(actor->getID() & UPDATABLE){
+                    dynamic_cast<Updatable*>(actor)->Update(dt);
+                }else if(actor->getID() & UNKNOWN){
+                    m_Scene->RemoveAt(i);
+                }
             }
         }
         m_Physics->CollisioDetection();
@@ -123,11 +125,15 @@ void GameLogic::Update(float dt){
                 if(m_MainMenu->getSelectedItem()==STARTGAME){
                     m_Player=m_Ship ;
                     m_Scene->setPlayer(m_Player);
+                    ///these 2 instraction will be removed once the stages scrits are well written
+                    m_Camera->setOrientation({0.0f,-1.0f,0.0f},{0.0f,0.0f,-1.0f});
+                    m_Camera->setPosition({0.0f,200.0f,0.0f});
+                    /// ///////////////
                     this->InitLevel(1);
                     m_Stat=INGAME ;
                     return ;
-                }
-                Events[0].type=SDL_KEYUP ;
+                }else if(m_MainMenu->getSelectedItem()==EXIT)
+                    *m_ExitVariable=false;
             }
         }
         if(m_Player){
@@ -137,8 +143,8 @@ void GameLogic::Update(float dt){
     }else if(m_Stat==PAUSE){
         if(Events[0].key.keysym.sym==SDLK_s){
             m_Stat==INGAME ;
-            Events[0].type=SDL_KEYUP ;
         }
+
     }
 };
  void GameLogic::setExitVariable(bool* variable){

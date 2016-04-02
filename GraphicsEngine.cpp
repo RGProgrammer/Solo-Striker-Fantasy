@@ -16,6 +16,8 @@ int GraphicsEngine::InitEngine(WindowHandler* Window, GameScene* Scene ){
     glEnable(GL_NORMALIZE);
     glDisable(GL_LIGHTING);
     //glEnable(GL_CULL_FACE);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluPerspective(45.0f,(float)m_Hwnd->getWidth()/(float)m_Hwnd->getHeight(),1.0f,1000.0f);

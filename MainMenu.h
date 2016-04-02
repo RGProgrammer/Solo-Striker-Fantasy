@@ -13,6 +13,7 @@ public:
     MainMenu();
     ~MainMenu();
     int LoadFromFile();
+    void Init();
     void Update(float dt);
     void Update(SDL_Event* Events, int nbEvents) ;
     int getSelectedItem();

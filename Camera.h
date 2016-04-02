@@ -5,7 +5,7 @@ class Camera : public Actor {
 public:
     Camera();
     ~Camera();
-    //void printInfo();
+    void printInfo();
 protected:
     void UpdateMtx();
 };

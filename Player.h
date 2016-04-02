@@ -24,6 +24,7 @@ public:
     Player(Vertex3d Pos,Vertex3d Dir,Vertex3d Up);
     virtual ~Player();
     void setScene(GameScene* Scene);
+    void setCamera(Camera* Cam);
     virtual int LoadFromFile()=0;
     virtual void Update(float dt)=0;
     virtual void Update(SDL_Event* Events, int nbEvents)=0 ;
@@ -34,6 +35,7 @@ protected:
     int                 m_Charge;
     int                 m_Stat;
     GameScene*          m_Scene;
+    Camera*             m_Camera;
 
 
 };
