@@ -1,0 +1,22 @@
+<level delay="5.0">
+	<Skybox name="sky.obj" />
+	<Terrain name="Desert.obj">
+	<Camera pos=" " type="UP">
+
+	</Camera>
+	<Enemy type="UFO" pos="20.0 0.0 70.0" Dir="0.0 0.0 -1.0" up="0.0 1.0 0.0" shot="Small">
+		<Action inst="3.0" type="MOVE" param="-20.0 0.0 -70.0 0.0 0.0 0.00"/>
+		<Action inst="3.0" type="FIRE"  />
+		<Action inst="5.0" type="EXPLODE" />
+	</Enemy>
+	<Enemy type="UFO" pos="-20.0 0.0 70.0" Dir="0.0 0.0 -1.0" up="0.0 1.0 0.0" shot="Small">
+		<Action inst="6.0" type="MOVE" param="20.0 0.0 -70.0 0.0 0.0 0.0"/>
+		<Action inst="3.0"	type="FIRE"	 />
+		<Action inst="5.0" type="EXPLODE" />
+	</Enemy>
+	<Enemy type="UFO" pos="0.0 0.0 70.0" Dir="0.0 0.0 -1.0" up="0.0 1.0 0.0" shot="Long">
+		<Action inst="9.0" type="MOVE" param="-20.0 0.0 -70.0 0.0 0.0 0.00"/>
+		<Action inst="33.0"	type="FIRE" />
+		<Action inst="5.0" type="EXPLODE" />
+	</Enemy>
+</level>

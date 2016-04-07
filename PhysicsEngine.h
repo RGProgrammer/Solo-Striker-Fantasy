@@ -27,6 +27,7 @@ private:
     CollisionData*              v_Data;
     unsigned int                m_nbElements ;
     GameScene*                  m_Scene ;
+    float                       m_Dt ;
 
 };
 #endif // PFE_PHYSICSENGINE_H_

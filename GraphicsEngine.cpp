@@ -35,15 +35,16 @@ void GraphicsEngine::DrawScene(){
     glClearColor(0.5f,0.5f,0.5f,0.0f);
     if(m_Scene){
         unsigned int nbactors=m_Scene->getNBActors();
-        for(unsigned int i=0;i<nbactors;i++){
-            actor=m_Scene->getActor(i);
-            if(actor->getID() & DRAWABLE){
-                if(m_Camera)
-                    dynamic_cast<Drawable*>(actor)->Draw(m_Camera->getTransMtx());
-                else
-                    dynamic_cast<Drawable*>(actor)->Draw(NULL);
+        if(nbactors>0)
+            for(unsigned int i=0;i<nbactors;i++){
+                actor=m_Scene->getActor(i);
+                if(actor->getID() & DRAWABLE){
+                    if(m_Camera)
+                        dynamic_cast<Drawable*>(actor)->Draw(m_Camera->getTransMtx());
+                    else
+                        dynamic_cast<Drawable*>(actor)->Draw(NULL);
+                }
             }
-        }
         if(player){
             if(m_Camera)
                     player->Draw(m_Camera->getTransMtx());

@@ -23,5 +23,6 @@ Vertex3d CrossProduct3d(Vertex3d,Vertex3d);
 Vertex3d Rotate3d(Vertex3d,Vertex3d,double );
 void Multi4x4Mtx(float* , float*,float*);
 Vertex3d Mtx_x_Vertex(float* M4x4,Vertex3d ver);
+///void InverseMtx(float* M4x4);//to do
 #endif // PFE_MATH_H_
 

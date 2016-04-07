@@ -23,23 +23,54 @@ void HOPE::Update(float dt){
 void HOPE::Update(SDL_Event* Events, int nbEvents){
     for(int i=0; i<nbEvents;i++){
         if(Events[i].type==SDL_KEYDOWN){
-            if(Events[i].key.keysym.sym==SDLK_UP){
+            if(m_Camera && m_Camera->getViewType()==UP){
+                if(Events[i].key.keysym.sym==SDLK_UP){
                     m_Velocity=AddVertex3d(m_Velocity,ScaleVertex3d(Normalize3d(m_Dir),m_Speed));
-            }
-            if(Events[i].key.keysym.sym==SDLK_DOWN){
+                }
+                if(Events[i].key.keysym.sym==SDLK_DOWN){
                     m_Velocity=AddVertex3d(m_Velocity,ScaleVertex3d(Normalize3d(m_Dir),-m_Speed));
+                }
+                if(Events[i].key.keysym.sym==SDLK_RIGHT){
+                    Vertex3d Right=CrossProduct3d(m_Dir,m_Up);
+                    m_Velocity=AddVertex3d(m_Velocity,ScaleVertex3d(Normalize3d(Right),-m_Speed));
+                }
+                if(Events[i].key.keysym.sym==SDLK_LEFT){
+                    Vertex3d Right=CrossProduct3d(m_Dir,m_Up);
+                    m_Velocity=AddVertex3d(m_Velocity,ScaleVertex3d(Normalize3d(Right),m_Speed));
+                    //printf("velocity: %f %f %f\n",m_Velocity.x,m_Velocity.y,m_Velocity.z);
+                }
+            }else if(m_Camera && m_Camera->getViewType()==SIDE){
+                 if(Events[i].key.keysym.sym==SDLK_UP){
+                    m_Velocity=AddVertex3d(m_Velocity,ScaleVertex3d(Normalize3d(m_Up),-m_Speed));
+                }
+                if(Events[i].key.keysym.sym==SDLK_DOWN){
+                    m_Velocity=AddVertex3d(m_Velocity,ScaleVertex3d(Normalize3d(m_Up),m_Speed));
+                }
+                if(Events[i].key.keysym.sym==SDLK_RIGHT){
+                    m_Velocity=AddVertex3d(m_Velocity,ScaleVertex3d(Normalize3d(m_Dir),m_Speed));
+                }
+                if(Events[i].key.keysym.sym==SDLK_LEFT){
+                    m_Velocity=AddVertex3d(m_Velocity,ScaleVertex3d(Normalize3d(m_Dir),-m_Speed));
+
+                }
             }
-            if(Events[i].key.keysym.sym==SDLK_RIGHT){
-                m_Velocity=AddVertex3d(m_Velocity,ScaleVertex3d(Normalize3d(m_Left),m_Speed));
-            }
-            if(Events[i].key.keysym.sym==SDLK_LEFT){
-                m_Velocity=AddVertex3d(m_Velocity,ScaleVertex3d(Normalize3d(m_Left),-m_Speed));
-            }
+
             if(Events[i].key.keysym.sym==SDLK_x){
                 Fire();
             }
             if(Events[i].key.keysym.sym==SDLK_r){
                 setPosition({0.0f,0.0f,0.0f});
+            }
+            if(Events[i].key.keysym.sym==SDLK_c){
+                if(m_Camera->getViewType()==SIDE){
+                    m_Camera->setViewType(UP);
+                    m_Pos.y=0.0f ;
+                }
+                else{
+                    m_Camera->setViewType(SIDE);
+                    m_Pos.x=0.0f;
+                }
+
             }
         }else{
             m_Velocity={0.0f,0.0f,0.0f};

@@ -66,6 +66,11 @@ int GameLogic::InitLogic(GameScene* Scene){
 };
 int GameLogic::InitLevel(int index){
     UFO* e=NULL;
+    Terrain* t=NULL;
+    m_Scene->AddActor(StaticModel::LoadFile("Data//skybox.obj"));
+    t=new Terrain();
+    t->LoadFromFile("Data//Desert.obj");
+    m_Scene->AddActor(t),
     e=new UFO();
     e->setPosition({0.0f,0.f,50.f});
     e->LoadFromFile();
@@ -78,6 +83,8 @@ int GameLogic::InitLevel(int index){
     e->setPosition({-20.0f,0.f,50.f});
     e->LoadFromFile();
     m_Scene->AddActor(e);
+    m_Camera->setOrientation({0.0f,-1.0f,0.0f},{0.0f,0.0f,-1.0f});
+    m_Camera->setPosition({0.0f,150.0f,0.0f});
     return 1 ;
 };
 void GameLogic::Update(float dt){
@@ -125,10 +132,6 @@ void GameLogic::Update(float dt){
                 if(m_MainMenu->getSelectedItem()==STARTGAME){
                     m_Player=m_Ship ;
                     m_Scene->setPlayer(m_Player);
-                    ///these 2 instraction will be removed once the stages scrits are well written
-                    m_Camera->setOrientation({0.0f,-1.0f,0.0f},{0.0f,0.0f,-1.0f});
-                    m_Camera->setPosition({0.0f,200.0f,0.0f});
-                    /// ///////////////
                     this->InitLevel(1);
                     m_Stat=INGAME ;
                     return ;

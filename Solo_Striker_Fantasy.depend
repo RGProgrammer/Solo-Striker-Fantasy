@@ -1417,7 +1417,7 @@
 1459097201 c:\users\ikram\documents\github\solo-striker-fantasy\abstract.h
 	"Actor.h"
 
-1459089761 c:\users\ikram\documents\github\solo-striker-fantasy\actor.h
+1459605312 c:\users\ikram\documents\github\solo-striker-fantasy\actor.h
 	"Math.h"
 	<stdlib.h>
 
@@ -1451,14 +1451,14 @@
 	"StaticModel.h"
 	"Abstract.h"
 
-1459197466 c:\users\ikram\documents\github\solo-striker-fantasy\staticmodel.h
+1459544115 c:\users\ikram\documents\github\solo-striker-fantasy\staticmodel.h
 	"Abstract.h"
 	"Types.h"
 	"ObjLoader.h"
 	"Math.h"
 	<GL//gl.h>
 
-1459196254 c:\users\ikram\documents\github\solo-striker-fantasy\types.h
+1459333649 c:\users\ikram\documents\github\solo-striker-fantasy\types.h
 	"Math.h"
 
 1456393818 c:\users\ikram\documents\github\solo-striker-fantasy\gamescene.h
@@ -1466,7 +1466,7 @@
 	"Camera.h"
 	"Player.h"
 
-1456655895 c:\users\ikram\documents\github\solo-striker-fantasy\camera.h
+1459587953 c:\users\ikram\documents\github\solo-striker-fantasy\camera.h
 	"Actor.h"
 
 1456655895 source:c:\users\ikram\documents\github\solo-striker-fantasy\camera.cpp
@@ -1871,11 +1871,11 @@
 1459270383 source:c:\users\ikram\documents\github\solo-striker-fantasy\hope.cpp
 	"HOPE.h"
 
-1456436578 c:\users\ikram\documents\github\solo-striker-fantasy\hope.h
+1459282262 c:\users\ikram\documents\github\solo-striker-fantasy\hope.h
 	"Player.h"
 	"WeaponTypes.h"
 
-1456602021 c:\users\ikram\documents\github\solo-striker-fantasy\player.h
+1459622193 c:\users\ikram\documents\github\solo-striker-fantasy\player.h
 	"GameScene.h"
 	"DynamicModel.h"
 	"Weapon.h"
@@ -1894,7 +1894,7 @@
 1458503304 source:c:\users\ikram\documents\github\solo-striker-fantasy\mainmenu.cpp
 	"MainMenu.h"
 
-1458495948 c:\users\ikram\documents\github\solo-striker-fantasy\mainmenu.h
+1459622062 c:\users\ikram\documents\github\solo-striker-fantasy\mainmenu.h
 	"Player.h"
 
 1456681026 source:c:\users\ikram\documents\github\solo-striker-fantasy\math.cpp
@@ -1937,9 +1937,10 @@
 1459269764 source:c:\users\ikram\documents\github\solo-striker-fantasy\objloader.cpp
 	"ObjLoader.h"
 
-1459254259 c:\users\ikram\documents\github\solo-striker-fantasy\objloader.h
+1459427885 c:\users\ikram\documents\github\solo-striker-fantasy\objloader.h
 	"Types.h"
 	"StaticModel.h"
+	".//tools//lodepng//lodepng.h"
 	<stdio.h>
 	<string.h>
 
@@ -3103,6 +3104,14 @@
 	"StaticModel.h"
 
 1453770204 c:\users\ikram\desktop\solo-striker-fantasy-copy\\tools\\lodepng\\lodepng.h
+	<string.h>
+	<vector>
+	<string>
+	"lodepng.h"
+	<iostream>
+	"lodepng.h"
+
+1453770204 c:\users\ikram\documents\github\solo-striker-fantasy\\tools\\lodepng\\lodepng.h
 	<string.h>
 	<vector>
 	<string>

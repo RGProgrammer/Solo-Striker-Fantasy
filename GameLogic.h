@@ -16,6 +16,7 @@
 #include "EventSystem.h"
 #include "PhysicsEngine.h"
 #include "SoundEngine.h"
+#include "Terrain.h"
 //#include "Cube.h"
 #include "UFO.h"
 #include ".//tools//sdl2//include//SDL.h"

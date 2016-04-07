@@ -2,10 +2,13 @@
 #define PFE_ENEMY_H_
 #include "DynamicModel.h"
 #include "GameScene.h"
-//Actions
+//enemy define code
 #define ENEMY       0x0010
+
+//Enemy Actions
 #define FIREACTION  0x0000
 #define MOVEACTION  0x0001
+#define EXPLODE     0x0002
 
 //Stats
 #define DEAD        0x0000

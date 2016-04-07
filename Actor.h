@@ -41,7 +41,7 @@ public :
     Vertex3d getDirection();
     Vertex3d getPosition();
     Vertex3d getUp();
-    Vertex3d getLeft();
+    Vertex3d getRight();
     //translate the model postion  by a vertex
     void Translate(Vertex3d );
     //rotate the model by the Up Vertex
@@ -53,7 +53,7 @@ public :
 protected:
     virtual void UpdateMtx();  //set transformation matrix fields values
     int                 m_ID ; // Actor type
-    Vertex3d            m_Pos,m_Dir,m_Up,m_Left ;// position and orientaion of the actor in 3d Space
+    Vertex3d            m_Pos,m_Dir,m_Up ;// position and orientaion of the actor in 3d Space
     float*              m_TransMtx ;//transformation matrix
 };
 #endif // PFE_ACTOR_H_

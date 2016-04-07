@@ -14,21 +14,21 @@ int MainMenu::LoadFromFile(){
     if(!v_SubItems)
         return 0 ;
     v_SubItems[0]=StaticModel::LoadFile("Data//start.obj") ;
-    v_SubItems[0]->setPosition({0.0f,-1.0f,2.0f});
+    v_SubItems[0]->setPosition({0.0f,1.0f,2.0f});
     v_SubItems[1]=StaticModel::LoadFile("Data//score.obj") ;
-    v_SubItems[1]->setPosition({0.0f,-1.0f,0.0f});
+    v_SubItems[1]->setPosition({0.0f,1.0f,0.0f});
     v_SubItems[2]= StaticModel::LoadFile("Data//exit.obj") ;
-    v_SubItems[2]->setPosition({0.0f,-1.0f,-2.0f});
+    v_SubItems[2]->setPosition({0.0f,1.0f,-2.0f});
     m_Selector=LoadFile("Data//Selector.obj");
     Vertex3d pos=v_SubItems[m_Selected]->getPosition();
-    pos.y+=0.5f;
+    pos.y-=0.5f;
     m_Selector->setPosition(pos);
     return 1 ;
 };
 void MainMenu:: Init(){
      m_Selected=0 ;
      if(m_Camera){
-        m_Camera->setOrientation({0.0f,-1.0f,0.0f},{0.0f,0.0f,-1.0f});
+        m_Camera->setOrientation({0.0f,-1.0f,0.0f},{0.0f,0.0f,1.0f});
         m_Camera->setPosition({0.0f,39.0f,0.0f});
      }
 }
@@ -49,7 +49,7 @@ void MainMenu::Update(SDL_Event* Events, int nbEvents){
                     m_Selected=0 ; ;
             }
             Vertex3d pos=v_SubItems[m_Selected]->getPosition();
-            pos.y+=0.5f;
+            pos.y-=0.5f;
             m_Selector->setPosition(pos);
 
         }

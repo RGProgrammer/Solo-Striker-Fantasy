@@ -134,11 +134,10 @@ ColorRGB StaticModel::getColor(){
     return m_Color ;
 };
 void StaticModel::UpdateMtx(){
-        m_Left=Normalize3d(m_Left);m_Up=Normalize3d(m_Up);m_Dir=Normalize3d(m_Dir);
-        m_TransMtx[0]=m_Left.x*m_Scale; m_TransMtx[4]=m_Up.x; m_TransMtx[8]=m_Dir.x ; m_TransMtx[12]=m_Pos.x ;
-        m_TransMtx[1]=m_Left.y; m_TransMtx[5]=m_Up.y*m_Scale; m_TransMtx[9]=m_Dir.y ; m_TransMtx[13]=m_Pos.y ;
-        m_TransMtx[2]=m_Left.z; m_TransMtx[6]=m_Up.z; m_TransMtx[10]=m_Dir.z*m_Scale; m_TransMtx[14]=m_Pos.z;
-        m_TransMtx[3]=0.0f    ; m_TransMtx[7]=0.0f  ; m_TransMtx[11]=0.0f   ; m_TransMtx[15]=1.0f   ;
+        Actor::UpdateMtx();
+        m_TransMtx[0]*=m_Scale ;
+        m_TransMtx[5]*= m_Scale;
+        m_TransMtx[10]*= m_Scale;
 };
 
 int StaticModel::AddMesh(char* name){

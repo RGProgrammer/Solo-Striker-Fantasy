@@ -1,10 +1,9 @@
 #include "PhysicsEngine.h"
 #include <stdio.h>
 
-PhysicsEngine::PhysicsEngine(): v_Data(NULL),m_nbElements(0),m_Scene(NULL){
+PhysicsEngine::PhysicsEngine():PhysicsEngine(NULL){ //v_Data(NULL),m_nbElements(0),m_Scene(NULL){
 };
-PhysicsEngine::PhysicsEngine(GameScene* Scene):v_Data(NULL),m_nbElements(0),m_Scene(Scene){
-
+PhysicsEngine::PhysicsEngine(GameScene* Scene):v_Data(NULL),m_nbElements(0),m_Scene(Scene),m_Dt(0.0f){
 };
 PhysicsEngine::~PhysicsEngine(){
     if(v_Data){
@@ -16,22 +15,22 @@ void PhysicsEngine::setScene(GameScene* Scene){
     m_Scene=Scene ;
 };
 void PhysicsEngine::CollisioDetection(){
-    unsigned int nbActors=m_Scene->getNBActors();
-    Vertex3d CollisionCenter ;
-    StaticModel* tmp1,*tmp2;
-    if(nbActors>0)
-    for(unsigned int i=0; i<nbActors-1;i++){
-        if(m_Scene->getActor(i)->getID() & PHYSICAL){
-            tmp1=dynamic_cast<StaticModel*>(m_Scene->getActor(i));
-            for(unsigned int j=i+1;j<nbActors;j++)
-                if(m_Scene->getActor(j)->getID() & PHYSICAL){
-                    tmp2=dynamic_cast<StaticModel*>(m_Scene->getActor(j));
-                    if(CollisionCheck(tmp1,tmp2,&CollisionCenter)){
-                        AddData({tmp1,tmp2,CollisionCenter});
+        unsigned int nbActors=m_Scene->getNBActors();
+        Vertex3d CollisionCenter ;
+        StaticModel* tmp1,*tmp2;
+        if(nbActors>0)
+        for(unsigned int i=0; i<nbActors-1;i++){
+            if(m_Scene->getActor(i)->getID() & PHYSICAL){
+                tmp1=dynamic_cast<StaticModel*>(m_Scene->getActor(i));
+                for(unsigned int j=i+1;j<nbActors;j++)
+                    if(m_Scene->getActor(j)->getID() & PHYSICAL){
+                        tmp2=dynamic_cast<StaticModel*>(m_Scene->getActor(j));
+                        if(CollisionCheck(tmp1,tmp2,&CollisionCenter)){
+                            AddData({tmp1,tmp2,CollisionCenter});
+                        }
                     }
-                }
+            }
         }
-    }
 };
 void PhysicsEngine::CollisionReaction(){
     for(unsigned int i = 0;i<m_nbElements;i++){
