@@ -19,6 +19,7 @@ private :
     int                 m_nbWeapons;
     int                 m_SelectedWeapon;
     Weapon**            v_Weapons;
+    Vertex3d            m_MoveDirection;
 
 };
 #endif // PFE_HOPE_H_

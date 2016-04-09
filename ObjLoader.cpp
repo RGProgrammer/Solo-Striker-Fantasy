@@ -320,6 +320,7 @@ int ObjLoader::CopyBuffer(StaticModel* Dest){
                 Dest->v_Meshes[i].material->DiffuseColor=v_Meshes[i].material->DiffuseColor;
                 Dest->v_Meshes[i].material->mtlName=NULL;
                 Dest->v_Meshes[i].material->TextureMap=NULL;
+                Dest->v_Meshes[i].material->TextureId=0 ;
                 if(v_Meshes[i].material->TextureMap){
                     Dest->v_Meshes[i].material->TextureMap=(Image*)malloc(sizeof(Image));
                     if(Dest->v_Meshes[i].material->TextureMap) {
@@ -340,7 +341,19 @@ int ObjLoader::CopyBuffer(StaticModel* Dest){
                         Dest->v_Meshes[i].material->TextureMap->Pixels[(j*v_Meshes[i].material->TextureMap->Width+k)*4+3]=
                         v_Meshes[i].material->TextureMap->Pixels[(j*v_Meshes[i].material->TextureMap->Width+k)*4+3];
                     }
-
+                    glGenTextures(1,&(Dest->v_Meshes[i].material->TextureId));
+                    glBindTexture(GL_TEXTURE_2D, Dest->v_Meshes[i].material->TextureId); //Tell OpenGL which texture to edit
+                    //Map the image to the texture
+                    glTexImage2D(GL_TEXTURE_2D,                //Always GL_TEXTURE_2D
+                    0,                            //0 for now
+                    GL_RGBA,                       //Format OpenGL uses for image
+                    Dest->v_Meshes[i].material->TextureMap->Width,
+                    Dest->v_Meshes[i].material->TextureMap->Height,  //Width and height
+                    0,                            //The border of the image
+                    GL_RGBA, //GL_RGB, because pixels are stored in RGB format
+                    GL_UNSIGNED_BYTE, //GL_UNSIGNED_BYTE, because pixels are stored
+				                   //as unsigned numbers
+                    Dest->v_Meshes[i].material->TextureMap->Pixels);
                     }
                 }
             }

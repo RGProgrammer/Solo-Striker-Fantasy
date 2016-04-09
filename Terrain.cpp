@@ -18,13 +18,13 @@ void Terrain::Destroy(){
 int Terrain::LoadFromFile(char* filename){
     if(!(m_Sample=StaticModel::LoadFile(filename)))
         return 0 ;
-    if(!(v_Points=(Vertex3d*)malloc(9*sizeof(Vertex3d))))
+    if(!(v_Points=(Vertex3d*)malloc(16*sizeof(Vertex3d))))
         return 0 ;
-    float offset= m_Sample->getRadius()*1.414213562f;
+    float offset= m_Sample->getRadius()*1.4142135f;//62f;
     for(int i=-1;i<2;i++)
         for(int j=-1;j<2;j++){
             v_Points[(i+1)*3+j+1].x=offset*j;
-            v_Points[(i+1)*3+j+1].y=0.0f;
+            v_Points[(i+1)*3+j+1].y=75.0f;
             v_Points[(i+1)*3+j+1].z=offset*i;
         }
     m_Speed=2.0f ;

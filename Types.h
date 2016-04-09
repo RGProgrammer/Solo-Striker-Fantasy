@@ -23,6 +23,7 @@ typedef struct {
     char* mtlName;
     ColorRGB DiffuseColor ;
     Image* TextureMap ;
+    unsigned int TextureId ;
 } Material ; // all needed types of images that can be applied on 3d model
 
 typedef struct {

@@ -1,29 +1,30 @@
 #include "Math.h"
-float Magnitude3d(Vertex3d Ver){
+/*
+inline float Magnitude3d(Vertex3d Ver){
     return (float)sqrt(Ver.x*Ver.x+Ver.y*Ver.y+Ver.z*Ver.z);
 };
-Vertex3d Normalize3d(Vertex3d Ver){
+inline Vertex3d Normalize3d(Vertex3d Ver){
     float d=Magnitude3d(Ver);
     return ScaleVertex3d(Ver,1.f/d);
 };
-Vertex3d AddVertex3d(Vertex3d Ver1 ,Vertex3d Ver2){
+inline Vertex3d AddVertex3d(Vertex3d Ver1 ,Vertex3d Ver2){
     return {Ver1.x+Ver2.x,Ver1.y+Ver2.y,Ver1.z+Ver2.z};
 };
-Vertex3d SubsVertex3d(Vertex3d Ver1,Vertex3d Ver2){
+inline Vertex3d SubsVertex3d(Vertex3d Ver1,Vertex3d Ver2){
     return {Ver1.x-Ver2.x,Ver1.y-Ver2.y,Ver1.z-Ver2.z};
 };
-Vertex3d ScaleVertex3d(Vertex3d Ver,float s){
+inline Vertex3d ScaleVertex3d(Vertex3d Ver,float s){
     return {Ver.x*s,Ver.y*s,Ver.z*s};
 };
-float DotProduct3d(Vertex3d Ver1 ,Vertex3d Ver2){
+inline float DotProduct3d(Vertex3d Ver1 ,Vertex3d Ver2){
     return Ver1.x*Ver2.x+Ver1.y*Ver2.y+Ver1.z*Ver2.z;
 };
-Vertex3d CrossProduct3d(Vertex3d Ver1,Vertex3d Ver2){
+inline Vertex3d CrossProduct3d(Vertex3d Ver1,Vertex3d Ver2){
     return {Ver1.y*Ver2.z-Ver1.z*Ver2.y,
             Ver1.z*Ver2.x-Ver1.x*Ver2.z,
             Ver1.x*Ver2.y-Ver1.y*Ver2.x};
 };
-Vertex3d Rotate3d(Vertex3d Ver,Vertex3d Pers,double ang ){
+inline Vertex3d Rotate3d(Vertex3d Ver,Vertex3d Pers,double ang ){
     Pers=Normalize3d(Pers);
     Vertex3d tmp ;
     tmp.x=Ver.x*(cos(ang)+Pers.x*Pers.x*(1-cos(ang)))+
@@ -38,7 +39,7 @@ Vertex3d Rotate3d(Vertex3d Ver,Vertex3d Pers,double ang ){
     return tmp;
 
 };
-void Multi4x4Mtx(float* leftMtx, float* rightMtx,float* resultMtx){
+inline void Multi4x4Mtx(float* leftMtx, float* rightMtx,float* resultMtx){
         resultMtx[0] =leftMtx[0]*rightMtx[0]+leftMtx[4]*rightMtx[1]+leftMtx[8]*rightMtx[2] +leftMtx[12]*rightMtx[3];
         resultMtx[1] =leftMtx[1]*rightMtx[0]+ leftMtx[5]*rightMtx[1]+leftMtx[9]*rightMtx[2] +leftMtx[13]*rightMtx[3];
         resultMtx[2] =leftMtx[2]*rightMtx[0]+ leftMtx[6]*rightMtx[1]+leftMtx[10]*rightMtx[2]+leftMtx[14]*rightMtx[3];
@@ -56,10 +57,10 @@ void Multi4x4Mtx(float* leftMtx, float* rightMtx,float* resultMtx){
         resultMtx[14]=leftMtx[2]*rightMtx[12]+leftMtx[6]*rightMtx[13]+leftMtx[10]*rightMtx[14]+leftMtx[14]*rightMtx[15];
         resultMtx[15]=leftMtx[3]*rightMtx[12]+leftMtx[7]*rightMtx[13]+leftMtx[11]*rightMtx[14]+leftMtx[15]*rightMtx[15];
 };
-Vertex3d Mtx_x_Vertex(float* M4x4,Vertex3d ver){
+inline Vertex3d Mtx_x_Vertex(float* M4x4,Vertex3d ver){
     Vertex3d rslt;
     rslt.x=M4x4[0]*ver.x+M4x4[4]*ver.y+M4x4[8]*ver.z+M4x4[12];
     rslt.y=M4x4[1]*ver.x+M4x4[5]*ver.y+M4x4[9]*ver.z+M4x4[13];
     rslt.z=M4x4[2]*ver.x+M4x4[6]*ver.y+M4x4[10]*ver.z+M4x4[14];
     return rslt ;
-};
+};*/

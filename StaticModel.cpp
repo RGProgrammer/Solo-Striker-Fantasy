@@ -45,21 +45,8 @@ void StaticModel::Draw(float * ViewMtx){
     //start drawing;
         glColor3f(1.0f,1.0f,1.0f);
         for(unsigned int i=0;i<m_nbMeshes ; i++){
-        if(v_Meshes[i].material && v_Meshes[i].material->TextureMap){
-            glGenTextures(1, &textureId); //Make room for our texture
-            glBindTexture(GL_TEXTURE_2D, textureId); //Tell OpenGL which texture to edit
-            //Map the image to the texture
-            glTexImage2D(GL_TEXTURE_2D,                //Always GL_TEXTURE_2D
-				 0,                            //0 for now
-				 GL_RGBA,                       //Format OpenGL uses for image
-				 v_Meshes[i].material->TextureMap->Width,
-				 v_Meshes[i].material->TextureMap->Height,  //Width and height
-				 0,                            //The border of the image
-				 GL_RGBA, //GL_RGB, because pixels are stored in RGB format
-				 GL_UNSIGNED_BYTE, //GL_UNSIGNED_BYTE, because pixels are stored
-				                   //as unsigned numbers
-				 v_Meshes[i].material->TextureMap->Pixels);
-				 glBindTexture(GL_TEXTURE_2D,textureId);
+        if(v_Meshes[i].material && v_Meshes[i].material->TextureId){
+				 glBindTexture(GL_TEXTURE_2D,v_Meshes[i].material->TextureId);
 				 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
         }
@@ -119,6 +106,8 @@ void StaticModel::Destroy(){
                         free(v_Meshes[i].material->TextureMap->Pixels);
                     free(v_Meshes[i].material->TextureMap);
                     v_Meshes[i].material->TextureMap=NULL;}
+                if(v_Meshes[i].material->TextureId)
+                    glDeleteTextures(1,&v_Meshes[i].material->TextureId);
                 free((v_Meshes[i].material));
                 v_Meshes[i].material=NULL ;
             }

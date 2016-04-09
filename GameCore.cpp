@@ -43,6 +43,7 @@ void GameCore::StartGame(){
     m_Timer.Reset();
     while(m_Running){
         Dt=m_Timer.getDeltaTime();
+        printf("dt: %.20f \n",Dt);
         m_Logic->Update(Dt);
         m_Graphics->DrawScene();
     }
