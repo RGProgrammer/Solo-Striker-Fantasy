@@ -89,6 +89,8 @@
 		<Unit filename="SoundEngine.h" />
 		<Unit filename="StaticModel.cpp" />
 		<Unit filename="StaticModel.h" />
+		<Unit filename="Terrain.cpp" />
+		<Unit filename="Terrain.h" />
 		<Unit filename="Timer.cpp" />
 		<Unit filename="Timer.h" />
 		<Unit filename="Types.h" />

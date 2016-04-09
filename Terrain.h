@@ -14,5 +14,6 @@ private:
     StaticModel*        m_Sample ;
     Vertex3d*           v_Points;
     float               m_Speed ;
+    float               m_Offset ;
 };
 #endif // PFE_TERRAIN_H_4

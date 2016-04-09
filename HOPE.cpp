@@ -72,7 +72,6 @@ void HOPE::Update(SDL_Event* Events, int nbEvents){
                     m_Pos.x=0.0f;
                 }
             }
-            printf("player position: %f %f %f\n",m_Pos.x,m_Pos.y,m_Pos.z);
         }else{
             m_MoveDirection={0.0f,0.0f,0.0f};
         }
