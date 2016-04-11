@@ -2,7 +2,7 @@
 
 GameLogic::GameLogic():m_Scene(NULL),m_Camera(NULL),m_Player(NULL),m_EventSys(NULL),
                         m_Ship(NULL),m_MainMenu (NULL),m_ExitVariable(NULL),
-                        m_CurrentLevel(-1),v_Filenames(NULL),m_Physics(NULL),
+                        m_CurrentLevel(-1),v_Filenames(NULL),m_nbLevels(0),m_Physics(NULL),
                         m_SoundHandler(NULL){
 };
 GameLogic::~GameLogic(){
@@ -31,7 +31,7 @@ void GameLogic::Destroy(){
         m_SoundHandler=NULL ;
     }
     if(v_Filenames){
-        for(int i=0;i<NBLEVELS;i++)
+        for(int i=0;i<m_nbLevels;i++)
             free(v_Filenames[i]);
         free(v_Filenames);
         v_Filenames=NULL ;
@@ -62,10 +62,14 @@ int GameLogic::InitLogic(GameScene* Scene){
     m_Ship->setCamera(m_Camera);
     m_Scene->setPlayer(m_Player);
     m_Stat=MAINMENU ;
+    m_nbLevels=1 ;
+    v_Filenames=(char**)malloc(m_nbLevels*sizeof(char*));
+    v_Filenames[0]=(char*)malloc(13*sizeof(char));
+    strcpy(v_Filenames[0],"Desert.lvl");
     return 1 ;
 };
 int GameLogic::InitLevel(int index){
-    UFO* e=NULL;
+    /*UFO* e=NULL;
     Terrain* t=NULL;
     m_Scene->AddActor(StaticModel::LoadFile("Data//skybox.obj"));
     t=new Terrain();
@@ -85,6 +89,10 @@ int GameLogic::InitLevel(int index){
     m_Scene->AddActor(e);
     m_Camera->setOrientation({0.0f,-1.0f,0.0f},{0.0f,0.0f,-1.0f});
     m_Camera->setPosition({0.0f,150.0f,0.0f});
+    */
+    m_Camera->setViewType(SIDE);
+    if(!LevelLoader::LoadLevel(v_Filenames[index-1],m_Scene))
+        return 0 ;
     return 1 ;
 };
 void GameLogic::Update(float dt){
@@ -123,6 +131,11 @@ void GameLogic::Update(float dt){
         }
         m_Physics->CollisioDetection();
         m_Physics->CollisionReaction();
+        /*if(BossDefeated()){
+            m_Delay-=dt;
+            if(m_Delay<=0.0f)
+                InitLevel(++m_CurrentLevel);
+        }*/
     }else if(m_Stat==MAINMENU){
 
             if(Events[0].type==SDL_QUIT || Events[0].key.keysym.sym==SDLK_ESCAPE)

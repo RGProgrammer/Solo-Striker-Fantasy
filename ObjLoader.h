@@ -3,14 +3,7 @@
 #include "Types.h"
 #include "StaticModel.h"
 #include ".//tools//lodepng//lodepng.h"
-#include <stdio.h>
-#include <string.h>
-
-
-void ReadLine(FILE* file,char* buffer);
-bool contains(char* str1,char* str2);
-int CatStrings(char* str1,char* str2,char** Dest);
-
+#include "util.h"
 class StaticModel ;
 class ObjLoader {
 public:

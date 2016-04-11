@@ -1,9 +1,7 @@
 #include "Camera.h"
 #include <stdio.h>
 Camera::Camera():Actor(),m_ViewType(UP){
-    setViewType(UP);
     this->UpdateMtx();
-
 };
 Camera::~Camera(){ Destroy();};
 int Camera::getViewType(){

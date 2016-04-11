@@ -4,6 +4,7 @@
 
 #define SIDE     1
 #define UP       2
+#define FREE     3
 
 
 class Camera : public Actor {

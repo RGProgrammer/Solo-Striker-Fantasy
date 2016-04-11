@@ -4,6 +4,8 @@ GameScene::~GameScene() {
     this->Destroy() ;
 };
 int GameScene::AddActor(Actor* actor){
+    if(actor==NULL)
+        return 0 ;
     if(v_Actors==NULL){
         v_Actors=(Actor**)malloc((Size)*sizeof(Actor*));
         if(v_Actors==NULL)

@@ -27,7 +27,7 @@ int Terrain::LoadFromFile(char* filename){
             v_Points[(i+1)*3+j+1].y=75.0f;
             v_Points[(i+1)*3+j+1].z=m_Offset*i;
         }
-    m_Speed=20.0f ;
+    m_Speed=50.0f ;
     return 1 ;
 };
 void Terrain::setSpeed(float Speed ){

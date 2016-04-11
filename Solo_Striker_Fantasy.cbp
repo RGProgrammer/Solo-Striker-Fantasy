@@ -69,9 +69,10 @@
 		<Unit filename="GraphicsEngine.h" />
 		<Unit filename="HOPE.cpp" />
 		<Unit filename="HOPE.h" />
+		<Unit filename="LevelLoader.cpp" />
+		<Unit filename="LevelLoader.h" />
 		<Unit filename="MainMenu.cpp" />
 		<Unit filename="MainMenu.h" />
-		<Unit filename="Math.cpp" />
 		<Unit filename="Math.h" />
 		<Unit filename="ObjLoader.cpp" />
 		<Unit filename="ObjLoader.h" />
@@ -105,6 +106,8 @@
 		<Unit filename="main.cpp" />
 		<Unit filename="tools/lodepng/lodepng.cpp" />
 		<Unit filename="tools/lodepng/lodepng.h" />
+		<Unit filename="util.cpp" />
+		<Unit filename="util.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

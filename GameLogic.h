@@ -16,9 +16,7 @@
 #include "EventSystem.h"
 #include "PhysicsEngine.h"
 #include "SoundEngine.h"
-#include "Terrain.h"
-//#include "Cube.h"
-#include "UFO.h"
+#include "LevelLoader.h"
 #include ".//tools//sdl2//include//SDL.h"
 
 //nomber of level
@@ -40,7 +38,9 @@ public:
     void setExitVariable(bool* variable);
 private:
     int                 m_Stat ;
+    float               m_Delay ;
     char**              v_Filenames;
+    int                 m_nbLevels;
     int                 m_CurrentLevel ;
     bool*               m_ExitVariable ;
     GameScene*          m_Scene ;
