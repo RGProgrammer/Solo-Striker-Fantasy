@@ -12,7 +12,4 @@ int UFO::LoadFromFile(){
     m_Health=1 ;
     m_Dt=0.0f;
 };
-void UFO::Update(float dt){
-
-};
 

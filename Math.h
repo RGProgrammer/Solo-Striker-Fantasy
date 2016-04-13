@@ -88,7 +88,14 @@ inline Vertex3d Mtx_x_Vertex(float* M4x4,Vertex3d ver){
     rslt.z=M4x4[2]*ver.x+M4x4[6]*ver.y+M4x4[10]*ver.z+M4x4[14];
     return rslt ;
 };
-
-///void InverseMtx(float* M4x4);//to do
+inline bool OppositeDirection(Vertex3d ver1,Vertex3d ver2){
+    ver1=Normalize3d(ver1);
+    ver2=Normalize3d(ver2);
+    Vertex3d ver=SubsVertex3d(ver1,ver2);
+    if(ver.x==0.0f && ver.y==0.0f && ver.z==0.0f )
+        return true ;
+    else
+        return false;
+}
 #endif // PFE_MATH_H_
 

@@ -2,10 +2,11 @@
 #define PFE_CAMERA_H_
 #include "Actor.h"
 
-#define SIDE     1
-#define UP       2
-#define FREE     3
-
+enum ORIENTATION{
+    FREE=1,
+    SIDE=2,
+    UP=3
+};
 
 class Camera : public Actor {
 public:
@@ -13,7 +14,7 @@ public:
     ~Camera();
     int getViewType();
     void setViewType(int Type);
-    //void printInfo();
+    void printInfo();
 protected:
     void UpdateMtx();
     int         m_ViewType ;

@@ -17,7 +17,6 @@ private:
     int DecodeBossLine(char* line);
     int DecodeTerrainLine(char* line);
     int DecodeSkyboxLine(char* line);
-    int DecodeLevelLine(char* line);
     int DecodeCameraLine(char* line );
     GameScene*           m_Scene;
     Enemy*               m_Sample;

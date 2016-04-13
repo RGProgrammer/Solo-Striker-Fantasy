@@ -3,7 +3,7 @@
 GameLogic::GameLogic():m_Scene(NULL),m_Camera(NULL),m_Player(NULL),m_EventSys(NULL),
                         m_Ship(NULL),m_MainMenu (NULL),m_ExitVariable(NULL),
                         m_CurrentLevel(-1),v_Filenames(NULL),m_nbLevels(0),m_Physics(NULL),
-                        m_SoundHandler(NULL){
+                        m_SoundHandler(NULL),m_Delay(5.0f){
 };
 GameLogic::~GameLogic(){
     this->Destroy();
@@ -90,7 +90,7 @@ int GameLogic::InitLevel(int index){
     m_Camera->setOrientation({0.0f,-1.0f,0.0f},{0.0f,0.0f,-1.0f});
     m_Camera->setPosition({0.0f,150.0f,0.0f});
     */
-    m_Camera->setViewType(SIDE);
+    //m_Camera->setViewType(SIDE);
     if(!LevelLoader::LoadLevel(v_Filenames[index-1],m_Scene))
         return 0 ;
     return 1 ;

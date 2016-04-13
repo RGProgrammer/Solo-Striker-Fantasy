@@ -6,9 +6,10 @@
 #define ENEMY       0x0010
 
 //Enemy Actions
-#define FIREACTION  0x0000
-#define MOVEACTION  0x0001
-#define EXPLODE     0x0002
+#define NOACTION    0x0000
+#define FIREACTION  0x0001
+#define MOVEACTION  0x0002
+#define EXPLODE     0x0004
 
 //Stats
 #define DEAD        0x0000
@@ -34,17 +35,21 @@ public :
     Enemy(Vertex3d Pos,Vertex3d Dir,Vertex3d Up);
     virtual ~Enemy();
     virtual int LoadFromFile()=0 ;
-    virtual void Update(float dt)=0 ;
-    void Draw(float* ViewMtx);
+    virtual void Draw(float* ViewMtx);
+    virtual void Update(float dt);
     void setScene(GameScene* Scene);
     virtual void Destroy();
     virtual int addAction(Action action);
+    int Fire(Vertex3d Direction);
+    void Explode();
     void getDamage(int Damage);
 protected:
     int                             m_Stat ;
     int                             m_CurrentActions;
     int                             m_Health ;
     unsigned int                    m_nbActions ;
+    float                           m_Dt;
+    Shot*                           m_Sample ;
     Action*                         v_Actions ;
     GameScene*                      m_Scene;
 };
