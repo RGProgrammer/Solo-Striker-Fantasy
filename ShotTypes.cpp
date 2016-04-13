@@ -3,26 +3,24 @@
 EnergyBullet::EnergyBullet():Shot(){
     m_Damage=5 ;
     m_Source=NULL;
-    m_Speed=20.0f;
-    m_LifeTime=10.0f;
+    m_Speed=100.0f;
+    m_LifeTime=100.0f;
 };
 EnergyBullet::EnergyBullet(Vertex3d Pos,Vertex3d Dir,Vertex3d Up):Shot(Pos,Dir,Up){
     m_Damage=5 ;
     m_Source=NULL;
-    m_Speed=20.0f;
-    m_LifeTime=10.0f;
+    m_Speed=100.0f;
+    m_LifeTime=100.0f;
 };
 EnergyBullet::EnergyBullet(Actor* Source):Shot(){
     m_Damage=5 ;
     m_Source=NULL;
-    m_Speed=20.0f;
-    m_LifeTime=10.0f;
+    m_Speed=100.0f;
+    m_LifeTime=100.0f;
 };
 EnergyBullet::~EnergyBullet(){
 };
 void EnergyBullet::Update(float dt){
-    if(dt==0)
-        dt=0.1f;
     m_LifeTime-=dt;
     m_Velocity=ScaleVertex3d(m_Dir,m_Speed*dt);
     m_Pos=AddVertex3d(m_Pos,m_Velocity);

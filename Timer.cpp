@@ -17,9 +17,14 @@ void Timer::Reset(){
     m_Started=true ;
 };
 double Timer::getDeltaTime(){
-    dt=0.0;
+    dt=0.0f;
     if(m_Started){
-        dt=(current_time.tv_sec-last_time.tv_sec)+(current_time.tv_usec-last_time.tv_usec)/(float)1000 ;
+        if(gettimeofday(&current_time,NULL)==0){
+            dt=(float)(current_time.tv_sec-last_time.tv_sec)/(float)1000+(current_time.tv_usec-last_time.tv_usec)/(float)1000000 ;
+            last_time=current_time ;
+            if(dt<0.0f)
+                dt=0.0f;
+        }
     }
     return dt ;
 };

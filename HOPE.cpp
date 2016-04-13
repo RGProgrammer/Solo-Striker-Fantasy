@@ -50,7 +50,7 @@ HOPE::~HOPE(){
 int HOPE::LoadFromFile() {
     m_Health=1000.0f;
     m_Charge=0 ;
-    m_Speed=100.0f;
+    m_Speed=50.0f;
     m_Shooterl=new Shooter(this,{0.0f,-9.0f,0.f});
     m_Shooter2=new Shooter(this,{0.0f,9.0f,0.f});
     m_Shooterl->LoadFromFile();
