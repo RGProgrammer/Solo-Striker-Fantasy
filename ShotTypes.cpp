@@ -5,18 +5,21 @@ EnergyBullet::EnergyBullet():Shot(){
     m_Source=NULL;
     m_Speed=100.0f;
     m_LifeTime=100.0f;
+    setColor({0.98f,0.73f,0.16f});
 };
 EnergyBullet::EnergyBullet(Vertex3d Pos,Vertex3d Dir,Vertex3d Up):Shot(Pos,Dir,Up){
     m_Damage=5 ;
     m_Source=NULL;
     m_Speed=100.0f;
     m_LifeTime=100.0f;
+    setColor({0.98f,0.73f,0.16f});
 };
 EnergyBullet::EnergyBullet(Actor* Source):Shot(){
     m_Damage=5 ;
     m_Source=NULL;
     m_Speed=100.0f;
     m_LifeTime=100.0f;
+    setColor({0.98f,0.73f,0.16f});
 };
 EnergyBullet::~EnergyBullet(){
 };
@@ -28,7 +31,7 @@ void EnergyBullet::Update(float dt){
         m_ID=UNKNOWN ;
 };
 int EnergyBullet::LoadFromFile(){
-    return StaticModel::LoadFromFile("Data//shot.obj");
+    return StaticModel::LoadFromFile("Data//EnergyBullet.obj");
 };
 
 
