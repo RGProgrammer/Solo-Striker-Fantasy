@@ -2,6 +2,7 @@
 #define PFE_ENEMY_H_
 #include "DynamicModel.h"
 #include "GameScene.h"
+#include "Explosion.h"
 //enemy define code
 #define ENEMY       0x0010
 
@@ -34,13 +35,13 @@ public :
     Enemy(Vertex3d Pos);
     Enemy(Vertex3d Pos,Vertex3d Dir,Vertex3d Up);
     virtual ~Enemy();
+    void setScene(GameScene* Scene);
     virtual int LoadFromFile()=0 ;
     virtual void Draw(float* ViewMtx);
     virtual void Update(float dt);
-    void setScene(GameScene* Scene);
     virtual void Destroy();
     virtual int addAction(Action action);
-    int Fire(Vertex3d Direction);
+    virtual int Fire(Vertex3d Direction)=0;
     void Explode();
     void getDamage(int Damage);
 protected:
@@ -49,8 +50,9 @@ protected:
     int                             m_Health ;
     unsigned int                    m_nbActions ;
     float                           m_Dt;
-    Shot*                           m_Sample ;
+    Shot*                           m_Sample;
     Action*                         v_Actions ;
     GameScene*                      m_Scene;
+    Effect*                         m_Explosion ;
 };
 #endif // PFE_ENEMY_H_

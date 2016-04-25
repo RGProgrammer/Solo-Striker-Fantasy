@@ -1,23 +1,26 @@
 #include "Enemy.h"
 Enemy::Enemy():DynamicModel(),m_nbActions(0),v_Actions(NULL),m_Scene(NULL),m_CurrentActions(0),
-                        m_Health(1),m_Stat(ALIVE),m_Dt(0),m_Sample(NULL){
+                        m_Health(1),m_Stat(ALIVE),m_Dt(0),m_Sample(NULL),m_Explosion(NULL){
     m_ID|=ENEMY | PHYSICAL ;
 };
 Enemy::Enemy(Vertex3d Pos):DynamicModel(Pos),m_nbActions(0),v_Actions(NULL),m_Scene(NULL),m_CurrentActions(0),m_Health(1),
-                                m_Stat(ALIVE),m_Dt(0),m_Sample(NULL){
+                                m_Stat(ALIVE),m_Dt(0),m_Sample(NULL),m_Explosion(NULL){
    m_ID|=ENEMY | PHYSICAL ;};
 Enemy::Enemy(Vertex3d Pos,Vertex3d Dir,Vertex3d Up):DynamicModel(Pos,Dir,Up),m_nbActions(0),v_Actions(NULL),m_Scene(NULL),
-                                                    m_CurrentActions(0),m_Health(1),m_Stat(ALIVE),m_Dt(0),m_Sample(NULL){
+                                                    m_CurrentActions(0),m_Health(1),m_Stat(ALIVE),m_Dt(0),m_Sample(NULL),
+                                                    m_Explosion(NULL){
     m_ID|=ENEMY | PHYSICAL ;};
 Enemy::~Enemy(){
     this->Destroy();
 };
 void Enemy::Draw(float* ViewMtx){
-    if(m_Stat !=DEAD)
+    if(m_Stat !=DEAD && m_Stat != EXPLODING)
         StaticModel::Draw(ViewMtx);
+    else if(m_Stat==EXPLODING)
+        m_Explosion->Draw(ViewMtx);
 };
 void Enemy::Update(float dt){
-    if(m_Stat!=DEAD){
+    if(m_Stat!=DEAD && m_Stat!=EXPLODING){
         bool verif=false ;
         if(dt==0.0f)
             dt=0.01f;
@@ -43,8 +46,12 @@ void Enemy::Update(float dt){
             if(verif)
                 m_Dt=0.0f;
         }
-    }else{
-        m_ID=UNKNOWN ;
+    }else if (m_Stat==EXPLODING){
+        if(!m_Explosion->isDone()){
+            m_Explosion->Update(dt);
+        }else{
+            m_Stat=DEAD;
+            m_ID=UNKNOWN ;}
     }
 };
 void Enemy::setScene(GameScene* Scene){
@@ -61,6 +68,11 @@ void Enemy::Destroy(){
         v_Actions=NULL ;
     }
     m_nbActions=0;
+    if(m_Explosion){
+        m_Explosion->Destroy();
+        delete m_Explosion ;
+        m_Explosion=NULL ;
+    }
 };
 int Enemy::addAction(Action action){
     if(v_Actions==NULL){
@@ -87,14 +99,15 @@ int Enemy::Fire(Vertex3d Direction){
     }*/
 };
 void Enemy::Explode(){
-    printf("Explode \n");
-    m_Stat=DEAD ;
+    m_Stat=EXPLODING;
+    m_Explosion->Start();
+    m_Health=0 ;
 };
 void Enemy::getDamage(int damage){
     if(m_Stat==ALIVE){
         m_Health-=damage;
         if(m_Health<=0){
-            m_Stat=DEAD;
-            m_ID=UNKNOWN;}
+            this->Explode();
+        }
     }
 };

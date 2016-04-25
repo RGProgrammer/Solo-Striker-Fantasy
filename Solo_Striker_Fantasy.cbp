@@ -55,10 +55,14 @@
 		<Unit filename="Cube.h" />
 		<Unit filename="DynamicModel.cpp" />
 		<Unit filename="DynamicModel.h" />
+		<Unit filename="Effect.cpp" />
+		<Unit filename="Effect.h" />
 		<Unit filename="Enemy.cpp" />
 		<Unit filename="Enemy.h" />
 		<Unit filename="EventSystem.cpp" />
 		<Unit filename="EventSystem.h" />
+		<Unit filename="Explosion.cpp" />
+		<Unit filename="Explosion.h" />
 		<Unit filename="GameCore.cpp" />
 		<Unit filename="GameCore.h" />
 		<Unit filename="GameLogic.cpp" />

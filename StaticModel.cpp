@@ -36,6 +36,7 @@ void StaticModel::Draw(float * ViewMtx){
     //initializing transformation matrix
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+
     if(ViewMtx){
         float tmp[16];
         Multi4x4Mtx(ViewMtx,this->getTransMtx(),tmp);
@@ -43,7 +44,6 @@ void StaticModel::Draw(float * ViewMtx){
     }else
         glLoadMatrixf(this->getTransMtx());
     //start drawing;
-        glColor3f(1.0f,1.0f,1.0f);
         for(unsigned int i=0;i<m_nbMeshes ; i++){
         if(v_Meshes[i].material && v_Meshes[i].material->TextureId){
 				 glBindTexture(GL_TEXTURE_2D,v_Meshes[i].material->TextureId);
@@ -52,6 +52,7 @@ void StaticModel::Draw(float * ViewMtx){
         }
         if(v_Meshes[i].IndexBuffer){
             glBegin(GL_TRIANGLES);
+            glColor3f(1.0f,1.0f,1.0f);
             for(unsigned int j=0;j <v_Meshes[i].Faces*3;j++){
                 ////////////////////////////////////////////////////////////
                 if(v_Meshes[i].IndexBuffer[j].NormalIndex==0)

@@ -48,6 +48,8 @@ void GameCore::StartGame(){
     }
 };
 void GameCore::Destroy(){
+    SDL_Quit();
+    m_Timer.Stop();
     if(m_Logic){
         m_Logic->Destroy();
         delete m_Logic ;
@@ -68,6 +70,4 @@ void GameCore::Destroy(){
         delete m_Window ;
         m_Window=NULL ;
     }
-    SDL_Quit();
-    m_Timer.Stop();
 };
