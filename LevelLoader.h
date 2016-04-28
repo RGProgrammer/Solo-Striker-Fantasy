@@ -2,6 +2,7 @@
 #define PFE_LEVELLOADER_H_
 #include "GameScene.h"
 #include "UFO.h"
+#include "Blades.h"
 #include "Terrain.h"
 #include "util.h"
 #include <stdlib.h>

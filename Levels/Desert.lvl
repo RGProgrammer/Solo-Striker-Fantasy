@@ -6,15 +6,9 @@
 /action inst="3.0" type="FIRE"  
 /action inst="5.0" type="EXPLODE"
 
-/enemy type="UFO" pos="0.0 -20.0 60.0" dir="0.0 0.0 -1.0" up="0.0 1.0 0.0"
-/action inst="6.0" type="MOVE" param="0.0 0.0 -70.0 0.0 0.0 0.0"
-/action inst="3.0"	type="FIRE"	
-/action inst="5.0" type="EXPLODE"
-
+/enemy type="Blades" pos="0.0 -20.0 60.0" dir="0.0 0.0 -1.0" up="0.0 1.0 0.0"
 /enemy type="UFO" pos="0.0 0.0 60.0" dir="0.0 0.0 -1.0" up="0.0 1.0 0.0" shot="Long"
-/action inst="9.0" type="MOVE" param="0.0 0.0 -70.0 0.0 0.0 0.00"
-/action inst="33.0"	type="FIRE"
-/action inst="5.0" type="EXPLODE"
+
 
 /boss name="CUBE" pos="0.0 0.0 70.0" dir="0.0 0.0 -1.0" up="0.0 1.0 0.0"
 

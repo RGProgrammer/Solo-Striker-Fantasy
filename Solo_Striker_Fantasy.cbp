@@ -47,11 +47,15 @@
 		<Unit filename="Abstract.h" />
 		<Unit filename="Actor.cpp" />
 		<Unit filename="Actor.h" />
+		<Unit filename="Blades.cpp" />
+		<Unit filename="Blades.h" />
 		<Unit filename="Boss.cpp" />
 		<Unit filename="Boss.h" />
 		<Unit filename="CUBE.cpp" />
 		<Unit filename="Camera.cpp" />
 		<Unit filename="Camera.h" />
+		<Unit filename="Canon.cpp" />
+		<Unit filename="Canon.h" />
 		<Unit filename="Cube.h" />
 		<Unit filename="DynamicModel.cpp" />
 		<Unit filename="DynamicModel.h" />

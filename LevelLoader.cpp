@@ -91,7 +91,15 @@ int LevelLoader::DecodeEnemyLine(char* line){
             m_Sample=new UFO();
             m_Sample->LoadFromFile();
             m_Scene->AddActor(m_Sample);
-        }
+        }else if(strcmp(tmpstr,"Blades")==0){
+            m_Sample=new Blades();
+            m_Sample->LoadFromFile();
+            m_Scene->AddActor(m_Sample);
+        }/*else if(strcmp(tmpstr,"Canon")==0){
+             m_Sample=new Canon();
+            m_Sample->LoadFromFile();
+            m_Scene->AddActor(m_Sample);
+        }*/
         if(tmpstr){
             free(tmpstr);
             tmpstr=NULL;

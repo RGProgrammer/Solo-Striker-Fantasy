@@ -73,6 +73,7 @@ void StaticModel::Draw(float * ViewMtx){
                            v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j].VertexIndex-1].z);
 
             }
+            glColor3f(1.0f,1.0f,1.0f);
             glEnd();
         }
             if(textureId!=0){

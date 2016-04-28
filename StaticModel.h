@@ -47,7 +47,7 @@ protected :
     int addNormal(Vertex3d);//add a vertex to Normalbuffer of the selected mesh(used by loadfromfile method)
     int addIndices(Index id1,Index id2,Index id3);// add Face to indicesbuffer
     int addTexCoord(Vertex2d);//add to texture coordinate to texture coordinates buffer
-    void UpdateMtx();
+    virtual void UpdateMtx();
     ColorRGB                m_Color ;//Color used if the meshes has no material
     float                   m_Scale ;//Scale of the 3d model(>0);
     unsigned int            m_nbMeshes;//number of meshes construcring this model
