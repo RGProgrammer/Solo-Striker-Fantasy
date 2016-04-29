@@ -41,6 +41,7 @@ private :
     Vertex3d            m_MoveDirection;
     Shooter*            m_Shooterl;
     Shooter*            m_Shooter2;
+    bool                m_Firing ;
 
 
 

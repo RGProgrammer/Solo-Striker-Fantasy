@@ -67,7 +67,7 @@ int LevelLoader::DecodeActionLine(char* line){
                 m_Sample->addAction(action);
                 free(tmpstr);
             }
-        }else if(strcmp(tmpstr,"FIRE")){
+        }else if(strcmp(tmpstr,"FIRE")==0){
             action.ActionType=FIREACTION;
             free(tmpstr);
             if(contains(line,"param=")){
@@ -76,9 +76,11 @@ int LevelLoader::DecodeActionLine(char* line){
                 sscanf(tmpstr,"%f %f %f",&dir->x,&dir->y,&dir->z);
                 free(tmpstr);
                 action.Data=dir;
+                m_Sample->addAction(action);
             }
-        }else if(strcmp(tmpstr,"EXPLODE")){
+        }else if(strcmp(tmpstr,"EXPLODE")==0){
             action.ActionType=EXPLODE;
+            m_Sample->addAction(action);
         }
     }
 };
@@ -95,11 +97,11 @@ int LevelLoader::DecodeEnemyLine(char* line){
             m_Sample=new Blades();
             m_Sample->LoadFromFile();
             m_Scene->AddActor(m_Sample);
-        }/*else if(strcmp(tmpstr,"Canon")==0){
+        }else if(strcmp(tmpstr,"Canon")==0){
              m_Sample=new Canon();
             m_Sample->LoadFromFile();
             m_Scene->AddActor(m_Sample);
-        }*/
+        }
         if(tmpstr){
             free(tmpstr);
             tmpstr=NULL;

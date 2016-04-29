@@ -73,6 +73,11 @@ void Enemy::Destroy(){
         delete m_Explosion ;
         m_Explosion=NULL ;
     }
+    if(m_Sample){
+        m_Sample->Destroy();
+        delete m_Sample ;
+        m_Sample=NULL ;
+    }
 };
 int Enemy::addAction(Action action){
     if(v_Actions==NULL){
@@ -97,6 +102,9 @@ int Enemy::Fire(Vertex3d Direction){
         Shot* Clone=NULL;
         m_Scene->AddActor()
     }*/
+};
+void Enemy::addShotSample(Shot* Sample){
+    m_Sample=Sample;
 };
 void Enemy::Explode(){
     m_Stat=EXPLODING;

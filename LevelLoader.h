@@ -3,6 +3,7 @@
 #include "GameScene.h"
 #include "UFO.h"
 #include "Blades.h"
+#include "Canon.h"
 #include "Terrain.h"
 #include "util.h"
 #include <stdlib.h>

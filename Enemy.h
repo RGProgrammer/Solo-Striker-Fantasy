@@ -42,6 +42,7 @@ public :
     virtual void Destroy();
     virtual int addAction(Action action);
     virtual int Fire(Vertex3d Direction)=0;
+    virtual void addShotSample(Shot* Sample);
     void Explode();
     void getDamage(int Damage);
 protected:

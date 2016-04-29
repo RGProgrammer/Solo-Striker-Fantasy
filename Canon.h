@@ -2,7 +2,7 @@
 #define PFE_CANON_H_
 #include "Enemy.h"
 
-class Canon:public Enemy {
+class Canon: public Enemy {
 public :
     Canon();
     Canon(Vertex3d Pos);
@@ -10,6 +10,6 @@ public :
     ~Canon();
     int LoadFromFile() ;
     void Update(float dt);
-    int Fire();
+    int Fire(Vertex3d direction);
 };
 #endif // PFE_CANON_H_
