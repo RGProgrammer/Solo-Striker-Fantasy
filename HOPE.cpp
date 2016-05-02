@@ -88,38 +88,30 @@ void HOPE::Update(SDL_Event* Events, int nbEvents){
         if(Events[i].type==SDL_KEYDOWN){
             if(m_Camera && m_Camera->getViewType()==UP){
                 if(Events[i].key.keysym.sym==SDLK_UP){
-                    if(!OppositeDirection(m_MoveDirection,m_Dir))
                         m_MoveDirection=Normalize3d(AddVertex3d(m_MoveDirection,m_Dir));
                 }
                 else if(Events[i].key.keysym.sym==SDLK_DOWN){
-                    if(!OppositeDirection(m_MoveDirection,ScaleVertex3d(m_Dir,-1)))
                         m_MoveDirection=Normalize3d(AddVertex3d(m_MoveDirection,ScaleVertex3d(m_Dir,-1)));
                 }
                 if(Events[i].key.keysym.sym==SDLK_RIGHT){
                     Vertex3d Right=CrossProduct3d(m_Dir,m_Up);
-                    if(!OppositeDirection(m_MoveDirection,ScaleVertex3d(Right,-1)))
                         m_MoveDirection=Normalize3d(AddVertex3d(m_MoveDirection,ScaleVertex3d(Right,-1)));
                 }
                 else if(Events[i].key.keysym.sym==SDLK_LEFT){
                     Vertex3d Right=CrossProduct3d(m_Dir,m_Up);
-                    if(!OppositeDirection(m_MoveDirection,Right))
                         m_MoveDirection=Normalize3d(AddVertex3d(m_MoveDirection,Right));
                 }
             }else if(m_Camera && m_Camera->getViewType()==SIDE){
                  if(Events[i].key.keysym.sym==SDLK_UP){
-                    if(!OppositeDirection(m_MoveDirection,ScaleVertex3d(m_Up,-1)))
                         m_MoveDirection=Normalize3d(AddVertex3d(m_MoveDirection,ScaleVertex3d(m_Up,-1)));
                 }
                 else if(Events[i].key.keysym.sym==SDLK_DOWN){
-                    if(!OppositeDirection(m_MoveDirection,m_Up))
                         m_MoveDirection=Normalize3d(AddVertex3d(m_MoveDirection,m_Up));
                 }
                 if(Events[i].key.keysym.sym==SDLK_RIGHT){
-                     if(!OppositeDirection(m_MoveDirection,m_Dir))
                         m_MoveDirection=Normalize3d(AddVertex3d(m_MoveDirection,m_Dir));
                 }
                 else if(Events[i].key.keysym.sym==SDLK_LEFT){
-                    if(!OppositeDirection(m_MoveDirection,ScaleVertex3d(m_Dir,-1)))
                         m_MoveDirection=Normalize3d(AddVertex3d(m_MoveDirection,ScaleVertex3d(m_Dir,-1)));
                 }
             }
@@ -129,6 +121,7 @@ void HOPE::Update(SDL_Event* Events, int nbEvents){
             }
             if(Events[i].key.keysym.sym==SDLK_r){
                 setPosition({0.0f,0.0f,0.0f});
+                m_MoveDirection={0.0f,0.0f,0.0f};
             }
             if(Events[i].key.keysym.sym==SDLK_c){
                 if(m_Camera->getViewType()==SIDE){
@@ -145,45 +138,40 @@ void HOPE::Update(SDL_Event* Events, int nbEvents){
                 }
             }
         }else if(Events[i].type==SDL_KEYUP){
+            m_MoveDirection={0.0f,0.0f,0.0f};
             if(Events[i].key.keysym.sym==SDLK_x)
                 m_Firing=false ;
-            if(m_Camera && m_Camera->getViewType()==UP){
+            /*if(m_Camera && m_Camera->getViewType()==UP){
                 if(Events[i].key.keysym.sym==SDLK_UP){
-                    if(!OppositeDirection(m_MoveDirection,m_Dir))
-                        m_MoveDirection=Normalize3d(SubsVertex3d(m_MoveDirection,m_Dir));
+                        m_MoveDirection=Normalize3d(AddVertex3d(AddVertex3d(ScaleVertex3d(m_Dir,-1),m_MoveDirection),m_MoveDirection));
                 }
                 else if(Events[i].key.keysym.sym==SDLK_DOWN){
-                    if(!OppositeDirection(m_MoveDirection,ScaleVertex3d(m_Dir,-1)))
-                        m_MoveDirection=Normalize3d(SubsVertex3d(m_MoveDirection,ScaleVertex3d(m_Dir,-1)));
+                        m_MoveDirection=Normalize3d(AddVertex3d(AddVertex3d(m_Dir,m_MoveDirection),m_MoveDirection));
                 }
                 if(Events[i].key.keysym.sym==SDLK_RIGHT){
                     Vertex3d Right=CrossProduct3d(m_Dir,m_Up);
-                    if(!OppositeDirection(m_MoveDirection,ScaleVertex3d(Right,-1)))
-                        m_MoveDirection=Normalize3d(SubsVertex3d(m_MoveDirection,ScaleVertex3d(Right,-1)));
+                        m_MoveDirection=Normalize3d(AddVertex3d(AddVertex3d(Right,m_MoveDirection),m_MoveDirection));
                 }
                 else if(Events[i].key.keysym.sym==SDLK_LEFT){
                     Vertex3d Right=CrossProduct3d(m_Dir,m_Up);
-                    if(!OppositeDirection(m_MoveDirection,Right))
-                        m_MoveDirection=Normalize3d(SubsVertex3d(m_MoveDirection,Right));
+                        m_MoveDirection=Normalize3d(AddVertex3d(AddVertex3d(ScaleVertex3d(Right,-1),m_MoveDirection),m_MoveDirection));
                 }
             }else if(m_Camera && m_Camera->getViewType()==SIDE){
                  if(Events[i].key.keysym.sym==SDLK_UP){
-                    if(!OppositeDirection(m_MoveDirection,ScaleVertex3d(m_Up,-1)))
-                        m_MoveDirection=Normalize3d(SubsVertex3d(m_MoveDirection,ScaleVertex3d(m_Up,-1)));
+                        m_MoveDirection=Normalize3d(AddVertex3d(m_MoveDirection,ScaleVertex3d(m_Up,-1)));
                 }
                 else if(Events[i].key.keysym.sym==SDLK_DOWN){
-                    if(!OppositeDirection(m_MoveDirection,m_Up))
-                        m_MoveDirection=Normalize3d(SubsVertex3d(m_MoveDirection,m_Up));
+                        m_MoveDirection=Normalize3d(AddVertex3d(m_MoveDirection,m_Up));
                 }
                 if(Events[i].key.keysym.sym==SDLK_RIGHT){
-                     if(!OppositeDirection(m_MoveDirection,m_Dir))
-                        m_MoveDirection=Normalize3d(SubsVertex3d(m_MoveDirection,m_Dir));
+                        m_MoveDirection=Normalize3d(AddVertex3d(m_MoveDirection,m_Dir));
                 }
                 else if(Events[i].key.keysym.sym==SDLK_LEFT){
-                    if(!OppositeDirection(m_MoveDirection,ScaleVertex3d(m_Dir,-1)))
-                        m_MoveDirection=Normalize3d(SubsVertex3d(m_MoveDirection,ScaleVertex3d(m_Dir,-1)));
+                        m_MoveDirection=Normalize3d(AddVertex3d(m_MoveDirection,ScaleVertex3d(m_Dir,-1)));
                 }
-            }
+            }*/
+
+
         }
     }
 };

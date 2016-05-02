@@ -69,30 +69,10 @@ int GameLogic::InitLogic(GameScene* Scene){
     return 1 ;
 };
 int GameLogic::InitLevel(int index){
-    /*UFO* e=NULL;
-    Terrain* t=NULL;
-    m_Scene->AddActor(StaticModel::LoadFile("Data//skybox.obj"));
-    t=new Terrain();
-    t->LoadFromFile("Data//Desert.obj");
-    m_Scene->AddActor(t),
-    e=new UFO();
-    e->setPosition({0.0f,0.f,50.f});
-    e->LoadFromFile();
-    m_Scene->AddActor(e);
-    e=new UFO();
-    e->setPosition({20.0f,0.f,50.f});
-    e->LoadFromFile();
-    m_Scene->AddActor(e);
-    e=new UFO();
-    e->setPosition({-20.0f,0.f,50.f});
-    e->LoadFromFile();
-    m_Scene->AddActor(e);
-    m_Camera->setOrientation({0.0f,-1.0f,0.0f},{0.0f,0.0f,-1.0f});
-    m_Camera->setPosition({0.0f,150.0f,0.0f});
-    */
-    //m_Camera->setViewType(SIDE);
+
     if(!LevelLoader::LoadLevel(v_Filenames[index-1],m_Scene))
         return 0 ;
+    m_Delay=5.0f ;
     return 1 ;
 };
 void GameLogic::Update(float dt){
@@ -131,11 +111,20 @@ void GameLogic::Update(float dt){
         }
         m_Physics->CollisioDetection();
         m_Physics->CollisionReaction();
-        /*if(BossDefeated()){
+        if(!isThereEnemy()){
             m_Delay-=dt;
             if(m_Delay<=0.0f)
-                InitLevel(++m_CurrentLevel);
-        }*/
+                if(m_CurrentLevel<m_nbLevels)
+                    InitLevel(++m_CurrentLevel);
+                else{
+                    m_Scene->FreeVector();
+                    m_Player=m_MainMenu ;
+                    m_MainMenu->Init();
+                    m_Scene->setPlayer(m_Player);
+                    m_Stat=MAINMENU;
+                    return ;
+                }
+        }
     }else if(m_Stat==MAINMENU){
 
             if(Events[0].type==SDL_QUIT || Events[0].key.keysym.sym==SDLK_ESCAPE)
@@ -145,7 +134,7 @@ void GameLogic::Update(float dt){
                 if(m_MainMenu->getSelectedItem()==STARTGAME){
                     m_Player=m_Ship ;
                     m_Scene->setPlayer(m_Player);
-                    this->InitLevel(1);
+                    this->InitLevel(m_CurrentLevel=1);
                     m_Stat=INGAME ;
                     return ;
                 }else if(m_MainMenu->getSelectedItem()==EXIT)
@@ -165,4 +154,11 @@ void GameLogic::Update(float dt){
 };
  void GameLogic::setExitVariable(bool* variable){
     m_ExitVariable=variable ;
+ };
+ bool GameLogic::isThereEnemy(){
+    unsigned int nbActors=m_Scene->getNBActors();
+    for(unsigned int i=0 ; i< nbActors;i++)
+        if(m_Scene->getActor(i)->getID()& ENEMY)
+            return true ;
+    return false ;
  };

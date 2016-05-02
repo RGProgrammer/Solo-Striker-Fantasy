@@ -37,6 +37,7 @@ public:
     void Update(float dt);
     void setExitVariable(bool* variable);
 private:
+    bool isThereEnemy();
     int                 m_Stat ;
     float               m_Delay ;
     char**              v_Filenames;

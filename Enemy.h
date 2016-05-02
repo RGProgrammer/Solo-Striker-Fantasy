@@ -43,14 +43,18 @@ public :
     virtual int addAction(Action action);
     virtual int Fire(Vertex3d Direction)=0;
     virtual void addShotSample(Shot* Sample);
+    bool isActive();
+    void setActive(bool);
     void Explode();
     void getDamage(int Damage);
 protected:
     int                             m_Stat ;
     int                             m_CurrentActions;
     int                             m_Health ;
+    bool                            m_Active ;
     unsigned int                    m_nbActions ;
     float                           m_Dt;
+    Vertex3d                        m_LastPostion;
     Shot*                           m_Sample;
     Action*                         v_Actions ;
     GameScene*                      m_Scene;

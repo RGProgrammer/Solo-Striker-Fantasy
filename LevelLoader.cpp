@@ -66,7 +66,12 @@ int LevelLoader::DecodeActionLine(char* line){
                 action.Data=movement;
                 m_Sample->addAction(action);
                 free(tmpstr);
+                if(contains(line,"speed=")){
+                    tmpstr=ExtractString(line,"speed=\"","\"");
+                    sscanf(tmpstr,"%f",&(movement->Speed));
+                }
             }
+
         }else if(strcmp(tmpstr,"FIRE")==0){
             action.ActionType=FIREACTION;
             free(tmpstr);
@@ -101,6 +106,22 @@ int LevelLoader::DecodeEnemyLine(char* line){
              m_Sample=new Canon();
             m_Sample->LoadFromFile();
             m_Scene->AddActor(m_Sample);
+        }
+        if(tmpstr){
+            free(tmpstr);
+            tmpstr=NULL;
+        }
+        if(contains(line,"shot=\"")){
+            tmpstr=ExtractString(line,"shot\"","\"");
+            if(strcmp(tmpstr,"Small")==0){
+
+            }else if(strcmp(tmpstr,"Long")==0){
+
+            }else if(strcmp(tmpstr,"Chaser")==0){
+
+            }else if(strcmp(tmpstr,"Laser")==0){
+
+            }
         }
         if(tmpstr){
             free(tmpstr);

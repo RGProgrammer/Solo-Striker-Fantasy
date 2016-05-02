@@ -1,50 +1,57 @@
 #include "Enemy.h"
 Enemy::Enemy():DynamicModel(),m_nbActions(0),v_Actions(NULL),m_Scene(NULL),m_CurrentActions(0),
-                        m_Health(1),m_Stat(ALIVE),m_Dt(0),m_Sample(NULL),m_Explosion(NULL){
+                        m_Health(1),m_Stat(ALIVE),m_Dt(0),m_Sample(NULL),m_Explosion(NULL),m_Active(false){
     m_ID|=ENEMY | PHYSICAL ;
+    m_LastPostion=m_Pos ;
 };
 Enemy::Enemy(Vertex3d Pos):DynamicModel(Pos),m_nbActions(0),v_Actions(NULL),m_Scene(NULL),m_CurrentActions(0),m_Health(1),
-                                m_Stat(ALIVE),m_Dt(0),m_Sample(NULL),m_Explosion(NULL){
-   m_ID|=ENEMY | PHYSICAL ;};
+                                m_Stat(ALIVE),m_Dt(0),m_Sample(NULL),m_Explosion(NULL),m_Active(false){
+   m_ID|=ENEMY | PHYSICAL ;
+   m_LastPostion=m_Pos ;};
 Enemy::Enemy(Vertex3d Pos,Vertex3d Dir,Vertex3d Up):DynamicModel(Pos,Dir,Up),m_nbActions(0),v_Actions(NULL),m_Scene(NULL),
                                                     m_CurrentActions(0),m_Health(1),m_Stat(ALIVE),m_Dt(0),m_Sample(NULL),
-                                                    m_Explosion(NULL){
-    m_ID|=ENEMY | PHYSICAL ;};
+                                                    m_Explosion(NULL),m_Active(false){
+    m_ID|=ENEMY | PHYSICAL ;
+    m_LastPostion=m_Pos ;};
 Enemy::~Enemy(){
     this->Destroy();
 };
 void Enemy::Draw(float* ViewMtx){
-    if(m_Stat !=DEAD && m_Stat != EXPLODING)
+    if(m_Stat !=DEAD && m_Stat != EXPLODING && m_Active)
         StaticModel::Draw(ViewMtx);
     else if(m_Stat==EXPLODING)
         m_Explosion->Draw(ViewMtx);
 };
 void Enemy::Update(float dt){
     if(m_Stat!=DEAD && m_Stat!=EXPLODING){
-        bool verif=false ;
-        if(dt==0.0f)
-            dt=0.01f;
         m_Dt+=dt;
         ///update actions here
-        if(v_Actions){
-            for(int i=m_CurrentActions;v_Actions[i].Instance-m_Dt<=0.0f;i++){
-                m_CurrentActions=i;
-                verif=true;
-                if(v_Actions[i].ActionType==EXPLODE)
+        if(v_Actions && m_CurrentActions < m_nbActions){
+            if(v_Actions[m_CurrentActions].Instance-m_Dt>0 )
+                return ;
+            else
+                m_Active=true ;
+            if(v_Actions[m_CurrentActions].ActionType==EXPLODE)
                     Explode();
-                else if(v_Actions[i].ActionType==MOVEACTION){
-                    m_Velocity=AddVertex3d(m_Velocity,ScaleVertex3d(Normalize3d(((Movement*)(v_Actions[i].Data))->Translate),((Movement*)(v_Actions[i].Data))->Speed*m_Dt));
-                }else if(v_Actions[i].ActionType==FIREACTION){
-                    if(v_Actions[i].Data){
-                        Fire(*((Vertex3d*)(v_Actions[i].Data)));
-                    }else{
-                        Fire(m_Dir);
-                    }
+            else if(v_Actions[m_CurrentActions].ActionType==MOVEACTION){
+                m_Velocity=ScaleVertex3d(Normalize3d(getVertex3d(m_Pos,((Movement*)(v_Actions[m_CurrentActions].Data))->Translate)),((Movement*)(v_Actions[m_CurrentActions].Data))->Speed*dt);
+                if(Distance3d(m_LastPostion,m_Pos)>=Distance3d(m_LastPostion,((Movement*)(v_Actions[m_CurrentActions].Data))->Translate)){
+                        m_Pos=((Movement*)(v_Actions[m_CurrentActions].Data))->Translate ;
+                        m_Velocity={0.0f,0.0f,0.0f};
+                        m_LastPostion=m_Pos;
+                        m_CurrentActions++;
+                        m_Dt=0.0f;
                 }
+            }else if(v_Actions[m_CurrentActions].ActionType==FIREACTION){
+                if(v_Actions[m_CurrentActions].Data){
+                        Fire(*((Vertex3d*)(v_Actions[m_CurrentActions].Data)));
+                }else{
+                    Fire(m_Dir);
+                }
+                m_CurrentActions++;
+                m_Dt=0.0f;
             }
             m_Pos=AddVertex3d(m_Pos,m_Velocity);
-            if(verif)
-                m_Dt=0.0f;
         }
     }else if (m_Stat==EXPLODING){
         if(!m_Explosion->isDone()){
@@ -53,6 +60,12 @@ void Enemy::Update(float dt){
             m_Stat=DEAD;
             m_ID=UNKNOWN ;}
     }
+};
+bool Enemy::isActive(){
+    return m_Active;
+};
+void Enemy::setActive(bool a){
+    m_Active=a ;
 };
 void Enemy::setScene(GameScene* Scene){
     m_Scene=Scene;

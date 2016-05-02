@@ -27,6 +27,12 @@ inline Vertex3d Mtx_x_Vertex(float* M4x4,Vertex3d ver);*/
 inline float Magnitude3d(Vertex3d Ver){
     return (float)sqrt(Ver.x*Ver.x+Ver.y*Ver.y+Ver.z*Ver.z);
 };
+inline Vertex3d getVertex3d(Vertex3d point1,Vertex3d point2){
+    return {point2.x-point1.x,point2.y-point1.y,point2.z-point1.z};
+}
+inline float Distance3d(Vertex3d point1,Vertex3d point2){
+    return Magnitude3d(getVertex3d(point1,point2));
+}
 inline Vertex3d ScaleVertex3d(Vertex3d Ver,float s){
     return {Ver.x*s,Ver.y*s,Ver.z*s};
 };
