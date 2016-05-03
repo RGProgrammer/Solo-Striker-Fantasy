@@ -4,6 +4,7 @@
 #include "UFO.h"
 #include "Blades.h"
 #include "Canon.h"
+#include "ShotTypes.h"
 #include "Terrain.h"
 #include "util.h"
 #include <stdlib.h>

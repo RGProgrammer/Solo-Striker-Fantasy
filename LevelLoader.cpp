@@ -15,7 +15,7 @@ LevelLoader::~LevelLoader(){
 int LevelLoader::LoadLevelFile(char* filename,GameScene* Scene){
     this->m_Scene=Scene ;
     char* completefilename;
-    char line[250] ;
+    char line[300] ;
 
     CatStrings("Levels//",filename,&completefilename);
     FILE* lvlFile=fopen(completefilename,"r");
@@ -81,8 +81,8 @@ int LevelLoader::DecodeActionLine(char* line){
                 sscanf(tmpstr,"%f %f %f",&dir->x,&dir->y,&dir->z);
                 free(tmpstr);
                 action.Data=dir;
-                m_Sample->addAction(action);
             }
+            m_Sample->addAction(action);
         }else if(strcmp(tmpstr,"EXPLODE")==0){
             action.ActionType=EXPLODE;
             m_Sample->addAction(action);
@@ -96,14 +96,17 @@ int LevelLoader::DecodeEnemyLine(char* line){
         tmpstr=ExtractString(line,"type=\"","\"");
         if(strcmp(tmpstr,"UFO")==0){
             m_Sample=new UFO();
+            m_Sample->setScene(m_Scene);
             m_Sample->LoadFromFile();
             m_Scene->AddActor(m_Sample);
         }else if(strcmp(tmpstr,"Blades")==0){
             m_Sample=new Blades();
+            m_Sample->setScene(m_Scene);
             m_Sample->LoadFromFile();
             m_Scene->AddActor(m_Sample);
         }else if(strcmp(tmpstr,"Canon")==0){
              m_Sample=new Canon();
+             m_Sample->setScene(m_Scene);
             m_Sample->LoadFromFile();
             m_Scene->AddActor(m_Sample);
         }
@@ -112,7 +115,8 @@ int LevelLoader::DecodeEnemyLine(char* line){
             tmpstr=NULL;
         }
         if(contains(line,"shot=\"")){
-            tmpstr=ExtractString(line,"shot\"","\"");
+            Shot* shotsample =NULL ;
+            tmpstr=ExtractString(line,"shot=\"","\"");
             if(strcmp(tmpstr,"Small")==0){
 
             }else if(strcmp(tmpstr,"Long")==0){
@@ -120,7 +124,9 @@ int LevelLoader::DecodeEnemyLine(char* line){
             }else if(strcmp(tmpstr,"Chaser")==0){
 
             }else if(strcmp(tmpstr,"Laser")==0){
-
+                shotsample=new Laser(m_Sample);
+                shotsample->LoadFromFile();
+                m_Sample->addShotSample(shotsample);
             }
         }
         if(tmpstr){

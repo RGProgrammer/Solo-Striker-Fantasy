@@ -37,13 +37,13 @@ void PhysicsEngine::CollisionReaction(){
 
         //check for collision between enmy anf Player's Shots
         if((v_Data[i].Object1->getID() & ENEMY) && (v_Data[i].Object2->getID() & SHOT)){
-            if(((Shot*)(v_Data[i].Object2))->getSource()==NULL || ((Shot*)(v_Data[i].Object2))->getSource()->getID() & PLAYER ){
+            if(((Shot*)(v_Data[i].Object2))->getSource()->getID() & PLAYER ){
                 ((Enemy*)(v_Data[i].Object1))->getDamage(((Shot*)(v_Data[i].Object2))->getDamage());
                 ((Shot*)(v_Data[i].Object2))->Hit();
             }
         }
         if((v_Data[i].Object1->getID() & SHOT) && (v_Data[i].Object2->getID() & ENEMY)){
-            if(((Shot*)(v_Data[i].Object1))->getSource()==NULL || ((Shot*)(v_Data[i].Object1))->getSource()->getID() & PLAYER ){
+            if(((Shot*)(v_Data[i].Object1))->getSource()->getID() & PLAYER ){
                 ((Enemy*)(v_Data[i].Object2))->getDamage(((Shot*)(v_Data[i].Object1))->getDamage());
                 ((Shot*)(v_Data[i].Object1))->Hit();
             }

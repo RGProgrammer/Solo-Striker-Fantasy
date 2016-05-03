@@ -1,6 +1,7 @@
 #include "HOPE.h"
 Shooter::Shooter(HOPE* Owner,Vertex3d Trans):DynamicModel(),m_Owner(Owner),m_Trans(Trans),
                               m_nbWeapons(0),m_SelectedWeapon(-1),v_Weapons(NULL){
+    m_ID|=PLAYER ;
 };
 Shooter::~Shooter(){
     this->Destroy();

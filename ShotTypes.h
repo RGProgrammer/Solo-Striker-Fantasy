@@ -10,6 +10,8 @@ public:
     ~EnergyBullet();
     void Update(float dt);
     int LoadFromFile();
+    Shot* Clone();
+    void Hit();
 };
 class Chaser: public Shot {
 public:
@@ -25,10 +27,24 @@ public :
     ~SmallShot();
     void Update(float dt);
     int LoadFromFile();
+    Shot* Clone();
+    void Hit();
 };
 class LongShot: public Shot {
 public :
     LongShot();
     ~LongShot();
+};
+class Laser : public Shot {
+public :
+    Laser();
+    Laser(Vertex3d Pos, Vertex3d Dir, Vertex3d Up);
+    Laser(Actor* Source);
+    ~Laser();
+    void Draw(float * ViewMtx){StaticModel::Draw(ViewMtx);};
+    void Update(float dt);
+    int LoadFromFile();
+    Shot* Clone();
+    void Hit();
 };
 #endif // PFE_SHOTTYPES_H_

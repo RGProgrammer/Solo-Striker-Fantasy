@@ -31,8 +31,7 @@ StaticModel* StaticModel::LoadFile(char* filename){
     return obj;
 };
 void StaticModel::Draw(float * ViewMtx){
-    GLuint textureId=0;
-    glEnable(GL_TEXTURE_2D);
+    bool verif=false ;
     //initializing transformation matrix
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
@@ -44,15 +43,18 @@ void StaticModel::Draw(float * ViewMtx){
     }else
         glLoadMatrixf(this->getTransMtx());
     //start drawing;
+     glEnable(GL_TEXTURE_2D);
         for(unsigned int i=0;i<m_nbMeshes ; i++){
         if(v_Meshes[i].material && v_Meshes[i].material->TextureId){
 				 glBindTexture(GL_TEXTURE_2D,v_Meshes[i].material->TextureId);
 				 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-        }
+                verif=true ;
+        }else verif= false  ;
         if(v_Meshes[i].IndexBuffer){
             glBegin(GL_TRIANGLES);
-            glColor3f(1.0f,1.0f,1.0f);
+            if(!verif)
+                glColor3f(m_Color.r,m_Color.g,m_Color.b);
             for(unsigned int j=0;j <v_Meshes[i].Faces*3;j++){
                 ////////////////////////////////////////////////////////////
                 if(v_Meshes[i].IndexBuffer[j].NormalIndex==0)
@@ -65,23 +67,19 @@ void StaticModel::Draw(float * ViewMtx){
                 if(v_Meshes[i].IndexBuffer[j].TexIndex!=0){
                     glTexCoord2f(v_Meshes[i].TexCoords[v_Meshes[i].IndexBuffer[j].TexIndex-1].u,
                                  v_Meshes[i].TexCoords[v_Meshes[i].IndexBuffer[j].TexIndex-1].v);
-                }else
-                    glColor3f(m_Color.r,m_Color.g,m_Color.b);
+                }
                 //////////
                 glVertex3f(v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j].VertexIndex-1].x,
                            v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j].VertexIndex-1].y,
                            v_Meshes[i].VertexBuffer[v_Meshes[i].IndexBuffer[j].VertexIndex-1].z);
 
             }
-            glColor3f(1.0f,1.0f,1.0f);
             glEnd();
         }
-            if(textureId!=0){
-                glDeleteTextures(1,&textureId);
-            }
         }
-
+    glBindTexture(GL_TEXTURE_2D, 0);
     glDisable(GL_TEXTURE_2D);
+    glColor3f(1.0f,1.0f,1.0f);
 };
 void StaticModel::Scale(float value ){
     this->m_Scale=value;

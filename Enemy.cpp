@@ -43,11 +43,7 @@ void Enemy::Update(float dt){
                         m_Dt=0.0f;
                 }
             }else if(v_Actions[m_CurrentActions].ActionType==FIREACTION){
-                if(v_Actions[m_CurrentActions].Data){
-                        Fire(*((Vertex3d*)(v_Actions[m_CurrentActions].Data)));
-                }else{
-                    Fire(m_Dir);
-                }
+                Fire();
                 m_CurrentActions++;
                 m_Dt=0.0f;
             }
@@ -110,11 +106,18 @@ int Enemy::addAction(Action action){
     m_nbActions++;
     return 1 ;
 };
-int Enemy::Fire(Vertex3d Direction){
-    /*if(m_Sample){
-        Shot* Clone=NULL;
-        m_Scene->AddActor()
-    }*/
+int Enemy::Fire(){
+    if(m_Sample){
+        Shot* ShotClone=NULL ;
+        ShotClone=m_Sample->Clone();
+        ShotClone->setPosition(m_Pos);
+        ShotClone->setOrientation(m_Dir,m_Up);
+        ShotClone->setSource(this);
+        if(!ShotClone)
+            return 0 ;
+        m_Scene->AddActor(ShotClone);
+    }
+    return 1;
 };
 void Enemy::addShotSample(Shot* Sample){
     m_Sample=Sample;

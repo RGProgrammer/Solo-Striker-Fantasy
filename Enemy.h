@@ -41,7 +41,7 @@ public :
     virtual void Update(float dt);
     virtual void Destroy();
     virtual int addAction(Action action);
-    virtual int Fire(Vertex3d Direction)=0;
+    int Fire();
     virtual void addShotSample(Shot* Sample);
     bool isActive();
     void setActive(bool);

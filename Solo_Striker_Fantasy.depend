@@ -2562,7 +2562,7 @@
 1456083392 c:\users\ikram\desktop\solo-striker-fantasy-copy\boss.h
 	"Enemy.h"
 
-1462185793 c:\users\ikram\desktop\solo-striker-fantasy-copy\enemy.h
+1462268446 c:\users\ikram\desktop\solo-striker-fantasy-copy\enemy.h
 	"DynamicModel.h"
 	"GameScene.h"
 	"Explosion.h"
@@ -2605,7 +2605,7 @@
 	"Shot.h"
 	"GameScene.h"
 
-1459097190 c:\users\ikram\desktop\solo-striker-fantasy-copy\shot.h
+1462277089 c:\users\ikram\desktop\solo-striker-fantasy-copy\shot.h
 	"DynamicModel.h"
 
 1394937296 c:\users\ikram\desktop\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl.h
@@ -2938,7 +2938,7 @@
 1459283276 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\dynamicmodel.cpp
 	"DynamicModel.h"
 
-1462186325 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\enemy.cpp
+1462268869 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\enemy.cpp
 	"Enemy.h"
 
 1459282988 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\eventsystem.cpp
@@ -2983,7 +2983,7 @@
 	"Weapon.h"
 	"ShotTypes.h"
 
-1456479535 c:\users\ikram\desktop\solo-striker-fantasy-copy\shottypes.h
+1462267626 c:\users\ikram\desktop\solo-striker-fantasy-copy\shottypes.h
 	"Shot.h"
 
 1459622062 c:\users\ikram\desktop\solo-striker-fantasy-copy\mainmenu.h
@@ -3031,16 +3031,16 @@
 1456259639 c:\users\ikram\desktop\solo-striker-fantasy-copy\timer.h
 	<sys/time.h>
 
-1460452939 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\gamelogic.cpp
+1462277478 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\gamelogic.cpp
 	"GameLogic.h"
 
 1460367563 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\gamescene.cpp
 	"GameScene.h"
 
-1459886574 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\graphicsengine.cpp
+1462275879 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\graphicsengine.cpp
 	"GraphicsEngine.h"
 
-1462121728 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\hope.cpp
+1462265758 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\hope.cpp
 	"HOPE.h"
 
 1457515283 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\main.cpp
@@ -3055,17 +3055,17 @@
 1460544580 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\objloader.cpp
 	"ObjLoader.h"
 
-1460632209 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\physicsengine.cpp
+1462268620 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\physicsengine.cpp
 	"PhysicsEngine.h"
 	<stdio.h>
 
 1459622261 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\player.cpp
 	"Player.h"
 
-1459284392 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\shot.cpp
+1462274671 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\shot.cpp
 	"Shot.h"
 
-1460626208 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\shottypes.cpp
+1462276683 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\shottypes.cpp
 	"ShotTypes.h"
 
 1457881134 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\soundengine.cpp
@@ -3091,16 +3091,16 @@
 1461416477 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\ufo.cpp
 	"UFO.h"
 
-1459510181 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\weapon.cpp
+1462265708 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\weapon.cpp
 	"Weapon.h"
 
-1459533275 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\weapontypes.cpp
+1462265624 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\weapontypes.cpp
 	"WeaponTypes.h"
 
 1451752834 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\windowhandler.cpp
 	"WindowHandler.h"
 
-1461836046 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\staticmodel.cpp
+1462276974 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\staticmodel.cpp
 	"StaticModel.h"
 
 1453770204 c:\users\ikram\desktop\solo-striker-fantasy-copy\\tools\\lodepng\\lodepng.h
@@ -3125,16 +3125,17 @@
 1460371867 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\util.cpp
 	"util.h"
 
-1461872010 c:\users\ikram\desktop\solo-striker-fantasy-copy\levelloader.h
+1462222235 c:\users\ikram\desktop\solo-striker-fantasy-copy\levelloader.h
 	"GameScene.h"
 	"UFO.h"
 	"Blades.h"
 	"Canon.h"
+	"ShotTypes.h"
 	"Terrain.h"
 	"util.h"
 	<stdlib.h>
 
-1462187516 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\levelloader.cpp
+1462273898 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\levelloader.cpp
 	"LevelLoader.h"
 
 1461416727 c:\users\ikram\desktop\solo-striker-fantasy-copy\effect.h

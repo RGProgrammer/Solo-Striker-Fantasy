@@ -13,13 +13,16 @@ public:
     Shot(Shot* clone);
     virtual ~Shot();
     virtual int LoadFromFile()=0;
-    virtual int Clone(Shot* clone);
+    virtual Shot* Clone()=0;
+    virtual void Update(float dt )=0 ;
     void setSource(Actor* Source);
     void setSpeed(float Speed);
     void setDamage(int Damage);
     Actor* getSource();
     int    getDamage();
-    void Hit();
+    virtual void Hit()= 0;
+    float getLifeTime();
+    void setLifeTime(float LifeTime);
 protected :
     Actor*          m_Source;
     float           m_Speed;

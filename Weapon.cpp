@@ -1,6 +1,7 @@
 #include "Weapon.h"
 
-Weapon::Weapon(char* Name):Weapon(Name,NULL,NULL){};
+Weapon::Weapon(char* Name):Weapon(Name,NULL,NULL){
+};
 Weapon::Weapon(char* Name,Actor* Source):Weapon(Name,Source,NULL){
 };
 Weapon::Weapon(char* Name,Actor* Source,Shot* Sample):m_Name(NULL),m_Sample(Sample),m_Dt(0.0f){
