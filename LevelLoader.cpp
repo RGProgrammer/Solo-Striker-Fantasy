@@ -120,7 +120,9 @@ int LevelLoader::DecodeEnemyLine(char* line){
             if(strcmp(tmpstr,"Small")==0){
 
             }else if(strcmp(tmpstr,"Long")==0){
-
+                shotsample=new LongShot(m_Sample);
+                shotsample->LoadFromFile();
+                m_Sample->addShotSample(shotsample);
             }else if(strcmp(tmpstr,"Chaser")==0){
 
             }else if(strcmp(tmpstr,"Laser")==0){

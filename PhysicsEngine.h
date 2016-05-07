@@ -18,7 +18,7 @@ public :
     PhysicsEngine(GameScene* Scene);
     ~PhysicsEngine();
     void setScene(GameScene* Scene);
-    void CollisioDetection();
+    void CollisioDetection(float dt);
     void CollisionReaction();
 private:
     bool CollisionCheck(StaticModel* obj1,StaticModel* obj2,Vertex3d* CollisionCenter);
@@ -27,7 +27,5 @@ private:
     CollisionData*              v_Data;
     unsigned int                m_nbElements ;
     GameScene*                  m_Scene ;
-    float                       m_Dt ;
-
 };
 #endif // PFE_PHYSICSENGINE_H_

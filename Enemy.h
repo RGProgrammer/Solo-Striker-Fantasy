@@ -11,6 +11,7 @@
 #define FIREACTION  0x0001
 #define MOVEACTION  0x0002
 #define EXPLODE     0x0004
+#define ATTACK      0x0005 //particular for Blades
 
 //Stats
 #define DEAD        0x0000

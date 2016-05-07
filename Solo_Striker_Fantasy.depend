@@ -2562,7 +2562,7 @@
 1456083392 c:\users\ikram\desktop\solo-striker-fantasy-copy\boss.h
 	"Enemy.h"
 
-1462268446 c:\users\ikram\desktop\solo-striker-fantasy-copy\enemy.h
+1462380129 c:\users\ikram\desktop\solo-striker-fantasy-copy\enemy.h
 	"DynamicModel.h"
 	"GameScene.h"
 	"Explosion.h"
@@ -2948,7 +2948,7 @@
 	".//tools//sdl2//include//SDL.h"
 	<stdlib.h>
 
-1461585564 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\gamecore.cpp
+1462401555 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\gamecore.cpp
 	"GameCore.h"
 
 1456223952 c:\users\ikram\desktop\solo-striker-fantasy-copy\gamecore.h
@@ -2962,7 +2962,7 @@
 	".//tools//sdl2//include//SDL.h"
 	<stdio.h>
 
-1462187951 c:\users\ikram\desktop\solo-striker-fantasy-copy\gamelogic.h
+1462401457 c:\users\ikram\desktop\solo-striker-fantasy-copy\gamelogic.h
 	"GameScene.h"
 	"Abstract.h"
 	"Camera.h"
@@ -2983,13 +2983,13 @@
 	"Weapon.h"
 	"ShotTypes.h"
 
-1462267626 c:\users\ikram\desktop\solo-striker-fantasy-copy\shottypes.h
+1462358614 c:\users\ikram\desktop\solo-striker-fantasy-copy\shottypes.h
 	"Shot.h"
 
 1459622062 c:\users\ikram\desktop\solo-striker-fantasy-copy\mainmenu.h
 	"Player.h"
 
-1459847287 c:\users\ikram\desktop\solo-striker-fantasy-copy\physicsengine.h
+1462401696 c:\users\ikram\desktop\solo-striker-fantasy-copy\physicsengine.h
 	"GameScene.h"
 	"Player.h"
 	"Enemy.h"
@@ -3031,16 +3031,16 @@
 1456259639 c:\users\ikram\desktop\solo-striker-fantasy-copy\timer.h
 	<sys/time.h>
 
-1462277478 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\gamelogic.cpp
+1462401441 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\gamelogic.cpp
 	"GameLogic.h"
 
 1460367563 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\gamescene.cpp
 	"GameScene.h"
 
-1462275879 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\graphicsengine.cpp
+1462381617 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\graphicsengine.cpp
 	"GraphicsEngine.h"
 
-1462265758 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\hope.cpp
+1462355275 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\hope.cpp
 	"HOPE.h"
 
 1457515283 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\main.cpp
@@ -3055,7 +3055,7 @@
 1460544580 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\objloader.cpp
 	"ObjLoader.h"
 
-1462268620 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\physicsengine.cpp
+1462387739 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\physicsengine.cpp
 	"PhysicsEngine.h"
 	<stdio.h>
 
@@ -3065,7 +3065,7 @@
 1462274671 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\shot.cpp
 	"Shot.h"
 
-1462276683 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\shottypes.cpp
+1462361256 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\shottypes.cpp
 	"ShotTypes.h"
 
 1457881134 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\soundengine.cpp
@@ -3094,7 +3094,7 @@
 1462265708 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\weapon.cpp
 	"Weapon.h"
 
-1462265624 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\weapontypes.cpp
+1462354307 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\weapontypes.cpp
 	"WeaponTypes.h"
 
 1451752834 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\windowhandler.cpp
@@ -3114,7 +3114,7 @@
 1460205671 c:\users\ikram\desktop\solo-striker-fantasy-copy\terrain.h
 	"StaticModel.h"
 
-1461534833 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\terrain.cpp
+1462380315 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\terrain.cpp
 	"Terrain.h"
 
 1460357987 c:\users\ikram\desktop\solo-striker-fantasy-copy\util.h
@@ -3135,7 +3135,7 @@
 	"util.h"
 	<stdlib.h>
 
-1462273898 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\levelloader.cpp
+1462360825 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\levelloader.cpp
 	"LevelLoader.h"
 
 1461416727 c:\users\ikram\desktop\solo-striker-fantasy-copy\effect.h
@@ -3156,9 +3156,635 @@
 1461674554 c:\users\ikram\desktop\solo-striker-fantasy-copy\blades.h
 	"Enemy.h"
 
-1461872127 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\canon.cpp
+1462360429 source:c:\users\ikram\desktop\solo-striker-fantasy-copy\canon.cpp
 	"Canon.h"
 
 1461872114 c:\users\ikram\desktop\solo-striker-fantasy-copy\canon.h
 	"Enemy.h"
+
+1454618744 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\abstract.cpp
+	"Abstract.h"
+
+1459097201 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\abstract.h
+	"Actor.h"
+
+1459939902 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\actor.h
+	"Math.h"
+	<stdlib.h>
+
+1462121115 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\math.h
+	<math.h>
+
+1459968225 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\actor.cpp
+	"Actor.h"
+
+1461834836 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\blades.cpp
+	"Blades.h"
+
+1461674554 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\blades.h
+	"Enemy.h"
+
+1462380129 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\enemy.h
+	"DynamicModel.h"
+	"GameScene.h"
+	"Explosion.h"
+
+1459168708 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\dynamicmodel.h
+	"StaticModel.h"
+	"Abstract.h"
+
+1461578191 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\staticmodel.h
+	"Abstract.h"
+	"Types.h"
+	"ObjLoader.h"
+	"Math.h"
+	<GL//gl.h>
+
+1460186597 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\types.h
+	"Math.h"
+
+1460234156 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\objloader.h
+	"Types.h"
+	"StaticModel.h"
+	".//tools//lodepng//lodepng.h"
+	"util.h"
+
+1453770204 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\lodepng\\lodepng.h
+	<string.h>
+	<vector>
+	<string>
+	"lodepng.h"
+	<iostream>
+	"lodepng.h"
+
+1460357987 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\util.h
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+
+1456393818 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\gamescene.h
+	"Actor.h"
+	"Camera.h"
+	"Player.h"
+
+1460455900 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\camera.h
+	"Actor.h"
+
+1459622193 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\player.h
+	"GameScene.h"
+	"DynamicModel.h"
+	"Weapon.h"
+	".//tools//sdl2//include//SDL.h"
+
+1456683632 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\weapon.h
+	"Shot.h"
+	"GameScene.h"
+
+1462277089 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\shot.h
+	"DynamicModel.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_filesystem.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_haptic.h"
+	"SDL_hints.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_messagebox.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_system.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<float.h>
+	<iconv.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_config.h
+	"SDL_platform.h"
+
+1440752454 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_platform.h
+	"AvailabilityMacros.h"
+	"TargetConditionals.h"
+	<winapifamily.h>
+	"begin_code.h"
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\begin_code.h
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\close_code.h
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_assert.h
+	"SDL_config.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_endian.h
+	"SDL_stdinc.h"
+	<endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_atomic.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<altivec.h>
+	<mmintrin.h>
+	<mm3dnow.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_pixels.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_scancode.h
+	"SDL_stdinc.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_gamecontroller.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_filesystem.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_haptic.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_messagebox.h
+	"SDL_stdinc.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_system.h
+	"SDL_stdinc.h"
+	"SDL_keyboard.h"
+	"SDL_render.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1461578970 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\explosion.h
+	"Effect.h"
+
+1461416727 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\effect.h
+	"DynamicModel.h"
+
+1456083577 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\boss.cpp
+	"Boss.h"
+
+1456083392 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\boss.h
+	"Enemy.h"
+
+1460456265 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\camera.cpp
+	"Camera.h"
+	<stdio.h>
+
+1462360429 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\canon.cpp
+	"Canon.h"
+
+1461872114 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\canon.h
+	"Enemy.h"
+
+1456138397 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\cube.cpp
+	"CUBE.h"
+
+1456081654 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\cube.h
+	"Boss.h"
+
+1459283276 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\dynamicmodel.cpp
+	"DynamicModel.h"
+
+1461417764 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\effect.cpp
+	"Effect.h"
+
+1462268869 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\enemy.cpp
+	"Enemy.h"
+
+1459282988 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\eventsystem.cpp
+	"EventSystem.h"
+
+1458935158 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\eventsystem.h
+	".//tools//sdl2//include//SDL.h"
+	<stdlib.h>
+
+1461579578 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\explosion.cpp
+	"Explosion.h"
+
+1462401555 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\gamecore.cpp
+	"GameCore.h"
+
+1456223952 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\gamecore.h
+	"GameLogic.h"
+	"GraphicsEngine.h"
+	"GameScene.h"
+	"WindowHandler.h"
+	"Timer.h"
+	"Camera.h"
+	"Math.h"
+	".//tools//sdl2//include//SDL.h"
+	<stdio.h>
+
+1462652371 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\gamelogic.h
+	"GameScene.h"
+	"Abstract.h"
+	"Camera.h"
+	"HOPE.h"
+	"MainMenu.h"
+	"EventSystem.h"
+	"PhysicsEngine.h"
+	"SoundEngine.h"
+	"LevelLoader.h"
+	".//tools//sdl2//include//SDL.h"
+
+1461925421 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\hope.h
+	"Player.h"
+	"WeaponTypes.h"
+	"Math.h"
+
+1456342390 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\weapontypes.h
+	"Weapon.h"
+	"ShotTypes.h"
+
+1462358614 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\shottypes.h
+	"Shot.h"
+
+1459622062 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\mainmenu.h
+	"Player.h"
+
+1462401696 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\physicsengine.h
+	"GameScene.h"
+	"Player.h"
+	"Enemy.h"
+	"Shot.h"
+	"Math.h"
+
+1462652596 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\soundengine.h
+	"Actor.h"
+	".//tools//Openal//al.h"
+	".//tools//Openal//alc.h"
+	<stdlib.h>
+	<stdio.h>
+
+1462222235 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\levelloader.h
+	"GameScene.h"
+	"UFO.h"
+	"Blades.h"
+	"Canon.h"
+	"ShotTypes.h"
+	"Terrain.h"
+	"util.h"
+	<stdlib.h>
+
+1461416495 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\ufo.h
+	"Enemy.h"
+
+1460205671 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\terrain.h
+	"StaticModel.h"
+
+1454619224 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\graphicsengine.h
+	"Abstract.h"
+	"GameScene.h"
+	"WindowHandler.h"
+	".//tools//sdl2//include//SDL.h"
+	".//tools//sdl2//include//SDL_opengl.h"
+	<GL//glu.h>
+
+1453460822 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\windowhandler.h
+	".//tools//sdl2//include//SDL.h"
+
+1394937296 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\sdl2\\include\\sdl_opengl.h
+	"SDL_config.h"
+	<windows.h>
+	<OpenGL/gl.h>
+	<GL/gl.h>
+	<windows.h>
+	<stddef.h>
+	<inttypes.h>
+	<inttypes.h>
+	<inttypes.h>
+	<stdint.h>
+	<stdint.h>
+	<inttypes.h>
+
+1456259639 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\timer.h
+	<sys/time.h>
+
+1462652545 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\gamelogic.cpp
+	"GameLogic.h"
+
+1460367563 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\gamescene.cpp
+	"GameScene.h"
+
+1462381617 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\graphicsengine.cpp
+	"GraphicsEngine.h"
+
+1462355275 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\hope.cpp
+	"HOPE.h"
+
+1462360825 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\levelloader.cpp
+	"LevelLoader.h"
+
+1457515283 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\main.cpp
+	"GameCore.h"
+
+1459933353 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\mainmenu.cpp
+	"MainMenu.h"
+
+1460544580 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\objloader.cpp
+	"ObjLoader.h"
+
+1462401725 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\physicsengine.cpp
+	"PhysicsEngine.h"
+	<stdio.h>
+
+1459622261 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\player.cpp
+	"Player.h"
+
+1462274671 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\shot.cpp
+	"Shot.h"
+
+1462361256 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\shottypes.cpp
+	"ShotTypes.h"
+
+1462652530 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\soundengine.cpp
+	"SoundEngine.h"
+
+1462276974 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\staticmodel.cpp
+	"StaticModel.h"
+
+1462380315 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\terrain.cpp
+	"Terrain.h"
+
+1462180292 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\timer.cpp
+	"Timer.h"
+
+1453770204 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\tools\lodepng\lodepng.cpp
+	"lodepng.h"
+	<stdio.h>
+	<stdlib.h>
+	<fstream>
+
+1453770204 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\tools\lodepng\lodepng.h
+	<string.h>
+	<vector>
+	<string>
+	"lodepng.h"
+	<iostream>
+	"lodepng.h"
+
+1461416477 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\ufo.cpp
+	"UFO.h"
+
+1460371867 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\util.cpp
+	"util.h"
+
+1462265708 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\weapon.cpp
+	"Weapon.h"
+
+1462354307 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\weapontypes.cpp
+	"WeaponTypes.h"
+
+1451752834 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\windowhandler.cpp
+	"WindowHandler.h"
+
+1165591858 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\openal\\al.h
+
+1176476568 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\openal\\alc.h
 

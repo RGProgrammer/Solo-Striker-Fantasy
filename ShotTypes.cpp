@@ -4,19 +4,18 @@ EnergyBullet::EnergyBullet():Shot(){
     m_Damage=5 ;
     m_Source=NULL;
     m_Speed=100.0f;
-    m_LifeTime=100.0f;
+    m_LifeTime=10.0f;
     setColor({0.98f,0.73f,0.16f});
 };
 EnergyBullet::EnergyBullet(Vertex3d Pos,Vertex3d Dir,Vertex3d Up):Shot(Pos,Dir,Up){
     m_Damage=5 ;
     m_Source=NULL;
     m_Speed=100.0f;
-    m_LifeTime=100.0f;
+    m_LifeTime=10.0f;
     setColor({0.98f,0.73f,0.16f});
 };
-EnergyBullet::EnergyBullet(Actor* Source):Shot(){
+EnergyBullet::EnergyBullet(Actor* Source):Shot(Source){
     m_Damage=5 ;
-    m_Source=NULL;
     m_Speed=100.0f;
     m_LifeTime=100.0f;
     setColor({0.98f,0.73f,0.16f});
@@ -85,7 +84,7 @@ void SmallShot::Update(float dt){
   m_Pos=AddVertex3d(m_Pos,ScaleVertex3d(m_Velocity,dt));
 };
 int SmallShot::LoadFromFile(){
-    return StaticModel::LoadFromFile("Data//shot.obj");
+    return StaticModel::LoadFromFile("Data//SmallShot.obj");
 };
 Shot* SmallShot::Clone(){
     Shot* clone=new SmallShot();
@@ -101,10 +100,53 @@ void SmallShot::Hit(){
     //m_ID=UNKNOWN;
 };
 
+LongShot::LongShot():Shot(){
+    m_Damage=1 ;
+    m_Source=NULL;
+    m_Speed=50.0f;
+    m_LifeTime=10.0f;
+    setColor({0.0f,1.0f,0.0f});
+};
+LongShot::LongShot(Vertex3d Pos, Vertex3d Dir, Vertex3d Up):Shot(Pos,Dir,Up){
+    m_Damage=1 ;
+    m_Source=NULL;
+    m_Speed=50.0f;
+    m_LifeTime=10.0f;
+    setColor({0.0f,1.0f,0.0f});
 
-LongShot::LongShot(){
+};
+LongShot::LongShot(Actor* Source):Shot(Source){
+    m_Damage=1 ;
+    m_Speed=50.0f;
+    m_LifeTime=10.0f;
+    setColor({0.0f,1.0f,0.0f});
+
 };
 LongShot::~LongShot(){
+    this->Destroy();
+};
+void LongShot::Update(float dt){
+    m_LifeTime-=dt;
+    if(m_LifeTime<=0.0f){
+        m_ID=UNKNOWN ;
+        return ;
+    }
+    m_Velocity=ScaleVertex3d(m_Dir,m_Speed*dt);
+    m_Pos=AddVertex3d(m_Pos,m_Velocity);
+};
+int LongShot::LoadFromFile(){
+    return StaticModel::LoadFromFile("Data//LongShot.obj");
+};
+Shot* LongShot::Clone(){
+    Shot* clone=new LongShot();
+    clone->DynamicModel::Clone(this);
+    clone->setLifeTime(m_LifeTime) ;
+    clone->setSource(m_Source);
+    clone->setSpeed(m_Speed );
+    clone->setDamage(m_Damage) ;
+};
+void LongShot::Hit(){
+    m_ID=UNKNOWN ;
 };
 
 Laser::Laser():Shot(){

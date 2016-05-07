@@ -1,28 +1,74 @@
 #ifndef PFE_SOUNDENGINE_H_
 #define PFE_SOUNDENGINE_H_
-#include <stdio.h>
 #include "Actor.h"
+#include ".//tools//Openal//al.h"
+#include ".//tools//Openal//alc.h"
+#include <stdlib.h>
+#include <stdio.h>
+
+#define STOP        0
+#define PAUSE       1
+#define PLAY        2
 typedef struct {
-    float length ;
-    float frequency ;
-    char* buffer ;
+    ALenum Format ;
+    ALsizei Frequency;
+    ALsizei Size;
+    unsigned char* Buffer;
 } Sound ;
 
+struct RIFF_Header {
+  char chunkID[4];
+  long chunkSize;//size not including chunkSize or chunkID
+  char format[4];
+};
+
+struct WAVE_Data {
+  char subChunkID[4]; //should contain the word data
+  long subChunk2Size; //Stores the size of the data block
+};
+
+struct WAVE_Format {
+  char subChunkID[4];
+  long subChunkSize;
+  short audioFormat;
+  short numChannels;
+  long sampleRate;
+  long byteRate;
+  short blockAlign;
+  short bitsPerSample;
+};
 class SoundEngine {
 public:
     SoundEngine();
     ~SoundEngine();
-    void PlaySound(Sound* sound ,Actor* source);
-    void PlayMusic(Sound* Music,bool repeat);
+    int InitEngine();
     void Destroy();
-    static Sound* LoadfromFile(char* filename);
+    void setListener(Actor* Listener);
+    ALuint LoadSound(Sound sound,Actor* Source);
+    void PlaySound(ALuint ID);
+    bool LoadMusic(Sound Music ,bool repeat=false);
+    void setRepeatMusic(bool Repeat);
+    bool isRepeating ();
+    void PlayMusic();
+    void PauseMusic();
+    void StopMusic();
+    bool isPlaying();
+    bool isPaused();
+    bool isStopped();
+    void ReleaseBuffers();//release only the sound buffers and not the music
+public:
+    static Sound* LoadWAVFile(char* filename);
 private:
-    Sound*                      m_Music;
-    bool                        m_MusicRepeat;
-    int                         m_nbSounds;
-    Sound*                      v_Sounds ;
-    Actor**                     v_Sources ;
-    Actor*                      m_Listener ;
-
+    ALCdevice*              m_Device ;
+    ALCcontext*             m_Context;
+    ALuint                  m_MusicBuffer ;
+    ALuint                  m_MusicSource;// initialized via set Listener;
+    int                     m_MusicStatus ;
+    bool                    m_Repeat ;
 };
+
+static SoundEngine*        GlobalSoundHandler=NULL;
+static int CreateGlobalSoundEngine();//create and Initialize GlobalSoundEngine
+static void DestroyGlobalSoundEngine();
+static SoundEngine* getGlobalSoundEngineInstance();
 #endif // PFE_SOUNDENGINE_H_

@@ -3,7 +3,7 @@
 GameLogic::GameLogic():m_Scene(NULL),m_Camera(NULL),m_Player(NULL),m_EventSys(NULL),
                         m_Ship(NULL),m_MainMenu (NULL),m_ExitVariable(NULL),
                         m_CurrentLevel(-1),v_Filenames(NULL),m_nbLevels(0),m_Physics(NULL),
-                        m_SoundHandler(NULL),m_Delay(5.0f){
+                        m_Delay(5.0f){
 };
 GameLogic::~GameLogic(){
     this->Destroy();
@@ -24,11 +24,6 @@ void GameLogic::Destroy(){
     if(m_Physics){
         delete m_Physics;
         m_Physics=NULL ;
-    }
-    if(m_SoundHandler){
-        m_SoundHandler->Destroy();
-        delete m_SoundHandler ;
-        m_SoundHandler=NULL ;
     }
     if(v_Filenames){
         for(int i=0;i<m_nbLevels;i++)
@@ -109,7 +104,7 @@ void GameLogic::Update(float dt){
                 }
             }
         }
-        m_Physics->CollisioDetection();
+        m_Physics->CollisioDetection(dt);
         m_Physics->CollisionReaction();
         if(!isThereEnemy()){
             m_Delay-=dt;

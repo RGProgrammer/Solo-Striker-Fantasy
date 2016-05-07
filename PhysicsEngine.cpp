@@ -3,7 +3,7 @@
 
 PhysicsEngine::PhysicsEngine():PhysicsEngine(NULL){ //v_Data(NULL),m_nbElements(0),m_Scene(NULL){
 };
-PhysicsEngine::PhysicsEngine(GameScene* Scene):v_Data(NULL),m_nbElements(0),m_Scene(Scene),m_Dt(0.0f){
+PhysicsEngine::PhysicsEngine(GameScene* Scene):v_Data(NULL),m_nbElements(0),m_Scene(Scene){
 };
 PhysicsEngine::~PhysicsEngine(){
     if(v_Data){
@@ -14,7 +14,7 @@ PhysicsEngine::~PhysicsEngine(){
 void PhysicsEngine::setScene(GameScene* Scene){
     m_Scene=Scene ;
 };
-void PhysicsEngine::CollisioDetection(){
+void PhysicsEngine::CollisioDetection(float dt){
         unsigned int nbActors=m_Scene->getNBActors();
         Vertex3d CollisionCenter ;
         StaticModel* tmp1,*tmp2;

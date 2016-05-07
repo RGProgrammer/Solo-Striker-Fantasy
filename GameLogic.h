@@ -51,7 +51,6 @@ private:
     Player*             m_Player ;
     EventSystem*        m_EventSys ;
     PhysicsEngine*      m_Physics ;
-    SoundEngine*        m_SoundHandler ;
 
 
 };

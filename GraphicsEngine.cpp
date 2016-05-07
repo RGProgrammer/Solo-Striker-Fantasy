@@ -11,12 +11,13 @@ int GraphicsEngine::InitEngine(WindowHandler* Window, GameScene* Scene ){
     if(context==NULL)
         return 0 ;
     glViewport(0,0,m_Hwnd->getWidth(),m_Hwnd->getHeight());
-    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER,1);
+    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER,2);
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_NORMALIZE);
     glDisable(GL_LIGHTING);
     glDisable(GL_TEXTURE_2D);
-    //glEnable(GL_CULL_FACE);
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_FRONT);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
     glMatrixMode(GL_PROJECTION);

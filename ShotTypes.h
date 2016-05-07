@@ -33,7 +33,13 @@ public :
 class LongShot: public Shot {
 public :
     LongShot();
+    LongShot(Vertex3d Pos, Vertex3d Dir, Vertex3d Up);
+    LongShot(Actor* Source);
     ~LongShot();
+    void Update(float dt);
+    int LoadFromFile();
+    Shot* Clone();
+    void Hit();
 };
 class Laser : public Shot {
 public :
@@ -41,7 +47,6 @@ public :
     Laser(Vertex3d Pos, Vertex3d Dir, Vertex3d Up);
     Laser(Actor* Source);
     ~Laser();
-    void Draw(float * ViewMtx){StaticModel::Draw(ViewMtx);};
     void Update(float dt);
     int LoadFromFile();
     Shot* Clone();

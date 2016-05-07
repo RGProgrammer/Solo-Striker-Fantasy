@@ -41,10 +41,15 @@ void GameCore::StartGame(){
     m_Running=true ;
     float Dt ;
     m_Timer.Reset();
+    int i = 0 ;
     while(m_Running){
+        i++;
         Dt=m_Timer.getDeltaTime();
         m_Logic->Update(Dt);
-        m_Graphics->DrawScene();
+        if(i==2){
+            i=0;
+            m_Graphics->DrawScene();
+        }
     }
 };
 void GameCore::Destroy(){
