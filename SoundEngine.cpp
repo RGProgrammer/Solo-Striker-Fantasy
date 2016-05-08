@@ -1,6 +1,6 @@
 #include "SoundEngine.h"
 
-SoundEngine::SoundEngine():m_Device(NULL) ,m_Context(NULL),m_MusicBuffer(0),m_MusicSource(0),m_MusicStatus(STOP),
+SoundEngine::SoundEngine():m_Device(NULL) ,m_Context(NULL),m_MusicBuffer(0),m_MusicSource(0),m_MusicStatus(SSTOP),
                             m_Repeat(false){};
 SoundEngine::~SoundEngine(){
     this->Destroy();
@@ -58,23 +58,24 @@ ALuint SoundEngine::LoadSound(Sound sound,Actor* Source){
 void SoundEngine::PlaySound(ALuint ID){
 
 };
-bool SoundEngine::LoadMusic(Sound Music ,bool Repeat){
+bool SoundEngine::LoadMusic(Sound* Music ,bool Repeat){
     if(!m_MusicBuffer){
         alGenBuffers(1,&m_MusicBuffer);
         if(!m_MusicBuffer)
             return false ;
     }
-    alBufferData(m_MusicBuffer,Music.Format,Music.Buffer,Music.Size,Music.Frequency);
+    if(Music)
+        alBufferData(m_MusicBuffer,Music->Format,Music->Buffer,Music->Size,Music->Frequency);
     if(!m_MusicSource){
         alGenSources(1,&m_MusicSource);
         if(!m_MusicBuffer)
             return false ;
     }
-    alSourcei(m_MusicSource,AL_BUFFER,m_MusicBuffer);
-    if(alGetError()){
-        //printf("Error linking buffer and source \n");
-        return false;
-    }
+    alSourceStop(m_MusicSource);
+    if(Music)
+        alSourcei(m_MusicSource,AL_BUFFER,m_MusicBuffer);
+    else
+        alSourcei(m_MusicSource,AL_BUFFER,0);
     this->setRepeatMusic(Repeat);
     return true ;
 };
@@ -89,29 +90,29 @@ bool SoundEngine::isRepeating (){
 };
 void SoundEngine::PlayMusic(){
     if(m_MusicSource)
-    if(m_MusicStatus !=PLAY){
+    if(m_MusicStatus !=SPLAY){
         alSourcePlay(m_MusicSource);
-        m_MusicStatus=PLAY;
+        m_MusicStatus=SPLAY;
     }
 };
 void SoundEngine::PauseMusic(){
     if(m_MusicSource)
-    if(m_MusicStatus !=PAUSE){
+    if(m_MusicStatus !=SPAUSE){
         alSourcePause(m_MusicSource);
-        m_MusicStatus=PAUSE;
+        m_MusicStatus=SPAUSE;
     }
 };
 void SoundEngine::StopMusic(){
     if(m_MusicSource)
-    if(m_MusicStatus !=STOP){
+    if(m_MusicStatus !=SSTOP){
         alSourceStop(m_MusicSource);
-        m_MusicStatus=STOP;
+        m_MusicStatus=SSTOP;
     }
 };
 bool SoundEngine::isPlaying(){
     if(!m_MusicSource)
         return false;
-    if(m_MusicStatus==PLAY)
+    if(m_MusicStatus==SPLAY)
         return true ;
     return false ;
     /*ALint tmp ;
@@ -124,14 +125,14 @@ bool SoundEngine::isPlaying(){
 bool SoundEngine::isPaused(){
     if(!m_MusicSource)
         return false;
-    if(m_MusicStatus==PAUSE)
+    if(m_MusicStatus==SPAUSE)
         return true ;
     return false ;
 };
 bool SoundEngine::isStopped(){
     if(!m_MusicSource)
         return false;
-    if(m_MusicStatus==STOP)
+    if(m_MusicStatus==SSTOP)
         return true ;
     return false ;
 };
@@ -175,7 +176,6 @@ Sound* Output=NULL ;
         wave_format.subChunkID[1] != 'm' ||
         wave_format.subChunkID[2] != 't' ||
         wave_format.subChunkID[3] != ' '){
-            printf("WTF\n");
              fclose(soundFile);
              return NULL ;
          }
@@ -226,7 +226,6 @@ Sound* Output=NULL ;
 
     // Read in the sound data into the soundData variable
     if (!fread(Output->Buffer, wave_data.subChunk2Size, 1, soundFile)){
-            //printf("welcome to hell \n");
              free(Output->Buffer);
              free(Output);
              fclose(soundFile);
@@ -235,26 +234,4 @@ Sound* Output=NULL ;
     //clean up and return true if successful
     fclose(soundFile);
    return Output;
-};
-
-int CreateSoundEngine(){
-    GlobalSoundHandler=new SoundEngine();
-    if(!GlobalSoundHandler)
-        return 0 ;
-    if(!GlobalSoundHandler->InitEngine()){
-        delete GlobalSoundHandler ;
-        GlobalSoundHandler=NULL ;
-        return 0;
-    }
-    return 1 ;
-};
-void DestroyGlobalSoundEngine(){
-    if(GlobalSoundHandler){
-        GlobalSoundHandler->Destroy();
-        delete GlobalSoundHandler ;
-        GlobalSoundHandler=NULL ;
-    }
-};
-static SoundEngine* getGlobalSoundEngineInstance(){
-    return GlobalSoundHandler ;
 };

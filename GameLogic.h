@@ -15,8 +15,8 @@
 #include "MainMenu.h"
 #include "EventSystem.h"
 #include "PhysicsEngine.h"
-#include "SoundEngine.h"
 #include "LevelLoader.h"
+#include "GlobalSound.h"
 #include ".//tools//sdl2//include//SDL.h"
 
 //nomber of level
@@ -26,6 +26,7 @@
 #define     INGAME          0x0002
 #define     PAUSE           0x0004
 #define     SCORESCREEN     0x0008
+
 
 class GameLogic {
 public:

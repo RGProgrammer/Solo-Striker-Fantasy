@@ -3621,7 +3621,7 @@
 	".//tools//sdl2//include//SDL.h"
 	<stdio.h>
 
-1462652371 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\gamelogic.h
+1462729275 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\gamelogic.h
 	"GameScene.h"
 	"Abstract.h"
 	"Camera.h"
@@ -3629,8 +3629,8 @@
 	"MainMenu.h"
 	"EventSystem.h"
 	"PhysicsEngine.h"
-	"SoundEngine.h"
 	"LevelLoader.h"
+	"GlobalSound.h"
 	".//tools//sdl2//include//SDL.h"
 
 1461925421 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\hope.h
@@ -3645,8 +3645,9 @@
 1462358614 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\shottypes.h
 	"Shot.h"
 
-1459622062 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\mainmenu.h
+1462727495 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\mainmenu.h
 	"Player.h"
+	"GlobalSound.h"
 
 1462401696 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\physicsengine.h
 	"GameScene.h"
@@ -3655,7 +3656,7 @@
 	"Shot.h"
 	"Math.h"
 
-1462652596 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\soundengine.h
+1462729425 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\soundengine.h
 	"Actor.h"
 	".//tools//Openal//al.h"
 	".//tools//Openal//alc.h"
@@ -3706,7 +3707,7 @@
 1456259639 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\timer.h
 	<sys/time.h>
 
-1462652545 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\gamelogic.cpp
+1462729318 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\gamelogic.cpp
 	"GameLogic.h"
 
 1460367563 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\gamescene.cpp
@@ -3724,7 +3725,7 @@
 1457515283 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\main.cpp
 	"GameCore.h"
 
-1459933353 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\mainmenu.cpp
+1462729446 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\mainmenu.cpp
 	"MainMenu.h"
 
 1460544580 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\objloader.cpp
@@ -3743,7 +3744,7 @@
 1462361256 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\shottypes.cpp
 	"ShotTypes.h"
 
-1462652530 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\soundengine.cpp
+1462726328 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\soundengine.cpp
 	"SoundEngine.h"
 
 1462276974 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\staticmodel.cpp
@@ -3787,4 +3788,10 @@
 1165591858 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\openal\\al.h
 
 1176476568 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\\tools\\openal\\alc.h
+
+1462728914 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\globalsound.h
+	"SoundEngine.h"
+
+1462728914 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\globalsound.cpp
+	"GlobalSound.h"
 

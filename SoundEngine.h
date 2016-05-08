@@ -6,9 +6,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define STOP        0
-#define PAUSE       1
-#define PLAY        2
+#define SSTOP        0
+#define SPAUSE       1
+#define SPLAY        2
 typedef struct {
     ALenum Format ;
     ALsizei Frequency;
@@ -37,6 +37,7 @@ struct WAVE_Format {
   short blockAlign;
   short bitsPerSample;
 };
+
 class SoundEngine {
 public:
     SoundEngine();
@@ -46,7 +47,7 @@ public:
     void setListener(Actor* Listener);
     ALuint LoadSound(Sound sound,Actor* Source);
     void PlaySound(ALuint ID);
-    bool LoadMusic(Sound Music ,bool repeat=false);
+    bool LoadMusic(Sound* Music ,bool repeat=false);
     void setRepeatMusic(bool Repeat);
     bool isRepeating ();
     void PlayMusic();
@@ -66,9 +67,4 @@ private:
     int                     m_MusicStatus ;
     bool                    m_Repeat ;
 };
-
-static SoundEngine*        GlobalSoundHandler=NULL;
-static int CreateGlobalSoundEngine();//create and Initialize GlobalSoundEngine
-static void DestroyGlobalSoundEngine();
-static SoundEngine* getGlobalSoundEngineInstance();
 #endif // PFE_SOUNDENGINE_H_

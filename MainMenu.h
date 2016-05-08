@@ -1,6 +1,8 @@
 #ifndef PFE_MAINMENU_H_
 #define PFE_MAINMENU_H_
 #include "Player.h"
+#include "GlobalSound.h"
+
 
 enum SELECTEDITEM {
     STARTGAME  = 0 ,
@@ -22,6 +24,7 @@ public:
 private :
     StaticModel**       v_SubItems ;
     StaticModel*        m_Selector ;
+    Sound*              m_MenuMusic;
     int                 m_nbItems;
     int                 m_Selected;
 

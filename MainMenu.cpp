@@ -1,6 +1,6 @@
 #include "MainMenu.h"
 
-MainMenu::MainMenu():Player(),v_SubItems(NULL) ,m_nbItems(0),m_Selected(0){
+MainMenu::MainMenu():Player(),v_SubItems(NULL) ,m_nbItems(0),m_Selected(0),m_MenuMusic(NULL){
 };
 MainMenu::~MainMenu(){
     Destroy();
@@ -23,6 +23,8 @@ int MainMenu::LoadFromFile(){
     Vertex3d pos=v_SubItems[m_Selected]->getPosition();
     pos.y-=0.5f;
     m_Selector->setPosition(pos);
+    if(!(m_MenuMusic=SoundEngine::LoadWAVFile("Sound//menu.wav")))
+        printf("Error loading file \n");
     return 1 ;
 };
 void MainMenu:: Init(){
@@ -31,6 +33,8 @@ void MainMenu:: Init(){
         m_Camera->setOrientation({0.0f,-1.0f,0.0f},{0.0f,0.0f,1.0f});
         m_Camera->setPosition({0.0f,39.0f,0.0f});
      }
+        getGlobalSoundEngineInstance()->LoadMusic(m_MenuMusic,true);
+        getGlobalSoundEngineInstance()->PlayMusic();
 }
 void MainMenu::Update(float dt){
 
@@ -72,5 +76,10 @@ void MainMenu::Destroy(){
         free(v_SubItems);
         m_nbItems=0;
         m_Selected=-1;
+    }
+    if(m_MenuMusic){
+        free(m_MenuMusic->Buffer);
+        free(m_MenuMusic);
+        m_MenuMusic=NULL;
     }
 };

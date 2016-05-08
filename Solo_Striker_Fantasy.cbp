@@ -75,6 +75,8 @@
 		<Unit filename="GameLogic.h" />
 		<Unit filename="GameScene.cpp" />
 		<Unit filename="GameScene.h" />
+		<Unit filename="GlobalSound.cpp" />
+		<Unit filename="GlobalSound.h" />
 		<Unit filename="GraphicsEngine.cpp" />
 		<Unit filename="GraphicsEngine.h" />
 		<Unit filename="HOPE.cpp" />

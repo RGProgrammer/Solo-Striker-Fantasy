@@ -31,11 +31,14 @@ void GameLogic::Destroy(){
         free(v_Filenames);
         v_Filenames=NULL ;
     }
+    DestroyGlobalSoundEngine();
 };
 int GameLogic::InitLogic(GameScene* Scene){
     this->m_Scene=Scene ;
     m_EventSys=new EventSystem();
     m_Physics=new PhysicsEngine(m_Scene);
+    if(!CreateGlobalSoundEngine())
+        printf("Cannot create Soound engine\n");
     if(!m_Physics)
         return 0 ;
     m_Ship=new HOPE();
@@ -53,7 +56,6 @@ int GameLogic::InitLogic(GameScene* Scene){
     m_Player=m_MainMenu;
     m_Ship->setScene(m_Scene);
     m_MainMenu->setCamera(m_Camera);
-    m_MainMenu->Init();
     m_Ship->setCamera(m_Camera);
     m_Scene->setPlayer(m_Player);
     m_Stat=MAINMENU ;
@@ -61,10 +63,11 @@ int GameLogic::InitLogic(GameScene* Scene){
     v_Filenames=(char**)malloc(m_nbLevels*sizeof(char*));
     v_Filenames[0]=(char*)malloc(13*sizeof(char));
     strcpy(v_Filenames[0],"Desert.lvl");
+    m_MainMenu->Init();
     return 1 ;
 };
 int GameLogic::InitLevel(int index){
-
+    getGlobalSoundEngineInstance()->LoadMusic(NULL,false);
     if(!LevelLoader::LoadLevel(v_Filenames[index-1],m_Scene))
         return 0 ;
     m_Delay=5.0f ;
