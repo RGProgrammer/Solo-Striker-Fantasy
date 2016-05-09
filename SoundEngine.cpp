@@ -59,21 +59,25 @@ void SoundEngine::PlaySound(ALuint ID){
 
 };
 bool SoundEngine::LoadMusic(Sound* Music ,bool Repeat){
-    if(!m_MusicBuffer){
-        alGenBuffers(1,&m_MusicBuffer);
-        if(!m_MusicBuffer)
-            return false ;
-    }
-    if(Music)
-        alBufferData(m_MusicBuffer,Music->Format,Music->Buffer,Music->Size,Music->Frequency);
     if(!m_MusicSource){
         alGenSources(1,&m_MusicSource);
-        if(!m_MusicBuffer)
+        if(!m_MusicSource)
             return false ;
     }
     alSourceStop(m_MusicSource);
-    if(Music)
-        alSourcei(m_MusicSource,AL_BUFFER,m_MusicBuffer);
+    m_MusicStatus=SSTOP;
+    if(Music){
+        if(m_MusicBuffer){
+            alDeleteBuffers(1,&m_MusicBuffer);
+            m_MusicBuffer=0 ;
+        }
+        alGenBuffers(1,&m_MusicBuffer);
+        if(!m_MusicBuffer)
+            return false ;
+
+        alBufferData(m_MusicBuffer,Music->Format,Music->Buffer,Music->Size,Music->Frequency);
+         alSourcei(m_MusicSource,AL_BUFFER,m_MusicBuffer);
+    }
     else
         alSourcei(m_MusicSource,AL_BUFFER,0);
     this->setRepeatMusic(Repeat);

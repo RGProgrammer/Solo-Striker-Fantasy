@@ -1,5 +1,6 @@
 /skybox name="skybox.obj"
 /terrain name="Desert.obj"
+/music name="desert.wav"
 /camera type="SIDE"
 /enemy type="UFO" pos="0.0 70.0 60.0" dir="0.0 0.0 -1.0" up="0.0 1.0 0.0"
 /action inst="1.0" type="MOVE" param="0.0 70.0 60.0 0.0 0.0 0.0" speed="50"

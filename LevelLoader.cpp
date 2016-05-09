@@ -35,6 +35,8 @@ int LevelLoader::LoadLevelFile(char* filename,GameScene* Scene){
             DecodeActionLine(line);
         else if(contains(line,"/camera"))
             DecodeCameraLine(line);
+        else if(contains(line,"/music"))
+            DecodeMusicLine(line);
     }
     fclose(lvlFile);
     free(completefilename);
@@ -210,3 +212,24 @@ int LevelLoader::DecodeCameraLine(char* line){
     }
     free(tmpstr);
 }
+int LevelLoader::DecodeMusicLine(char* line){
+    Sound* Music=NULL ;
+    char* tmpstr=NULL ;
+    char* filename ;
+    if(contains(line,"name=")){
+        tmpstr=ExtractString(line,"name=\"","\"");
+        CatStrings("Sound//",tmpstr,&filename);
+        Music=SoundEngine::LoadWAVFile(filename);
+        free(tmpstr);
+        free(filename);
+        filename=NULL ;
+        tmpstr=NULL;
+        if(!Music){
+            return 0 ;}
+        getGlobalSoundEngineInstance()->LoadMusic(Music,true);
+        free(Music->Buffer);
+        free(Music);
+        Music=NULL;
+    }
+    return 1 ;
+};

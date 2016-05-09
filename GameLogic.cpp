@@ -67,9 +67,9 @@ int GameLogic::InitLogic(GameScene* Scene){
     return 1 ;
 };
 int GameLogic::InitLevel(int index){
-    getGlobalSoundEngineInstance()->LoadMusic(NULL,false);
     if(!LevelLoader::LoadLevel(v_Filenames[index-1],m_Scene))
         return 0 ;
+    getGlobalSoundEngineInstance()->PlayMusic();
     m_Delay=5.0f ;
     return 1 ;
 };
@@ -117,9 +117,10 @@ void GameLogic::Update(float dt){
                 else{
                     m_Scene->FreeVector();
                     m_Player=m_MainMenu ;
-                    m_MainMenu->Init();
                     m_Scene->setPlayer(m_Player);
+                    m_MainMenu->Init();
                     m_Stat=MAINMENU;
+
                     return ;
                 }
         }

@@ -7,6 +7,7 @@
 #include "ShotTypes.h"
 #include "Terrain.h"
 #include "util.h"
+#include "GlobalSound.h"
 #include <stdlib.h>
 class LevelLoader {
 public:
@@ -21,6 +22,7 @@ private:
     int DecodeTerrainLine(char* line);
     int DecodeSkyboxLine(char* line);
     int DecodeCameraLine(char* line );
+    int DecodeMusicLine(char* line);
     GameScene*           m_Scene;
     Enemy*               m_Sample;
 };
