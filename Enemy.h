@@ -11,7 +11,8 @@
 #define FIREACTION  0x0001
 #define MOVEACTION  0x0002
 #define EXPLODE     0x0004
-#define ATTACK      0x0005 //particular for Blades
+#define KILL        0x0005 //particular for Blades
+#define ATTACK      0x0006
 
 //Stats
 #define DEAD        0x0000
@@ -47,6 +48,7 @@ public :
     bool isActive();
     void setActive(bool);
     void Explode();
+    void Kill();
     void getDamage(int Damage);
 protected:
     int                             m_Stat ;

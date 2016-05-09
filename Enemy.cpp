@@ -31,7 +31,10 @@ void Enemy::Update(float dt){
                 return ;
             else
                 m_Active=true ;
-            if(v_Actions[m_CurrentActions].ActionType==EXPLODE)
+            if(v_Actions[m_CurrentActions].ActionType==KILL){
+                this->Kill();
+                return ;
+            }else if(v_Actions[m_CurrentActions].ActionType==EXPLODE)
                     Explode();
             else if(v_Actions[m_CurrentActions].ActionType==MOVEACTION){
                 m_Velocity=ScaleVertex3d(Normalize3d(getVertex3d(m_Pos,((Movement*)(v_Actions[m_CurrentActions].Data))->Translate)),((Movement*)(v_Actions[m_CurrentActions].Data))->Speed*dt);
@@ -134,4 +137,8 @@ void Enemy::getDamage(int damage){
             this->Explode();
         }
     }
+};
+void Enemy::Kill(){
+    m_Stat=DEAD;
+    m_ID=UNKNOWN ;
 };

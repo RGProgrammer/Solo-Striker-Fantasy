@@ -88,6 +88,9 @@ int LevelLoader::DecodeActionLine(char* line){
         }else if(strcmp(tmpstr,"EXPLODE")==0){
             action.ActionType=EXPLODE;
             m_Sample->addAction(action);
+        }else if(strcmp(tmpstr,"KILL")==0){
+            action.ActionType=KILL;
+            m_Sample->addAction(action);
         }
     }
 };
