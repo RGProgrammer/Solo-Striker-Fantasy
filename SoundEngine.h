@@ -46,7 +46,7 @@ public:
     void Destroy();
     void setListener(Actor* Listener);
     ALuint LoadSound(Sound sound);
-    void PlaySound(ALuint ID,Actor* source=NULL);
+    void PlaySound(ALuint IDSound,Actor* source=NULL);
     bool LoadMusic(Sound* Music ,bool repeat=false);
     void setRepeatMusic(bool Repeat);
     bool isRepeating ();

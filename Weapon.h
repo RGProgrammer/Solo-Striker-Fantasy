@@ -11,7 +11,7 @@ public:
     Weapon(char* Name,Actor* Owner,Shot* Sample);
     void setSample(Shot* Sample);
     void setOwner(Actor* Owner);
-    virtual int Fire(GameScene* Scene,Vertex3d Pos,Vertex3d Dir,Vertex3d Up)=0;
+    virtual int Fire(float dt,GameScene* Scene,Vertex3d Pos,Vertex3d Dir,Vertex3d Up)=0;
     char* getName();
 protected:
     char*           m_Name ;

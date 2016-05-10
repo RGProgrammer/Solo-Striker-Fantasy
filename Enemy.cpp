@@ -1,18 +1,20 @@
 #include "Enemy.h"
-Enemy::Enemy():DynamicModel(),m_nbActions(0),v_Actions(NULL),m_Scene(NULL),m_CurrentActions(0),
-                        m_Health(1),m_Stat(ALIVE),m_Dt(0),m_Sample(NULL),m_Explosion(NULL),m_Active(false){
-    m_ID|=ENEMY | PHYSICAL ;
-    m_LastPostion=m_Pos ;
+Enemy::Enemy():Enemy({0.0f,0.0f,0.0f}){
 };
-Enemy::Enemy(Vertex3d Pos):DynamicModel(Pos),m_nbActions(0),v_Actions(NULL),m_Scene(NULL),m_CurrentActions(0),m_Health(1),
-                                m_Stat(ALIVE),m_Dt(0),m_Sample(NULL),m_Explosion(NULL),m_Active(false){
-   m_ID|=ENEMY | PHYSICAL ;
-   m_LastPostion=m_Pos ;};
+Enemy::Enemy(Vertex3d Pos):Enemy(Pos,{0.0f,0.0f,-1.0f},{0.0f,1.0f,0.0f}){
+};
 Enemy::Enemy(Vertex3d Pos,Vertex3d Dir,Vertex3d Up):DynamicModel(Pos,Dir,Up),m_nbActions(0),v_Actions(NULL),m_Scene(NULL),
                                                     m_CurrentActions(0),m_Health(1),m_Stat(ALIVE),m_Dt(0),m_Sample(NULL),
-                                                    m_Explosion(NULL),m_Active(false){
+                                                    m_Explosion(NULL),m_Active(false),m_EnemyHitSound(0){
     m_ID|=ENEMY | PHYSICAL ;
-    m_LastPostion=m_Pos ;};
+    m_LastPostion=m_Pos ;
+    Sound* effect=SoundEngine::LoadWAVFile("Sound//hit.wav");
+    if(effect){
+        m_EnemyHitSound=getGlobalSoundEngineInstance()->LoadSound(*effect);
+        free(effect->Buffer);
+        free(effect);
+    }
+};
 Enemy::~Enemy(){
     this->Destroy();
 };
@@ -132,6 +134,7 @@ void Enemy::Explode(){
 };
 void Enemy::getDamage(int damage){
     if(m_Stat==ALIVE){
+        getGlobalSoundEngineInstance()->PlaySound(m_EnemyHitSound,this);
         m_Health-=damage;
         if(m_Health<=0){
             this->Explode();

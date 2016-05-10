@@ -17,8 +17,8 @@ int Shooter::LoadFromFile(){
 void Shooter::Update(float dt){
        setPosition(AddVertex3d(m_Owner->getPosition(),m_Trans));
 };
-int Shooter::Fire(GameScene* Scene){
-    return v_Weapons[m_SelectedWeapon]->Fire(Scene,m_Pos,m_Dir,m_Up);
+int Shooter::Fire(float dt,GameScene* Scene){
+    return v_Weapons[m_SelectedWeapon]->Fire(dt,Scene,m_Pos,m_Dir,m_Up);
 };
 void Shooter::SelectWeapon(int index){
     if(index>=0 && index<m_nbWeapons)
@@ -81,7 +81,7 @@ void HOPE::Update(float dt){
     m_Shooterl->Update(dt);
     m_Shooter2->Update(dt);
     if(m_Firing==true)
-        Fire();
+        Fire(dt);
 };
 
 void HOPE::Update(SDL_Event* Events, int nbEvents){
@@ -176,9 +176,9 @@ void HOPE::Update(SDL_Event* Events, int nbEvents){
         }
     }
 };
-void HOPE::Fire(){
-    m_Shooterl->Fire(m_Scene);
-    m_Shooter2->Fire(m_Scene);
+void HOPE::Fire(float dt){
+    m_Shooterl->Fire(dt,m_Scene);
+    m_Shooter2->Fire(dt,m_Scene);
 };
 
 

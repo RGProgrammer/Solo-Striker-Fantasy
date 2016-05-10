@@ -10,7 +10,7 @@ Canon::~Canon(){
     this->Destroy() ;
 };
 int Canon::LoadFromFile() {
-    m_Health=150.0f;
+    m_Health=100.0f;
     m_Explosion=new Explosion(this);
     m_Explosion->LoadFromFile();
     return StaticModel::LoadFromFile("Data//Canon.obj");

@@ -10,7 +10,7 @@ public :
     ~Shooter();
     int LoadFromFile();
     void Update(float dt);
-    int Fire(GameScene* Scene);
+    int Fire(float dt,GameScene* Scene);
     void SelectWeapon(int index);
     void setTransVertex(Vertex3d ver);
     void Destroy();
@@ -36,7 +36,7 @@ public :
     //void Update(SDL_Event event);//Update HOPE's Stat
     void Update(SDL_Event* Events, int nbEvents) ;
 private :
-    void Fire();
+    void Fire(float dt);
     float               m_Speed ;//HOPE movement speed
     Vertex3d            m_MoveDirection;
     Shooter*            m_Shooterl;

@@ -3,6 +3,7 @@
 #include "DynamicModel.h"
 #include "GameScene.h"
 #include "Explosion.h"
+#include "GlobalSound.h"
 //enemy define code
 #define ENEMY       0x0010
 
@@ -58,6 +59,7 @@ protected:
     unsigned int                    m_nbActions ;
     float                           m_Dt;
     Vertex3d                        m_LastPostion;
+    ALuint                          m_EnemyHitSound ;
     Shot*                           m_Sample;
     Action*                         v_Actions ;
     GameScene*                      m_Scene;

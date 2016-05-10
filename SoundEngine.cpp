@@ -70,11 +70,13 @@ ALuint SoundEngine::LoadSound(Sound sound){
         alDeleteBuffers(1,&IDSound);
         return 0 ;
     }
-    return m_nbSounds;
+    return IDSound;
 
 };
-void SoundEngine::PlaySound(ALuint ID,Actor* Source){
-    if(ID <= m_nbSounds && ID > 0){
+void SoundEngine::PlaySound(ALuint IDSound,Actor* Source){
+    ALuint ID=0;
+    for(;ID<m_nbSounds && v_Sounds[ID]!=IDSound;ID++);
+    if(ID<m_nbSounds){
         alSourceStop(v_Sources[ID]);
         if(Source){
             Vertex3d ver =Source->getPosition();

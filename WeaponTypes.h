@@ -7,7 +7,7 @@ class MachineGun :public Weapon {
 public :
     MachineGun(Actor* Owner);
     ~MachineGun();
-    int Fire(GameScene* Scene,Vertex3d Pos,Vertex3d Dir,Vertex3d Up);
+    int Fire(float dt,GameScene* Scene,Vertex3d Pos,Vertex3d Dir,Vertex3d Up);
 
 };
 class ChaserLauncher: public Weapon{
