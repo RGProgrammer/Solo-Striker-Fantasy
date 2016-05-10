@@ -3236,7 +3236,8 @@
 	"Weapon.h"
 	".//tools//sdl2//include//SDL.h"
 
-1456683632 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\weapon.h
+1462882084 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\weapon.h
+	"GlobalSound.h"
 	"Shot.h"
 	"GameScene.h"
 
@@ -3605,7 +3606,7 @@
 	".//tools//sdl2//include//SDL.h"
 	<stdlib.h>
 
-1461579578 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\explosion.cpp
+1462880854 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\explosion.cpp
 	"Explosion.h"
 
 1462401555 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\gamecore.cpp

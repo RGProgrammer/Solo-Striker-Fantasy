@@ -1,5 +1,6 @@
 #ifndef PFE_WEAPON_H_
 #define PFE_WEAPON_H_
+#include "GlobalSound.h"
 #include "Shot.h"
 #include "GameScene.h"
 class GameScene ;
@@ -18,5 +19,6 @@ protected:
     float           m_TimeBetweenShots;
     Actor*          m_Owner;
     float           m_Dt ;
+    ALuint          m_FireSound;
 };
 #endif // PFE_WEAPON_H_

@@ -4,7 +4,7 @@ Weapon::Weapon(char* Name):Weapon(Name,NULL,NULL){
 };
 Weapon::Weapon(char* Name,Actor* Source):Weapon(Name,Source,NULL){
 };
-Weapon::Weapon(char* Name,Actor* Source,Shot* Sample):m_Name(NULL),m_Sample(Sample),m_Dt(0.0f){
+Weapon::Weapon(char* Name,Actor* Source,Shot* Sample):m_Name(NULL),m_Sample(Sample),m_Dt(0.0f),m_FireSound(0){
     if(Name){
         m_Name=(char*)malloc((strlen(Name)+1)*sizeof(char));
         for(int i=0;Name[i];i++)
