@@ -12,7 +12,7 @@ Blades::~Blades(){
 int Blades::LoadFromFile(){
     m_Health=20.0f;
     m_Explosion=new Explosion(this);
-    m_Explosion->LoadFromFile("Data//Explosion.obj");
+    m_Explosion->LoadFromFile();
     return StaticModel::LoadFromFile("Data//blades.obj");
 };
 void Blades::Update(float dt){

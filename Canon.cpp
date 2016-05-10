@@ -12,7 +12,7 @@ Canon::~Canon(){
 int Canon::LoadFromFile() {
     m_Health=150.0f;
     m_Explosion=new Explosion(this);
-    m_Explosion->LoadFromFile("Data//Explosion.obj");
+    m_Explosion->LoadFromFile();
     return StaticModel::LoadFromFile("Data//Canon.obj");
 };
 void Canon::Update(float dt){

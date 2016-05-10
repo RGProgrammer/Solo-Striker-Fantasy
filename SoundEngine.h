@@ -45,8 +45,8 @@ public:
     int InitEngine();
     void Destroy();
     void setListener(Actor* Listener);
-    ALuint LoadSound(Sound sound,Actor* Source);
-    void PlaySound(ALuint ID);
+    ALuint LoadSound(Sound sound);
+    void PlaySound(ALuint ID,Actor* source=NULL);
     bool LoadMusic(Sound* Music ,bool repeat=false);
     void setRepeatMusic(bool Repeat);
     bool isRepeating ();
@@ -60,11 +60,17 @@ public:
 public:
     static Sound* LoadWAVFile(char* filename);
 private:
+    bool addID(ALuint IDSound,ALuint IDSource );
     ALCdevice*              m_Device ;
     ALCcontext*             m_Context;
     ALuint                  m_MusicBuffer ;
     ALuint                  m_MusicSource;// initialized via set Listener;
     int                     m_MusicStatus ;
     bool                    m_Repeat ;
+
+    ALuint*                 v_Sounds;//vctor contains all loaded sound buffers
+    ALuint*                 v_Sources;
+    ALuint                  m_nbSounds;
+
 };
 #endif // PFE_SOUNDENGINE_H_

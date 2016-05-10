@@ -5,7 +5,7 @@ Effect::Effect(Vertex3d Pos): Effect(Pos,{0.0f,0.0f,1.0f},{0.0f,1.0f,0.0f}){
 };
 Effect::Effect(Vertex3d Pos, Vertex3d Dir, Vertex3d Up):DynamicModel(Pos,Dir,Up),
                                                         m_Stat(NOTSTARTED),m_LifeTime(0.0f),
-                                                        m_Source(NULL){
+                                                        m_Source(NULL),m_Sound(0){
 };
 Effect::Effect(Actor* Source):Effect(){
     m_Source=Source ;
@@ -21,6 +21,7 @@ void Effect::Start(){
     if(m_Source){
         this->setPosition(m_Source->getPosition());
     }
+    getGlobalSoundEngineInstance()->PlaySound(m_Sound,this);
 };
 void Effect::Stop() {
     m_Stat=DONE ;

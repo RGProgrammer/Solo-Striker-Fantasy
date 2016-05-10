@@ -3178,7 +3178,7 @@
 1459968225 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\actor.cpp
 	"Actor.h"
 
-1461834836 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\blades.cpp
+1462875789 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\blades.cpp
 	"Blades.h"
 
 1461674554 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\blades.h
@@ -3560,11 +3560,12 @@
 	"begin_code.h"
 	"close_code.h"
 
-1461578970 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\explosion.h
+1462875111 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\explosion.h
 	"Effect.h"
 
-1461416727 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\effect.h
+1462875811 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\effect.h
 	"DynamicModel.h"
+	"GlobalSound.h"
 
 1456083577 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\boss.cpp
 	"Boss.h"
@@ -3576,7 +3577,7 @@
 	"Camera.h"
 	<stdio.h>
 
-1462360429 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\canon.cpp
+1462875780 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\canon.cpp
 	"Canon.h"
 
 1461872114 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\canon.h
@@ -3591,10 +3592,10 @@
 1459283276 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\dynamicmodel.cpp
 	"DynamicModel.h"
 
-1461417764 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\effect.cpp
+1462880649 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\effect.cpp
 	"Effect.h"
 
-1462825631 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\enemy.cpp
+1462826258 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\enemy.cpp
 	"Enemy.h"
 
 1459282988 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\eventsystem.cpp
@@ -3656,7 +3657,7 @@
 	"Shot.h"
 	"Math.h"
 
-1462729425 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\soundengine.h
+1462879716 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\soundengine.h
 	"Actor.h"
 	".//tools//Openal//al.h"
 	".//tools//Openal//alc.h"
@@ -3745,7 +3746,7 @@
 1462361256 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\shottypes.cpp
 	"ShotTypes.h"
 
-1462824103 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\soundengine.cpp
+1462880576 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\soundengine.cpp
 	"SoundEngine.h"
 
 1462276974 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\staticmodel.cpp
@@ -3771,7 +3772,7 @@
 	<iostream>
 	"lodepng.h"
 
-1461416477 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\ufo.cpp
+1462875754 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\ufo.cpp
 	"UFO.h"
 
 1460371867 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\util.cpp

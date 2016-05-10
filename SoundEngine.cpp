@@ -1,7 +1,7 @@
 #include "SoundEngine.h"
 
 SoundEngine::SoundEngine():m_Device(NULL) ,m_Context(NULL),m_MusicBuffer(0),m_MusicSource(0),m_MusicStatus(SSTOP),
-                            m_Repeat(false){};
+                            m_Repeat(false),m_nbSounds(0),v_Sounds(NULL),v_Sources(NULL){};
 SoundEngine::~SoundEngine(){
     this->Destroy();
 };
@@ -19,6 +19,7 @@ int SoundEngine::InitEngine(){
     return 1 ;
 };
 void SoundEngine::Destroy(){
+    ReleaseBuffers();
     if(m_MusicSource){
         alDeleteSources(1,&m_MusicSource);
         m_MusicSource=0 ;
@@ -52,11 +53,37 @@ void SoundEngine::setListener(Actor* Listener){
         alListenerfv(AL_ORIENTATION,tab);
     }
 };
-ALuint SoundEngine::LoadSound(Sound sound,Actor* Source){
+ALuint SoundEngine::LoadSound(Sound sound){
+    ALuint IDSound=0,IDSource=0 ;
+    alGenBuffers(1,&IDSound);
+    if(!IDSound)
+        return 0 ;
+    alGenSources(1,&IDSource);
+    alBufferData(IDSound,sound.Format,sound.Buffer,sound.Size,sound.Frequency);
+    if(!IDSource){
+        alDeleteBuffers(1,&IDSound);
+        return 0 ;
+    }
+    alSourcei(IDSource,AL_BUFFER,IDSound);
+    if(!addID(IDSound,IDSource)){
+        alDeleteSources(1,&IDSource);
+        alDeleteBuffers(1,&IDSound);
+        return 0 ;
+    }
+    return m_nbSounds;
 
 };
-void SoundEngine::PlaySound(ALuint ID){
-
+void SoundEngine::PlaySound(ALuint ID,Actor* Source){
+    if(ID <= m_nbSounds && ID > 0){
+        alSourceStop(v_Sources[ID]);
+        if(Source){
+            Vertex3d ver =Source->getPosition();
+            alSource3f(v_Sources[ID],AL_POSITION,ver.x,ver.y,ver.z);
+        }else{
+            alSource3f(v_Sources[ID],AL_POSITION,0.0f,0.0f,0.0f);
+        }
+        alSourcePlay(v_Sources[ID]);
+    }
 };
 bool SoundEngine::LoadMusic(Sound* Music ,bool Repeat){
     if(!m_MusicSource){
@@ -76,7 +103,7 @@ bool SoundEngine::LoadMusic(Sound* Music ,bool Repeat){
             return false ;
 
         alBufferData(m_MusicBuffer,Music->Format,Music->Buffer,Music->Size,Music->Frequency);
-         alSourcei(m_MusicSource,AL_BUFFER,m_MusicBuffer);
+        alSourcei(m_MusicSource,AL_BUFFER,m_MusicBuffer);
     }
     else
         alSourcei(m_MusicSource,AL_BUFFER,0);
@@ -141,8 +168,38 @@ bool SoundEngine::isStopped(){
     return false ;
 };
 void SoundEngine::ReleaseBuffers(){
+    if(v_Sounds){
+        for(int i=0; i<m_nbSounds;i++){
+            alDeleteBuffers(1,&(v_Sounds[i]));
+            alDeleteSources(1,&(v_Sources[i]));
+        }
+        free(v_Sounds);
+        free(v_Sources);
+        v_Sources=NULL ;
+        v_Sounds=NULL ;
+        m_nbSounds=0;
+    }
 };
+bool SoundEngine::addID(ALuint IDSound,ALuint IDSource){
+    ALuint* tmp1=(ALuint*)malloc((m_nbSounds+1)*sizeof(ALuint));//for sounds
+    ALuint* tmp2=(ALuint*)malloc((m_nbSounds+1)*sizeof(ALuint));
+    if(!tmp2 && !tmp2)
+        return false ;
+    if(v_Sounds){
+        for(int i=0 ; i < m_nbSounds;i++){
+            tmp1[i]=v_Sounds[i];
+            tmp2[i]=v_Sources[i];}
+        free(v_Sounds);
+        free(v_Sources);
+    }
+    tmp1[m_nbSounds]=IDSound ;
+    tmp2[m_nbSounds]=IDSource;
+    v_Sounds=tmp1;
+    v_Sources=tmp2;
+    m_nbSounds++ ;
+    return true ;
 
+};
 Sound* SoundEngine::LoadWAVFile(char* filename){
 Sound* Output=NULL ;
     FILE* soundFile = NULL;

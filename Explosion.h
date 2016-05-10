@@ -7,6 +7,7 @@ public :
     Explosion(Vertex3d Pos);
     Explosion(Vertex3d Pos,Vertex3d Dir, Vertex3d Up);
     Explosion(Actor* Source);
+    int LoadFromFile();
     void Update(float dt);
 private:
     float       m_Speed;
