@@ -9,7 +9,7 @@ MachineGun::MachineGun(Actor* Owner):Weapon("machinegun",Owner,NULL){
         free(effect->Buffer);
         free(effect);
     }
-    m_TimeBetweenShots=0.17f;
+    m_TimeBetweenShots=0.10f;
 };
 MachineGun::~MachineGun(){
 };

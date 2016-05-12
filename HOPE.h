@@ -42,8 +42,5 @@ private :
     Shooter*            m_Shooterl;
     Shooter*            m_Shooter2;
     bool                m_Firing ;
-
-
-
 };
 #endif // PFE_HOPE_H_
