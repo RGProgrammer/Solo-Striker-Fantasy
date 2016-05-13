@@ -39,6 +39,7 @@ Shot* EnergyBullet::Clone(){
     clone->setSource(m_Source);
     clone->setSpeed(m_Speed );
     clone->setDamage(m_Damage) ;
+    return clone ;
 };
 void EnergyBullet::Hit(){
     m_Speed=0.0f;
@@ -93,6 +94,7 @@ Shot* SmallShot::Clone(){
     clone->setSource(m_Source);
     clone->setSpeed(m_Speed );
     clone->setDamage(m_Damage) ;
+    return clone ;
 };
 void SmallShot::Hit(){
     m_Speed=0.0f;
@@ -144,6 +146,7 @@ Shot* LongShot::Clone(){
     clone->setSource(m_Source);
     clone->setSpeed(m_Speed );
     clone->setDamage(m_Damage) ;
+    return clone;
 };
 void LongShot::Hit(){
     m_ID=UNKNOWN ;
@@ -190,6 +193,7 @@ Shot* Laser::Clone(){
     clone->setSource(m_Source);
     clone->setSpeed(m_Speed );
     clone->setDamage(m_Damage) ;
+    return clone;
 };
 void Laser ::Hit(){
 

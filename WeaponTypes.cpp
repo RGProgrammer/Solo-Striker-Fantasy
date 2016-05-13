@@ -27,6 +27,7 @@ int MachineGun::Fire(float dt ,GameScene* Scene,Vertex3d Pos,Vertex3d Dir,Vertex
         getGlobalSoundEngineInstance()->PlaySound(m_FireSound,m_Owner);
         return Scene->AddActor(bullet);
     }
+    return 1;
 };
 
 
