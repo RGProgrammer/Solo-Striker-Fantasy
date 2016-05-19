@@ -1,6 +1,7 @@
 #ifndef PFE_HOPE_H_
 #define PFE_HOPE_H_
 #include "Player.h"
+#include "PlayerStatus.h"
 #include "WeaponTypes.h"
 #include "Math.h"
 class HOPE;
@@ -12,6 +13,8 @@ public :
     void Update(float dt);
     int Fire(float dt,GameScene* Scene);
     void SelectWeapon(int index);
+    int getSelectedWeapon();
+    Weapon* getSelectedWeaponObj();
     void setTransVertex(Vertex3d ver);
     void Destroy();
 private:
@@ -20,9 +23,9 @@ private:
     int                 m_nbWeapons;
     int                 m_SelectedWeapon;
     Weapon**            v_Weapons;
+    ALuint              m_SwitchSound ;
 
 };
-
 class HOPE :public Player{
 public :
     //Constructor
@@ -35,12 +38,15 @@ public :
     void Update(float dt);//updates HOPE movement
     //void Update(SDL_Event event);//Update HOPE's Stat
     void Update(SDL_Event* Events, int nbEvents) ;
+    void NextWeapon();
+    void PreviousWeapon();
 private :
     void Fire(float dt);
     float               m_Speed ;//HOPE movement speed
     Vertex3d            m_MoveDirection;
     Shooter*            m_Shooterl;
     Shooter*            m_Shooter2;
+    PlayerStatus*       m_GStatus;
     bool                m_Firing ;
 };
 #endif // PFE_HOPE_H_

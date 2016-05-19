@@ -41,6 +41,7 @@ void PhysicsEngine::CollisionReaction(){
             if(((Shot*)(v_Data[i].Object2))->getSource()->getID() & PLAYER ){
                 ((Enemy*)(v_Data[i].Object1))->getDamage(((Shot*)(v_Data[i].Object2))->getDamage());
                 ((Shot*)(v_Data[i].Object2))->Hit();
+                m_Scene->getPlayer()->AddtoScore(5);
             }
         }
         if((v_Data[i].Object1->getID() & SHOT) && (v_Data[i].Object2->getID() & ENEMY)){
@@ -48,6 +49,7 @@ void PhysicsEngine::CollisionReaction(){
             if(((Shot*)(v_Data[i].Object1))->getSource()->getID() & PLAYER ){
                 ((Enemy*)(v_Data[i].Object2))->getDamage(((Shot*)(v_Data[i].Object1))->getDamage());
                 ((Shot*)(v_Data[i].Object1))->Hit();
+                m_Scene->getPlayer()->AddtoScore(5);
             }
         }
     }

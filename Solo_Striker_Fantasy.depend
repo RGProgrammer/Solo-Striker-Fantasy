@@ -3231,13 +3231,14 @@
 1460455900 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\camera.h
 	"Actor.h"
 
-1459622193 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\player.h
+1463485028 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\player.h
 	"GameScene.h"
 	"DynamicModel.h"
 	"Weapon.h"
+	"ScoreHandler.h"
 	".//tools//sdl2//include//SDL.h"
 
-1462913904 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\weapon.h
+1463608597 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\weapon.h
 	"GlobalSound.h"
 	"Shot.h"
 	"GameScene.h"
@@ -3597,7 +3598,7 @@
 1462880649 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\effect.cpp
 	"Effect.h"
 
-1462891491 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\enemy.cpp
+1463494211 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\enemy.cpp
 	"Enemy.h"
 
 1459282988 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\eventsystem.cpp
@@ -3636,16 +3637,18 @@
 	"GlobalSound.h"
 	".//tools//sdl2//include//SDL.h"
 
-1462961317 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\hope.h
+1463667793 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\hope.h
 	"Player.h"
+	"PlayerStatus.h"
 	"WeaponTypes.h"
 	"Math.h"
 
-1462913916 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\weapontypes.h
+1463660642 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\weapontypes.h
+	"Enemy.h"
 	"Weapon.h"
 	"ShotTypes.h"
 
-1462358614 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\shottypes.h
+1463217367 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\shottypes.h
 	"Shot.h"
 
 1462727495 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\mainmenu.h
@@ -3711,16 +3714,16 @@
 1456259639 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\timer.h
 	<sys/time.h>
 
-1462891042 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\gamelogic.cpp
+1463216916 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\gamelogic.cpp
 	"GameLogic.h"
 
 1460367563 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\gamescene.cpp
 	"GameScene.h"
 
-1462381617 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\graphicsengine.cpp
+1463609218 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\graphicsengine.cpp
 	"GraphicsEngine.h"
 
-1463132939 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\hope.cpp
+1463668149 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\hope.cpp
 	"HOPE.h"
 
 1462825807 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\levelloader.cpp
@@ -3729,29 +3732,29 @@
 1457515283 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\main.cpp
 	"GameCore.h"
 
-1462729446 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\mainmenu.cpp
+1463135811 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\mainmenu.cpp
 	"MainMenu.h"
 
 1460544580 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\objloader.cpp
 	"ObjLoader.h"
 
-1462914467 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\physicsengine.cpp
+1463493913 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\physicsengine.cpp
 	"PhysicsEngine.h"
 	<stdio.h>
 
-1459622261 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\player.cpp
+1463485642 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\player.cpp
 	"Player.h"
 
 1462274671 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\shot.cpp
 	"Shot.h"
 
-1463135132 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\shottypes.cpp
+1463218970 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\shottypes.cpp
 	"ShotTypes.h"
 
 1462887657 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\soundengine.cpp
 	"SoundEngine.h"
 
-1462276974 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\staticmodel.cpp
+1463658241 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\staticmodel.cpp
 	"StaticModel.h"
 
 1462380315 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\terrain.cpp
@@ -3780,10 +3783,10 @@
 1460371867 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\util.cpp
 	"util.h"
 
-1462914083 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\weapon.cpp
+1463608661 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\weapon.cpp
 	"Weapon.h"
 
-1463133225 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\weapontypes.cpp
+1463660694 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\weapontypes.cpp
 	"WeaponTypes.h"
 
 1451752834 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\windowhandler.cpp
@@ -3798,4 +3801,28 @@
 
 1462728914 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\globalsound.cpp
 	"GlobalSound.h"
+
+1463400737 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\scorehandler.h
+	"StaticModel.h"
+	"Text.h"
+
+1463482803 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\text.h
+	"Abstract.h"
+	"Math.h"
+	"Types.h"
+	".//tools//sdl2//include//SDL_opengl.h"
+	".//tools//lodepng//lodepng.h"
+	<stdio.h>
+
+1463609618 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\scorehandler.cpp
+	"ScoreHandler.h"
+
+1463494677 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\text.cpp
+	"Text.h"
+
+1463604529 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\playerstatus.h
+	"StaticModel.h"
+
+1463609492 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\playerstatus.cpp
+	"PlayerStatus.h"
 

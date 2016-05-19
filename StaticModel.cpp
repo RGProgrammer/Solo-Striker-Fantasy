@@ -35,7 +35,6 @@ void StaticModel::Draw(float * ViewMtx){
     //initializing transformation matrix
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-
     if(ViewMtx){
         float tmp[16];
         Multi4x4Mtx(ViewMtx,this->getTransMtx(),tmp);
@@ -282,9 +281,9 @@ int StaticModel::Clone (StaticModel* Model){
 };
 void StaticModel::getAABB(Vertex3d* MinVertex ,Vertex3d* MaxVertex){
     if(MinVertex && MaxVertex){
-        MinVertex->x=v_Meshes[0].MinVertex.x ;MinVertex->y=v_Meshes[0].MinVertex.y ;MinVertex->z=v_Meshes[0].MinVertex.z ;
-        MaxVertex->x=v_Meshes[0].MaxVertex.x ;MaxVertex->y=v_Meshes[0].MaxVertex.y ;MaxVertex->z=v_Meshes[0].MaxVertex.z ;
-        for (unsigned int i=1;i<m_nbMeshes;i++){
+        MinVertex->x=0.0f ;MinVertex->y=0.0f;MinVertex->z=0.0f;
+        MaxVertex->x=0.0f ;MaxVertex->y=0.0f;MaxVertex->z=0.0f;
+        for (unsigned int i=0;i<m_nbMeshes;i++){
             if(v_Meshes[i].MinVertex.x < MinVertex->x)
                 MinVertex->x=v_Meshes[i].MinVertex.x ;
             if(v_Meshes[i].MaxVertex.x > MaxVertex->x)

@@ -38,7 +38,7 @@ int GameLogic::InitLogic(GameScene* Scene){
     m_EventSys=new EventSystem();
     m_Physics=new PhysicsEngine(m_Scene);
     if(!CreateGlobalSoundEngine()){
-        printf("Cannot create Soound engine\n");
+        //printf("Cannot create Soound engine\n");
         return 0 ;
     }
     if(!m_Physics)

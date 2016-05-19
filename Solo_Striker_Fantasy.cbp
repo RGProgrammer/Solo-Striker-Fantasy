@@ -101,6 +101,10 @@
 		<Unit filename="PhysicsEngine.h" />
 		<Unit filename="Player.cpp" />
 		<Unit filename="Player.h" />
+		<Unit filename="PlayerStatus.cpp" />
+		<Unit filename="PlayerStatus.h" />
+		<Unit filename="ScoreHandler.cpp" />
+		<Unit filename="ScoreHandler.h" />
 		<Unit filename="Shot.cpp" />
 		<Unit filename="Shot.h" />
 		<Unit filename="ShotTypes.cpp" />
@@ -111,6 +115,8 @@
 		<Unit filename="StaticModel.h" />
 		<Unit filename="Terrain.cpp" />
 		<Unit filename="Terrain.h" />
+		<Unit filename="Text.cpp" />
+		<Unit filename="Text.h" />
 		<Unit filename="Timer.cpp" />
 		<Unit filename="Timer.h" />
 		<Unit filename="Types.h" />

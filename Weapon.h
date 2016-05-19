@@ -9,10 +9,13 @@ public:
     Weapon(char* Name);
     Weapon(char* Name,Actor* Owner);
     Weapon(char* Name,Actor* Owner,Shot* Sample);
+    virtual ~Weapon();
+    virtual void Destroy();
+    virtual int Fire(float dt,GameScene* Scene,Vertex3d Pos,Vertex3d Dir,Vertex3d Up)=0;
     void setSample(Shot* Sample);
     void setOwner(Actor* Owner);
-    virtual int Fire(float dt,GameScene* Scene,Vertex3d Pos,Vertex3d Dir,Vertex3d Up)=0;
     char* getName();
+    StaticModel* getIcon();
 protected:
     char*           m_Name ;
     Shot*           m_Sample;
@@ -20,5 +23,6 @@ protected:
     Actor*          m_Owner;
     float           m_Dt ;
     ALuint          m_FireSound;
+    StaticModel*    m_Icon;
 };
 #endif // PFE_WEAPON_H_

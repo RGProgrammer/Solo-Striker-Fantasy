@@ -36,8 +36,9 @@ void Enemy::Update(float dt){
             if(v_Actions[m_CurrentActions].ActionType==KILL){
                 this->Kill();
                 return ;
-            }else if(v_Actions[m_CurrentActions].ActionType==EXPLODE)
+            }else if(v_Actions[m_CurrentActions].ActionType==EXPLODE){
                     Explode();
+                }
             else if(v_Actions[m_CurrentActions].ActionType==MOVEACTION){
                 m_Velocity=ScaleVertex3d(Normalize3d(getVertex3d(m_Pos,((Movement*)(v_Actions[m_CurrentActions].Data))->Translate)),((Movement*)(v_Actions[m_CurrentActions].Data))->Speed*dt);
                 if(Distance3d(m_LastPostion,m_Pos)>=Distance3d(m_LastPostion,((Movement*)(v_Actions[m_CurrentActions].Data))->Translate)){
@@ -128,6 +129,7 @@ void Enemy::addShotSample(Shot* Sample){
     m_Sample=Sample;
 };
 void Enemy::Explode(){
+    m_Active=false ;
     m_Stat=EXPLODING;
     m_Explosion->Start();
     m_Health=0 ;

@@ -3,6 +3,7 @@
 #include "GameScene.h"
 #include "DynamicModel.h"
 #include "Weapon.h"
+#include "ScoreHandler.h"
 #include ".//tools//sdl2//include//SDL.h"
 //Actor ID
 #define PLAYER      0x0040
@@ -29,6 +30,9 @@ public:
     virtual void Update(float dt)=0;
     virtual void Update(SDL_Event* Events, int nbEvents)=0 ;
     void getDamage();
+    void setScore(unsigned int Score);
+    unsigned int getScore();
+    void AddtoScore(unsigned int Value);
 protected:
 
     int                 m_Health;
@@ -36,6 +40,7 @@ protected:
     int                 m_Stat;
     GameScene*          m_Scene;
     Camera*             m_Camera;
+    ScoreHandler*       m_Score ;
 
 
 };

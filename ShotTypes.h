@@ -13,10 +13,28 @@ public:
     Shot* Clone();
     void Hit();
 };
-class Chaser: public Shot {
+class EnemyChaser: public Shot {
 public:
-    Chaser();
-    ~Chaser();
+    EnemyChaser();
+    EnemyChaser(Vertex3d Pos,Vertex3d Dir,Vertex3d Up);
+    EnemyChaser(Actor* Source);
+    ~EnemyChaser();
+    void Update(float dt);
+    int LoadFromFile();
+    Shot* Clone();
+    void Hit();
+
+};
+class RampageShot : public Shot{
+public:
+    RampageShot();
+    RampageShot(Vertex3d Pos,Vertex3d Dir,Vertex3d Up);
+    RampageShot(Actor* Source);
+    ~RampageShot();
+    void Update(float dt);
+    int LoadFromFile();
+    Shot* Clone();
+    void Hit();
 };
 //enemies
 class SmallShot : public Shot {
