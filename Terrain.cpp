@@ -39,8 +39,9 @@ void Terrain::Update(float dt){
         dt=0.01f;
     for(int i=0 ; i<12 ;i++){
         v_Points[i].z-=m_Speed*dt;
-        if(v_Points[i].z<=-(m_Offset*3/2))
-            v_Points[i].z=m_Offset-v_Points[i].z- abs(v_Points[i].z+(m_Offset*3/2));
+        if(v_Points[i].z<=-(m_Offset*3/2)){
+            v_Points[i].z=(m_Offset*3/2)+(m_Offset*3/2)+v_Points[i].z;
+        }
     }
 };
 void Terrain::Draw(float* ViewMtx){
