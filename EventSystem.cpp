@@ -30,3 +30,4 @@ SDL_Event* EventSystem::getCurrentFrameEvents(){
 int EventSystem::getNbEvents(){
     return m_nbEvents ;
 };
+

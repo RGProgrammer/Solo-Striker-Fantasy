@@ -3,7 +3,7 @@
 GameLogic::GameLogic():m_Scene(NULL),m_Camera(NULL),m_Player(NULL),m_EventSys(NULL),
                         m_Ship(NULL),m_MainMenu (NULL),m_ExitVariable(NULL),
                         m_CurrentLevel(-1),v_Filenames(NULL),m_nbLevels(0),m_Physics(NULL),
-                        m_Delay(5.0f){
+                        m_Delay(5.0f),m_ScoreDisplay(NULL),v_Scores(NULL){
 };
 GameLogic::~GameLogic(){
     this->Destroy();
@@ -30,6 +30,15 @@ void GameLogic::Destroy(){
             free(v_Filenames[i]);
         free(v_Filenames);
         v_Filenames=NULL ;
+    }
+    if(m_ScoreDisplay){
+        m_ScoreDisplay->Destroy();
+        delete m_ScoreDisplay;
+        m_ScoreDisplay=NULL ;
+    }
+    if(v_Scores){
+        free(v_Scores);
+        v_Scores=NULL ;
     }
     DestroyGlobalSoundEngine();
 };
@@ -66,6 +75,12 @@ int GameLogic::InitLogic(GameScene* Scene){
     v_Filenames[0]=(char*)malloc(13*sizeof(char));
     strcpy(v_Filenames[0],"Desert.lvl");
     m_MainMenu->Init();
+    m_ScoreDisplay=new ScoreDisplay();
+    m_ScoreDisplay->LoadFromFile();
+    m_ScoreDisplay->setPosition({0.0f,0.0f,-10.0f});
+    v_Scores=(unsigned int*)malloc(5*sizeof(unsigned int));
+    for(int i =0 ;i<5; i++)
+        v_Scores[i]=0 ;
     return 1 ;
 };
 int GameLogic::InitLevel(int index){
@@ -85,6 +100,7 @@ void GameLogic::Update(float dt){
     Actor* actor=NULL ;
     unsigned int nbactors=m_Scene->getNBActors();
     if(m_Stat==INGAME){
+        if(nbEvents)
         if(Events[0].type==SDL_KEYDOWN){
             if(Events[0].key.keysym.sym==SDLK_ESCAPE){
                 m_Scene->FreeVector();
@@ -100,18 +116,18 @@ void GameLogic::Update(float dt){
             m_Player->Update(dt);
         }
         if(m_Player->getStat()!=CHECK){
-        if(nbactors>0){
-            for(unsigned int i=0;i<nbactors;i++){
-                actor=m_Scene->getActor(i);
-                if(actor->getID() & UPDATABLE){
-                    dynamic_cast<Updatable*>(actor)->Update(dt);
-                }else if(actor->getID() & UNKNOWN){
-                    m_Scene->RemoveAt(i);
+            if(nbactors>0){
+                for(unsigned int i=0;i<nbactors;i++){
+                    actor=m_Scene->getActor(i);
+                    if(actor->getID() & UPDATABLE){
+                        dynamic_cast<Updatable*>(actor)->Update(dt);
+                    }else if(actor->getID() & UNKNOWN){
+                        m_Scene->RemoveAt(i);
+                    }
                 }
             }
-        }
-        m_Physics->CollisioDetection(dt);
-        m_Physics->CollisionReaction();
+            m_Physics->CollisioDetection(dt);
+            m_Physics->CollisionReaction();
         }
         if(!isThereEnemy()){
             m_Delay-=dt;
@@ -120,17 +136,15 @@ void GameLogic::Update(float dt){
                     InitLevel(++m_CurrentLevel);
                 else{
                     m_Scene->FreeVector();
-                    m_Player=m_MainMenu ;
+                    m_Player=NULL ;
                     m_Scene->setPlayer(m_Player);
-                    m_MainMenu->Init();
-                    m_Stat=MAINMENU;
-
+                    m_Stat=SCORESCREEN;
                     return ;
                 }
         }
     }else if(m_Stat==MAINMENU){
-
-            if(Events[0].type==SDL_QUIT || Events[0].key.keysym.sym==SDLK_ESCAPE)
+        if(nbEvents){
+        if(Events[0].type==SDL_QUIT || Events[0].key.keysym.sym==SDLK_ESCAPE)
                 *m_ExitVariable=false ;
         if(Events[0].type==SDL_KEYDOWN){
             if(Events[0].key.keysym.sym==SDLK_z){
@@ -140,20 +154,49 @@ void GameLogic::Update(float dt){
                     m_Ship->Init();
                     this->InitLevel(m_CurrentLevel=1);
                     m_Stat=INGAME ;
+
                     return ;
-                }else if(m_MainMenu->getSelectedItem()==EXIT)
+                }else if(m_MainMenu->getSelectedItem()==EXIT){
                     *m_ExitVariable=false;
+                    return ;
+                }else if(m_MainMenu->getSelectedItem()==SCORE){
+                    m_Scene->FreeVector();
+                    m_Player=NULL;
+                    m_Scene->setPlayer(m_Player);
+                    m_ScoreDisplay=new ScoreDisplay();
+                    m_ScoreDisplay->LoadFromFile();
+                    m_ScoreDisplay->setPosition({0.0f,0.0f,-4.5f});
+                    m_ScoreDisplay->GenerateDisplay(v_Scores);
+                    m_Scene->AddActor(m_ScoreDisplay);
+                    m_Stat=SCORESCREEN;
+                    return ;
+                }
             }
+        }
         }
         if(m_Player){
             m_Player->Update(Events,nbEvents);
             m_Player->Update(dt);
         }
     }else if(m_Stat==PAUSE){
-        if(Events[0].key.keysym.sym==SDLK_s){
-            m_Stat==INGAME ;
-        }
-
+        if(nbEvents)
+        if(Events[0].type==SDL_KEYDOWN)
+            if(Events[0].key.keysym.sym==SDLK_s){
+                m_Stat==INGAME ;
+                return ;
+            }
+    }else if(m_Stat==SCORESCREEN){
+        if(nbEvents)
+        if(Events[0].type==SDL_KEYDOWN)
+            if(Events[0].key.keysym.sym==SDLK_z){
+                m_Scene->FreeVector();
+                m_ScoreDisplay=NULL ;
+                m_Player=m_MainMenu ;
+                m_MainMenu->Init();
+                m_Scene->setPlayer(m_Player);
+                m_Stat=MAINMENU;
+                return ;
+            }
     }
 };
  void GameLogic::setExitVariable(bool* variable){

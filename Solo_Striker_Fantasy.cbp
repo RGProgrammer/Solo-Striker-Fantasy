@@ -107,6 +107,8 @@
 		<Unit filename="Player.h" />
 		<Unit filename="PlayerStatus.cpp" />
 		<Unit filename="PlayerStatus.h" />
+		<Unit filename="ScoreDisplay.cpp" />
+		<Unit filename="ScoreDisplay.h" />
 		<Unit filename="ScoreHandler.cpp" />
 		<Unit filename="ScoreHandler.h" />
 		<Unit filename="Shot.cpp" />

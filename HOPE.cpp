@@ -237,6 +237,7 @@ void HOPE::Update(SDL_Event* Events, int nbEvents){
         if(Events[0].type==SDL_KEYDOWN)
             if(Events[0].key.keysym.sym==SDLK_z){
                 m_CreditHandler->MinusOne();
+                m_GStatus->setShieldValue(3);
                 m_Stat=ALIVE ;
             }else if(Events[0].key.keysym.sym==SDLK_x){
                 m_Stat=DEAD;

@@ -17,6 +17,7 @@
 #include "PhysicsEngine.h"
 #include "LevelLoader.h"
 #include "GlobalSound.h"
+#include "ScoreDisplay.h"
 #include ".//tools//sdl2//include//SDL.h"
 
 //nomber of level
@@ -52,6 +53,8 @@ private:
     Player*             m_Player ;
     EventSystem*        m_EventSys ;
     PhysicsEngine*      m_Physics ;
+    ScoreDisplay*       m_ScoreDisplay;
+    unsigned int*       v_Scores ;
 
 
 };
