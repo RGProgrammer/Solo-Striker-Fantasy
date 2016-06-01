@@ -65,6 +65,8 @@
 		<Unit filename="Camera.h" />
 		<Unit filename="Canon.cpp" />
 		<Unit filename="Canon.h" />
+		<Unit filename="CreditHandler.cpp" />
+		<Unit filename="CreditHandler.h" />
 		<Unit filename="Cube.h" />
 		<Unit filename="DynamicModel.cpp" />
 		<Unit filename="DynamicModel.h" />
@@ -76,6 +78,8 @@
 		<Unit filename="EventSystem.h" />
 		<Unit filename="Explosion.cpp" />
 		<Unit filename="Explosion.h" />
+		<Unit filename="GNumber.cpp" />
+		<Unit filename="GNumber.h" />
 		<Unit filename="GameCore.cpp" />
 		<Unit filename="GameCore.h" />
 		<Unit filename="GameLogic.cpp" />
@@ -115,8 +119,6 @@
 		<Unit filename="StaticModel.h" />
 		<Unit filename="Terrain.cpp" />
 		<Unit filename="Terrain.h" />
-		<Unit filename="Text.cpp" />
-		<Unit filename="Text.h" />
 		<Unit filename="Timer.cpp" />
 		<Unit filename="Timer.h" />
 		<Unit filename="Types.h" />

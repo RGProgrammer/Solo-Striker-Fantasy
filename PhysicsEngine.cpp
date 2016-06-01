@@ -28,6 +28,9 @@ void PhysicsEngine::CollisioDetection(float dt){
                         if(CollisionCheck(tmp1,tmp2,&CollisionCenter)){
                             AddData({tmp1,tmp2,CollisionCenter});
                         }
+                        if(CollisionCheck(m_Scene->getPlayer(),tmp2,&CollisionCenter)){
+                            AddData({m_Scene->getPlayer(),tmp2,CollisionCenter});
+                        }
                     }
             }
         }
@@ -35,13 +38,13 @@ void PhysicsEngine::CollisioDetection(float dt){
 void PhysicsEngine::CollisionReaction(){
     for(unsigned int i = 0;i<m_nbElements;i++){
 
-        //check for collision between enmy anf Player's Shots
+        ///check for collision between enmy anf Player's Shots
         if((v_Data[i].Object1->getID() & ENEMY) && (v_Data[i].Object2->getID() & SHOT)){
             if(((Enemy*)(v_Data[i].Object1))->isActive())
             if(((Shot*)(v_Data[i].Object2))->getSource()->getID() & PLAYER ){
                 ((Enemy*)(v_Data[i].Object1))->getDamage(((Shot*)(v_Data[i].Object2))->getDamage());
                 ((Shot*)(v_Data[i].Object2))->Hit();
-                m_Scene->getPlayer()->AddtoScore(5);
+                m_Scene->getPlayer()->AddtoScore(1);
             }
         }
         if((v_Data[i].Object1->getID() & SHOT) && (v_Data[i].Object2->getID() & ENEMY)){
@@ -49,14 +52,24 @@ void PhysicsEngine::CollisionReaction(){
             if(((Shot*)(v_Data[i].Object1))->getSource()->getID() & PLAYER ){
                 ((Enemy*)(v_Data[i].Object2))->getDamage(((Shot*)(v_Data[i].Object1))->getDamage());
                 ((Shot*)(v_Data[i].Object1))->Hit();
-                m_Scene->getPlayer()->AddtoScore(5);
+                m_Scene->getPlayer()->AddtoScore(1);
             }
+        }
+        ///Check if there is a plyer player Object
+        ///and if it collides with an enemy or a Shot
+        if(v_Data[i].Object1->getID() & PLAYER){
+            if(v_Data[i].Object2->getID()& SHOT)
+                 if((((Shot*)v_Data[i].Object2)->getSource()->getID() & ENEMY) &&
+                                            (((Player*)v_Data[i].Object1)->getStat() != HIT)){
+                    ((Player*)v_Data[i].Object1)->getDamage();
+                    ((Shot*)v_Data[i].Object2)->Hit();
+                 }
         }
     }
     FreeData();
 };
 bool PhysicsEngine::CollisionCheck(StaticModel* obj1,StaticModel* obj2,Vertex3d* CollisionCenter){
-    //using AABBs
+    ///using AABBs
     Vertex3d MinVertex1,MaxVertex1 ;
     Vertex3d MinVertex2,MaxVertex2 ;
     obj1->getAABB(&MinVertex1,&MaxVertex1); obj2->getAABB(&MinVertex2,&MaxVertex2);
@@ -65,7 +78,7 @@ bool PhysicsEngine::CollisionCheck(StaticModel* obj1,StaticModel* obj2,Vertex3d*
        MinVertex1.z<MaxVertex2.z && MaxVertex1.z> MinVertex2.z ){
         return true ;
     }
-    //using sphere
+    ///using sphere
     /*float radius1=obj1->getRadius(),radius2=obj2->getRadius() ;
     Vertex3d Pos1=obj1->getPosition(),Pos2=obj2->getPosition() ;
     if(Magnitude3d(SubsVertex3d(Pos2,Pos1))<radius1+radius2){

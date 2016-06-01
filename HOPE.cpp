@@ -62,14 +62,13 @@ void Shooter::Destroy(){
 
 
 HOPE::HOPE():Player(),m_MoveDirection({0.0f,0.0f,0.0f}),m_Shooterl(NULL),m_Shooter2(NULL),m_Firing(false),
-            m_GStatus(NULL){
+            m_GStatus(NULL),m_CreditHandler(NULL),m_GameOver(NULL){
 
 };
 HOPE::~HOPE(){
     this->Destroy();
 };
 int HOPE::LoadFromFile() {
-    m_Health=1000.0f;
     m_Charge=0 ;
     m_Speed=50.0f;
     m_Shooterl=new Shooter(this,{0.0f,-9.0f,0.f});
@@ -78,10 +77,15 @@ int HOPE::LoadFromFile() {
     m_Shooter2->LoadFromFile();
     m_Score=new ScoreHandler();
     m_Score->LoadFromFile();
-
     m_GStatus=new PlayerStatus;
     m_GStatus->LoadFromFile();
     m_GStatus->setIcon(m_Shooterl->getSelectedWeaponObj()->getIcon());
+    m_CreditHandler=new CreditHandler();
+    m_CreditHandler->Init(3);
+    m_GameOver=new StaticModel();
+    m_GameOver->LoadFromFile("Data//GameOver.obj");
+    m_GameOver->setPosition({0.0f,0.0f,-10.0f});
+    m_Stat=ALIVE ;
     return StaticModel::LoadFromFile("Data//ship.obj");
 };
 void HOPE::Destroy(){
@@ -94,26 +98,59 @@ void HOPE::Destroy(){
         delete m_Shooter2;
         m_Shooter2=NULL ;
     }
+    if(m_GStatus){
+        m_GStatus->Destroy();
+        delete m_GStatus;
+        m_GStatus=NULL ;
+    }
+    if(m_CreditHandler){
+        m_CreditHandler->Destroy();
+        delete m_CreditHandler ;
+        m_CreditHandler=NULL;
+    }
+    if(m_GameOver){
+        m_GameOver->Destroy();
+        delete m_GameOver ;
+        m_GameOver=NULL ;
+    }
+};
+void HOPE::Init(){
+    m_Stat=ALIVE;
+    m_Score->setValue(0);
+    m_CreditHandler->setCreditValue(3);
+    m_GStatus->setShieldValue(3);
 };
 void HOPE::Draw(float* ViewMtx){
-    m_Score->Draw(NULL);
-    m_GStatus->Draw(NULL);
-    StaticModel::Draw(ViewMtx);
-    m_Shooterl->Draw(ViewMtx);
-    m_Shooter2->Draw(ViewMtx);
+    if(m_Stat!= DEAD){
+        m_Score->Draw(NULL);
+        m_GStatus->Draw(NULL);
+        StaticModel::Draw(ViewMtx);
+        m_Shooterl->Draw(ViewMtx);
+        m_Shooter2->Draw(ViewMtx);
+        if(m_Stat==CHECK){
+            m_CreditHandler->Draw(NULL);
+        }
+    }else{
+        m_GameOver->Draw(NULL);
+    }
 };
 void HOPE::Update(float dt){
-    if(dt==0)
-        dt=0.01f;
-    m_Velocity=ScaleVertex3d(m_MoveDirection,m_Speed*dt);
-    m_Pos=AddVertex3d(m_Pos,m_Velocity);
-    m_Shooterl->Update(dt);
-    m_Shooter2->Update(dt);
-    if(m_Firing==true)
-        Fire(dt);
+    if(m_Stat== ALIVE){
+        m_Velocity=ScaleVertex3d(m_MoveDirection,m_Speed*dt);
+        m_Pos=AddVertex3d(m_Pos,m_Velocity);
+        m_Shooterl->Update(dt);
+        m_Shooter2->Update(dt);
+        if(m_Firing==true)
+            Fire(dt);
+    }else if(m_Stat== HIT){
+        m_Dt-=dt ;
+        if(m_Dt<=0)
+            m_Stat=ALIVE;
+    }
 };
 
 void HOPE::Update(SDL_Event* Events, int nbEvents){
+    if(m_Stat==ALIVE)
     for(int i=0; i<nbEvents;i++){
         if(Events[i].type==SDL_KEYDOWN){
             if(m_Camera && m_Camera->getViewType()==UP){
@@ -194,43 +231,33 @@ void HOPE::Update(SDL_Event* Events, int nbEvents){
                Events[i].key.keysym.sym==SDLK_z ||
                Events[i].key.keysym.sym==SDLK_c)
                 m_Firing=false ;
-            /*if(m_Camera && m_Camera->getViewType()==UP){
-                if(Events[i].key.keysym.sym==SDLK_UP){
-                        m_MoveDirection=Normalize3d(AddVertex3d(AddVertex3d(ScaleVertex3d(m_Dir,-1),m_MoveDirection),m_MoveDirection));
-                }
-                else if(Events[i].key.keysym.sym==SDLK_DOWN){
-                        m_MoveDirection=Normalize3d(AddVertex3d(AddVertex3d(m_Dir,m_MoveDirection),m_MoveDirection));
-                }
-                if(Events[i].key.keysym.sym==SDLK_RIGHT){
-                    Vertex3d Right=CrossProduct3d(m_Dir,m_Up);
-                        m_MoveDirection=Normalize3d(AddVertex3d(AddVertex3d(Right,m_MoveDirection),m_MoveDirection));
-                }
-                else if(Events[i].key.keysym.sym==SDLK_LEFT){
-                    Vertex3d Right=CrossProduct3d(m_Dir,m_Up);
-                        m_MoveDirection=Normalize3d(AddVertex3d(AddVertex3d(ScaleVertex3d(Right,-1),m_MoveDirection),m_MoveDirection));
-                }
-            }else if(m_Camera && m_Camera->getViewType()==SIDE){
-                 if(Events[i].key.keysym.sym==SDLK_UP){
-                        m_MoveDirection=Normalize3d(AddVertex3d(m_MoveDirection,ScaleVertex3d(m_Up,-1)));
-                }
-                else if(Events[i].key.keysym.sym==SDLK_DOWN){
-                        m_MoveDirection=Normalize3d(AddVertex3d(m_MoveDirection,m_Up));
-                }
-                if(Events[i].key.keysym.sym==SDLK_RIGHT){
-                        m_MoveDirection=Normalize3d(AddVertex3d(m_MoveDirection,m_Dir));
-                }
-                else if(Events[i].key.keysym.sym==SDLK_LEFT){
-                        m_MoveDirection=Normalize3d(AddVertex3d(m_MoveDirection,ScaleVertex3d(m_Dir,-1)));
-                }
-            }*/
-
-
         }
+    }
+    else if(m_Stat==CHECK){
+        if(Events[0].type==SDL_KEYDOWN)
+            if(Events[0].key.keysym.sym==SDLK_z){
+                m_CreditHandler->MinusOne();
+                m_Stat=ALIVE ;
+            }else if(Events[0].key.keysym.sym==SDLK_x){
+                m_Stat=DEAD;
+            }
     }
 };
 void HOPE::Fire(float dt){
     m_Shooterl->Fire(dt,m_Scene);
     m_Shooter2->Fire(dt,m_Scene);
 };
-
-
+void HOPE::getDamage(){
+    if(m_Stat==ALIVE){
+        if(m_GStatus->getShieldValue()==0){
+            if(m_CreditHandler->getCredit()==0)
+                m_Stat=DEAD ;
+            else
+                m_Stat=CHECK;
+        }else {
+            m_GStatus->setShieldValue(m_GStatus->getShieldValue()-1);
+            m_Stat=HIT;
+            m_Dt=2.0f;
+        }
+    }
+};

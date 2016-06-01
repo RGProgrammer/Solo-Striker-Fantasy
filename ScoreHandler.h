@@ -1,7 +1,7 @@
 #ifndef PFE_SCOREHANDLER_H_
 #define PFE_SCOREHANDLER_H_
 #include "StaticModel.h"
-#include "Text.h"
+#include "GNumber.h"
 class ScoreHandler: public StaticModel {
 public:
     ScoreHandler();
@@ -15,6 +15,6 @@ public:
     void AddValue(unsigned int Value);
     void Draw(float* Matrix);   ///4x4 matrix
 private:
-    Text*       m_NumberHandler;
+    GNumber*       m_NumberHandler;
 };
 #endif // PFE_SCOREHANDLER_H_

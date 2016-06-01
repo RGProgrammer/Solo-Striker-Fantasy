@@ -10,11 +10,11 @@
 
 //Player Stats
 #define DEAD        0x0000
-#define MOVING      0x0001
-#define HIT         0x0002
-#define FIRE        0x0004
-#define CHARGING    0x0008
-#define NOTHING     0x0010
+#define ALIVE       0x0001
+#define HIT         0x0004
+#define CHECK       0x0008
+#define FIRE        0x0010
+#define CHARGING    0x0020
 
 class GameScene ;
 class Weapon ;
@@ -29,15 +29,14 @@ public:
     virtual int LoadFromFile()=0;
     virtual void Update(float dt)=0;
     virtual void Update(SDL_Event* Events, int nbEvents)=0 ;
-    void getDamage();
+    virtual void getDamage() ;
     void setScore(unsigned int Score);
     unsigned int getScore();
     void AddtoScore(unsigned int Value);
+    int getStat();
 protected:
-
-    int                 m_Health;
+    int                 m_Stat ;
     int                 m_Charge;
-    int                 m_Stat;
     GameScene*          m_Scene;
     Camera*             m_Camera;
     ScoreHandler*       m_Score ;

@@ -18,7 +18,7 @@ void ScoreHandler::Destroy(){
     }
 };
 int ScoreHandler::LoadFromFile(){
-    m_NumberHandler=new Text();
+    m_NumberHandler=new GNumber();
     m_NumberHandler->setScale(0.1f);
     Scale(0.3);
     setPosition({-4.1f,3.9f,-10.0f});

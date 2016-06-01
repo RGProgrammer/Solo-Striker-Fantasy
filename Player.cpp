@@ -1,16 +1,15 @@
 #include "Player.h"
-Player::Player():DynamicModel(),m_Stat(NOTHING),m_Health(0),m_Charge(0),
-                    m_Camera(NULL),m_Score(NULL){
+Player::Player():DynamicModel(),m_Charge(0),m_Camera(NULL),
+                                m_Score(NULL),m_Stat(DEAD){
     m_ID|= PLAYER |PHYSICAL ;
 };
-Player::Player(Vertex3d Pos):DynamicModel(Pos),m_Stat(NOTHING),m_Health(0),
-                            m_Charge(0),m_Camera(NULL),m_Score(NULL){
+Player::Player(Vertex3d Pos):DynamicModel(Pos),m_Charge(0),
+                                m_Camera(NULL),m_Score(NULL),m_Stat(DEAD){
      m_ID|= PLAYER |PHYSICAL ;
 };
 Player::Player(Vertex3d Pos,Vertex3d Dir,Vertex3d Up):DynamicModel(Pos,Dir,Up),
-                                                        m_Stat(NOTHING),m_Health(0),
                                                         m_Charge(0),m_Camera(NULL),
-                                                        m_Score(NULL){
+                                                        m_Score(NULL),m_Stat(DEAD){
     m_ID|= PLAYER |PHYSICAL ;
 };
 Player::~Player(){
@@ -29,13 +28,6 @@ void Player::setScene(GameScene* Scene){
 void Player::setCamera(Camera* Cam){
     m_Camera=Cam;
 };
-void Player::getDamage(){
-    if(m_Stat!=DEAD){
-        m_Health--;
-        if(m_Health<=0)
-            m_Stat=DEAD;
-    }
-};
 void Player::setScore(unsigned int Score){
     if(m_Score){
         m_Score->setValue(Score);
@@ -52,3 +44,5 @@ void Player::AddtoScore(unsigned int Value){
         m_Score->AddValue(Value);
     }
 };
+void Player::getDamage() {};
+int Player::getStat(){ return m_Stat ;};

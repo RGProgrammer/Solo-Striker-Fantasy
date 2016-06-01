@@ -4,6 +4,9 @@
 #include "PlayerStatus.h"
 #include "WeaponTypes.h"
 #include "Math.h"
+#include "CreditHandler.h"
+
+
 class HOPE;
 class Shooter:public DynamicModel {
 public :
@@ -17,6 +20,7 @@ public :
     Weapon* getSelectedWeaponObj();
     void setTransVertex(Vertex3d ver);
     void Destroy();
+
 private:
     HOPE*               m_Owner;
     Vertex3d            m_Trans ;
@@ -34,12 +38,14 @@ public :
     ~HOPE();
     int LoadFromFile() ;//load HOPE model from a Known file
     void Destroy();
+    void Init();
     void Draw(float* ViewMtx);
     void Update(float dt);//updates HOPE movement
     //void Update(SDL_Event event);//Update HOPE's Stat
     void Update(SDL_Event* Events, int nbEvents) ;
     void NextWeapon();
     void PreviousWeapon();
+    void getDamage();
 private :
     void Fire(float dt);
     float               m_Speed ;//HOPE movement speed
@@ -47,6 +53,8 @@ private :
     Shooter*            m_Shooterl;
     Shooter*            m_Shooter2;
     PlayerStatus*       m_GStatus;
+    CreditHandler*      m_CreditHandler;
+    StaticModel*        m_GameOver;
     bool                m_Firing ;
 };
 #endif // PFE_HOPE_H_

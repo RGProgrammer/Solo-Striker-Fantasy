@@ -99,6 +99,7 @@ void GameLogic::Update(float dt){
             m_Player->Update(Events,nbEvents);
             m_Player->Update(dt);
         }
+        if(m_Player->getStat()!=CHECK){
         if(nbactors>0){
             for(unsigned int i=0;i<nbactors;i++){
                 actor=m_Scene->getActor(i);
@@ -111,6 +112,7 @@ void GameLogic::Update(float dt){
         }
         m_Physics->CollisioDetection(dt);
         m_Physics->CollisionReaction();
+        }
         if(!isThereEnemy()){
             m_Delay-=dt;
             if(m_Delay<=0.0f)
@@ -135,6 +137,7 @@ void GameLogic::Update(float dt){
                 if(m_MainMenu->getSelectedItem()==STARTGAME){
                     m_Player=m_Ship ;
                     m_Scene->setPlayer(m_Player);
+                    m_Ship->Init();
                     this->InitLevel(m_CurrentLevel=1);
                     m_Stat=INGAME ;
                     return ;
