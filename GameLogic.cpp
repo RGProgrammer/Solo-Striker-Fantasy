@@ -132,12 +132,19 @@ void GameLogic::Update(float dt){
         if(!isThereEnemy()){
             m_Delay-=dt;
             if(m_Delay<=0.0f)
-                if(m_CurrentLevel<m_nbLevels)
+                if(m_CurrentLevel<m_nbLevels){
+                    v_Scores[m_CurrentLevel-1]=m_Player->getScore();
                     InitLevel(++m_CurrentLevel);
-                else{
+                }else{
+                    v_Scores[m_CurrentLevel-1]=m_Player->getScore();
                     m_Scene->FreeVector();
-                    m_Player=NULL ;
+                    m_Player=NULL;
                     m_Scene->setPlayer(m_Player);
+                    m_ScoreDisplay=new ScoreDisplay();
+                    m_ScoreDisplay->LoadFromFile();
+                    m_ScoreDisplay->setPosition({0.0f,0.0f,-4.5f});
+                    m_ScoreDisplay->GenerateDisplay(v_Scores);
+                    m_Scene->AddActor(m_ScoreDisplay);
                     m_Stat=SCORESCREEN;
                     return ;
                 }

@@ -3716,7 +3716,7 @@
 1456259639 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\timer.h
 	<sys/time.h>
 
-1464814348 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\gamelogic.cpp
+1464858513 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\gamelogic.cpp
 	"GameLogic.h"
 
 1460367563 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\gamescene.cpp
@@ -3850,6 +3850,6 @@
 	"StaticModel.h"
 	"GNumber.h"
 
-1464814490 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\scoredisplay.cpp
+1464858309 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\scoredisplay.cpp
 	"ScoreDisplay.h"
 
