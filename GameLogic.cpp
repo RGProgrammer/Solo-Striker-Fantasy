@@ -70,10 +70,14 @@ int GameLogic::InitLogic(GameScene* Scene){
     m_Ship->setCamera(m_Camera);
     m_Scene->setPlayer(m_Player);
     m_Stat=MAINMENU ;
-    m_nbLevels=1 ;
+    m_nbLevels=2 ;
     v_Filenames=(char**)malloc(m_nbLevels*sizeof(char*));
     v_Filenames[0]=(char*)malloc(13*sizeof(char));
     strcpy(v_Filenames[0],"Desert.lvl");
+    ///this is juste for test
+    v_Filenames[1]=(char*)malloc(13*sizeof(char));
+    strcpy(v_Filenames[1],"Desert.lvl");
+    /// //////////////////////////
     m_MainMenu->Init();
     m_ScoreDisplay=new ScoreDisplay();
     m_ScoreDisplay->LoadFromFile();
@@ -84,6 +88,7 @@ int GameLogic::InitLogic(GameScene* Scene){
     return 1 ;
 };
 int GameLogic::InitLevel(int index){
+    m_Scene->FreeVector();
     if(!LevelLoader::LoadLevel(v_Filenames[index-1],m_Scene))
         return 0 ;
     getGlobalSoundEngineInstance()->PlayMusic();
@@ -134,6 +139,7 @@ void GameLogic::Update(float dt){
             if(m_Delay<=0.0f)
                 if(m_CurrentLevel<m_nbLevels){
                     v_Scores[m_CurrentLevel-1]=m_Player->getScore();
+                    m_Player->setScore(0);
                     InitLevel(++m_CurrentLevel);
                 }else{
                     v_Scores[m_CurrentLevel-1]=m_Player->getScore();
