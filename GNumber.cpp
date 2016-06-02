@@ -292,9 +292,9 @@ int GNumber::GenerateMesh(){
     v_NormalsBuffer[0]={0.0f,0.0f,1.0f} ;
     ///////////////////////
     v_VertexBuffer[0]= {0.0f,3.0f,0.0f};v_VertexBuffer[1]= {1.8f,3.0f,0.0f} ;v_VertexBuffer[2]={1.8f,-3.0f,0.0f} ;v_VertexBuffer[3]= {0.0f,-3.0f,0.0f} ;
-    v_VertexBuffer[4]= {1.8f,3.0f,0.0f};v_VertexBuffer[5]= {3.1f,3.0f,0.0f};v_VertexBuffer[6]={3.1f,-3.0f,0.0f};v_VertexBuffer[7]= {1.6f,-3.0f,0.0f} ;
-    v_VertexBuffer[8]= {3.2f,3.0f,0.0f};v_VertexBuffer[9]= {4.7f,3.0f,0.0f};v_VertexBuffer[10]={4.7f,-3.0f,0.0f};v_VertexBuffer[11]={3.2f,-3.0f,0.0f};
-    v_VertexBuffer[12]={4.9f,3.0f,0.0f};v_VertexBuffer[13]={6.4f,3.0f,0.0f};v_VertexBuffer[14]={6.4f,-3.0f,0.0f};v_VertexBuffer[15]={4.9f,-3.0f,0.0f};
+    v_VertexBuffer[4]= {1.8f,3.0f,0.0f};v_VertexBuffer[5]= {3.6f,3.0f,0.0f};v_VertexBuffer[6]={3.6f,-3.0f,0.0f};v_VertexBuffer[7]= {1.8f,-3.0f,0.0f} ;
+    v_VertexBuffer[8]= {3.6f,3.0f,0.0f};v_VertexBuffer[9]= {5.4f,3.0f,0.0f};v_VertexBuffer[10]={5.4f,-3.0f,0.0f};v_VertexBuffer[11]={3.6f,-3.0f,0.0f};
+    v_VertexBuffer[12]={5.4f,3.0f,0.0f};v_VertexBuffer[13]={7.2f,3.0f,0.0f};v_VertexBuffer[14]={7.2f,-3.0f,0.0f};v_VertexBuffer[15]={5.4f,-3.0f,0.0f};
     ///////////////////////
     v_IndexBuffer[0].NormalIndex=1;v_IndexBuffer[0].VertexIndex=1;v_IndexBuffer[0].TexIndex=1;
     v_IndexBuffer[1].NormalIndex=1;v_IndexBuffer[1].VertexIndex=2;v_IndexBuffer[1].TexIndex=2;

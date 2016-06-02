@@ -3625,7 +3625,7 @@
 	".//tools//sdl2//include//SDL.h"
 	<stdio.h>
 
-1464806364 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\gamelogic.h
+1464867281 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\gamelogic.h
 	"GameScene.h"
 	"Abstract.h"
 	"Camera.h"
@@ -3843,13 +3843,13 @@
 	".//tools//lodepng//lodepng.h"
 	<stdio.h>
 
-1464611414 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\gnumber.cpp
+1464867093 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\gnumber.cpp
 	"GNumber.h"
 
 1464786618 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\scoredisplay.h
 	"StaticModel.h"
 	"GNumber.h"
 
-1464858309 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\scoredisplay.cpp
+1464867191 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\scoredisplay.cpp
 	"ScoreDisplay.h"
 

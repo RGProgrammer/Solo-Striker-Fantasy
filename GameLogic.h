@@ -40,6 +40,9 @@ public:
     void setExitVariable(bool* variable);
 private:
     bool isThereEnemy();
+    void SwitchtoMAINMENU();
+    void SwitchtoINGAME();
+    void SwitchtoSCORESCREEN();
     int                 m_Stat ;
     float               m_Delay ;
     char**              v_Filenames;

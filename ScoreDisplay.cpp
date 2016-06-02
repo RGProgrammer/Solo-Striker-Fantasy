@@ -26,7 +26,7 @@ int ScoreDisplay::LoadFromFile(){
         v_GScores[i]=new GNumber();
         v_GScores[i]->setPosition({0.0f,0.29f-i*2.1/10.0f,-4.0f});
         v_GScores[i]->setOrientation({0.0f,0.0f,-1.0f},{0.0f,1.0f,0.0f});
-        v_GScores[i]->setScale(0.02f);
+        v_GScores[i]->setScale(0.025f);
     }
     return StaticModel::LoadFromFile("Data//DisplayBackground.obj");
 };

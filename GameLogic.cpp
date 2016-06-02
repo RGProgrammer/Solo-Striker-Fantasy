@@ -137,15 +137,7 @@ void GameLogic::Update(float dt){
                     InitLevel(++m_CurrentLevel);
                 }else{
                     v_Scores[m_CurrentLevel-1]=m_Player->getScore();
-                    m_Scene->FreeVector();
-                    m_Player=NULL;
-                    m_Scene->setPlayer(m_Player);
-                    m_ScoreDisplay=new ScoreDisplay();
-                    m_ScoreDisplay->LoadFromFile();
-                    m_ScoreDisplay->setPosition({0.0f,0.0f,-4.5f});
-                    m_ScoreDisplay->GenerateDisplay(v_Scores);
-                    m_Scene->AddActor(m_ScoreDisplay);
-                    m_Stat=SCORESCREEN;
+                    SwitchtoSCORESCREEN();
                     return ;
                 }
         }
@@ -156,25 +148,13 @@ void GameLogic::Update(float dt){
         if(Events[0].type==SDL_KEYDOWN){
             if(Events[0].key.keysym.sym==SDLK_z){
                 if(m_MainMenu->getSelectedItem()==STARTGAME){
-                    m_Player=m_Ship ;
-                    m_Scene->setPlayer(m_Player);
-                    m_Ship->Init();
-                    this->InitLevel(m_CurrentLevel=1);
-                    m_Stat=INGAME ;
-
+                    SwitchtoINGAME();
                     return ;
                 }else if(m_MainMenu->getSelectedItem()==EXIT){
                     *m_ExitVariable=false;
                     return ;
                 }else if(m_MainMenu->getSelectedItem()==SCORE){
-                    m_Scene->FreeVector();
-                    m_Player=NULL;
-                    m_Scene->setPlayer(m_Player);
-                    m_ScoreDisplay=new ScoreDisplay();
-                    m_ScoreDisplay->LoadFromFile();
-                    m_ScoreDisplay->setPosition({0.0f,0.0f,-4.5f});
-                    m_ScoreDisplay->GenerateDisplay(v_Scores);
-                    m_Scene->AddActor(m_ScoreDisplay);
+                    SwitchtoSCORESCREEN();
                     m_Stat=SCORESCREEN;
                     return ;
                 }
@@ -196,12 +176,7 @@ void GameLogic::Update(float dt){
         if(nbEvents)
         if(Events[0].type==SDL_KEYDOWN)
             if(Events[0].key.keysym.sym==SDLK_z){
-                m_Scene->FreeVector();
-                m_ScoreDisplay=NULL ;
-                m_Player=m_MainMenu ;
-                m_MainMenu->Init();
-                m_Scene->setPlayer(m_Player);
-                m_Stat=MAINMENU;
+                SwitchtoMAINMENU();
                 return ;
             }
     }
@@ -216,3 +191,29 @@ void GameLogic::Update(float dt){
             return true ;
     return false ;
  };
+void GameLogic::SwitchtoMAINMENU(){
+    m_Scene->FreeVector();
+    m_ScoreDisplay=NULL ;
+    m_Player=m_MainMenu ;
+    m_MainMenu->Init();
+    m_Scene->setPlayer(m_Player);
+    m_Stat=MAINMENU;
+};
+void GameLogic::SwitchtoINGAME(){
+    m_Player=m_Ship ;
+    m_Scene->setPlayer(m_Player);
+    m_Ship->Init();
+    InitLevel(m_CurrentLevel=1);
+    m_Stat=INGAME ;
+};
+void GameLogic::SwitchtoSCORESCREEN(){
+    m_Scene->FreeVector();
+    m_Player=NULL;
+    m_Scene->setPlayer(m_Player);
+    m_ScoreDisplay=new ScoreDisplay();
+    m_ScoreDisplay->LoadFromFile();
+    m_ScoreDisplay->setPosition({0.0f,0.0f,-4.5f});
+    m_ScoreDisplay->GenerateDisplay(v_Scores);
+    m_Scene->AddActor(m_ScoreDisplay);
+    m_Stat=SCORESCREEN ;
+};
