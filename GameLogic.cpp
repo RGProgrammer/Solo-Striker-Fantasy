@@ -144,7 +144,16 @@ void GameLogic::Update(float dt){
             m_Physics->CollisioDetection(dt);
             m_Physics->CollisionReaction();
         }
-        if(!isThereEnemy()){
+        if(m_Ship->getStat()==DEAD){
+            m_Delay-=dt;
+            if(m_Delay<=0.0f){
+                v_CurrentScores[m_CurrentLevel-1]=m_Player->getScore();
+                if((v_CurrentScores[m_CurrentLevel-1])>(v_BestScores[m_CurrentLevel-1])){
+                    v_BestScores[m_CurrentLevel-1] = v_CurrentScores[m_CurrentLevel-1] ;}
+                SwitchtoSCORESCREEN();
+            }
+        }
+        else if(!isThereEnemy()){
             m_Delay-=dt;
             if(m_Delay<=0.0f)
                 if(m_CurrentLevel<m_nbLevels){
