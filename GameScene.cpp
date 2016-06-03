@@ -1,5 +1,6 @@
 #include "GameScene.h"
-GameScene::GameScene():Size(10),m_NBActors(0),v_Actors(NULL),m_Camera(NULL){};
+GameScene::GameScene():Size(10),m_NBActors(0),v_Actors(NULL),m_Camera(NULL),
+                        m_MinVertex({-85.0f,-70.0f,-85.0f}),m_MaxVertex({85.0f,75.0f,85.0f}){};
 GameScene::~GameScene() {
     this->Destroy() ;
 };
@@ -75,4 +76,14 @@ void GameScene::RemoveAt(unsigned int index){
             v_Actors[i]=v_Actors[i+1];
         m_NBActors-- ;
     }
+};
+void GameScene::setBorders(Vertex3d MinVertex, Vertex3d MaxVertex){
+    m_MinVertex=MinVertex ;
+    m_MaxVertex=MaxVertex ;
+};
+void GameScene::getBorders(Vertex3d* MinVertex,Vertex3d* MaxVertex){
+    if(MinVertex)
+        *MinVertex=m_MinVertex ;
+    if(MaxVertex)
+        *MaxVertex=m_MaxVertex ;
 };

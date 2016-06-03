@@ -136,8 +136,22 @@ void HOPE::Draw(float* ViewMtx){
 };
 void HOPE::Update(float dt){
     if(m_Stat== ALIVE){
+        Vertex3d Minv ,Maxv;
+        m_Scene->getBorders(&Minv,&Maxv);
         m_Velocity=ScaleVertex3d(m_MoveDirection,m_Speed*dt);
         m_Pos=AddVertex3d(m_Pos,m_Velocity);
+        if(m_Pos.x>Maxv.x)
+            m_Pos.x=Maxv.x;
+        if(m_Pos.y>Maxv.y)
+            m_Pos.y=Maxv.y;
+        if(m_Pos.z>Maxv.z)
+            m_Pos.z=Maxv.z;
+        if(m_Pos.x<Minv.x)
+            m_Pos.x=Minv.x;
+        if(m_Pos.y<Minv.y)
+            m_Pos.y=Minv.y;
+        if(m_Pos.z<Minv.z)
+            m_Pos.z=Minv.z;
         m_Shooterl->Update(dt);
         m_Shooter2->Update(dt);
         if(m_Firing==true)

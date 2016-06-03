@@ -24,11 +24,15 @@ public:
     void setCamera(Camera*);
     Camera* getCamera();
     void RemoveAt(unsigned int index);
+    void setBorders(Vertex3d MinVertex, Vertex3d MaxVertex);
+    void getBorders(Vertex3d* MinVertex,Vertex3d* MaxVertex);
 private:
     unsigned int        Size ;
     unsigned int        m_NBActors ;
     Actor**             v_Actors ;
     Player*             m_Player ;
     Camera*             m_Camera ;
+    Vertex3d            m_MinVertex ;
+    Vertex3d            m_MaxVertex ;
 };
 #endif // PFE_GAMESCENE_H_
