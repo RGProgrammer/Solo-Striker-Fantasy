@@ -11,9 +11,10 @@ public:
     void Destroy();
     int LoadFromFile();
     int Init();
-    void GenerateDisplay(unsigned int * Scores);/// should be a vector of 5 unsigned int integers
+    void GenerateDisplay(unsigned int * Current,unsigned int* Best);/// should be a vector of 5 unsigned int integers
     void Draw(float* Matrice);
 private :
     GNumber**           v_GScores ;
+    GNumber**           v_GBest ;
 };
 #endif // PFE_SCOREDISPLAY_H_

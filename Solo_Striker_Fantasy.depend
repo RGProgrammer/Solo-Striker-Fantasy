@@ -3184,7 +3184,7 @@
 1461674554 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\blades.h
 	"Enemy.h"
 
-1462890780 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\enemy.h
+1464945013 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\enemy.h
 	"DynamicModel.h"
 	"GameScene.h"
 	"Explosion.h"
@@ -3625,7 +3625,7 @@
 	".//tools//sdl2//include//SDL.h"
 	<stdio.h>
 
-1464867281 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\gamelogic.h
+1464949169 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\gamelogic.h
 	"GameScene.h"
 	"Abstract.h"
 	"Camera.h"
@@ -3716,7 +3716,7 @@
 1456259639 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\timer.h
 	<sys/time.h>
 
-1464867585 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\gamelogic.cpp
+1464949655 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\gamelogic.cpp
 	"GameLogic.h"
 
 1460367563 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\gamescene.cpp
@@ -3846,10 +3846,10 @@
 1464867093 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\gnumber.cpp
 	"GNumber.h"
 
-1464786618 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\scoredisplay.h
+1464947626 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\scoredisplay.h
 	"StaticModel.h"
 	"GNumber.h"
 
-1464867191 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\scoredisplay.cpp
+1464948883 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\scoredisplay.cpp
 	"ScoreDisplay.h"
 

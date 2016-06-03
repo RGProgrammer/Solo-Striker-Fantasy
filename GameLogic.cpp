@@ -3,7 +3,8 @@
 GameLogic::GameLogic():m_Scene(NULL),m_Camera(NULL),m_Player(NULL),m_EventSys(NULL),
                         m_Ship(NULL),m_MainMenu (NULL),m_ExitVariable(NULL),
                         m_CurrentLevel(-1),v_Filenames(NULL),m_nbLevels(0),m_Physics(NULL),
-                        m_Delay(5.0f),m_ScoreDisplay(NULL),v_Scores(NULL){
+                        m_Delay(5.0f),m_ScoreDisplay(NULL),v_CurrentScores(NULL),v_BestScores(NULL),
+                        m_BestSaved(true){
 };
 GameLogic::~GameLogic(){
     this->Destroy();
@@ -36,9 +37,14 @@ void GameLogic::Destroy(){
         delete m_ScoreDisplay;
         m_ScoreDisplay=NULL ;
     }
-    if(v_Scores){
-        free(v_Scores);
-        v_Scores=NULL ;
+    if(v_CurrentScores){
+        free(v_CurrentScores);
+        v_CurrentScores=NULL ;
+    }
+    SaveBestScores();
+    if(v_BestScores){
+        free(v_BestScores);
+        v_BestScores=NULL ;
     }
     DestroyGlobalSoundEngine();
 };
@@ -82,9 +88,15 @@ int GameLogic::InitLogic(GameScene* Scene){
     m_ScoreDisplay=new ScoreDisplay();
     m_ScoreDisplay->LoadFromFile();
     m_ScoreDisplay->setPosition({0.0f,0.0f,-10.0f});
-    v_Scores=(unsigned int*)malloc(5*sizeof(unsigned int));
+    v_CurrentScores=(unsigned int*)malloc(5*sizeof(unsigned int));
+    v_BestScores=(unsigned int *)malloc(5*sizeof(unsigned int));
     for(int i =0 ;i<5; i++)
-        v_Scores[i]=0 ;
+        v_CurrentScores[i]=0 ;
+    for(int i =0 ;i<5; i++)
+        v_BestScores[i]=0 ;
+    LoadBestScores();
+    printf(" best Scores: \n %d  %d  %d  %d  %d\n",v_BestScores[0],v_BestScores[1],v_BestScores[2],
+                                                    v_BestScores[3],v_BestScores[4]);
     return 1 ;
 };
 int GameLogic::InitLevel(int index){
@@ -138,13 +150,20 @@ void GameLogic::Update(float dt){
             m_Delay-=dt;
             if(m_Delay<=0.0f)
                 if(m_CurrentLevel<m_nbLevels){
-                    v_Scores[m_CurrentLevel-1]=m_Player->getScore();
+                    v_CurrentScores[m_CurrentLevel-1]=m_Player->getScore();
+                    if((v_CurrentScores[m_CurrentLevel-1])>(v_BestScores[m_CurrentLevel-1])){
+                        v_BestScores[m_CurrentLevel-1] = v_CurrentScores[m_CurrentLevel-1] ;
+                        m_BestSaved=false ;
+                    }
                     m_Player->setScore(0);
                     InitLevel(++m_CurrentLevel);
                 }else{
-                    v_Scores[m_CurrentLevel-1]=m_Player->getScore();
+                    v_CurrentScores[m_CurrentLevel-1]=m_Player->getScore();
+                    if((v_CurrentScores[m_CurrentLevel-1])>(v_BestScores[m_CurrentLevel-1])){
+                        v_BestScores[m_CurrentLevel-1] = v_CurrentScores[m_CurrentLevel-1] ;
+                        m_BestSaved=false ;
+                    }
                     SwitchtoSCORESCREEN();
-                    return ;
                 }
         }
     }else if(m_Stat==MAINMENU){
@@ -219,7 +238,37 @@ void GameLogic::SwitchtoSCORESCREEN(){
     m_ScoreDisplay=new ScoreDisplay();
     m_ScoreDisplay->LoadFromFile();
     m_ScoreDisplay->setPosition({0.0f,0.0f,-4.5f});
-    m_ScoreDisplay->GenerateDisplay(v_Scores);
+    m_ScoreDisplay->GenerateDisplay(v_CurrentScores,v_BestScores);
     m_Scene->AddActor(m_ScoreDisplay);
     m_Stat=SCORESCREEN ;
 };
+
+int GameLogic::LoadBestScores(){
+    FILE* DataFile=NULL;
+    if(!(DataFile=fopen(".//Save//Scores.dat","rb"))){
+        printf("cannot load Scores \n");
+        return 0 ;
+    }
+    int i=0 ;
+    while(!feof(DataFile)){
+        fread(&(v_BestScores[i]),sizeof(unsigned int),1,DataFile);
+        i++;
+    }
+    fclose(DataFile);
+    return 1 ;
+};
+int GameLogic::SaveBestScores(){
+    FILE* DataFile=NULL ;
+    if(m_BestSaved==true)
+        return 1;
+    if(!(DataFile=fopen(".//Save//Scores.dat","wb"))){
+        printf("Cannot Save Scores");
+        return 0 ;
+    }
+    for(int i=0 ; i<5 ; i++)
+        fwrite(&(v_BestScores[i]),sizeof(unsigned int),1,DataFile);
+    m_BestSaved=true ;
+    fclose(DataFile);
+    return 1 ;
+};
+

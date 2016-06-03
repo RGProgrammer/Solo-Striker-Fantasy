@@ -43,6 +43,8 @@ private:
     void SwitchtoMAINMENU();
     void SwitchtoINGAME();
     void SwitchtoSCORESCREEN();
+    int LoadBestScores();
+    int SaveBestScores();
     int                 m_Stat ;
     float               m_Delay ;
     char**              v_Filenames;
@@ -57,8 +59,9 @@ private:
     EventSystem*        m_EventSys ;
     PhysicsEngine*      m_Physics ;
     ScoreDisplay*       m_ScoreDisplay;
-    unsigned int*       v_Scores ;
-
+    unsigned int*       v_CurrentScores ;
+    unsigned int*       v_BestScores;
+    bool                m_BestSaved ;
 
 };
 #endif // PFE_GAMELOGIC_H_

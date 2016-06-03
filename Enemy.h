@@ -17,8 +17,9 @@
 
 //Stats
 #define DEAD        0x0000
-#define EXPLODING   0x0001
-#define ALIVE       0x0002
+#define ALIVE       0x0001
+#define EXPLODING   0x0002
+
 
 typedef struct {
     Vertex3d    Translate; //add this vertex to the Position
