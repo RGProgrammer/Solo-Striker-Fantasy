@@ -95,8 +95,6 @@ int GameLogic::InitLogic(GameScene* Scene){
     for(int i =0 ;i<5; i++)
         v_BestScores[i]=0 ;
     LoadBestScores();
-    printf(" best Scores: \n %d  %d  %d  %d  %d\n",v_BestScores[0],v_BestScores[1],v_BestScores[2],
-                                                    v_BestScores[3],v_BestScores[4]);
     return 1 ;
 };
 int GameLogic::InitLevel(int index){
@@ -246,7 +244,6 @@ void GameLogic::SwitchtoSCORESCREEN(){
 int GameLogic::LoadBestScores(){
     FILE* DataFile=NULL;
     if(!(DataFile=fopen(".//Save//Scores.dat","rb"))){
-        printf("cannot load Scores \n");
         return 0 ;
     }
     int i=0 ;
@@ -262,7 +259,6 @@ int GameLogic::SaveBestScores(){
     if(m_BestSaved==true)
         return 1;
     if(!(DataFile=fopen(".//Save//Scores.dat","wb"))){
-        printf("Cannot Save Scores");
         return 0 ;
     }
     for(int i=0 ; i<5 ; i++)
