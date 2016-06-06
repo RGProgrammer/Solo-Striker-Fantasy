@@ -1,6 +1,6 @@
 #include "GameScene.h"
 GameScene::GameScene():Size(10),m_NBActors(0),v_Actors(NULL),m_Camera(NULL),
-                        m_MinVertex({-85.0f,-70.0f,-85.0f}),m_MaxVertex({85.0f,75.0f,85.0f}){};
+                        m_MinVertex({-85.0f,-65.0f,-85.0f}),m_MaxVertex({85.0f,65.0f,85.0f}){};
 GameScene::~GameScene() {
     this->Destroy() ;
 };

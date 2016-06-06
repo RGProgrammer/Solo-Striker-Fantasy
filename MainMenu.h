@@ -24,6 +24,7 @@ public:
 private :
     StaticModel**       v_SubItems ;
     StaticModel*        m_Selector ;
+    StaticModel*        m_Title ;
     Sound*              m_MenuMusic;
     int                 m_nbItems;
     int                 m_Selected;

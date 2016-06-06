@@ -122,9 +122,9 @@ void HOPE::Init(){
 };
 void HOPE::Draw(float* ViewMtx){
     if(m_Stat!= DEAD){
+        StaticModel::Draw(ViewMtx);
         m_Score->Draw(NULL);
         m_GStatus->Draw(NULL);
-        StaticModel::Draw(ViewMtx);
         m_Shooterl->Draw(ViewMtx);
         m_Shooter2->Draw(ViewMtx);
         if(m_Stat==CHECK){
