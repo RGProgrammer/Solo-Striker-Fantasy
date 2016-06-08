@@ -20,7 +20,8 @@ int Terrain::LoadFromFile(char* filename){
         return 0 ;
     if(!(v_Points=(Vertex3d*)malloc(12*sizeof(Vertex3d))))
         return 0 ;
-    m_Offset= m_Sample->getRadius()*1.4142135f;//62f;
+    //m_Offset= m_Sample->getRadius()*1.41f;//42135f;//62f;
+    m_Offset= m_Sample->getRadius()*1.30f;
     for(int i=-1;i<3;i++)
         for(int j=-1;j<2;j++){
             v_Points[(i+1)*3+j+1].x=m_Offset*j;

@@ -3178,10 +3178,10 @@
 1459968225 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\actor.cpp
 	"Actor.h"
 
-1462875789 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\blades.cpp
+1465386070 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\blades.cpp
 	"Blades.h"
 
-1461674554 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\blades.h
+1465386103 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\blades.h
 	"Enemy.h"
 
 1464945013 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\enemy.h
@@ -3223,8 +3223,8 @@
 	<stdio.h>
 	<string.h>
 
-1464958363 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\gamescene.h
-	"Actor.h"
+1465387921 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\gamescene.h
+	"StaticModel.h"
 	"Camera.h"
 	"Player.h"
 
@@ -3682,7 +3682,7 @@
 	"GlobalSound.h"
 	<stdlib.h>
 
-1461416495 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\ufo.h
+1465386123 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\ufo.h
 	"Enemy.h"
 
 1460205671 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\terrain.h
@@ -3719,16 +3719,16 @@
 1464979524 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\gamelogic.cpp
 	"GameLogic.h"
 
-1464978396 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\gamescene.cpp
+1465387331 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\gamescene.cpp
 	"GameScene.h"
 
-1463609218 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\graphicsengine.cpp
+1465387860 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\graphicsengine.cpp
 	"GraphicsEngine.h"
 
 1464978451 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\hope.cpp
 	"HOPE.h"
 
-1462825807 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\levelloader.cpp
+1465387850 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\levelloader.cpp
 	"LevelLoader.h"
 
 1464548687 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\main.cpp
@@ -3759,7 +3759,7 @@
 1463658241 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\staticmodel.cpp
 	"StaticModel.h"
 
-1463737248 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\terrain.cpp
+1465386481 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\terrain.cpp
 	"Terrain.h"
 
 1462180292 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\timer.cpp
@@ -3779,7 +3779,7 @@
 	<iostream>
 	"lodepng.h"
 
-1462875754 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\ufo.cpp
+1465386169 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\ufo.cpp
 	"UFO.h"
 
 1460371867 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\util.cpp
@@ -3852,4 +3852,10 @@
 
 1464948883 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\scoredisplay.cpp
 	"ScoreDisplay.h"
+
+1465386248 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\aex2.cpp
+	"AEX2.h"
+
+1465386275 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\aex2.h
+	"Enemy.h"
 

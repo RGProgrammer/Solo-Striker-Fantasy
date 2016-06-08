@@ -6,7 +6,7 @@
 /////////////////////////////////////////////////////////////////////////////////////
 #ifndef PFE_GAMESCENE_H_
 #define PFE_GAMESCENE_H_
-#include "Actor.h"
+#include "StaticModel.h"
 #include "Camera.h"
 #include "Player.h"
 class Player ;
@@ -16,11 +16,11 @@ public:
     ~GameScene() ;
     int AddActor(Actor* actor);
     void FreeVector();
+    void Destroy() ;
     Actor*  getActor(unsigned int index);
     int getNBActors();
     void setPlayer(Player * player);
     Player* getPlayer();
-    void Destroy() ;
     void setCamera(Camera*);
     Camera* getCamera();
     void RemoveAt(unsigned int index);

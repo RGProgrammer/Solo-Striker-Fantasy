@@ -14,6 +14,6 @@ int UFO::LoadFromFile(){
     m_Health=1 ;
     m_Dt=0.0f;
 };
-int UFO::Fire(Vertex3d Direction){
-
+int UFO::Clone(UFO* Clone){
+    return StaticModel::Clone(Clone);
 };

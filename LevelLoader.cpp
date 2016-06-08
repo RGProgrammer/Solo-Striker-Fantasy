@@ -191,7 +191,9 @@ int LevelLoader::DecodeSkyboxLine(char* line){
     if(!filename)
         return 0 ;
     CatStrings("Data//",filename,&completefilename);
-    if(m_Scene->AddActor(StaticModel::LoadFile(completefilename))){
+    StaticModel* skybox=StaticModel::LoadFile(completefilename);
+    skybox->Scale(2.0f);
+    if(m_Scene->AddActor(skybox)){
         free(filename);
         free(completefilename);
         return 1;

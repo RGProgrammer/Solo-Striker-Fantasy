@@ -10,6 +10,5 @@ public :
     int LoadFromFile();
     void Update(float dt);
     int Clone(Blades* Clone);
-    int Fire(Vertex3d Direction );
 };
 #endif // PFE_BLADES_H_

@@ -21,6 +21,3 @@ void Blades::Update(float dt){
 int Blades::Clone(Blades* Clone){
     return StaticModel::Clone(Clone);
 };
-int Blades::Fire(Vertex3d Direction ){
-
-};

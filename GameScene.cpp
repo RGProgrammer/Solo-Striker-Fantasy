@@ -59,6 +59,7 @@ Player* GameScene::getPlayer(){
 void GameScene::Destroy() {
     this->FreeVector();
     m_Player=NULL ;
+    m_Camera=NULL
 };
 void GameScene::setCamera(Camera* Cam){
     this->m_Camera=Cam;

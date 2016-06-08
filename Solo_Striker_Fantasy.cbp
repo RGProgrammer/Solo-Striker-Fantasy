@@ -52,6 +52,8 @@
 		<Linker>
 			<Add option="-m32" />
 		</Linker>
+		<Unit filename="AEX2.cpp" />
+		<Unit filename="AEX2.h" />
 		<Unit filename="Abstract.cpp" />
 		<Unit filename="Abstract.h" />
 		<Unit filename="Actor.cpp" />
