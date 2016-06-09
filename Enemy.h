@@ -46,6 +46,7 @@ public :
     virtual void Destroy();
     virtual int addAction(Action action);
     int Fire();
+    int Fire(Vertex3d Dir,Vertex3d Up);
     virtual void addShotSample(Shot* Sample);
     bool isActive();
     void setActive(bool);

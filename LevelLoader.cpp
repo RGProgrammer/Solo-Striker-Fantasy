@@ -78,11 +78,12 @@ int LevelLoader::DecodeActionLine(char* line){
             action.ActionType=FIREACTION;
             free(tmpstr);
             if(contains(line,"param=")){
-                Vertex3d* dir=(Vertex3d*)malloc(sizeof(Vertex3d));
+                Vertex3d* parameters=(Vertex3d*)malloc(2*sizeof(Vertex3d));
                 tmpstr=ExtractString(line,"param=\"","\"");
-                sscanf(tmpstr,"%f %f %f",&dir->x,&dir->y,&dir->z);
+                sscanf(tmpstr,"%f %f %f %f %f %f", &(parameters[0].x),&(parameters[0].y),&(parameters[0].z),
+                                                   &(parameters[1].x),&(parameters[1].y),&(parameters[1].z));
                 free(tmpstr);
-                action.Data=dir;
+                action.Data=parameters;
             }
             m_Sample->addAction(action);
         }else if(strcmp(tmpstr,"EXPLODE")==0){
@@ -128,7 +129,9 @@ int LevelLoader::DecodeEnemyLine(char* line){
             Shot* shotsample =NULL ;
             tmpstr=ExtractString(line,"shot=\"","\"");
             if(strcmp(tmpstr,"Small")==0){
-
+                shotsample=new SmallShot(m_Sample);
+                shotsample->LoadFromFile();
+                m_Sample->addShotSample(shotsample);
             }else if(strcmp(tmpstr,"Long")==0){
                 shotsample=new LongShot(m_Sample);
                 shotsample->LoadFromFile();
@@ -197,7 +200,7 @@ int LevelLoader::DecodeSkyboxLine(char* line){
         return 0 ;
     CatStrings("Data//",filename,&completefilename);
     StaticModel* skybox=StaticModel::LoadFile(completefilename);
-    skybox->Scale(2.0f);
+    skybox->Scale(3.0f);
     if(m_Scene->AddActor(skybox)){
         free(filename);
         free(completefilename);

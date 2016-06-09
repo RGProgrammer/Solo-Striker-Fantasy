@@ -100,24 +100,25 @@ void RampageShot::Hit(){
 
 SmallShot::SmallShot():Shot(){
     m_Source=NULL;
-    m_Speed=2.0f;
-    m_LifeTime=2.0f;
+    m_Speed=20.0f;
+    m_LifeTime=15.0f;
     m_Velocity=ScaleVertex3d(Normalize3d(StaticModel::m_Dir),m_Speed);
+    this->setColor({0.929f,0.262f,0.937f});
 };
 SmallShot::SmallShot(Vertex3d Pos,Vertex3d Dir,Vertex3d Up):Shot(Pos,Dir,Up){
-     m_Source=NULL;
-    m_Speed=2.0f;
-    m_LifeTime=2.0f;
+    m_Source=NULL;
+    m_Speed=20.0f;
+    m_LifeTime=15.0f;
     m_Velocity=ScaleVertex3d(Normalize3d(StaticModel::m_Dir),m_Speed);
+    this->setColor({0.929f,0.262f,0.937f});
 };
 SmallShot::SmallShot(Actor* Source):Shot(){
-     m_Source=Source;
-    m_Speed=2.0f;
-    m_LifeTime=2.0f;
-    m_Velocity=ScaleVertex3d(Normalize3d(StaticModel::m_Dir),m_Speed);
+    m_Source=Source;
+    m_Speed=20.0f;
+    m_LifeTime=10.0f;
+    this->setColor({0.929f,0.262f,0.937f});
 };
 SmallShot::~SmallShot(){
-
 };
 void SmallShot::Update(float dt){
     if(dt==0)
@@ -125,7 +126,8 @@ void SmallShot::Update(float dt){
     m_Dt+=dt;
     if(m_Dt>=m_LifeTime)
         m_ID=UNKNOWN ;
-  m_Pos=AddVertex3d(m_Pos,ScaleVertex3d(m_Velocity,dt));
+    m_Velocity=ScaleVertex3d(Normalize3d(StaticModel::m_Dir),m_Speed);
+    m_Pos=AddVertex3d(m_Pos,ScaleVertex3d(m_Velocity,dt));
 };
 int SmallShot::LoadFromFile(){
     return StaticModel::LoadFromFile("Data//SmallShot.obj");
@@ -142,7 +144,7 @@ Shot* SmallShot::Clone(){
 void SmallShot::Hit(){
     m_Speed=0.0f;
     m_Velocity={0.0f,0.0f,0.0f};
-    //m_ID=UNKNOWN;
+    m_ID=UNKNOWN;
 };
 
 LongShot::LongShot():Shot(){
