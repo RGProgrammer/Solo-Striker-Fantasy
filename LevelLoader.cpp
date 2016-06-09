@@ -110,8 +110,13 @@ int LevelLoader::DecodeEnemyLine(char* line){
             m_Sample->LoadFromFile();
             m_Scene->AddActor(m_Sample);
         }else if(strcmp(tmpstr,"Canon")==0){
-             m_Sample=new Canon();
-             m_Sample->setScene(m_Scene);
+            m_Sample=new Canon();
+            m_Sample->setScene(m_Scene);
+            m_Sample->LoadFromFile();
+            m_Scene->AddActor(m_Sample);
+        }else if(strcmp(tmpstr,"AEX2")==0){
+            m_Sample=new AEX2();
+            m_Sample->setScene(m_Scene);
             m_Sample->LoadFromFile();
             m_Scene->AddActor(m_Sample);
         }

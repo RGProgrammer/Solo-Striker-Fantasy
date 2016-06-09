@@ -2,6 +2,7 @@
 #define PFE_LEVELLOADER_H_
 #include "GameScene.h"
 #include "UFO.h"
+#include "AEX2.h"
 #include "Blades.h"
 #include "Canon.h"
 #include "ShotTypes.h"

@@ -13,7 +13,7 @@ int AEX2::LoadFromFile(){
     m_Health=20.0f;
     m_Explosion=new Explosion(this);
     m_Explosion->LoadFromFile();
-    return StaticModel::LoadFromFile("Data//AEX2.obj");
+    return StaticModel::LoadFromFile("Data//AeX2.obj");
 };
 void AEX2::Update(float dt){
     Enemy::Update(dt);
