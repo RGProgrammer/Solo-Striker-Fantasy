@@ -94,6 +94,7 @@ int LevelLoader::DecodeActionLine(char* line){
             m_Sample->addAction(action);
         }
     }
+    return 1 ;
 };
 int LevelLoader::DecodeEnemyLine(char* line){
     Vertex3d ver1,ver2;
@@ -168,9 +169,44 @@ int LevelLoader::DecodeEnemyLine(char* line){
         free(tmpstr);
         m_Sample->setOrientation(ver1,ver2);
     }
+    return 1 ;
 };
 int LevelLoader::DecodeBossLine(char* line){
-
+    Vertex3d ver1,ver2;
+    char* tmpstr=NULL;
+    if(contains(line,"type=")){
+        tmpstr=ExtractString(line,"type=\"","\"");
+        if(strcmp(tmpstr,"FIRST")==0){
+            m_Sample=new FIRST();
+            m_Sample->setScene(m_Scene);
+            m_Sample->LoadFromFile();
+            m_Scene->AddActor(m_Sample);
+        }
+        if(tmpstr){
+            free(tmpstr);
+            tmpstr=NULL;
+        }
+    }else{
+        return 0 ;
+    }
+    if(contains(line,"pos=")){
+        tmpstr=ExtractString(line,"pos=\"","\"");
+        sscanf(tmpstr,"%f %f %f",&ver1.x,&ver1.y,&ver1.z);
+        m_Sample->setPosition(ver1);
+        if(tmpstr){
+            free(tmpstr);
+            tmpstr=NULL;
+        }
+    }if(contains(line,"dir")){
+        tmpstr=ExtractString(line,"dir=\"","\"");
+        sscanf(tmpstr,"%f %f %f",&ver1.x,&ver1.y,&ver1.z);
+        free(tmpstr);
+        tmpstr=ExtractString(line,"up=\"","\"");
+        sscanf(tmpstr,"%f %f %f",&ver2.x,&ver2.y,&ver2.z);
+        free(tmpstr);
+        m_Sample->setOrientation(ver1,ver2);
+    }
+    return 1 ;
 };
 int LevelLoader::DecodeTerrainLine(char* line){
    char *filename;
@@ -191,6 +227,7 @@ int LevelLoader::DecodeTerrainLine(char* line){
         free(completefilename);
         return 0;
     }
+    return 1 ;
 };
 int LevelLoader::DecodeSkyboxLine(char* line){
     char *filename;
@@ -210,6 +247,7 @@ int LevelLoader::DecodeSkyboxLine(char* line){
         free(completefilename);
         return 0;
     }
+    return 1;
 };
 int LevelLoader::DecodeCameraLine(char* line){
     Camera* Cam=m_Scene->getCamera() ;
@@ -224,6 +262,7 @@ int LevelLoader::DecodeCameraLine(char* line){
         Cam->setViewType(UP);
     }
     free(tmpstr);
+    return 1 ;
 }
 int LevelLoader::DecodeMusicLine(char* line){
     Sound* Music=NULL ;

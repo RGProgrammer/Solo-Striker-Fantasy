@@ -62,14 +62,12 @@
 		<Unit filename="Blades.h" />
 		<Unit filename="Boss.cpp" />
 		<Unit filename="Boss.h" />
-		<Unit filename="CUBE.cpp" />
 		<Unit filename="Camera.cpp" />
 		<Unit filename="Camera.h" />
 		<Unit filename="Canon.cpp" />
 		<Unit filename="Canon.h" />
 		<Unit filename="CreditHandler.cpp" />
 		<Unit filename="CreditHandler.h" />
-		<Unit filename="Cube.h" />
 		<Unit filename="DynamicModel.cpp" />
 		<Unit filename="DynamicModel.h" />
 		<Unit filename="Effect.cpp" />
@@ -80,6 +78,8 @@
 		<Unit filename="EventSystem.h" />
 		<Unit filename="Explosion.cpp" />
 		<Unit filename="Explosion.h" />
+		<Unit filename="FIRST.cpp" />
+		<Unit filename="FIRST.h" />
 		<Unit filename="GNumber.cpp" />
 		<Unit filename="GNumber.h" />
 		<Unit filename="GameCore.cpp" />

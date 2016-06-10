@@ -5,6 +5,7 @@
 #include "AEX2.h"
 #include "Blades.h"
 #include "Canon.h"
+#include "FIRST.h"
 #include "ShotTypes.h"
 #include "Terrain.h"
 #include "util.h"
