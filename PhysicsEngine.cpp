@@ -58,12 +58,17 @@ void PhysicsEngine::CollisionReaction(){
         ///Check if there is a plyer player Object
         ///and if it collides with an enemy or a Shot
         if(v_Data[i].Object1->getID() & PLAYER){
-            if(v_Data[i].Object2->getID()& SHOT)
+            if(v_Data[i].Object2->getID()& SHOT){
                  if((((Shot*)v_Data[i].Object2)->getSource()->getID() & ENEMY) &&
                                             (((Player*)v_Data[i].Object1)->getStat() != HIT)){
                     ((Player*)v_Data[i].Object1)->getDamage();
                     ((Shot*)v_Data[i].Object2)->Hit();
                  }
+            }else if((v_Data[i].Object2->getID()& ENEMY) &&
+                                            (((Player*)v_Data[i].Object1)->getStat() != HIT)){
+                ((Player*)v_Data[i].Object1)->getDamage();
+
+            }
         }
     }
     FreeData();

@@ -124,14 +124,23 @@ void HOPE::Init(){
     m_Score->setValue(0);
     m_CreditHandler->setCreditValue(3);
     m_GStatus->setShieldValue(3);
+    setPosition({0.0f,0.0f,-37.0f});
 };
 void HOPE::Draw(float* ViewMtx){
     if(m_Stat!= DEAD){
-        StaticModel::Draw(ViewMtx);
+        if(m_Stat==HIT){
+        if(((int)(m_Dt*10))%2==0){
+            StaticModel::Draw(ViewMtx);
+            m_Shooter1->Draw(ViewMtx);
+            m_Shooter2->Draw(ViewMtx);}}
+        else{
+            StaticModel::Draw(ViewMtx);
+            m_Shooter1->Draw(ViewMtx);
+            m_Shooter2->Draw(ViewMtx);
+        }
+
         m_Score->Draw(NULL);
         m_GStatus->Draw(NULL);
-        m_Shooter1->Draw(ViewMtx);
-        m_Shooter2->Draw(ViewMtx);
         if(m_Stat==CHECK){
             m_CreditHandler->Draw(NULL);
         }

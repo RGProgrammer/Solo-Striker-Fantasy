@@ -74,8 +74,12 @@ EnemyChaser::~EnemyChaser(){
 void EnemyChaser::Update(float dt){
     /// this code need to be changed
 
+    if(!(m_Target->getID() & ENEMY)){
+        m_ID=UNKNOWN;
+        return ;
+    }
     m_LifeTime-=dt;
-    m_Velocity=ScaleVertex3d(m_Dir,m_Speed*dt);
+    m_Velocity=ScaleVertex3d(Normalize3d(SubsVertex3d(m_Target->getPosition(),m_Pos)),m_Speed*dt);
     m_Pos=AddVertex3d(m_Pos,m_Velocity);
     if(Magnitude3d(SubsVertex3d({0.0f,0.0f,0.0f},m_Pos))>250.0f ||
        m_LifeTime<=0 || !(m_Target->getID()& ENEMY))
@@ -148,6 +152,10 @@ void RampageShot::Hit(){
     m_Velocity={0.0f,0.0f,0.0f};
     m_ID=UNKNOWN;
 };
+
+
+
+/// ////////////////////////////////////////////////
 
 
 SmallShot::SmallShot():Shot(){
@@ -293,5 +301,4 @@ Shot* Laser::Clone(){
     return clone;
 };
 void Laser ::Hit(){
-
 };

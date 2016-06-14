@@ -92,6 +92,7 @@ int EnemyChaserLauncher::Fire(float dt,GameScene* Scene,Vertex3d Pos, Vertex3d D
         int nbActors=Scene->getNBActors();
         for(unsigned int i=0; i<nbActors; i++)
             if((Scene->getActor(i))->getID() & ENEMY )
+                if((dynamic_cast<Enemy*>(Scene->getActor(i)))->isActive())
                 m_Target=(Scene->getActor(i));
         if(!m_Target){
             return 1;
