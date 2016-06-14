@@ -36,7 +36,6 @@ public:
     int getStat();
 protected:
     int                 m_Stat ;
-    int                 m_Charge;
     GameScene*          m_Scene;
     Camera*             m_Camera;
     ScoreHandler*       m_Score ;

@@ -3,6 +3,7 @@
 #include "Enemy.h"
 #include "Weapon.h"
 #include "ShotTypes.h"
+#include <time.h>
 //player Weapons
 class MachineGun :public Weapon {
 public :

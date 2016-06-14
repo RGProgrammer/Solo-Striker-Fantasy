@@ -3172,7 +3172,7 @@
 	"Math.h"
 	<stdlib.h>
 
-1462121115 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\math.h
+1465903011 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\math.h
 	<math.h>
 
 1459968225 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\actor.cpp
@@ -3231,7 +3231,7 @@
 1460455900 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\camera.h
 	"Actor.h"
 
-1464606907 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\player.h
+1465669825 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\player.h
 	"GameScene.h"
 	"DynamicModel.h"
 	"Weapon.h"
@@ -3638,17 +3638,18 @@
 	"ScoreDisplay.h"
 	".//tools//sdl2//include//SDL.h"
 
-1464772203 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\hope.h
+1465904484 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\hope.h
 	"Player.h"
 	"PlayerStatus.h"
 	"WeaponTypes.h"
 	"Math.h"
 	"CreditHandler.h"
 
-1463660642 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\weapontypes.h
+1465900142 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\weapontypes.h
 	"Enemy.h"
 	"Weapon.h"
 	"ShotTypes.h"
+	<time.h>
 
 1463217367 c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\shottypes.h
 	"Shot.h"
@@ -3727,7 +3728,7 @@
 1465387860 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\graphicsengine.cpp
 	"GraphicsEngine.h"
 
-1464978451 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\hope.cpp
+1465903742 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\hope.cpp
 	"HOPE.h"
 
 1465560362 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\levelloader.cpp
@@ -3746,7 +3747,7 @@
 	"PhysicsEngine.h"
 	<stdio.h>
 
-1464606832 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\player.cpp
+1465898730 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\player.cpp
 	"Player.h"
 
 1462274671 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\shot.cpp
@@ -3790,7 +3791,7 @@
 1463668263 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\weapon.cpp
 	"Weapon.h"
 
-1463660694 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\weapontypes.cpp
+1465904121 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\weapontypes.cpp
 	"WeaponTypes.h"
 
 1451752834 source:c:\users\ikram\desktop\rami\solo-striker-fantasy-copy\windowhandler.cpp

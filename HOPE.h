@@ -24,6 +24,7 @@ public :
 private:
     HOPE*               m_Owner;
     Vertex3d            m_Trans ;
+    Vertex3d            m_TmpVertex ;
     int                 m_nbWeapons;
     int                 m_SelectedWeapon;
     Weapon**            v_Weapons;
@@ -50,7 +51,7 @@ private :
     void Fire(float dt);
     float               m_Speed ;//HOPE movement speed
     Vertex3d            m_MoveDirection;
-    Shooter*            m_Shooterl;
+    Shooter*            m_Shooter1;
     Shooter*            m_Shooter2;
     PlayerStatus*       m_GStatus;
     CreditHandler*      m_CreditHandler;

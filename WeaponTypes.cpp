@@ -58,8 +58,12 @@ int Rampage::Fire(float dt, GameScene* Scene,Vertex3d Pos,Vertex3d Dir,Vertex3d 
             return 0 ;
         m_Dt=0;
         bullet->setPosition(Pos);
-        bullet->setOrientation(Dir,Up);
+        /*bullet->setOrientation(Dir,Up);*/
         bullet->setSource(m_Owner);
+        printf("before %f  %f  %f\n",Dir.x,Dir.y,Dir.z);
+        Dir=Rotate3d(Dir,Up,rand()/(RAND_MAX/1.046f));
+        printf("after %f  %f  %f\n",Dir.x,Dir.y,Dir.z);
+        bullet->setOrientation(Dir,Up);
         getGlobalSoundEngineInstance()->PlaySound(m_FireSound,m_Owner);
         return Scene->AddActor(bullet);
     }

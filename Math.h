@@ -56,17 +56,19 @@ inline Vertex3d SubsVertex3d(Vertex3d Ver1,Vertex3d Ver2){
 };
 inline Vertex3d Rotate3d(Vertex3d Ver,Vertex3d Pers,double ang ){
     Pers=Normalize3d(Pers);
+    float Scale=Magnitude3d(Ver);
+    Ver=Normalize3d(Ver);
     Vertex3d tmp ;
     tmp.x=Ver.x*(cos(ang)+Pers.x*Pers.x*(1-cos(ang)))+
           Ver.y*(Pers.x*Pers.y*(1-cos(ang))-Pers.z*sin(ang))+
-          Ver.z*(Pers.x*Pers.z*(1-cos(ang))+Pers.z*sin(ang));
+          Ver.z*(Pers.x*Pers.z*(1-cos(ang))+Pers.y*sin(ang));
     tmp.y=Ver.x*(Pers.x*Pers.y*(1-cos(ang))+Pers.z*sin(ang))+
           Ver.y*(cos(ang)+Pers.y*Pers.y*(1-cos(ang)))+
           Ver.z*(Pers.y*Pers.z*(1-cos(ang))-Pers.x*sin(ang));
     tmp.z=Ver.x*(Pers.x*Pers.z*(1-cos(ang))-Pers.y*sin(ang))+
           Ver.y*(Pers.y*Pers.z*(1-cos(ang))+Pers.x*sin(ang))+
           Ver.z*(cos(ang)+Pers.z*Pers.z*(1-cos(ang)));
-    return tmp;
+    return ScaleVertex3d(Normalize3d(tmp),Scale);
 
 };
 inline void Multi4x4Mtx(float* leftMtx, float* rightMtx,float* resultMtx){
