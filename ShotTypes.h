@@ -1,6 +1,7 @@
 #ifndef PFE_SHOTTYPES_H_
 #define PFE_SHOTTYPES_H_
 #include "Shot.h"
+#include "Enemy.h"
 //player
 class EnergyBullet: public Shot{
 public:
@@ -23,6 +24,9 @@ public:
     int LoadFromFile();
     Shot* Clone();
     void Hit();
+    void setTarget(Actor* Target);
+private:
+    Actor*          m_Target ;
 
 };
 class RampageShot : public Shot{
@@ -65,6 +69,17 @@ public :
     Laser(Vertex3d Pos, Vertex3d Dir, Vertex3d Up);
     Laser(Actor* Source);
     ~Laser();
+    void Update(float dt);
+    int LoadFromFile();
+    Shot* Clone();
+    void Hit();
+};
+class Chaser : public Shot {
+public:
+    Chaser();
+    Chaser(Vertex3d Pos,Vertex3d Dir,Vertex3d Up);
+    Chaser(Actor* Source);
+    ~Chaser();
     void Update(float dt);
     int LoadFromFile();
     Shot* Clone();

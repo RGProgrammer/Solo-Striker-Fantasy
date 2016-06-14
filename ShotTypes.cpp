@@ -3,20 +3,20 @@
 EnergyBullet::EnergyBullet():Shot(){
     m_Damage=5 ;
     m_Source=NULL;
-    m_Speed=100.0f;
+    m_Speed=150.0f;
     m_LifeTime=10.0f;
     setColor({0.98f,0.73f,0.16f});
 };
 EnergyBullet::EnergyBullet(Vertex3d Pos,Vertex3d Dir,Vertex3d Up):Shot(Pos,Dir,Up){
     m_Damage=5 ;
     m_Source=NULL;
-    m_Speed=100.0f;
+    m_Speed=150.0f;
     m_LifeTime=10.0f;
     setColor({0.98f,0.73f,0.16f});
 };
 EnergyBullet::EnergyBullet(Actor* Source):Shot(Source){
     m_Damage=5 ;
-    m_Speed=100.0f;
+    m_Speed=150.0f;
     m_LifeTime=100.0f;
     setColor({0.98f,0.73f,0.16f});
 };
@@ -47,28 +47,80 @@ void EnergyBullet::Hit(){
     m_ID=UNKNOWN;
 };
 //EnemyChaser
+EnemyChaser::EnemyChaser():Shot(),m_Target(NULL){
+    m_Damage=5 ;
+    m_Source=NULL;
+    m_Speed=100.0f;
+    m_LifeTime=10.0f;
+    setColor({0.0f,0.0f,1.0f});
+};
+EnemyChaser::EnemyChaser(Vertex3d Pos,Vertex3d Dir,Vertex3d Up): Shot(Pos,Dir,Up),m_Target(NULL){
+    m_Damage=5 ;
+    m_Source=NULL;
+    m_Speed=100.0f;
+    m_LifeTime=10.0f;
+    setColor({0.0f,0.0f,1.0f});
+};
+EnemyChaser::EnemyChaser(Actor* Source):Shot(Source),m_Target(NULL){
+    m_Damage=5 ;
+    m_Source=NULL;
+    m_Speed=100.0f;
+    m_LifeTime=10.0f;
+    setColor({0.0f,0.0f,1.0f});
+};
+EnemyChaser::~EnemyChaser(){
+    Destroy();
+};
+void EnemyChaser::Update(float dt){
+    /// this code need to be changed
 
-
+    m_LifeTime-=dt;
+    m_Velocity=ScaleVertex3d(m_Dir,m_Speed*dt);
+    m_Pos=AddVertex3d(m_Pos,m_Velocity);
+    if(Magnitude3d(SubsVertex3d({0.0f,0.0f,0.0f},m_Pos))>250.0f ||
+       m_LifeTime<=0 || !(m_Target->getID()& ENEMY))
+        m_ID=UNKNOWN ;
+};
+int EnemyChaser::LoadFromFile(){
+    return StaticModel::LoadFromFile("Data//EnemyChaser.obj");
+};
+Shot* EnemyChaser::Clone(){
+    Shot* clone=new EnemyChaser();
+    clone->DynamicModel::Clone(this);
+    clone->setLifeTime(m_LifeTime) ;
+    clone->setSource(m_Source);
+    clone->setSpeed(m_Speed );
+    clone->setDamage(m_Damage) ;
+    return clone ;
+};
+void EnemyChaser::Hit(){
+    m_Speed=0.0f;
+    m_Velocity={0.0f,0.0f,0.0f};
+    m_ID=UNKNOWN;
+};
+void EnemyChaser::setTarget(Actor* Target){
+    m_Target=Target;
+};
 //Rampage Shot
 RampageShot::RampageShot():Shot(){
     m_Damage=5 ;
     m_Source=NULL;
-    m_Speed=120.0f;
+    m_Speed=150.0f;
     m_LifeTime=10.0f;
-    setColor({0.5f,0.0f,0.0f});
+    setColor({1.0f,0.0f,0.0f});
 };
 RampageShot::RampageShot(Vertex3d Pos,Vertex3d Dir,Vertex3d Up):Shot(Pos,Dir,Up){
     m_Damage=5 ;
     m_Source=NULL;
-    m_Speed=120.0f;
+    m_Speed=150.0f;
     m_LifeTime=10.0f;
-    setColor({0.5f,0.0f,0.0f});
+    setColor({1.0f,0.0f,0.0f});
 };
 RampageShot::RampageShot(Actor* Source):Shot(Source){
     m_Damage=5 ;
-    m_Speed=100.0f;
+    m_Speed=150.0f;
     m_LifeTime=100.0f;
-    setColor({0.98f,0.73f,0.16f});
+    setColor({1.0f,0.0f,0.0f});
 };
 RampageShot::~RampageShot(){
 };
@@ -80,7 +132,7 @@ void RampageShot::Update(float dt){
         m_ID=UNKNOWN ;
 };
 int RampageShot::LoadFromFile(){
-    return StaticModel::LoadFromFile("Data//rampageshot.obj");
+    return StaticModel::LoadFromFile("Data//RampageShot.obj");
 };
 Shot* RampageShot::Clone(){
     Shot* clone=new RampageShot();

@@ -27,7 +27,7 @@ public:
     ~EnemyChaserLauncher();
     int Fire(float dt,GameScene* Scene,Vertex3d Pos, Vertex3d Dir,Vertex3d Up);
 private:
-    Enemy*          m_Target ;
+    Actor*          m_Target ;
 };
 
 
