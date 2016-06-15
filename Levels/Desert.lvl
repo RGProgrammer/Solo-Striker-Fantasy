@@ -414,12 +414,12 @@
 /action inst="45.5" type="MOVE" param="0.0 -10.0 100.0 0.0 0.0 0.0"
 /action inst="0.0" type="ATTACK"
 
-/enemy type="Blades" pos="0.0 80.0 100.0" dir="0.0 0.0 -1.0" up="1.0 0.0 0.0"
-/action inst="46.0" type="MOVE" param="0.0 80.0 100.0 0.0 0.0 0.0"
+/enemy type="Blades" pos="0.0 60.0 100.0" dir="0.0 0.0 -1.0" up="1.0 0.0 0.0"
+/action inst="46.0" type="MOVE" param="0.0 60.0 100.0 0.0 0.0 0.0"
 /action inst="0.0" type="ATTACK"
 
-/enemy type="Blades" pos="0.0 -80.0 100.0" dir="0.0 0.0 -1.0" up="1.0 0.0 0.0"
-/action inst="46.5" type="MOVE" param="0.0 -80.0 100.0 0.0 0.0 0.0"
+/enemy type="Blades" pos="0.0 -60.0 100.0" dir="0.0 0.0 -1.0" up="1.0 0.0 0.0"
+/action inst="46.5" type="MOVE" param="0.0 -60.0 100.0 0.0 0.0 0.0"
 /action inst="0.0" type="ATTACK"
 
 /enemy type="Blades" pos="0.0 10.0 100.0" dir="0.0 0.0 -1.0" up="1.0 0.0 0.0"
@@ -438,8 +438,8 @@
 /action inst="47.5" type="MOVE" param="0.0 0.0 100.0 0.0 0.0 0.0"
 /action inst="0.0" type="ATTACK"
 
-/enemy type="Blades" pos="0.0 60.0 100.0" dir="0.0 0.0 -1.0" up="1.0 0.0 0.0"
-/action inst="48.0" type="MOVE" param="0.0 60.0 100.0 0.0 0.0 0.0"
+/enemy type="Blades" pos="0.0 40.0 100.0" dir="0.0 0.0 -1.0" up="1.0 0.0 0.0"
+/action inst="48.0" type="MOVE" param="0.0 40.0 100.0 0.0 0.0 0.0"
 /action inst="0.0" type="ATTACK"
 
 /enemy type="Blades" pos="0.0 -30.0 100.0" dir="0.0 0.0 -1.0" up="1.0 0.0 0.0"
@@ -454,12 +454,12 @@
 /action inst="49.5" type="MOVE" param="0.0 -15.0 100.0 0.0 0.0 0.0"
 /action inst="0.0" type="ATTACK"
 
-/enemy type="Blades" pos="0.0 0.0 100.0" dir="0.0 0.0 -1.0" up="1.0 0.0 0.0"
-/action inst="50.0" type="MOVE" param="0.0 0.0 100.0 0.0 0.0 0.0"
+/enemy type="Blades" pos="0.0 5.0 100.0" dir="0.0 0.0 -1.0" up="1.0 0.0 0.0"
+/action inst="50.0" type="MOVE" param="0.0 5.0 100.0 0.0 0.0 0.0"
 /action inst="0.0" type="ATTACK"
 
-/enemy type="Blades" pos="0.0 70.0 100.0" dir="0.0 0.0 -1.0" up="1.0 0.0 0.0"
-/action inst="50.5" type="MOVE" param="0.0 70.0 100.0 0.0 0.0 0.0"
+/enemy type="Blades" pos="0.0 -5.0 100.0" dir="0.0 0.0 -1.0" up="1.0 0.0 0.0"
+/action inst="50.5" type="MOVE" param="0.0 -5.0 100.0 0.0 0.0 0.0"
 /action inst="0.0" type="ATTACK"
 
 /enemy type="Blades" pos="0.0 -50.0 100.0" dir="0.0 0.0 -1.0" up="1.0 0.0 0.0"
@@ -469,5 +469,10 @@
 /enemy type="Blades" pos="0.0 50.0 100.0" dir="0.0 0.0 -1.0" up="1.0 0.0 0.0"
 /action inst="51.5" type="MOVE" param="0.0 50.0 100.0 0.0 0.0 0.0"
 /action inst="0.0" type="ATTACK"
+
+
+/boss type="FIRST" pos="0.0 0.0 100.0" dir="0.0 0.0 -1.0" up="0.0 1.0 0.0"
+/action inst="53.0" type="MOVE" param="0.0 0.0 100.0 0.0 0.0 0.0" speed="100"
+/action inst="0.0" type="MOVE" param="0.0 0.0 70.0 0.0 0.0 0.0" speed="100"
 
 
