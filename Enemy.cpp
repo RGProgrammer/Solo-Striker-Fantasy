@@ -72,8 +72,6 @@ void Enemy::Update(float dt){
                 m_Dt=0.0f;
             }
             m_Pos=AddVertex3d(m_Pos,m_Velocity);
-        }else{
-            Kill();
         }
     }else if (m_Stat==EXPLODING){
         if(!m_Explosion->isDone()){
