@@ -210,6 +210,9 @@ void HOPE::Update(SDL_Event* Events, int nbEvents){
                 else if(Events[i].key.keysym.sym==SDLK_LEFT){
                         m_MoveDirection=Normalize3d(AddVertex3d(m_MoveDirection,ScaleVertex3d(m_Dir,-1)));
                 }
+                if(Magnitude3d(m_MoveDirection)!=1){
+                    m_MoveDirection={0.0f,0.0f,0.0f};
+                }
             }
 
             if(Events[i].key.keysym.sym==SDLK_x){
