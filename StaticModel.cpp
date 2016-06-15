@@ -297,8 +297,28 @@ void StaticModel::getAABB(Vertex3d* MinVertex ,Vertex3d* MaxVertex){
             if(v_Meshes[i].MaxVertex.z > MaxVertex->z)
                 MaxVertex->z=v_Meshes[i].MaxVertex.z ;
         }
-        MinVertex->x+=m_Pos.x ;MinVertex->y+=m_Pos.y ;MinVertex->z+=m_Pos.z ;
-        MaxVertex->x+=m_Pos.x ;MaxVertex->y+=m_Pos.y ;MaxVertex->z+=m_Pos.z ;
+        /*MinVertex->x+=m_Pos.x ;MinVertex->y+=m_Pos.y ;MinVertex->z+=m_Pos.z ;
+        MaxVertex->x+=m_Pos.x ;MaxVertex->y+=m_Pos.y ;MaxVertex->z+=m_Pos.z ;*/
+        *MinVertex=Mtx_x_Vertex(this->getTransMtx(),*MinVertex);
+        *MaxVertex=Mtx_x_Vertex(this->getTransMtx(),*MaxVertex);
+        float tmp;
+        if(MaxVertex->x<MinVertex->x){
+            tmp=MinVertex->x;
+            MinVertex->x=MaxVertex->x;
+            MaxVertex->x=tmp;
+        }
+        if(MaxVertex->y<MinVertex->y){
+            tmp=MinVertex->y;
+            MinVertex->y=MaxVertex->y;
+            MaxVertex->y=tmp;
+        }
+        if(MaxVertex->z<MinVertex->z){
+            tmp=MinVertex->z;
+            MinVertex->z=MaxVertex->z;
+            MaxVertex->z=tmp;
+        }
+
+
     }
 };
 float StaticModel::getRadius(){

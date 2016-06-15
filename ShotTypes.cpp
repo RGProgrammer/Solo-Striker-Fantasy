@@ -289,7 +289,9 @@ void Laser::Update(float dt){
     }
 };
 int Laser::LoadFromFile(){
-    return StaticModel::LoadFromFile("Data//Laser.obj");
+    StaticModel::LoadFromFile("Data//Laser.obj");
+    Vertex3d minx,maxx;
+    this->getAABB(&minx,&maxx);
 };
 Shot* Laser::Clone(){
     Shot* clone=new Laser();

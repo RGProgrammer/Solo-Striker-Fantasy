@@ -29,7 +29,7 @@ void Enemy::Update(float dt){
         m_Dt+=dt;
         ///update actions here
         if(v_Actions && m_CurrentActions < m_nbActions){
-            if(v_Actions[m_CurrentActions].Instance-m_Dt>0 )
+            if(v_Actions[m_CurrentActions].Instance-m_Dt>=0 )
                 return ;
             else
                 m_Active=true ;
@@ -57,8 +57,23 @@ void Enemy::Update(float dt){
                 }
                 m_CurrentActions++;
                 m_Dt=0.0f;
+            }else{
+                if(v_Actions[m_CurrentActions].ActionType==ATTACK){
+                    if(m_Pos.z<(-100.0f)){
+                        m_CurrentActions++;
+                    }
+                    Vertex3d player_pos=m_Scene->getPlayer()->getPosition();
+                    if(m_Pos.z >= player_pos.z){
+                        m_Velocity=AddVertex3d(ScaleVertex3d(Normalize3d(m_Dir),70.0f*dt),ScaleVertex3d(Normalize3d(SubsVertex3d(player_pos,m_Pos)),30.0f*dt));
+                    }else{
+                        m_Velocity=ScaleVertex3d(Normalize3d(m_Dir),150.0f*dt);
+                    }
+                }
+                m_Dt=0.0f;
             }
             m_Pos=AddVertex3d(m_Pos,m_Velocity);
+        }else{
+            Kill();
         }
     }else if (m_Stat==EXPLODING){
         if(!m_Explosion->isDone()){

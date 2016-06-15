@@ -149,7 +149,7 @@ void HOPE::Draw(float* ViewMtx){
     }
 };
 void HOPE::Update(float dt){
-    if(m_Stat== ALIVE){
+    if(m_Stat== ALIVE || (m_Stat==HIT && m_Dt<=2.0f)){
         Vertex3d Minv ,Maxv;
         m_Scene->getBorders(&Minv,&Maxv);
         m_Velocity=ScaleVertex3d(m_MoveDirection,m_Speed*dt);
@@ -170,7 +170,8 @@ void HOPE::Update(float dt){
         m_Shooter2->Update(dt);
         if(m_Firing==true)
             Fire(dt);
-    }else if(m_Stat== HIT){
+    }
+    if(m_Stat== HIT){
         m_Dt-=dt ;
         if(m_Dt<=0)
             m_Stat=ALIVE;
@@ -178,7 +179,7 @@ void HOPE::Update(float dt){
 };
 
 void HOPE::Update(SDL_Event* Events, int nbEvents){
-    if(m_Stat==ALIVE)
+    if(m_Stat==ALIVE || (m_Stat==HIT && m_Dt<=2.0f) )
     for(int i=0; i<nbEvents;i++){
         if(Events[i].type==SDL_KEYDOWN){
             if(m_Camera && m_Camera->getViewType()==UP){
@@ -292,7 +293,9 @@ void HOPE::getDamage(){
         }else {
             m_GStatus->setShieldValue(m_GStatus->getShieldValue()-1);
             m_Stat=HIT;
-            m_Dt=2.0f;
+            m_Dt=3.0f;
+            m_MoveDirection={0.0f,0.0f,0.0f};
+            m_Firing=false;
         }
     }
 };
