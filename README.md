@@ -4,4 +4,7 @@ Solo Striker Fantasy is a graduation project.this project have been made on "Cod
 
 to be able to Run the .exe file you need to install OpenAL binary files(download link: https://www.openal.org/downloads/oalinst.zip) 
 
-<video src="https://www.youtube.com/watch?v=kHhcIYJ5m7k"/>
+
+<video width="800" height="600" controls>
+  <source src="https://www.youtube.com/watch?v=kHhcIYJ5m7k">
+</video>
